@@ -1,0 +1,46 @@
+{
+  "name": "vrchatapi",
+  "version": "1.0.0",
+  "description": "_VRChat_API_Banner_https__raw_githubusercontent_com_vrchatapi_vrchatapi_github_io_master_assets_apibanner_png_VRChat_API_DocumentationThis_project_is_an__OPEN_Open_Source_Project_https__openopensource_orgIndividuals_making_significant_and_valuable_contributions_are_givencommit_access_to_the_project_to_contribute_as_they_see_fit__This_projectis_more_like_an_open_wiki_than_a_standard_guarded_open_source_project__DisclaimerThis_is_the_official_response_of_the_VRChat_Team__from_Tupper_more_specifically_on_the_usage_of_the_VRChat_API__Use_of_the_API_using_applications_other_than_the_approved_methods__website_VRChat_application_are_not_officially_supported__You_may_use_the_API_for_your_own_application_but_keep_these_guidelines_in_mind__We_do_not_provide_documentation_or_support_for_the_API___Do_not_make_queries_to_the_API_more_than_once_per_60_seconds___Abuse_of_the_API_may_result_in_account_termination___Access_to_API_endpoints_may_break_at_any_given_time_with_no_warning_As_stated_this_documentation_was_not_created_with_the_help_of_the_official_VRChat_team__Therefore_this_documentation_is_not_an_official_documentation_of_the_VRChat_API_and_may_not_be_always_up_to_date_with_the_latest_versions__If_you_find_that_a_page_or_endpoint_is_not_longer_valid_please_create_an_issue_and_tell_us_so_we_can_fix_it__Get_in_touch_with_us_https__discord_gg_qjZE9C9fkBvrchat_api_https__discord_gg_qjZE9C9fkB",
+  "license": "The MIT License (MIT)",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "prepare": "npm run build",
+    "test": "mocha --require @babel/register --recursive"
+  },
+  "browser": {
+    "fs": false
+  },
+  "dependencies": {
+    "@babel/cli": "^7.0.0",
+    "superagent": "^5.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-function-bind": "^7.0.0",
+    "@babel/plugin-proposal-function-sent": "^7.0.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.0.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "expect.js": "^0.3.1",
+    "mocha": "^8.0.1",
+    "sinon": "^7.2.0"
+  },
+  "files": [
+    "dist"
+  ]
+}
