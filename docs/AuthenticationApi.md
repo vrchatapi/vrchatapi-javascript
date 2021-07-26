@@ -29,13 +29,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.AuthenticationApi();
 let userId = "userId_example"; // String | 
@@ -84,8 +80,6 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: authHeader
 let authHeader = defaultClient.authentications['authHeader'];
 authHeader.username = 'YOUR USERNAME';
@@ -93,8 +87,6 @@ authHeader.password = 'YOUR PASSWORD';
 // Configure API key authorization: twoFactorAuthCookie
 let twoFactorAuthCookie = defaultClient.authentications['twoFactorAuthCookie'];
 twoFactorAuthCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//twoFactorAuthCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.AuthenticationApi();
 apiInstance.getCurrentUser().then((data) => {
@@ -139,13 +131,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.AuthenticationApi();
 apiInstance.logout().then((data) => {
@@ -190,8 +178,6 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.AuthenticationApi();
 let opts = {
@@ -242,13 +228,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.AuthenticationApi();
 apiInstance.verifyAuthToken().then((data) => {
@@ -293,8 +275,6 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.AuthenticationApi();
 let opts = {

@@ -14,3 +14,6 @@ openapi-generator-cli generate \
 # Remove unwanted lines from README
 sed -i '/Uncomment the following line to set a prefix/d' ./README.md
 sed -i '/apiKeyPrefix/d' ./README.md
+sed -i '/Uncomment the following line to set a prefix/d' ./docs/*.md
+sed -i '/apiKeyPrefix/d' ./docs/*.md
+sed -i 's/api.deleteUserById/api.getUser/g' ./README.md

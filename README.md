@@ -134,7 +134,7 @@ authCookie.apiKey = "YOUR API KEY"
 
 var api = new vrchatapi.AuthenticationApi()
 var userId = "userId_example"; // {String} 
-api.deleteUserById(userId).then(function(data) {
+api.getUser(userId).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);

@@ -33,13 +33,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.FilesApi();
 let opts = {
@@ -90,13 +86,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.FilesApi();
 let fileId = file_00000000-0000-0000-0000-000000000000; // String | 
@@ -145,13 +137,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.FilesApi();
 let fileId = file_00000000-0000-0000-0000-000000000000; // String | 
@@ -200,13 +188,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.FilesApi();
 let fileId = file_00000000-0000-0000-0000-000000000000; // String | 
@@ -257,13 +241,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.FilesApi();
 let fileId = file_00000000-0000-0000-0000-000000000000; // String | 
@@ -314,13 +294,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.FilesApi();
 let fileId = file_00000000-0000-0000-0000-000000000000; // String | 
@@ -377,13 +353,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.FilesApi();
 let fileId = file_00000000-0000-0000-0000-000000000000; // String | 
@@ -432,13 +404,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.FilesApi();
 let fileId = file_00000000-0000-0000-0000-000000000000; // String | 
@@ -491,13 +459,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.FilesApi();
 let opts = {
@@ -554,13 +518,9 @@ let defaultClient = vrchatapi.ApiClient.instance;
 // Configure API key authorization: apiKeyCookie
 let apiKeyCookie = defaultClient.authentications['apiKeyCookie'];
 apiKeyCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyCookie.apiKeyPrefix = 'Token';
 // Configure API key authorization: authCookie
 let authCookie = defaultClient.authentications['authCookie'];
 authCookie.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//authCookie.apiKeyPrefix = 'Token';
 
 let apiInstance = new vrchatapi.FilesApi();
 let fileId = file_00000000-0000-0000-0000-000000000000; // String | 
