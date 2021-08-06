@@ -10,7 +10,7 @@
     "openapi-generator",
     "vrchatapi"
   ],
-  "license": "Unlicense",
+  "license": "MIT",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
