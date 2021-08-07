@@ -882,10 +882,10 @@ export interface CurrentUser {
     last_login: string;
     /**
      * 
-     * @type {string}
+     * @type {Platform}
      * @memberof CurrentUser
      */
-    last_platform: string;
+    last_platform: Platform;
     /**
      * 
      * @type {boolean}
@@ -1246,6 +1246,188 @@ export enum InlineObject4MaxPartsEnum {
 /**
  * 
  * @export
+ * @interface InlineObject5
+ */
+export interface InlineObject5 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject5
+     */
+    assetUrl: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject5
+     */
+    assetVersion?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject5
+     */
+    authorId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject5
+     */
+    authorName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineObject5
+     */
+    capacity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject5
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject5
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject5
+     */
+    imageUrl: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject5
+     */
+    name: string;
+    /**
+     * 
+     * @type {Platform}
+     * @memberof InlineObject5
+     */
+    platform?: Platform;
+    /**
+     * 
+     * @type {ReleaseStatus}
+     * @memberof InlineObject5
+     */
+    releaseStatus?: ReleaseStatus;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof InlineObject5
+     */
+    tags?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject5
+     */
+    unityPackageUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject5
+     */
+    unityVersion?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject6
+ */
+export interface InlineObject6 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject6
+     */
+    assetUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject6
+     */
+    assetVersion?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject6
+     */
+    authorId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject6
+     */
+    authorName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineObject6
+     */
+    capacity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject6
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject6
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject6
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject6
+     */
+    name?: string;
+    /**
+     * 
+     * @type {Platform}
+     * @memberof InlineObject6
+     */
+    platform?: Platform;
+    /**
+     * 
+     * @type {ReleaseStatus}
+     * @memberof InlineObject6
+     */
+    releaseStatus?: ReleaseStatus;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof InlineObject6
+     */
+    tags?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject6
+     */
+    unityPackageUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject6
+     */
+    unityVersion?: string;
+}
+/**
+ * 
+ * @export
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
@@ -1384,6 +1566,38 @@ export interface InlineResponse2005 {
 /**
  * 
  * @export
+ * @interface InlineResponse2006
+ */
+export interface InlineResponse2006 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2006
+     */
+    id: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2006
+     */
+    metadata: object;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2007
+ */
+export interface InlineResponse2007 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse2007
+     */
+    canPubilsh: boolean;
+}
+/**
+ * 
+ * @export
  * @interface InlineResponse401
  */
 export interface InlineResponse401 {
@@ -1393,6 +1607,25 @@ export interface InlineResponse401 {
      * @memberof InlineResponse401
      */
     error: Error;
+}
+/**
+ * 
+ * @export
+ * @interface LimitedUnityPackage
+ */
+export interface LimitedUnityPackage {
+    /**
+     * 
+     * @type {Platform}
+     * @memberof LimitedUnityPackage
+     */
+    platform: Platform;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedUnityPackage
+     */
+    unityVersion: string;
 }
 /**
  * 
@@ -1468,10 +1701,10 @@ export interface LimitedUser {
     developerType: DeveloperType;
     /**
      * 
-     * @type {string}
+     * @type {Platform}
      * @memberof LimitedUser
      */
-    last_platform: string;
+    last_platform: Platform;
     /**
      * 
      * @type {UserStatus}
@@ -1500,21 +1733,142 @@ export interface LimitedUser {
 /**
  * 
  * @export
+ * @interface LimitedWorld
+ */
+export interface LimitedWorld {
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    authorId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    authorName: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LimitedWorld
+     */
+    capacity: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    imageUrl: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    thumbnailImageUrl: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    releaseStatus: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    organization: string;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof LimitedWorld
+     */
+    tags: Array<object>;
+    /**
+     * 
+     * @type {number}
+     * @memberof LimitedWorld
+     */
+    favorites: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    created_at: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    updated_at: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    publicationDate: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedWorld
+     */
+    labsPublicationDate: string;
+    /**
+     * 
+     * @type {Set<LimitedUnityPackage>}
+     * @memberof LimitedWorld
+     */
+    unityPackages: Set<LimitedUnityPackage>;
+    /**
+     * 
+     * @type {number}
+     * @memberof LimitedWorld
+     */
+    popularity: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LimitedWorld
+     */
+    heat: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LimitedWorld
+     */
+    occupants: number;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
 export enum MIMEType {
-    Imagejpeg = 'image⁄jpeg',
-    Imagejpg = 'image⁄jpg',
-    Imagepng = 'image⁄png',
-    Imagewebp = 'image⁄webp',
-    Imagegif = 'image⁄gif',
-    Imagebmp = 'image⁄bmp',
-    Imagesvgxml = 'image⁄svg＋xml',
-    Imagetiff = 'image⁄tiff',
-    ApplicationxAvatar = 'application⁄x-avatar',
-    ApplicationxWorld = 'application⁄x-world',
-    Applicationgzip = 'application⁄gzip',
+    ImageJpeg = 'image/jpeg',
+    ImageJpg = 'image/jpg',
+    ImagePng = 'image/png',
+    ImageWebp = 'image/webp',
+    ImageGif = 'image/gif',
+    ImageBmp = 'image/bmp',
+    ImageSvgxml = 'image/svg＋xml',
+    ImageTiff = 'image/tiff',
+    ApplicationXAvatar = 'application/x-avatar',
+    ApplicationXWorld = 'application/x-world',
+    ApplicationGzip = 'application/gzip',
     ApplicationXRsyncSignature = 'application/x-rsync-signature',
     ApplicationXRsyncDelta = 'application/x-rsync-delta',
     ApplicationOctetStream = 'application/octet-stream'
@@ -1656,6 +2010,29 @@ export enum NotificationType {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export enum Platform {
+    Standalonewindows = 'standalonewindows',
+    Android = 'android'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum ReleaseStatus {
+    Public = 'public',
+    Private = 'private',
+    Hidden = 'hidden'
+}
+
+/**
+ * 
+ * @export
  * @interface Response
  */
 export interface Response {
@@ -1684,6 +2061,73 @@ export interface Success {
      * @memberof Success
      */
     success?: Response;
+}
+/**
+ * 
+ * @export
+ * @interface UnityPackage
+ */
+export interface UnityPackage {
+    /**
+     * 
+     * @type {string}
+     * @memberof UnityPackage
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnityPackage
+     */
+    assetUrl: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof UnityPackage
+     */
+    assetUrlObject: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnityPackage
+     */
+    pluginUrl: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof UnityPackage
+     */
+    pluginUrlObject: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnityPackage
+     */
+    unityVersion: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UnityPackage
+     */
+    unitySortNumber: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UnityPackage
+     */
+    assetVersion: number;
+    /**
+     * 
+     * @type {Platform}
+     * @memberof UnityPackage
+     */
+    platform: Platform;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnityPackage
+     */
+    created_at: string;
 }
 /**
  * 
@@ -1783,10 +2227,10 @@ export interface User {
     last_login: string;
     /**
      * 
-     * @type {string}
+     * @type {Platform}
      * @memberof User
      */
-    last_platform: string;
+    last_platform: Platform;
     /**
      * 
      * @type {boolean}
@@ -1822,19 +2266,19 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    worldId: string;
+    worldId?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    location: string;
+    location?: string;
 }
 /**
  * * \"online\" User is online in VRChat * \"active\" User is online, but not in VRChat * \"offline\" User is offline
@@ -1862,6 +2306,205 @@ export enum UserStatus {
     Offline = 'offline'
 }
 
+/**
+ * 
+ * @export
+ * @interface World
+ */
+export interface World {
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    assetUrl: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof World
+     */
+    assetUrlObject: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    authorId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    authorName: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof World
+     */
+    capacity: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    created_at: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    description: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof World
+     */
+    favorites?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof World
+     */
+    featured: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof World
+     */
+    heat: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    imageUrl: string;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof World
+     */
+    instances?: Array<object>;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    labsPublicationDate: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    namespace: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof World
+     */
+    occupants?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    organization: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof World
+     */
+    pluginUrlObject: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof World
+     */
+    popularity: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    previewYoutubeId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof World
+     */
+    privateOccupants?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof World
+     */
+    publicOccupants?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    publicationDate: string;
+    /**
+     * 
+     * @type {ReleaseStatus}
+     * @memberof World
+     */
+    releaseStatus: ReleaseStatus;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof World
+     */
+    tags: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    thumbnailImageUrl: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof World
+     */
+    unityPackageUrlObject: object;
+    /**
+     * 
+     * @type {Set<UnityPackage>}
+     * @memberof World
+     */
+    unityPackages: Set<UnityPackage>;
+    /**
+     * 
+     * @type {string}
+     * @memberof World
+     */
+    updated_at: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof World
+     */
+    version: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof World
+     */
+    visits: number;
+}
 
 /**
  * AuthenticationApi - axios parameter creator
@@ -4719,6 +5362,1133 @@ export class UsersApi extends BaseAPI {
      */
     public updateUser(userId: string, inlineObject2?: InlineObject2, options?: any) {
         return UsersApiFp(this.configuration).updateUser(userId, inlineObject2, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * WorldsApi - axios parameter creator
+ * @export
+ */
+export const WorldsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
+         * @summary Create World
+         * @param {InlineObject5} [inlineObject5] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createWorld: async (inlineObject5?: InlineObject5, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/worlds`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject5, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The WorldID is permanently reserved.
+         * @summary Delete World
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteWorld: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'worldId' is not null or undefined
+            assertParamExists('deleteWorld', 'worldId', worldId)
+            const localVarPath = `/worlds/{worldId}`
+                .replace(`{${"worldId"}}`, encodeURIComponent(String(worldId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Search and list currently Active worlds by query filters.
+         * @summary List Active Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getActiveWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/worlds/active`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (featured !== undefined) {
+                localVarQueryParameter['featured'] = featured;
+            }
+
+            if (sort !== undefined) {
+                localVarQueryParameter['sort'] = sort;
+            }
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
+            if (tag !== undefined) {
+                localVarQueryParameter['tag'] = tag;
+            }
+
+            if (notag !== undefined) {
+                localVarQueryParameter['notag'] = notag;
+            }
+
+            if (releaseStatus !== undefined) {
+                localVarQueryParameter['releaseStatus'] = releaseStatus;
+            }
+
+            if (maxUnityVersion !== undefined) {
+                localVarQueryParameter['maxUnityVersion'] = maxUnityVersion;
+            }
+
+            if (minUnityVersion !== undefined) {
+                localVarQueryParameter['minUnityVersion'] = minUnityVersion;
+            }
+
+            if (platform !== undefined) {
+                localVarQueryParameter['platform'] = platform;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Search and list favorited worlds by query filters.
+         * @summary List Favorited Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {string} [userId] Target user to see information on, admin-only.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavoritedWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/worlds/favorites`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (featured !== undefined) {
+                localVarQueryParameter['featured'] = featured;
+            }
+
+            if (sort !== undefined) {
+                localVarQueryParameter['sort'] = sort;
+            }
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
+            if (tag !== undefined) {
+                localVarQueryParameter['tag'] = tag;
+            }
+
+            if (notag !== undefined) {
+                localVarQueryParameter['notag'] = notag;
+            }
+
+            if (releaseStatus !== undefined) {
+                localVarQueryParameter['releaseStatus'] = releaseStatus;
+            }
+
+            if (maxUnityVersion !== undefined) {
+                localVarQueryParameter['maxUnityVersion'] = maxUnityVersion;
+            }
+
+            if (minUnityVersion !== undefined) {
+                localVarQueryParameter['minUnityVersion'] = minUnityVersion;
+            }
+
+            if (platform !== undefined) {
+                localVarQueryParameter['platform'] = platform;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Search and list recently visited worlds by query filters.
+         * @summary List Recent Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {string} [userId] Target user to see information on, admin-only.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRecentWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/worlds/recent`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (featured !== undefined) {
+                localVarQueryParameter['featured'] = featured;
+            }
+
+            if (sort !== undefined) {
+                localVarQueryParameter['sort'] = sort;
+            }
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
+            if (tag !== undefined) {
+                localVarQueryParameter['tag'] = tag;
+            }
+
+            if (notag !== undefined) {
+                localVarQueryParameter['notag'] = notag;
+            }
+
+            if (releaseStatus !== undefined) {
+                localVarQueryParameter['releaseStatus'] = releaseStatus;
+            }
+
+            if (maxUnityVersion !== undefined) {
+                localVarQueryParameter['maxUnityVersion'] = maxUnityVersion;
+            }
+
+            if (minUnityVersion !== undefined) {
+                localVarQueryParameter['minUnityVersion'] = minUnityVersion;
+            }
+
+            if (platform !== undefined) {
+                localVarQueryParameter['platform'] = platform;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get information about a specific World.
+         * @summary Get World by ID
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorld: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'worldId' is not null or undefined
+            assertParamExists('getWorld', 'worldId', worldId)
+            const localVarPath = `/worlds/{worldId}`
+                .replace(`{${"worldId"}}`, encodeURIComponent(String(worldId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
+         * @summary Get World Metadata
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @deprecated
+         * @throws {RequiredError}
+         */
+        getWorldMetadata: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'worldId' is not null or undefined
+            assertParamExists('getWorldMetadata', 'worldId', worldId)
+            const localVarPath = `/worlds/{worldId}/metadata`
+                .replace(`{${"worldId"}}`, encodeURIComponent(String(worldId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a worlds publish status. This is currently believed to be unused.
+         * @summary Get World Publish Status
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @deprecated
+         * @throws {RequiredError}
+         */
+        getWorldPublish: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'worldId' is not null or undefined
+            assertParamExists('getWorldPublish', 'worldId', worldId)
+            const localVarPath = `/worlds/{worldId}/publish`
+                .replace(`{${"worldId"}}`, encodeURIComponent(String(worldId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Search and list any worlds by query filters.
+         * @summary Search All Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {'me'} [user] Set to &#x60;me&#x60; for searching own worlds.
+         * @param {string} [userId] Filter by author UserID
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/worlds`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (featured !== undefined) {
+                localVarQueryParameter['featured'] = featured;
+            }
+
+            if (sort !== undefined) {
+                localVarQueryParameter['sort'] = sort;
+            }
+
+            if (user !== undefined) {
+                localVarQueryParameter['user'] = user;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
+            if (tag !== undefined) {
+                localVarQueryParameter['tag'] = tag;
+            }
+
+            if (notag !== undefined) {
+                localVarQueryParameter['notag'] = notag;
+            }
+
+            if (releaseStatus !== undefined) {
+                localVarQueryParameter['releaseStatus'] = releaseStatus;
+            }
+
+            if (maxUnityVersion !== undefined) {
+                localVarQueryParameter['maxUnityVersion'] = maxUnityVersion;
+            }
+
+            if (minUnityVersion !== undefined) {
+                localVarQueryParameter['minUnityVersion'] = minUnityVersion;
+            }
+
+            if (platform !== undefined) {
+                localVarQueryParameter['platform'] = platform;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update information about a specific World.
+         * @summary Update World
+         * @param {string} worldId 
+         * @param {InlineObject6} [inlineObject6] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWorld: async (worldId: string, inlineObject6?: InlineObject6, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'worldId' is not null or undefined
+            assertParamExists('updateWorld', 'worldId', worldId)
+            const localVarPath = `/worlds/{worldId}`
+                .replace(`{${"worldId"}}`, encodeURIComponent(String(worldId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject6, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * WorldsApi - functional programming interface
+ * @export
+ */
+export const WorldsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = WorldsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
+         * @summary Create World
+         * @param {InlineObject5} [inlineObject5] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createWorld(inlineObject5?: InlineObject5, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createWorld(inlineObject5, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The WorldID is permanently reserved.
+         * @summary Delete World
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteWorld(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteWorld(worldId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Search and list currently Active worlds by query filters.
+         * @summary List Active Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getActiveWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getActiveWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Search and list favorited worlds by query filters.
+         * @summary List Favorited Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {string} [userId] Target user to see information on, admin-only.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getFavoritedWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFavoritedWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Search and list recently visited worlds by query filters.
+         * @summary List Recent Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {string} [userId] Target user to see information on, admin-only.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRecentWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRecentWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get information about a specific World.
+         * @summary Get World by ID
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getWorld(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getWorld(worldId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
+         * @summary Get World Metadata
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @deprecated
+         * @throws {RequiredError}
+         */
+        async getWorldMetadata(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getWorldMetadata(worldId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a worlds publish status. This is currently believed to be unused.
+         * @summary Get World Publish Status
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @deprecated
+         * @throws {RequiredError}
+         */
+        async getWorldPublish(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getWorldPublish(worldId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Search and list any worlds by query filters.
+         * @summary Search All Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {'me'} [user] Set to &#x60;me&#x60; for searching own worlds.
+         * @param {string} [userId] Filter by author UserID
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async searchWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Update information about a specific World.
+         * @summary Update World
+         * @param {string} worldId 
+         * @param {InlineObject6} [inlineObject6] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateWorld(worldId: string, inlineObject6?: InlineObject6, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWorld(worldId, inlineObject6, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * WorldsApi - factory interface
+ * @export
+ */
+export const WorldsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = WorldsApiFp(configuration)
+    return {
+        /**
+         * Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
+         * @summary Create World
+         * @param {InlineObject5} [inlineObject5] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createWorld(inlineObject5?: InlineObject5, options?: any): AxiosPromise<World> {
+            return localVarFp.createWorld(inlineObject5, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The WorldID is permanently reserved.
+         * @summary Delete World
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteWorld(worldId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.deleteWorld(worldId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Search and list currently Active worlds by query filters.
+         * @summary List Active Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getActiveWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
+            return localVarFp.getActiveWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Search and list favorited worlds by query filters.
+         * @summary List Favorited Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {string} [userId] Target user to see information on, admin-only.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavoritedWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
+            return localVarFp.getFavoritedWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Search and list recently visited worlds by query filters.
+         * @summary List Recent Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {string} [userId] Target user to see information on, admin-only.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRecentWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
+            return localVarFp.getRecentWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get information about a specific World.
+         * @summary Get World by ID
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorld(worldId: string, options?: any): AxiosPromise<World> {
+            return localVarFp.getWorld(worldId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
+         * @summary Get World Metadata
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @deprecated
+         * @throws {RequiredError}
+         */
+        getWorldMetadata(worldId: string, options?: any): AxiosPromise<InlineResponse2006> {
+            return localVarFp.getWorldMetadata(worldId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a worlds publish status. This is currently believed to be unused.
+         * @summary Get World Publish Status
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @deprecated
+         * @throws {RequiredError}
+         */
+        getWorldPublish(worldId: string, options?: any): AxiosPromise<InlineResponse2007> {
+            return localVarFp.getWorldPublish(worldId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Search and list any worlds by query filters.
+         * @summary Search All Worlds
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {'me'} [user] Set to &#x60;me&#x60; for searching own worlds.
+         * @param {string} [userId] Filter by author UserID
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
+            return localVarFp.searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update information about a specific World.
+         * @summary Update World
+         * @param {string} worldId 
+         * @param {InlineObject6} [inlineObject6] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWorld(worldId: string, inlineObject6?: InlineObject6, options?: any): AxiosPromise<World> {
+            return localVarFp.updateWorld(worldId, inlineObject6, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * WorldsApi - object-oriented interface
+ * @export
+ * @class WorldsApi
+ * @extends {BaseAPI}
+ */
+export class WorldsApi extends BaseAPI {
+    /**
+     * Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
+     * @summary Create World
+     * @param {InlineObject5} [inlineObject5] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public createWorld(inlineObject5?: InlineObject5, options?: any) {
+        return WorldsApiFp(this.configuration).createWorld(inlineObject5, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The WorldID is permanently reserved.
+     * @summary Delete World
+     * @param {string} worldId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public deleteWorld(worldId: string, options?: any) {
+        return WorldsApiFp(this.configuration).deleteWorld(worldId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Search and list currently Active worlds by query filters.
+     * @summary List Active Worlds
+     * @param {string} [featured] Filters on featured results.
+     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {number} [n] The number of objects to return.
+     * @param {'ascending' | 'descending'} [order] 
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {string} [search] Filters by world name.
+     * @param {string} [tag] Tags to include (comma-separated).
+     * @param {string} [notag] Tags to exclude (comma-separated).
+     * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+     * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+     * @param {string} [platform] The platform the asset supports.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public getActiveWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any) {
+        return WorldsApiFp(this.configuration).getActiveWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Search and list favorited worlds by query filters.
+     * @summary List Favorited Worlds
+     * @param {string} [featured] Filters on featured results.
+     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {number} [n] The number of objects to return.
+     * @param {'ascending' | 'descending'} [order] 
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {string} [search] Filters by world name.
+     * @param {string} [tag] Tags to include (comma-separated).
+     * @param {string} [notag] Tags to exclude (comma-separated).
+     * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+     * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+     * @param {string} [platform] The platform the asset supports.
+     * @param {string} [userId] Target user to see information on, admin-only.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public getFavoritedWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any) {
+        return WorldsApiFp(this.configuration).getFavoritedWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Search and list recently visited worlds by query filters.
+     * @summary List Recent Worlds
+     * @param {string} [featured] Filters on featured results.
+     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {number} [n] The number of objects to return.
+     * @param {'ascending' | 'descending'} [order] 
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {string} [search] Filters by world name.
+     * @param {string} [tag] Tags to include (comma-separated).
+     * @param {string} [notag] Tags to exclude (comma-separated).
+     * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+     * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+     * @param {string} [platform] The platform the asset supports.
+     * @param {string} [userId] Target user to see information on, admin-only.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public getRecentWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any) {
+        return WorldsApiFp(this.configuration).getRecentWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get information about a specific World.
+     * @summary Get World by ID
+     * @param {string} worldId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public getWorld(worldId: string, options?: any) {
+        return WorldsApiFp(this.configuration).getWorld(worldId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
+     * @summary Get World Metadata
+     * @param {string} worldId 
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public getWorldMetadata(worldId: string, options?: any) {
+        return WorldsApiFp(this.configuration).getWorldMetadata(worldId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a worlds publish status. This is currently believed to be unused.
+     * @summary Get World Publish Status
+     * @param {string} worldId 
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public getWorldPublish(worldId: string, options?: any) {
+        return WorldsApiFp(this.configuration).getWorldPublish(worldId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Search and list any worlds by query filters.
+     * @summary Search All Worlds
+     * @param {string} [featured] Filters on featured results.
+     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {'me'} [user] Set to &#x60;me&#x60; for searching own worlds.
+     * @param {string} [userId] Filter by author UserID
+     * @param {number} [n] The number of objects to return.
+     * @param {'ascending' | 'descending'} [order] 
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {string} [search] Filters by world name.
+     * @param {string} [tag] Tags to include (comma-separated).
+     * @param {string} [notag] Tags to exclude (comma-separated).
+     * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+     * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+     * @param {string} [platform] The platform the asset supports.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public searchWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any) {
+        return WorldsApiFp(this.configuration).searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update information about a specific World.
+     * @summary Update World
+     * @param {string} worldId 
+     * @param {InlineObject6} [inlineObject6] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public updateWorld(worldId: string, inlineObject6?: InlineObject6, options?: any) {
+        return WorldsApiFp(this.configuration).updateWorld(worldId, inlineObject6, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
