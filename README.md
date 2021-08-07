@@ -1,45 +1,27 @@
-## vrchatapi@1.0.0
+![](https://github.com/vrchatapi/vrchatapi.github.io/blob/master/assets/img/lang/lang_rust_banner_1500x300.png?raw=true)
 
-This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
+# vrchat-node
 
-Environment
-* Node.js
-* Webpack
-* Browserify
+A NodeJS client to interact with the unofficial VRChat API. Supports all REST calls specified in https://github.com/vrchatapi/specification.
 
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
+## Disclaimer
 
-Module system
-* CommonJS
-* ES6 module system
+This is the official response of the VRChat Team (from Tupper more specifically) on the usage of the VRChat API.
 
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
+> Use of the API using applications other than the approved methods (website, VRChat application) are not officially supported. You may use the API for your own application, but keep these guidelines in mind:
+> * We do not provide documentation or support for the API.
+> * Do not make queries to the API more than once per 60 seconds.
+> * Abuse of the API may result in account termination.
+> * Access to API endpoints may break at any given time, with no warning.
 
-### Building
+As stated, this documentation was not created with the help of the official VRChat team. Therefore this documentation is not an official documentation of the VRChat API and may not be always up to date with the latest versions. If you find that a page or endpoint is not longer valid please create an issue and tell us so we can fix it.
 
-To build and compile the typescript sources to javascript use:
-```
-npm install
-npm run build
-```
+## Getting Started
 
-### Publishing
+See the [example.js](https://github.com/vrchatapi/vrchatapi-node/blob/master/example.js) for getting started.
 
-First build the package then run ```npm publish```
+## Contributing
 
-### Consuming
+Contributions are welcome, but do not add features that should be handled by the OpenAPI specification.
 
-navigate to the folder of your consuming project and run one of the following commands.
-
-_published:_
-
-```
-npm install vrchatapi@1.0.0 --save
-```
-
-_unPublished (not recommended):_
-
-```
-npm install PATH_TO_GENERATED_PACKAGE --save
+Join the [Discord server](https://discord.gg/Ge2APMhPfD) to get in touch with us.

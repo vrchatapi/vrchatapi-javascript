@@ -1,5 +1,4 @@
 .npmignore
-README.md
 api.ts
 base.ts
 common.ts
