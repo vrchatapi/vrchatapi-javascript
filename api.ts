@@ -5837,6 +5837,39 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Publishes a world. You can only publish one world per week.
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishWorld: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'worldId' is not null or undefined
+            assertParamExists('publishWorld', 'worldId', worldId)
+            const localVarPath = `/worlds/{worldId}/publish`
+                .replace(`{${"worldId"}}`, encodeURIComponent(String(worldId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Search and list any worlds by query filters.
          * @summary Search All Worlds
          * @param {string} [featured] Filters on featured results.
@@ -5928,6 +5961,39 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             if (platform !== undefined) {
                 localVarQueryParameter['platform'] = platform;
             }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Unpublishes a world.
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unpublishWorld: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'worldId' is not null or undefined
+            assertParamExists('unpublishWorld', 'worldId', worldId)
+            const localVarPath = `/worlds/{worldId}/publish`
+                .replace(`{${"worldId"}}`, encodeURIComponent(String(worldId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
 
     
@@ -6114,6 +6180,16 @@ export const WorldsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Publishes a world. You can only publish one world per week.
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publishWorld(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishWorld(worldId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Search and list any worlds by query filters.
          * @summary Search All Worlds
          * @param {string} [featured] Filters on featured results.
@@ -6135,6 +6211,16 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          */
         async searchWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Unpublishes a world.
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async unpublishWorld(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unpublishWorld(worldId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -6277,6 +6363,15 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.getWorldPublish(worldId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Publishes a world. You can only publish one world per week.
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishWorld(worldId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.publishWorld(worldId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Search and list any worlds by query filters.
          * @summary Search All Worlds
          * @param {string} [featured] Filters on featured results.
@@ -6298,6 +6393,15 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
          */
         searchWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
             return localVarFp.searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Unpublishes a world.
+         * @param {string} worldId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unpublishWorld(worldId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.unpublishWorld(worldId, options).then((request) => request(axios, basePath));
         },
         /**
          * Update information about a specific World.
@@ -6454,6 +6558,17 @@ export class WorldsApi extends BaseAPI {
     }
 
     /**
+     * Publishes a world. You can only publish one world per week.
+     * @param {string} worldId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public publishWorld(worldId: string, options?: any) {
+        return WorldsApiFp(this.configuration).publishWorld(worldId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Search and list any worlds by query filters.
      * @summary Search All Worlds
      * @param {string} [featured] Filters on featured results.
@@ -6476,6 +6591,17 @@ export class WorldsApi extends BaseAPI {
      */
     public searchWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any) {
         return WorldsApiFp(this.configuration).searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Unpublishes a world.
+     * @param {string} worldId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorldsApi
+     */
+    public unpublishWorld(worldId: string, options?: any) {
+        return WorldsApiFp(this.configuration).unpublishWorld(worldId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
