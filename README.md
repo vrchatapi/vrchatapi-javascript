@@ -1,8 +1,8 @@
-![](https://github.com/vrchatapi/vrchatapi.github.io/blob/master/assets/img/lang/lang_rust_banner_1500x300.png?raw=true)
+![](https://github.com/vrchatapi/vrchatapi.github.io/blob/master/assets/img/lang/lang_javascript_banner_1500x300.png?raw=true)
 
-# vrchat-node
+# VRChat API Library for JavaScript/TypeScript
 
-A NodeJS client to interact with the unofficial VRChat API. Supports all REST calls specified in https://github.com/vrchatapi/specification.
+A JavaScript/TypeScript/NodeJS client to interact with the unofficial VRChat API. Supports all REST calls specified in https://github.com/vrchatapi/specification.
 
 ## Disclaimer
 
@@ -18,7 +18,7 @@ As stated, this documentation was not created with the help of the official VRCh
 
 ## Getting Started
 
-See the [example.js](https://github.com/vrchatapi/vrchatapi-node/blob/master/example.js) for getting started.
+See the [example.js](https://github.com/vrchatapi/vrchatapi-javascript/blob/master/example.js) for getting started.
 
 ## Contributing
 
