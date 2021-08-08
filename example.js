@@ -1,7 +1,7 @@
 const VRChatApi = require("./dist");
 const configuration = new VRChatApi.Configuration({
-    username: "FooVRCApiDocs",
-    password: "YAe8Yh9HMT64RGX"
+    username: "username",
+    password: "password"
 });
 
 const AuthenticationApi = new VRChatApi.AuthenticationApi(configuration);
