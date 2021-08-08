@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm src docs test -rf
+rm *.ts -rf
 openapi-generator-cli generate \
 -g typescript-axios \
 --additional-properties=npmName=vrchatapi \
