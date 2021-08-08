@@ -1,6 +1,6 @@
 {
   "name": "vrchatapi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "OpenAPI client for vrchatapi",
   "author": "OpenAPI-Generator Contributors",
   "keywords": [
@@ -18,6 +18,9 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
+    "tough-cookie": "^4.0.0",
+    "axios-cookiejar-support": "^1.0.1",
+    "@types/tough-cookie": "^4.0.1",
     "axios": "^0.21.1"
   },
   "devDependencies": {
