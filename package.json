@@ -1,7 +1,7 @@
 {
   "name": "vrchat",
   "version": "1.0.0",
-  "description": "OpenAPI client for vrchat",
+  "description": "🟡🔵 VRChat API Library for JavaScript and TypeScript",
   "author": "OpenAPI-Generator Contributors",
   "keywords": [
     "axios",

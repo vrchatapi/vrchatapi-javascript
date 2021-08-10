@@ -13,6 +13,7 @@ openapi-generator-cli generate \
 --http-user-agent="vrchatapi-javascript"
 
 # Modify package.json
+sed -i 's/OpenAPI client for vrchat/🟡🔵 VRChat API Library for JavaScript and TypeScript/g' ./package.json
 sed -i 's/Unlicense/MIT/g' ./package.json
 
 # Enable global cookies
