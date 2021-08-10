@@ -1,12 +1,12 @@
-const VRChatApi = require("./dist");
-const configuration = new VRChatApi.Configuration({
+const vrchat = require("vrchat");
+const configuration = new vrchat.Configuration({
     username: "username",
     password: "password"
 });
 
-const AuthenticationApi = new VRChatApi.AuthenticationApi(configuration);
-const UsersApi = new VRChatApi.UsersApi(configuration);
-const SystemApi = new VRChatApi.SystemApi(configuration);
+const AuthenticationApi = new vrchat.AuthenticationApi(configuration);
+const UsersApi = new vrchat.UsersApi(configuration);
+const SystemApi = new vrchat.SystemApi(configuration);
 
 SystemApi.getCurrentOnlineUsers().then(resp => {
     console.log(`Current Online Users: ${resp.data}`);

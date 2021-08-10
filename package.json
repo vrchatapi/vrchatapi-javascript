@@ -1,14 +1,14 @@
 {
-  "name": "vrchatapi",
-  "version": "1.0.1",
-  "description": "OpenAPI client for vrchatapi",
+  "name": "vrchat",
+  "version": "1.0.0",
+  "description": "OpenAPI client for vrchat",
   "author": "OpenAPI-Generator Contributors",
   "keywords": [
     "axios",
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "vrchatapi"
+    "vrchat"
   ],
   "license": "MIT",
   "main": "./dist/index.js",

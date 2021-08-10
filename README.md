@@ -20,22 +20,22 @@ As stated, this documentation was not created with the help of the official VRCh
 
 First add the package to to your project:
 ```bash
-npm install vrchatapi # NOTE: We are not yet published on NPM
+npm install vrchat
 ```
 
 Below is an example on how to login to the API and fetch your own user information.
 
 ```javascript
 // Step 1. We begin with creating a Configuration, which contains the username and password for authentication.
-const VRChatApi = require("vrchatapi");
-const configuration = new VRChatApi.Configuration({
+const vrchat = require("vrchat");
+const configuration = new vrchat.Configuration({
     username: "username",
     password: "password"
 });
 
 // Step 2. VRChat consists of several API's (WorldsApi, UsersApi, FilesApi, NotificationsApi, FriendsApi, etc...)
 // Here we instantiate the Authentication API which is required for logging in.
-const AuthenticationApi = new VRChatApi.AuthenticationApi(configuration);
+const AuthenticationApi = new vrchat.AuthenticationApi(configuration);
 
 // Step 3. Calling getCurrentUser on Authentication API logs you in if the user isn't already logged in.
 AuthenticationApi.getCurrentUser().then(resp => {

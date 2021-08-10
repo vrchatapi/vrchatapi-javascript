@@ -1,13 +1,15 @@
 #!/bin/bash
 
+curl https://vrchatapi.github.io/specification/openapi.yaml > dist/openapi.yaml
+
 rm *.ts -rf
 openapi-generator-cli generate \
 -g typescript-axios \
---additional-properties=npmName=vrchatapi \
+--additional-properties=npmName=vrchat \
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-javascript \
 -o . \
--i ../specification/openapi.yaml \
+-i dist/openapi.yaml \
 --http-user-agent="vrchatapi-javascript"
 
 # Modify package.json
