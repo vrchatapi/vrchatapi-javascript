@@ -2,7 +2,7 @@
 
 # VRChat API Library for JavaScript/TypeScript
 
-A JavaScript/TypeScript/NodeJS client to interact with the unofficial VRChat API. Supports all REST calls specified in https://github.com/vrchatapi/specification.
+A JavaScript/TypeScript/NodeJS client to interact with the unofficial VRChat API. Supports all REST calls specified in the [API specification](https://github.com/vrchatapi/specification).
 
 ## Disclaimer
 
