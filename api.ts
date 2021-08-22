@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * VRChat API Documentation
- * ![VRChat API Banner](https://vrchatapi.github.io/assets/img/api_banner_1500x400.png)  # VRChat API Documentation This project is an [OPEN Open Source Project](https://openopensource.org)  Individuals making significant and valuable contributions are given commit-access to the project to contribute as they see fit. This project is more like an open wiki than a standard guarded open source project.  ## Disclaimer  This is the official response of the VRChat Team (from Tupper more specifically) on the usage of the VRChat API.  > **Use of the API using applications other than the approved methods (website, VRChat application) are not officially supported. You may use the API for your own application, but keep these guidelines in mind:** > * We do not provide documentation or support for the API. > * Do not make queries to the API more than once per 60 seconds. > * Abuse of the API may result in account termination. > * Access to API endpoints may break at any given time, with no warning.  As stated, this documentation was not created with the help of the official VRChat team. Therefore this documentation is not an official documentation of the VRChat API and may not be always up to date with the latest versions. If you find that a page or endpoint is not longer valid please create an issue and tell us so we can fix it.  ## Get in touch with us!  [https://discord.gg/qjZE9C9fkB#vrchat-api](https://discord.gg/qjZE9C9fkB)
+ * ![VRChat API Banner](https://vrchatapi.github.io/assets/img/api_banner_1500x400.png)  # Welcome to the VRChat API  Before we begin, we would like to state this is a **COMMUNITY DRIVEN PROJECT**. This means that everything you read on here was written by the community itself and is **not** officially supported by VRChat. The documentation is provided \"AS IS\", and any action you take towards VRChat is completely your own responsibility.  The documentation and additional libraries SHALL ONLY be used for applications interacting with VRChat\'s API in accordance with their [Terms of Service](https://github.com/VRChatAPI), and MUST NOT be used for modifying the client, \"avatar ripping\", or other illegal activities. Malicious usage or spamming the API may result in account termination. Certain parts of the API are also more sensitive than others, for example moderation, so please read tread extra carefully and read the warnings when present.  ![Tupper Policy on API](https://i.imgur.com/yLlW7Ok.png)  Finally, use of the API using applications other than the approved methods (website, VRChat application, Unity SDK) is not officially supported. VRChat provides no guarantee or support for external applications using the API. Access to API endpoints may break **at any time, without notice**. Therefore, please **do not ping** VRChat Staff in the VRChat Discord if you are having API problems, as they do not provide API support. We will make a best effort in keeping this documentation and associated language libraries up to date, but things might be outdated or missing. If you find that something is no longer valid, please contact us on Discord or [create an issue](https://github.com/vrchatapi/specification/issues) and tell us so we can fix it.  # Getting Started  The VRChat API can be used to programmatically retrieve or update information regarding your profile, friends, avatars, worlds and more. The API consists of two parts, \"Photon\" which is only used in-game, and the \"Web API\" which is used by both the game and the website. This documentation focuses only on the Web API.  The API is designed around the REST ideology, providing semi-simple and usually predictable URIs to access and modify objects. Requests support standard HTTP methods like GET, PUT, POST, and DELETE and standard status codes. Response bodies are always UTF-8 encoded JSON objects, unless explicitly documented otherwise.  <div class=\"callout callout-error\">   <strong>🛑 Warning! Do not touch Photon!</strong><br>   Photon is only used by the in-game client and should <b>not</b> be touched. Doing so may result in permanent account termination. </div>  <div class=\"callout callout-info\">   <strong>ℹ️ API Key and Authentication</strong><br>   The API Key has always been the same and is currently <code>JlE5Jldo5Jibnk5O5hTx6XVqsJu4WJ26</code>.   Read <a href=\"#tag--authentication\">Authentication</a> for how to log in. </div>  # Using the API  For simply exploring what the API can do it is strongly recommended to download [Insomnia](https://insomnia.rest/download), a free and open-source API client that\'s great for sending requests to the API in an orderly fashion. Insomnia allows you to send data in the format that\'s required for VRChat\'s API. It is also possible to try out the API in your browser, by first logging in at [vrchat.com/home](https://vrchat.com/home/) and then going to [vrchat.com/api/1/auth/user](https://vrchat.com/api/1/auth/user), but the information will be much harder to work with.  For more permanent operation such as software development it is instead recommended to use one of the existing language SDKs. This community project maintains API libraries in several languages, which allows you to interact with the API with simple function calls rather than having to implement the HTTP protocol yourself. Most of these libraries are automatically generated from the API specification, sometimes with additional helpful wrapper code to make usage easier. This allows them to be almost automatically updated and expanded upon as soon as a new feature is introduced in the specification itself. The libraries can be found on [GitHub](https://github.com/vrchatapi) or following:  * [NodeJS (JavaScript)](https://www.npmjs.com/package/vrchat) * [Dart](https://pub.dev/packages/vrchat_dart) * [Rust](https://crates.io/crates/vrchatapi) * [C#](github.com/vrchatapi/vrchatapi-csharp) * [Python](https://github.com/vrchatapi/VRChatPython)  # Pagination  Most endpoints enforce pagination, meaning they will only return 10 entries by default, and never more than 100.<br> Using both the limit and offset parameters allows you to easily paginate through a large number of objects.  | Query Parameter | Type | Description | | ----------|--|------- | | `limit` | integer  | The number of objects to return. This value often defaults to 10. Highest limit is always 100.| | `offset` | integer  | A zero-based offset from the default object sorting.|  If a request returns fewer objects than the `limit` parameter, there are no more items available to return.  # Contribution  Do you want to get involved in the documentation effort? Do you want to help improve one of the language API libraries? This project is an [OPEN Open Source Project](https://openopensource.org)! This means that individuals making significant and valuable contributions are given commit-access to the project. It also means we are very open and welcoming of new people making contributions, unlike some more guarded open-source projects.  [![Discord](https://img.shields.io/static/v1?label=vrchatapi&message=discord&color=blueviolet&style=for-the-badge)](https://discord.gg/qjZE9C9fkB)
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: 1.0.1
  * Contact: me@ruby.js.org
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -25,6 +25,135 @@ import axiosCookieJarSupport from "axios-cookiejar-support";axiosCookieJarSuppor
 /**
  * 
  * @export
+ * @interface Avatar
+ */
+export interface Avatar {
+    /**
+     * Not present from general serach `/avatars`, only on specific requests `/avatars/{avatarId}`.
+     * @type {string}
+     * @memberof Avatar
+     */
+    assetUrl?: string;
+    /**
+     * Not present from general serach `/avatars`, only on specific requests `/avatars/{avatarId}`. **Deprecation:** `Object` has unknown usage/fields, and is always empty. Use normal `Url` field instead.
+     * @type {object}
+     * @memberof Avatar
+     */
+    assetUrlObject?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof Avatar
+     */
+    authorId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Avatar
+     */
+    authorName: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Avatar
+     */
+    created_at: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Avatar
+     */
+    description: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Avatar
+     */
+    featured: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Avatar
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Avatar
+     */
+    imageUrl: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Avatar
+     */
+    name: string;
+    /**
+     * 
+     * @type {ReleaseStatus}
+     * @memberof Avatar
+     */
+    releaseStatus: ReleaseStatus;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Avatar
+     */
+    tags: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Avatar
+     */
+    thumbnailImageUrl: string;
+    /**
+     * 
+     * @type {Set<UnityPackage>}
+     * @memberof Avatar
+     */
+    unityPackages: Set<UnityPackage>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Avatar
+     */
+    unityPackageUrl: string;
+    /**
+     * 
+     * @type {AvatarUnityPackageUrlObject}
+     * @memberof Avatar
+     * @deprecated
+     */
+    unityPackageUrlObject: AvatarUnityPackageUrlObject;
+    /**
+     * 
+     * @type {string}
+     * @memberof Avatar
+     */
+    updated_at: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Avatar
+     */
+    version: number;
+}
+/**
+ * **Deprecation:** `Object` has unknown usage/fields, and is always empty. Use normal `Url` field instead.
+ * @export
+ * @interface AvatarUnityPackageUrlObject
+ */
+export interface AvatarUnityPackageUrlObject {
+    /**
+     * 
+     * @type {string}
+     * @memberof AvatarUnityPackageUrlObject
+     */
+    unityPackageUrl?: string;
+}
+/**
+ * 
+ * @export
  * @interface Config
  */
 export interface Config {
@@ -35,7 +164,7 @@ export interface Config {
      */
     address: string;
     /**
-     * PSA, Public Announcements
+     * Public Announcements
      * @type {Set<ConfigAnnouncements>}
      * @memberof Config
      */
@@ -774,9 +903,10 @@ export interface CurrentUser {
      */
     friends: Array<string>;
     /**
-     * 
+     * Always empty array.
      * @type {Array<string>}
      * @memberof CurrentUser
+     * @deprecated
      */
     friendGroupNames: Array<string>;
     /**
@@ -965,6 +1095,116 @@ export enum DeveloperType {
 /**
  * 
  * @export
+ * @interface Favorite
+ */
+export interface Favorite {
+    /**
+     * 
+     * @type {string}
+     * @memberof Favorite
+     */
+    id: string;
+    /**
+     * 
+     * @type {FavoriteType}
+     * @memberof Favorite
+     */
+    type: FavoriteType;
+    /**
+     * MUST be either AvatarID, UserID or WorldID.
+     * @type {string}
+     * @memberof Favorite
+     */
+    favoriteId: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Favorite
+     */
+    tags: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface FavoriteGroup
+ */
+export interface FavoriteGroup {
+    /**
+     * 
+     * @type {string}
+     * @memberof FavoriteGroup
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FavoriteGroup
+     */
+    ownerId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FavoriteGroup
+     */
+    ownerDisplayName: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FavoriteGroup
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FavoriteGroup
+     */
+    displayName: string;
+    /**
+     * 
+     * @type {FavoriteType}
+     * @memberof FavoriteGroup
+     */
+    type: FavoriteType;
+    /**
+     * 
+     * @type {FavoriteGroupVisibility}
+     * @memberof FavoriteGroup
+     */
+    visibility: FavoriteGroupVisibility;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FavoriteGroup
+     */
+    tags: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum FavoriteGroupVisibility {
+    Private = 'private',
+    Friends = 'friends',
+    Public = 'public'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum FavoriteType {
+    World = 'world',
+    Friend = 'friend',
+    Avatar = 'avatar'
+}
+
+/**
+ * 
+ * @export
  * @interface FileData
  */
 export interface FileData {
@@ -1112,6 +1352,166 @@ export interface InlineObject1 {
 /**
  * 
  * @export
+ * @interface InlineObject10
+ */
+export interface InlineObject10 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject10
+     */
+    assetUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject10
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject10
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject10
+     */
+    description?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof InlineObject10
+     */
+    tags?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject10
+     */
+    imageUrl: string;
+    /**
+     * 
+     * @type {ReleaseStatus}
+     * @memberof InlineObject10
+     */
+    releaseStatus?: ReleaseStatus;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineObject10
+     */
+    version?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject10
+     */
+    unityPackageUrl?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject11
+ */
+export interface InlineObject11 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject11
+     */
+    assetUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject11
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject11
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject11
+     */
+    description?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof InlineObject11
+     */
+    tags?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject11
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {ReleaseStatus}
+     * @memberof InlineObject11
+     */
+    releaseStatus?: ReleaseStatus;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineObject11
+     */
+    version?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject11
+     */
+    unityPackageUrl?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject12
+ */
+export interface InlineObject12 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject12
+     */
+    moderated: string;
+    /**
+     * 
+     * @type {PlayerModerationType}
+     * @memberof InlineObject12
+     */
+    type: PlayerModerationType;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject13
+ */
+export interface InlineObject13 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject13
+     */
+    moderated?: string;
+    /**
+     * 
+     * @type {PlayerModerationType}
+     * @memberof InlineObject13
+     */
+    type: PlayerModerationType;
+}
+/**
+ * 
+ * @export
  * @interface InlineObject2
  */
 export interface InlineObject2 {
@@ -1208,42 +1608,30 @@ export interface InlineObject3 {
  */
 export interface InlineObject4 {
     /**
-     * Array of ETags uploaded.
-     * @type {Set<string>}
-     * @memberof InlineObject4
-     */
-    etags?: Set<string>;
-    /**
-     * Always a zero in string form, despite how many parts uploaded.
+     * 
      * @type {string}
      * @memberof InlineObject4
-     * @deprecated
      */
-    nextPartNumber: InlineObject4NextPartNumberEnum;
+    signatureMd5: string;
     /**
-     * Always a zero in string form, despite how many parts uploaded.
+     * 
+     * @type {number}
+     * @memberof InlineObject4
+     */
+    signatureSizeInBytes: number;
+    /**
+     * 
      * @type {string}
      * @memberof InlineObject4
-     * @deprecated
      */
-    maxParts: InlineObject4MaxPartsEnum;
+    fileMd5?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineObject4
+     */
+    fileSizeInBytes?: number;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineObject4NextPartNumberEnum {
-    _0 = '0'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InlineObject4MaxPartsEnum {
-    _0 = '0'
-}
-
 /**
  * 
  * @export
@@ -1251,89 +1639,25 @@ export enum InlineObject4MaxPartsEnum {
  */
 export interface InlineObject5 {
     /**
-     * 
+     * Array of ETags uploaded.
+     * @type {Set<string>}
+     * @memberof InlineObject5
+     */
+    etags?: Set<string>;
+    /**
+     * Always a zero in string form, despite how many parts uploaded.
      * @type {string}
      * @memberof InlineObject5
+     * @deprecated
      */
-    assetUrl: string;
+    nextPartNumber: string;
     /**
-     * 
+     * Always a zero in string form, despite how many parts uploaded.
      * @type {string}
      * @memberof InlineObject5
+     * @deprecated
      */
-    assetVersion?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject5
-     */
-    authorId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject5
-     */
-    authorName?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineObject5
-     */
-    capacity?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject5
-     */
-    description?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject5
-     */
-    id?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject5
-     */
-    imageUrl: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject5
-     */
-    name: string;
-    /**
-     * 
-     * @type {Platform}
-     * @memberof InlineObject5
-     */
-    platform?: Platform;
-    /**
-     * 
-     * @type {ReleaseStatus}
-     * @memberof InlineObject5
-     */
-    releaseStatus?: ReleaseStatus;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof InlineObject5
-     */
-    tags?: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject5
-     */
-    unityPackageUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject5
-     */
-    unityVersion?: string;
+    maxParts: string;
 }
 /**
  * 
@@ -1346,7 +1670,7 @@ export interface InlineObject6 {
      * @type {string}
      * @memberof InlineObject6
      */
-    assetUrl?: string;
+    assetUrl: string;
     /**
      * 
      * @type {string}
@@ -1388,13 +1712,13 @@ export interface InlineObject6 {
      * @type {string}
      * @memberof InlineObject6
      */
-    imageUrl?: string;
+    imageUrl: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject6
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {Platform}
@@ -1425,6 +1749,147 @@ export interface InlineObject6 {
      * @memberof InlineObject6
      */
     unityVersion?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject7
+ */
+export interface InlineObject7 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject7
+     */
+    assetUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject7
+     */
+    assetVersion?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject7
+     */
+    authorId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject7
+     */
+    authorName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineObject7
+     */
+    capacity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject7
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject7
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject7
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject7
+     */
+    name?: string;
+    /**
+     * 
+     * @type {Platform}
+     * @memberof InlineObject7
+     */
+    platform?: Platform;
+    /**
+     * 
+     * @type {ReleaseStatus}
+     * @memberof InlineObject7
+     */
+    releaseStatus?: ReleaseStatus;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof InlineObject7
+     */
+    tags?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject7
+     */
+    unityPackageUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject7
+     */
+    unityVersion?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject8
+ */
+export interface InlineObject8 {
+    /**
+     * 
+     * @type {FavoriteType}
+     * @memberof InlineObject8
+     */
+    type: FavoriteType;
+    /**
+     * Must be either AvatarID, WorldID or UserID.
+     * @type {string}
+     * @memberof InlineObject8
+     */
+    favoriteId: string;
+    /**
+     * Tags indicate which group this favorite belongs to. Adding multiple groups makes it show up in all. Removing it from one in that case removes it from all.
+     * @type {Array<string>}
+     * @memberof InlineObject8
+     */
+    tags: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject9
+ */
+export interface InlineObject9 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject9
+     */
+    displayName?: string;
+    /**
+     * 
+     * @type {FavoriteGroupVisibility}
+     * @memberof InlineObject9
+     */
+    visibility?: FavoriteGroupVisibility;
+    /**
+     * Tags on FavoriteGroups are believed to do nothing.
+     * @type {Array<string>}
+     * @memberof InlineObject9
+     */
+    tags?: Array<string>;
 }
 /**
  * 
@@ -1885,7 +2350,7 @@ export interface LimitedUser {
      */
     location: string;
     /**
-     * Always empty
+     * <- Always empty.
      * @type {Array<string>}
      * @memberof LimitedUser
      */
@@ -2182,6 +2647,70 @@ export enum Platform {
 /**
  * 
  * @export
+ * @interface PlayerModeration
+ */
+export interface PlayerModeration {
+    /**
+     * 
+     * @type {string}
+     * @memberof PlayerModeration
+     */
+    id: string;
+    /**
+     * 
+     * @type {PlayerModerationType}
+     * @memberof PlayerModeration
+     */
+    type: PlayerModerationType;
+    /**
+     * 
+     * @type {string}
+     * @memberof PlayerModeration
+     */
+    sourceUserId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PlayerModeration
+     */
+    sourceDisplayName: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PlayerModeration
+     */
+    targetUserId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PlayerModeration
+     */
+    targetDisplayName: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PlayerModeration
+     */
+    created: string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum PlayerModerationType {
+    Mute = 'mute',
+    Unmute = 'unmute',
+    Block = 'block',
+    Unblock = 'unblock',
+    HideAvatar = 'hideAvatar',
+    ShowAvatar = 'showAvatar'
+}
+
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -2240,25 +2769,25 @@ export interface UnityPackage {
      * @type {string}
      * @memberof UnityPackage
      */
-    assetUrl: string;
+    assetUrl?: string;
     /**
      * 
      * @type {object}
      * @memberof UnityPackage
      */
-    assetUrlObject: object;
+    assetUrlObject?: object;
     /**
      * 
      * @type {string}
      * @memberof UnityPackage
      */
-    pluginUrl: string;
+    pluginUrl?: string;
     /**
      * 
      * @type {object}
      * @memberof UnityPackage
      */
-    pluginUrlObject: object;
+    pluginUrlObject?: object;
     /**
      * 
      * @type {string}
@@ -2270,7 +2799,7 @@ export interface UnityPackage {
      * @type {number}
      * @memberof UnityPackage
      */
-    unitySortNumber: number;
+    unitySortNumber?: number;
     /**
      * 
      * @type {number}
@@ -2288,7 +2817,7 @@ export interface UnityPackage {
      * @type {string}
      * @memberof UnityPackage
      */
-    created_at: string;
+    created_at?: string;
 }
 /**
  * 
@@ -2442,7 +2971,7 @@ export interface User {
     location: string;
 }
 /**
- * * \"online\" User is online in VRChat * \"active\" User is online, but not in VRChat * \"offline\" User is offline
+ * * \"online\" User is online in VRChat * \"active\" User is online, but not in VRChat * \"offline\" User is offline  Always offline when returned through `getCurrentUser` (/auth/user).
  * @export
  * @enum {string}
  */
@@ -2547,10 +3076,10 @@ export interface World {
     imageUrl: string;
     /**
      * 
-     * @type {Array<Array<string | number>>}
+     * @type {Array<Array<object>>}
      * @memberof World
      */
-    instances?: Array<Array<string | number>>;
+    instances?: Array<Array<object>>;
     /**
      * 
      * @type {string}
@@ -3111,6 +3640,1439 @@ export class AuthenticationApi extends BaseAPI {
 
 
 /**
+ * AvatarsApi - axios parameter creator
+ * @export
+ */
+export const AvatarsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Create an avatar. It\'s possible to optionally specify a ID if you want a custom one. Attempting to create an Avatar with an already claimed ID will result in a DB error.
+         * @summary Create Avatar
+         * @param {InlineObject10} [inlineObject10] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createAvatar: async (inlineObject10?: InlineObject10, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/avatars`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject10, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
+         * @summary Delete Avatar
+         * @param {string} avatarId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAvatar: async (avatarId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'avatarId' is not null or undefined
+            assertParamExists('deleteAvatar', 'avatarId', avatarId)
+            const localVarPath = `/avatars/{avatarId}`
+                .replace(`{${"avatarId"}}`, encodeURIComponent(String(avatarId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get information about a specific Avatar.
+         * @summary Get Avatar
+         * @param {string} avatarId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAvatar: async (avatarId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'avatarId' is not null or undefined
+            assertParamExists('getAvatar', 'avatarId', avatarId)
+            const localVarPath = `/avatars/{avatarId}`
+                .replace(`{${"avatarId"}}`, encodeURIComponent(String(avatarId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Search and list favorited avatars by query filters.
+         * @summary List Favorited Avatars
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {string} [userId] Target user to see information on, admin-only.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavoritedAvatars: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/avatars/favorites`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (featured !== undefined) {
+                localVarQueryParameter['featured'] = featured;
+            }
+
+            if (sort !== undefined) {
+                localVarQueryParameter['sort'] = sort;
+            }
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
+            if (tag !== undefined) {
+                localVarQueryParameter['tag'] = tag;
+            }
+
+            if (notag !== undefined) {
+                localVarQueryParameter['notag'] = notag;
+            }
+
+            if (releaseStatus !== undefined) {
+                localVarQueryParameter['releaseStatus'] = releaseStatus;
+            }
+
+            if (maxUnityVersion !== undefined) {
+                localVarQueryParameter['maxUnityVersion'] = maxUnityVersion;
+            }
+
+            if (minUnityVersion !== undefined) {
+                localVarQueryParameter['minUnityVersion'] = minUnityVersion;
+            }
+
+            if (platform !== undefined) {
+                localVarQueryParameter['platform'] = platform;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
+         * @summary Search Avatars
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {'me'} [user] Set to &#x60;me&#x60; for searching own avatars.
+         * @param {string} [userId] Filter by author UserID
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchAvatars: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/avatars`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (featured !== undefined) {
+                localVarQueryParameter['featured'] = featured;
+            }
+
+            if (sort !== undefined) {
+                localVarQueryParameter['sort'] = sort;
+            }
+
+            if (user !== undefined) {
+                localVarQueryParameter['user'] = user;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (tag !== undefined) {
+                localVarQueryParameter['tag'] = tag;
+            }
+
+            if (notag !== undefined) {
+                localVarQueryParameter['notag'] = notag;
+            }
+
+            if (releaseStatus !== undefined) {
+                localVarQueryParameter['releaseStatus'] = releaseStatus;
+            }
+
+            if (maxUnityVersion !== undefined) {
+                localVarQueryParameter['maxUnityVersion'] = maxUnityVersion;
+            }
+
+            if (minUnityVersion !== undefined) {
+                localVarQueryParameter['minUnityVersion'] = minUnityVersion;
+            }
+
+            if (platform !== undefined) {
+                localVarQueryParameter['platform'] = platform;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Switches into that avatar.
+         * @summary Select Avatar
+         * @param {string} avatarId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        selectAvatar: async (avatarId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'avatarId' is not null or undefined
+            assertParamExists('selectAvatar', 'avatarId', avatarId)
+            const localVarPath = `/avatars/{avatarId}/select`
+                .replace(`{${"avatarId"}}`, encodeURIComponent(String(avatarId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update information about a specific avatar.
+         * @summary Update Avatar
+         * @param {string} avatarId 
+         * @param {InlineObject11} [inlineObject11] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAvatar: async (avatarId: string, inlineObject11?: InlineObject11, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'avatarId' is not null or undefined
+            assertParamExists('updateAvatar', 'avatarId', avatarId)
+            const localVarPath = `/avatars/{avatarId}`
+                .replace(`{${"avatarId"}}`, encodeURIComponent(String(avatarId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject11, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AvatarsApi - functional programming interface
+ * @export
+ */
+export const AvatarsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AvatarsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Create an avatar. It\'s possible to optionally specify a ID if you want a custom one. Attempting to create an Avatar with an already claimed ID will result in a DB error.
+         * @summary Create Avatar
+         * @param {InlineObject10} [inlineObject10] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createAvatar(inlineObject10?: InlineObject10, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createAvatar(inlineObject10, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
+         * @summary Delete Avatar
+         * @param {string} avatarId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteAvatar(avatarId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteAvatar(avatarId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get information about a specific Avatar.
+         * @summary Get Avatar
+         * @param {string} avatarId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAvatar(avatarId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAvatar(avatarId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Search and list favorited avatars by query filters.
+         * @summary List Favorited Avatars
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {string} [userId] Target user to see information on, admin-only.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getFavoritedAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFavoritedAvatars(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
+         * @summary Search Avatars
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {'me'} [user] Set to &#x60;me&#x60; for searching own avatars.
+         * @param {string} [userId] Filter by author UserID
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async searchAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Avatar>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchAvatars(featured, sort, user, userId, n, order, offset, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Switches into that avatar.
+         * @summary Select Avatar
+         * @param {string} avatarId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async selectAvatar(avatarId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentUser>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.selectAvatar(avatarId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Update information about a specific avatar.
+         * @summary Update Avatar
+         * @param {string} avatarId 
+         * @param {InlineObject11} [inlineObject11] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateAvatar(avatarId: string, inlineObject11?: InlineObject11, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateAvatar(avatarId, inlineObject11, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * AvatarsApi - factory interface
+ * @export
+ */
+export const AvatarsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AvatarsApiFp(configuration)
+    return {
+        /**
+         * Create an avatar. It\'s possible to optionally specify a ID if you want a custom one. Attempting to create an Avatar with an already claimed ID will result in a DB error.
+         * @summary Create Avatar
+         * @param {InlineObject10} [inlineObject10] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createAvatar(inlineObject10?: InlineObject10, options?: any): AxiosPromise<Avatar> {
+            return localVarFp.createAvatar(inlineObject10, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
+         * @summary Delete Avatar
+         * @param {string} avatarId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAvatar(avatarId: string, options?: any): AxiosPromise<Avatar> {
+            return localVarFp.deleteAvatar(avatarId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get information about a specific Avatar.
+         * @summary Get Avatar
+         * @param {string} avatarId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAvatar(avatarId: string, options?: any): AxiosPromise<Avatar> {
+            return localVarFp.getAvatar(avatarId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Search and list favorited avatars by query filters.
+         * @summary List Favorited Avatars
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [search] Filters by world name.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {string} [userId] Target user to see information on, admin-only.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavoritedAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.getFavoritedAvatars(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
+         * @summary Search Avatars
+         * @param {string} [featured] Filters on featured results.
+         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {'me'} [user] Set to &#x60;me&#x60; for searching own avatars.
+         * @param {string} [userId] Filter by author UserID
+         * @param {number} [n] The number of objects to return.
+         * @param {'ascending' | 'descending'} [order] 
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {string} [notag] Tags to exclude (comma-separated).
+         * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+         * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+         * @param {string} [platform] The platform the asset supports.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): AxiosPromise<Array<Avatar>> {
+            return localVarFp.searchAvatars(featured, sort, user, userId, n, order, offset, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Switches into that avatar.
+         * @summary Select Avatar
+         * @param {string} avatarId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        selectAvatar(avatarId: string, options?: any): AxiosPromise<CurrentUser> {
+            return localVarFp.selectAvatar(avatarId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update information about a specific avatar.
+         * @summary Update Avatar
+         * @param {string} avatarId 
+         * @param {InlineObject11} [inlineObject11] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAvatar(avatarId: string, inlineObject11?: InlineObject11, options?: any): AxiosPromise<Avatar> {
+            return localVarFp.updateAvatar(avatarId, inlineObject11, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AvatarsApi - object-oriented interface
+ * @export
+ * @class AvatarsApi
+ * @extends {BaseAPI}
+ */
+export class AvatarsApi extends BaseAPI {
+    /**
+     * Create an avatar. It\'s possible to optionally specify a ID if you want a custom one. Attempting to create an Avatar with an already claimed ID will result in a DB error.
+     * @summary Create Avatar
+     * @param {InlineObject10} [inlineObject10] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AvatarsApi
+     */
+    public createAvatar(inlineObject10?: InlineObject10, options?: any) {
+        return AvatarsApiFp(this.configuration).createAvatar(inlineObject10, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
+     * @summary Delete Avatar
+     * @param {string} avatarId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AvatarsApi
+     */
+    public deleteAvatar(avatarId: string, options?: any) {
+        return AvatarsApiFp(this.configuration).deleteAvatar(avatarId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get information about a specific Avatar.
+     * @summary Get Avatar
+     * @param {string} avatarId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AvatarsApi
+     */
+    public getAvatar(avatarId: string, options?: any) {
+        return AvatarsApiFp(this.configuration).getAvatar(avatarId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Search and list favorited avatars by query filters.
+     * @summary List Favorited Avatars
+     * @param {string} [featured] Filters on featured results.
+     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {number} [n] The number of objects to return.
+     * @param {'ascending' | 'descending'} [order] 
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {string} [search] Filters by world name.
+     * @param {string} [tag] Tags to include (comma-separated).
+     * @param {string} [notag] Tags to exclude (comma-separated).
+     * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+     * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+     * @param {string} [platform] The platform the asset supports.
+     * @param {string} [userId] Target user to see information on, admin-only.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AvatarsApi
+     */
+    public getFavoritedAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any) {
+        return AvatarsApiFp(this.configuration).getFavoritedAvatars(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
+     * @summary Search Avatars
+     * @param {string} [featured] Filters on featured results.
+     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {'me'} [user] Set to &#x60;me&#x60; for searching own avatars.
+     * @param {string} [userId] Filter by author UserID
+     * @param {number} [n] The number of objects to return.
+     * @param {'ascending' | 'descending'} [order] 
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {string} [tag] Tags to include (comma-separated).
+     * @param {string} [notag] Tags to exclude (comma-separated).
+     * @param {'public' | 'private' | 'hidden'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
+     * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
+     * @param {string} [platform] The platform the asset supports.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AvatarsApi
+     */
+    public searchAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any) {
+        return AvatarsApiFp(this.configuration).searchAvatars(featured, sort, user, userId, n, order, offset, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Switches into that avatar.
+     * @summary Select Avatar
+     * @param {string} avatarId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AvatarsApi
+     */
+    public selectAvatar(avatarId: string, options?: any) {
+        return AvatarsApiFp(this.configuration).selectAvatar(avatarId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update information about a specific avatar.
+     * @summary Update Avatar
+     * @param {string} avatarId 
+     * @param {InlineObject11} [inlineObject11] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AvatarsApi
+     */
+    public updateAvatar(avatarId: string, inlineObject11?: InlineObject11, options?: any) {
+        return AvatarsApiFp(this.configuration).updateAvatar(avatarId, inlineObject11, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * FavoritesApi - axios parameter creator
+ * @export
+ */
+export const FavoritesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Add a new favorite.  Friend groups are named `group_0` through `group_3`. Avatar and World groups are named `avatars1` to `avatar4` and `worlds1` to `worlds4`.  You cannot add people whom you are not friends with to your friends list. Destroying a friendship removes the person as favorite on both sides.
+         * @summary Add Favorite
+         * @param {InlineObject8} [inlineObject8] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addFavorite: async (inlineObject8?: InlineObject8, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/favorites`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject8, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Clear ALL contents of a specific favorite group.
+         * @summary Clear Favorite Group
+         * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+         * @param {string} favoriteGroupName 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        clearFavoriteGroup: async (favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'favoriteGroupType' is not null or undefined
+            assertParamExists('clearFavoriteGroup', 'favoriteGroupType', favoriteGroupType)
+            // verify required parameter 'favoriteGroupName' is not null or undefined
+            assertParamExists('clearFavoriteGroup', 'favoriteGroupName', favoriteGroupName)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('clearFavoriteGroup', 'userId', userId)
+            const localVarPath = `/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}`
+                .replace(`{${"favoriteGroupType"}}`, encodeURIComponent(String(favoriteGroupType)))
+                .replace(`{${"favoriteGroupName"}}`, encodeURIComponent(String(favoriteGroupName)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Return information about a specific Favorite.
+         * @summary Show Favorite
+         * @param {string} favoriteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavorite: async (favoriteId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'favoriteId' is not null or undefined
+            assertParamExists('getFavorite', 'favoriteId', favoriteId)
+            const localVarPath = `/favorites/{favoriteId}`
+                .replace(`{${"favoriteId"}}`, encodeURIComponent(String(favoriteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Fetch information about a specific favorite group.
+         * @summary Show Favorite Group
+         * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+         * @param {string} favoriteGroupName 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavoriteGroup: async (favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'favoriteGroupType' is not null or undefined
+            assertParamExists('getFavoriteGroup', 'favoriteGroupType', favoriteGroupType)
+            // verify required parameter 'favoriteGroupName' is not null or undefined
+            assertParamExists('getFavoriteGroup', 'favoriteGroupName', favoriteGroupName)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('getFavoriteGroup', 'userId', userId)
+            const localVarPath = `/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}`
+                .replace(`{${"favoriteGroupType"}}`, encodeURIComponent(String(favoriteGroupType)))
+                .replace(`{${"favoriteGroupName"}}`, encodeURIComponent(String(favoriteGroupName)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Return a list of favorite groups owned by a user. Returns the same information as `getFavoriteGroups`.
+         * @summary List Favorite Groups
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [ownerId] The owner of whoms favorite groups to return. Must be a UserID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavoriteGroups: async (n?: number, offset?: number, ownerId?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/favorite/groups`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (ownerId !== undefined) {
+                localVarQueryParameter['ownerId'] = ownerId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of favorites.
+         * @summary List Favorites
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [type] The type of favorites to return, FavoriteType.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavorites: async (n?: number, offset?: number, type?: string, tag?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/favorites`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (tag !== undefined) {
+                localVarQueryParameter['tag'] = tag;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Remove a favorite from your favorites list.
+         * @summary Remove Favorite
+         * @param {string} favoriteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        removeFavorite: async (favoriteId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'favoriteId' is not null or undefined
+            assertParamExists('removeFavorite', 'favoriteId', favoriteId)
+            const localVarPath = `/favorites/{favoriteId}`
+                .replace(`{${"favoriteId"}}`, encodeURIComponent(String(favoriteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update information about a specific favorite group.
+         * @summary Update Favorite Group
+         * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+         * @param {string} favoriteGroupName 
+         * @param {string} userId 
+         * @param {InlineObject9} [inlineObject9] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateFavoriteGroup: async (favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, inlineObject9?: InlineObject9, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'favoriteGroupType' is not null or undefined
+            assertParamExists('updateFavoriteGroup', 'favoriteGroupType', favoriteGroupType)
+            // verify required parameter 'favoriteGroupName' is not null or undefined
+            assertParamExists('updateFavoriteGroup', 'favoriteGroupName', favoriteGroupName)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('updateFavoriteGroup', 'userId', userId)
+            const localVarPath = `/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}`
+                .replace(`{${"favoriteGroupType"}}`, encodeURIComponent(String(favoriteGroupType)))
+                .replace(`{${"favoriteGroupName"}}`, encodeURIComponent(String(favoriteGroupName)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject9, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * FavoritesApi - functional programming interface
+ * @export
+ */
+export const FavoritesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = FavoritesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Add a new favorite.  Friend groups are named `group_0` through `group_3`. Avatar and World groups are named `avatars1` to `avatar4` and `worlds1` to `worlds4`.  You cannot add people whom you are not friends with to your friends list. Destroying a friendship removes the person as favorite on both sides.
+         * @summary Add Favorite
+         * @param {InlineObject8} [inlineObject8] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async addFavorite(inlineObject8?: InlineObject8, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Favorite>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addFavorite(inlineObject8, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Clear ALL contents of a specific favorite group.
+         * @summary Clear Favorite Group
+         * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+         * @param {string} favoriteGroupName 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async clearFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.clearFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Return information about a specific Favorite.
+         * @summary Show Favorite
+         * @param {string} favoriteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getFavorite(favoriteId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Favorite>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFavorite(favoriteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Fetch information about a specific favorite group.
+         * @summary Show Favorite Group
+         * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+         * @param {string} favoriteGroupName 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FavoriteGroup>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Return a list of favorite groups owned by a user. Returns the same information as `getFavoriteGroups`.
+         * @summary List Favorite Groups
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [ownerId] The owner of whoms favorite groups to return. Must be a UserID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getFavoriteGroups(n?: number, offset?: number, ownerId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FavoriteGroup>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFavoriteGroups(n, offset, ownerId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of favorites.
+         * @summary List Favorites
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [type] The type of favorites to return, FavoriteType.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getFavorites(n?: number, offset?: number, type?: string, tag?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Favorite>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFavorites(n, offset, type, tag, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Remove a favorite from your favorites list.
+         * @summary Remove Favorite
+         * @param {string} favoriteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async removeFavorite(favoriteId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.removeFavorite(favoriteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Update information about a specific favorite group.
+         * @summary Update Favorite Group
+         * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+         * @param {string} favoriteGroupName 
+         * @param {string} userId 
+         * @param {InlineObject9} [inlineObject9] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, inlineObject9?: InlineObject9, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, inlineObject9, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * FavoritesApi - factory interface
+ * @export
+ */
+export const FavoritesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = FavoritesApiFp(configuration)
+    return {
+        /**
+         * Add a new favorite.  Friend groups are named `group_0` through `group_3`. Avatar and World groups are named `avatars1` to `avatar4` and `worlds1` to `worlds4`.  You cannot add people whom you are not friends with to your friends list. Destroying a friendship removes the person as favorite on both sides.
+         * @summary Add Favorite
+         * @param {InlineObject8} [inlineObject8] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addFavorite(inlineObject8?: InlineObject8, options?: any): AxiosPromise<Favorite> {
+            return localVarFp.addFavorite(inlineObject8, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Clear ALL contents of a specific favorite group.
+         * @summary Clear Favorite Group
+         * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+         * @param {string} favoriteGroupName 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        clearFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any): AxiosPromise<Error> {
+            return localVarFp.clearFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Return information about a specific Favorite.
+         * @summary Show Favorite
+         * @param {string} favoriteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavorite(favoriteId: string, options?: any): AxiosPromise<Favorite> {
+            return localVarFp.getFavorite(favoriteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch information about a specific favorite group.
+         * @summary Show Favorite Group
+         * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+         * @param {string} favoriteGroupName 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any): AxiosPromise<FavoriteGroup> {
+            return localVarFp.getFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Return a list of favorite groups owned by a user. Returns the same information as `getFavoriteGroups`.
+         * @summary List Favorite Groups
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [ownerId] The owner of whoms favorite groups to return. Must be a UserID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavoriteGroups(n?: number, offset?: number, ownerId?: string, options?: any): AxiosPromise<Array<FavoriteGroup>> {
+            return localVarFp.getFavoriteGroups(n, offset, ownerId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of favorites.
+         * @summary List Favorites
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [type] The type of favorites to return, FavoriteType.
+         * @param {string} [tag] Tags to include (comma-separated).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFavorites(n?: number, offset?: number, type?: string, tag?: string, options?: any): AxiosPromise<Array<Favorite>> {
+            return localVarFp.getFavorites(n, offset, type, tag, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Remove a favorite from your favorites list.
+         * @summary Remove Favorite
+         * @param {string} favoriteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        removeFavorite(favoriteId: string, options?: any): AxiosPromise<Error> {
+            return localVarFp.removeFavorite(favoriteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update information about a specific favorite group.
+         * @summary Update Favorite Group
+         * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+         * @param {string} favoriteGroupName 
+         * @param {string} userId 
+         * @param {InlineObject9} [inlineObject9] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, inlineObject9?: InlineObject9, options?: any): AxiosPromise<void> {
+            return localVarFp.updateFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, inlineObject9, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * FavoritesApi - object-oriented interface
+ * @export
+ * @class FavoritesApi
+ * @extends {BaseAPI}
+ */
+export class FavoritesApi extends BaseAPI {
+    /**
+     * Add a new favorite.  Friend groups are named `group_0` through `group_3`. Avatar and World groups are named `avatars1` to `avatar4` and `worlds1` to `worlds4`.  You cannot add people whom you are not friends with to your friends list. Destroying a friendship removes the person as favorite on both sides.
+     * @summary Add Favorite
+     * @param {InlineObject8} [inlineObject8] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FavoritesApi
+     */
+    public addFavorite(inlineObject8?: InlineObject8, options?: any) {
+        return FavoritesApiFp(this.configuration).addFavorite(inlineObject8, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Clear ALL contents of a specific favorite group.
+     * @summary Clear Favorite Group
+     * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+     * @param {string} favoriteGroupName 
+     * @param {string} userId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FavoritesApi
+     */
+    public clearFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any) {
+        return FavoritesApiFp(this.configuration).clearFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Return information about a specific Favorite.
+     * @summary Show Favorite
+     * @param {string} favoriteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FavoritesApi
+     */
+    public getFavorite(favoriteId: string, options?: any) {
+        return FavoritesApiFp(this.configuration).getFavorite(favoriteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch information about a specific favorite group.
+     * @summary Show Favorite Group
+     * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+     * @param {string} favoriteGroupName 
+     * @param {string} userId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FavoritesApi
+     */
+    public getFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any) {
+        return FavoritesApiFp(this.configuration).getFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Return a list of favorite groups owned by a user. Returns the same information as `getFavoriteGroups`.
+     * @summary List Favorite Groups
+     * @param {number} [n] The number of objects to return.
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {string} [ownerId] The owner of whoms favorite groups to return. Must be a UserID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FavoritesApi
+     */
+    public getFavoriteGroups(n?: number, offset?: number, ownerId?: string, options?: any) {
+        return FavoritesApiFp(this.configuration).getFavoriteGroups(n, offset, ownerId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of favorites.
+     * @summary List Favorites
+     * @param {number} [n] The number of objects to return.
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {string} [type] The type of favorites to return, FavoriteType.
+     * @param {string} [tag] Tags to include (comma-separated).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FavoritesApi
+     */
+    public getFavorites(n?: number, offset?: number, type?: string, tag?: string, options?: any) {
+        return FavoritesApiFp(this.configuration).getFavorites(n, offset, type, tag, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Remove a favorite from your favorites list.
+     * @summary Remove Favorite
+     * @param {string} favoriteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FavoritesApi
+     */
+    public removeFavorite(favoriteId: string, options?: any) {
+        return FavoritesApiFp(this.configuration).removeFavorite(favoriteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update information about a specific favorite group.
+     * @summary Update Favorite Group
+     * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
+     * @param {string} favoriteGroupName 
+     * @param {string} userId 
+     * @param {InlineObject9} [inlineObject9] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FavoritesApi
+     */
+    public updateFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, inlineObject9?: InlineObject9, options?: any) {
+        return FavoritesApiFp(this.configuration).updateFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, inlineObject9, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * FilesApi - axios parameter creator
  * @export
  */
@@ -3158,10 +5120,11 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
          * @summary Create File Version
          * @param {string} fileId 
+         * @param {InlineObject4} [inlineObject4] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFileVersion: async (fileId: string, options: any = {}): Promise<RequestArgs> => {
+        createFileVersion: async (fileId: string, inlineObject4?: InlineObject4, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('createFileVersion', 'fileId', fileId)
             const localVarPath = `/file/{fileId}`
@@ -3183,9 +5146,12 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject4, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3320,11 +5286,11 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} fileId 
          * @param {number} versionId 
          * @param {'file' | 'signature' | 'delta'} fileType 
-         * @param {InlineObject4} [inlineObject4] 
+         * @param {InlineObject5} [inlineObject5] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        finishFileDataUpload: async (fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject4?: InlineObject4, options: any = {}): Promise<RequestArgs> => {
+        finishFileDataUpload: async (fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject5?: InlineObject5, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('finishFileDataUpload', 'fileId', fileId)
             // verify required parameter 'versionId' is not null or undefined
@@ -3357,7 +5323,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject4, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject5, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3580,11 +5546,12 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
          * @summary Create File Version
          * @param {string} fileId 
+         * @param {InlineObject4} [inlineObject4] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createFileVersion(fileId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createFileVersion(fileId, options);
+        async createFileVersion(fileId: string, inlineObject4?: InlineObject4, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createFileVersion(fileId, inlineObject4, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3628,12 +5595,12 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {string} fileId 
          * @param {number} versionId 
          * @param {'file' | 'signature' | 'delta'} fileType 
-         * @param {InlineObject4} [inlineObject4] 
+         * @param {InlineObject5} [inlineObject5] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async finishFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject4?: InlineObject4, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.finishFileDataUpload(fileId, versionId, fileType, inlineObject4, options);
+        async finishFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject5?: InlineObject5, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.finishFileDataUpload(fileId, versionId, fileType, inlineObject5, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3712,11 +5679,12 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
          * Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
          * @summary Create File Version
          * @param {string} fileId 
+         * @param {InlineObject4} [inlineObject4] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFileVersion(fileId: string, options?: any): AxiosPromise<any> {
-            return localVarFp.createFileVersion(fileId, options).then((request) => request(axios, basePath));
+        createFileVersion(fileId: string, inlineObject4?: InlineObject4, options?: any): AxiosPromise<any> {
+            return localVarFp.createFileVersion(fileId, inlineObject4, options).then((request) => request(axios, basePath));
         },
         /**
          * Deletes a File object.
@@ -3756,12 +5724,12 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
          * @param {string} fileId 
          * @param {number} versionId 
          * @param {'file' | 'signature' | 'delta'} fileType 
-         * @param {InlineObject4} [inlineObject4] 
+         * @param {InlineObject5} [inlineObject5] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        finishFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject4?: InlineObject4, options?: any): AxiosPromise<any> {
-            return localVarFp.finishFileDataUpload(fileId, versionId, fileType, inlineObject4, options).then((request) => request(axios, basePath));
+        finishFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject5?: InlineObject5, options?: any): AxiosPromise<any> {
+            return localVarFp.finishFileDataUpload(fileId, versionId, fileType, inlineObject5, options).then((request) => request(axios, basePath));
         },
         /**
          * Shows general information about the \"File\" object. Each File can have several \"Version\"\'s, and each Version can have multiple real files or \"Data\" blobs.
@@ -3837,12 +5805,13 @@ export class FilesApi extends BaseAPI {
      * Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
      * @summary Create File Version
      * @param {string} fileId 
+     * @param {InlineObject4} [inlineObject4] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public createFileVersion(fileId: string, options?: any) {
-        return FilesApiFp(this.configuration).createFileVersion(fileId, options).then((request) => request(this.axios, this.basePath));
+    public createFileVersion(fileId: string, inlineObject4?: InlineObject4, options?: any) {
+        return FilesApiFp(this.configuration).createFileVersion(fileId, inlineObject4, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3889,13 +5858,13 @@ export class FilesApi extends BaseAPI {
      * @param {string} fileId 
      * @param {number} versionId 
      * @param {'file' | 'signature' | 'delta'} fileType 
-     * @param {InlineObject4} [inlineObject4] 
+     * @param {InlineObject5} [inlineObject5] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public finishFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject4?: InlineObject4, options?: any) {
-        return FilesApiFp(this.configuration).finishFileDataUpload(fileId, versionId, fileType, inlineObject4, options).then((request) => request(this.axios, this.basePath));
+    public finishFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject5?: InlineObject5, options?: any) {
+        return FilesApiFp(this.configuration).finishFileDataUpload(fileId, versionId, fileType, inlineObject5, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4794,6 +6763,472 @@ export class NotificationsApi extends BaseAPI {
 
 
 /**
+ * PlayermoderationApi - axios parameter creator
+ * @export
+ */
+export const PlayermoderationApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * ⚠️ **This will delete every single player moderation you\'ve ever made.**
+         * @summary Clear All Player Moderations
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        clearAllPlayerModerations: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/auth/user/playermoderations`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a specific player moderation based on it\'s `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
+         * @summary Delete Player Moderation
+         * @param {string} playerModerationId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePlayerModeration: async (playerModerationId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'playerModerationId' is not null or undefined
+            assertParamExists('deletePlayerModeration', 'playerModerationId', playerModerationId)
+            const localVarPath = `/auth/user/playermoderations/{playerModerationId}`
+                .replace(`{${"playerModerationId"}}`, encodeURIComponent(String(playerModerationId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
+         * @summary Get Player Moderation
+         * @param {string} playerModerationId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlayerModeration: async (playerModerationId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'playerModerationId' is not null or undefined
+            assertParamExists('getPlayerModeration', 'playerModerationId', playerModerationId)
+            const localVarPath = `/auth/user/playermoderations/{playerModerationId}`
+                .replace(`{${"playerModerationId"}}`, encodeURIComponent(String(playerModerationId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of all player moderations made by **you**.  This endpoint does not have pagination, and will return *all* results. Use query parameters to limit your query if needed.
+         * @summary Search Player Moderations
+         * @param {string} [type] Must be one of PlayerModerationType, except unblock. Unblocking simply removes a block.
+         * @param {string} [targetUserId] Must be valid UserID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlayerModerations: async (type?: string, targetUserId?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/auth/user/playermoderations`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (targetUserId !== undefined) {
+                localVarQueryParameter['targetUserId'] = targetUserId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Moderate a user, e.g. unmute them or show their avatar.
+         * @summary Moderate User
+         * @param {InlineObject12} [inlineObject12] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        moderateUser: async (inlineObject12?: InlineObject12, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/auth/user/playermoderations`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject12, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes a player moderation previously added through `moderateUser`. E.g if you previuosly have shown their avatar, but now want to reset it to default.
+         * @summary Unmoderate User
+         * @param {InlineObject13} [inlineObject13] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unmoderateUser: async (inlineObject13?: InlineObject13, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/auth/user/unplayermoderate`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject13, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * PlayermoderationApi - functional programming interface
+ * @export
+ */
+export const PlayermoderationApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = PlayermoderationApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * ⚠️ **This will delete every single player moderation you\'ve ever made.**
+         * @summary Clear All Player Moderations
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async clearAllPlayerModerations(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.clearAllPlayerModerations(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Deletes a specific player moderation based on it\'s `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
+         * @summary Delete Player Moderation
+         * @param {string} playerModerationId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deletePlayerModeration(playerModerationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deletePlayerModeration(playerModerationId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
+         * @summary Get Player Moderation
+         * @param {string} playerModerationId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPlayerModeration(playerModerationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlayerModeration>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlayerModeration(playerModerationId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of all player moderations made by **you**.  This endpoint does not have pagination, and will return *all* results. Use query parameters to limit your query if needed.
+         * @summary Search Player Moderations
+         * @param {string} [type] Must be one of PlayerModerationType, except unblock. Unblocking simply removes a block.
+         * @param {string} [targetUserId] Must be valid UserID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPlayerModerations(type?: string, targetUserId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PlayerModeration>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlayerModerations(type, targetUserId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Moderate a user, e.g. unmute them or show their avatar.
+         * @summary Moderate User
+         * @param {InlineObject12} [inlineObject12] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async moderateUser(inlineObject12?: InlineObject12, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlayerModeration>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.moderateUser(inlineObject12, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Removes a player moderation previously added through `moderateUser`. E.g if you previuosly have shown their avatar, but now want to reset it to default.
+         * @summary Unmoderate User
+         * @param {InlineObject13} [inlineObject13] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async unmoderateUser(inlineObject13?: InlineObject13, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unmoderateUser(inlineObject13, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * PlayermoderationApi - factory interface
+ * @export
+ */
+export const PlayermoderationApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = PlayermoderationApiFp(configuration)
+    return {
+        /**
+         * ⚠️ **This will delete every single player moderation you\'ve ever made.**
+         * @summary Clear All Player Moderations
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        clearAllPlayerModerations(options?: any): AxiosPromise<Error> {
+            return localVarFp.clearAllPlayerModerations(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes a specific player moderation based on it\'s `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
+         * @summary Delete Player Moderation
+         * @param {string} playerModerationId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePlayerModeration(playerModerationId: string, options?: any): AxiosPromise<Error> {
+            return localVarFp.deletePlayerModeration(playerModerationId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
+         * @summary Get Player Moderation
+         * @param {string} playerModerationId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlayerModeration(playerModerationId: string, options?: any): AxiosPromise<PlayerModeration> {
+            return localVarFp.getPlayerModeration(playerModerationId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of all player moderations made by **you**.  This endpoint does not have pagination, and will return *all* results. Use query parameters to limit your query if needed.
+         * @summary Search Player Moderations
+         * @param {string} [type] Must be one of PlayerModerationType, except unblock. Unblocking simply removes a block.
+         * @param {string} [targetUserId] Must be valid UserID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlayerModerations(type?: string, targetUserId?: string, options?: any): AxiosPromise<Array<PlayerModeration>> {
+            return localVarFp.getPlayerModerations(type, targetUserId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Moderate a user, e.g. unmute them or show their avatar.
+         * @summary Moderate User
+         * @param {InlineObject12} [inlineObject12] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        moderateUser(inlineObject12?: InlineObject12, options?: any): AxiosPromise<PlayerModeration> {
+            return localVarFp.moderateUser(inlineObject12, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes a player moderation previously added through `moderateUser`. E.g if you previuosly have shown their avatar, but now want to reset it to default.
+         * @summary Unmoderate User
+         * @param {InlineObject13} [inlineObject13] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unmoderateUser(inlineObject13?: InlineObject13, options?: any): AxiosPromise<Error> {
+            return localVarFp.unmoderateUser(inlineObject13, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * PlayermoderationApi - object-oriented interface
+ * @export
+ * @class PlayermoderationApi
+ * @extends {BaseAPI}
+ */
+export class PlayermoderationApi extends BaseAPI {
+    /**
+     * ⚠️ **This will delete every single player moderation you\'ve ever made.**
+     * @summary Clear All Player Moderations
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlayermoderationApi
+     */
+    public clearAllPlayerModerations(options?: any) {
+        return PlayermoderationApiFp(this.configuration).clearAllPlayerModerations(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes a specific player moderation based on it\'s `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
+     * @summary Delete Player Moderation
+     * @param {string} playerModerationId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlayermoderationApi
+     */
+    public deletePlayerModeration(playerModerationId: string, options?: any) {
+        return PlayermoderationApiFp(this.configuration).deletePlayerModeration(playerModerationId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
+     * @summary Get Player Moderation
+     * @param {string} playerModerationId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlayermoderationApi
+     */
+    public getPlayerModeration(playerModerationId: string, options?: any) {
+        return PlayermoderationApiFp(this.configuration).getPlayerModeration(playerModerationId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of all player moderations made by **you**.  This endpoint does not have pagination, and will return *all* results. Use query parameters to limit your query if needed.
+     * @summary Search Player Moderations
+     * @param {string} [type] Must be one of PlayerModerationType, except unblock. Unblocking simply removes a block.
+     * @param {string} [targetUserId] Must be valid UserID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlayermoderationApi
+     */
+    public getPlayerModerations(type?: string, targetUserId?: string, options?: any) {
+        return PlayermoderationApiFp(this.configuration).getPlayerModerations(type, targetUserId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Moderate a user, e.g. unmute them or show their avatar.
+     * @summary Moderate User
+     * @param {InlineObject12} [inlineObject12] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlayermoderationApi
+     */
+    public moderateUser(inlineObject12?: InlineObject12, options?: any) {
+        return PlayermoderationApiFp(this.configuration).moderateUser(inlineObject12, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes a player moderation previously added through `moderateUser`. E.g if you previuosly have shown their avatar, but now want to reset it to default.
+     * @summary Unmoderate User
+     * @param {InlineObject13} [inlineObject13] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlayermoderationApi
+     */
+    public unmoderateUser(inlineObject13?: InlineObject13, options?: any) {
+        return PlayermoderationApiFp(this.configuration).unmoderateUser(inlineObject13, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * SystemApi - axios parameter creator
  * @export
  */
@@ -5536,11 +7971,11 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
          * @summary Create World
-         * @param {InlineObject5} [inlineObject5] 
+         * @param {InlineObject6} [inlineObject6] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWorld: async (inlineObject5?: InlineObject5, options: any = {}): Promise<RequestArgs> => {
+        createWorld: async (inlineObject6?: InlineObject6, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/worlds`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5560,7 +7995,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject5, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject6, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -5589,6 +8024,10 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
 
 
     
@@ -5954,6 +8393,10 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
@@ -5966,7 +8409,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Returns a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
+         * Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
          * @summary Get World Metadata
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
@@ -5989,6 +8432,10 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
@@ -6001,16 +8448,15 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Returns a worlds publish status. This is currently believed to be unused.
+         * Returns a worlds publish status.
          * @summary Get World Publish Status
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
-         * @deprecated
          * @throws {RequiredError}
          */
-        getWorldPublish: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+        getWorldPublishStatus: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'worldId' is not null or undefined
-            assertParamExists('getWorldPublish', 'worldId', worldId)
+            assertParamExists('getWorldPublishStatus', 'worldId', worldId)
             const localVarPath = `/worlds/{worldId}/publish`
                 .replace(`{${"worldId"}}`, encodeURIComponent(String(worldId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6024,6 +8470,10 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
@@ -6036,7 +8486,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Publishes a world. You can only publish one world per week.
+         * Publish a world. You can only publish one world per week.
          * @summary Publish World
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
@@ -6057,6 +8507,10 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
 
 
     
@@ -6174,7 +8628,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Unpublishes a world.
+         * Unpublish a world.
          * @summary Unpublish World
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
@@ -6196,6 +8650,10 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
@@ -6211,11 +8669,11 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * Update information about a specific World.
          * @summary Update World
          * @param {string} worldId 
-         * @param {InlineObject6} [inlineObject6] 
+         * @param {InlineObject7} [inlineObject7] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWorld: async (worldId: string, inlineObject6?: InlineObject6, options: any = {}): Promise<RequestArgs> => {
+        updateWorld: async (worldId: string, inlineObject7?: InlineObject7, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'worldId' is not null or undefined
             assertParamExists('updateWorld', 'worldId', worldId)
             const localVarPath = `/worlds/{worldId}`
@@ -6231,6 +8689,10 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -6238,7 +8700,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject6, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject7, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -6258,12 +8720,12 @@ export const WorldsApiFp = function(configuration?: Configuration) {
         /**
          * Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
          * @summary Create World
-         * @param {InlineObject5} [inlineObject5] 
+         * @param {InlineObject6} [inlineObject6] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createWorld(inlineObject5?: InlineObject5, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createWorld(inlineObject5, options);
+        async createWorld(inlineObject6?: InlineObject6, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createWorld(inlineObject6, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -6369,7 +8831,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
+         * Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
          * @summary Get World Metadata
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
@@ -6381,19 +8843,18 @@ export const WorldsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns a worlds publish status. This is currently believed to be unused.
+         * Returns a worlds publish status.
          * @summary Get World Publish Status
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
-         * @deprecated
          * @throws {RequiredError}
          */
-        async getWorldPublish(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getWorldPublish(worldId, options);
+        async getWorldPublishStatus(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getWorldPublishStatus(worldId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Publishes a world. You can only publish one world per week.
+         * Publish a world. You can only publish one world per week.
          * @summary Publish World
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
@@ -6428,7 +8889,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Unpublishes a world.
+         * Unpublish a world.
          * @summary Unpublish World
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
@@ -6442,12 +8903,12 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * Update information about a specific World.
          * @summary Update World
          * @param {string} worldId 
-         * @param {InlineObject6} [inlineObject6] 
+         * @param {InlineObject7} [inlineObject7] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateWorld(worldId: string, inlineObject6?: InlineObject6, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWorld(worldId, inlineObject6, options);
+        async updateWorld(worldId: string, inlineObject7?: InlineObject7, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWorld(worldId, inlineObject7, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -6463,12 +8924,12 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
         /**
          * Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
          * @summary Create World
-         * @param {InlineObject5} [inlineObject5] 
+         * @param {InlineObject6} [inlineObject6] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWorld(inlineObject5?: InlineObject5, options?: any): AxiosPromise<World> {
-            return localVarFp.createWorld(inlineObject5, options).then((request) => request(axios, basePath));
+        createWorld(inlineObject6?: InlineObject6, options?: any): AxiosPromise<World> {
+            return localVarFp.createWorld(inlineObject6, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The WorldID is permanently reserved.
@@ -6567,7 +9028,7 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.getWorldInstance(worldId, instanceId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
+         * Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
          * @summary Get World Metadata
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
@@ -6578,18 +9039,17 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.getWorldMetadata(worldId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a worlds publish status. This is currently believed to be unused.
+         * Returns a worlds publish status.
          * @summary Get World Publish Status
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
-         * @deprecated
          * @throws {RequiredError}
          */
-        getWorldPublish(worldId: string, options?: any): AxiosPromise<InlineResponse2007> {
-            return localVarFp.getWorldPublish(worldId, options).then((request) => request(axios, basePath));
+        getWorldPublishStatus(worldId: string, options?: any): AxiosPromise<InlineResponse2007> {
+            return localVarFp.getWorldPublishStatus(worldId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Publishes a world. You can only publish one world per week.
+         * Publish a world. You can only publish one world per week.
          * @summary Publish World
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
@@ -6622,7 +9082,7 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(axios, basePath));
         },
         /**
-         * Unpublishes a world.
+         * Unpublish a world.
          * @summary Unpublish World
          * @param {string} worldId 
          * @param {*} [options] Override http request option.
@@ -6635,12 +9095,12 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
          * Update information about a specific World.
          * @summary Update World
          * @param {string} worldId 
-         * @param {InlineObject6} [inlineObject6] 
+         * @param {InlineObject7} [inlineObject7] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWorld(worldId: string, inlineObject6?: InlineObject6, options?: any): AxiosPromise<World> {
-            return localVarFp.updateWorld(worldId, inlineObject6, options).then((request) => request(axios, basePath));
+        updateWorld(worldId: string, inlineObject7?: InlineObject7, options?: any): AxiosPromise<World> {
+            return localVarFp.updateWorld(worldId, inlineObject7, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -6655,13 +9115,13 @@ export class WorldsApi extends BaseAPI {
     /**
      * Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
      * @summary Create World
-     * @param {InlineObject5} [inlineObject5] 
+     * @param {InlineObject6} [inlineObject6] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public createWorld(inlineObject5?: InlineObject5, options?: any) {
-        return WorldsApiFp(this.configuration).createWorld(inlineObject5, options).then((request) => request(this.axios, this.basePath));
+    public createWorld(inlineObject6?: InlineObject6, options?: any) {
+        return WorldsApiFp(this.configuration).createWorld(inlineObject6, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6773,7 +9233,7 @@ export class WorldsApi extends BaseAPI {
     }
 
     /**
-     * Returns a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
+     * Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
      * @summary Get World Metadata
      * @param {string} worldId 
      * @param {*} [options] Override http request option.
@@ -6786,20 +9246,19 @@ export class WorldsApi extends BaseAPI {
     }
 
     /**
-     * Returns a worlds publish status. This is currently believed to be unused.
+     * Returns a worlds publish status.
      * @summary Get World Publish Status
      * @param {string} worldId 
      * @param {*} [options] Override http request option.
-     * @deprecated
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public getWorldPublish(worldId: string, options?: any) {
-        return WorldsApiFp(this.configuration).getWorldPublish(worldId, options).then((request) => request(this.axios, this.basePath));
+    public getWorldPublishStatus(worldId: string, options?: any) {
+        return WorldsApiFp(this.configuration).getWorldPublishStatus(worldId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Publishes a world. You can only publish one world per week.
+     * Publish a world. You can only publish one world per week.
      * @summary Publish World
      * @param {string} worldId 
      * @param {*} [options] Override http request option.
@@ -6836,7 +9295,7 @@ export class WorldsApi extends BaseAPI {
     }
 
     /**
-     * Unpublishes a world.
+     * Unpublish a world.
      * @summary Unpublish World
      * @param {string} worldId 
      * @param {*} [options] Override http request option.
@@ -6851,13 +9310,13 @@ export class WorldsApi extends BaseAPI {
      * Update information about a specific World.
      * @summary Update World
      * @param {string} worldId 
-     * @param {InlineObject6} [inlineObject6] 
+     * @param {InlineObject7} [inlineObject7] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public updateWorld(worldId: string, inlineObject6?: InlineObject6, options?: any) {
-        return WorldsApiFp(this.configuration).updateWorld(worldId, inlineObject6, options).then((request) => request(this.axios, this.basePath));
+    public updateWorld(worldId: string, inlineObject7?: InlineObject7, options?: any) {
+        return WorldsApiFp(this.configuration).updateWorld(worldId, inlineObject7, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
