@@ -26,3 +26,4 @@
 # VRChatAPI: Do not modify .gitignore to avoid comitting "dist"
 .gitignore
 README.md
+git_push.sh
