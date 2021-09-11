@@ -1,6 +1,6 @@
 {
   "name": "vrchat",
-  "version": "1.1.2",
+  "version": "1.2.2",
   "description": "🟡🔵 VRChat API Library for JavaScript and TypeScript",
   "author": "OpenAPI-Generator Contributors",
   "keywords": [
@@ -18,9 +18,9 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "tough-cookie": "^4.0.0",
-    "axios-cookiejar-support": "^1.0.1",
-    "@types/tough-cookie": "^4.0.1",
+"tough-cookie": "^4.0.0",
+"axios-cookiejar-support": "^1.0.1",
+"@types/tough-cookie": "^4.0.1",
     "axios": "^0.21.1"
   },
   "devDependencies": {

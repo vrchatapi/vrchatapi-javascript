@@ -2,9 +2,8 @@
 /* eslint-disable */
 /**
  * VRChat API Documentation
- * ![VRChat API Banner](https://vrchatapi.github.io/assets/img/api_banner_1500x400.png)  # Welcome to the VRChat API  Before we begin, we would like to state this is a **COMMUNITY DRIVEN PROJECT**. This means that everything you read on here was written by the community itself and is **not** officially supported by VRChat. The documentation is provided \"AS IS\", and any action you take towards VRChat is completely your own responsibility.  The documentation and additional libraries SHALL ONLY be used for applications interacting with VRChat\'s API in accordance with their [Terms of Service](https://github.com/VRChatAPI), and MUST NOT be used for modifying the client, \"avatar ripping\", or other illegal activities. Malicious usage or spamming the API may result in account termination. Certain parts of the API are also more sensitive than others, for example moderation, so please tread extra carefully and read the warnings when present.  ![Tupper Policy on API](https://i.imgur.com/yLlW7Ok.png)  Finally, use of the API using applications other than the approved methods (website, VRChat application, Unity SDK) is not officially supported. VRChat provides no guarantee or support for external applications using the API. Access to API endpoints may break **at any time, without notice**. Therefore, please **do not ping** VRChat Staff in the VRChat Discord if you are having API problems, as they do not provide API support. We will make a best effort in keeping this documentation and associated language libraries up to date, but things might be outdated or missing. If you find that something is no longer valid, please contact us on Discord or [create an issue](https://github.com/vrchatapi/specification/issues) and tell us so we can fix it.  # Getting Started  The VRChat API can be used to programmatically retrieve or update information regarding your profile, friends, avatars, worlds and more. The API consists of two parts, \"Photon\" which is only used in-game, and the \"Web API\" which is used by both the game and the website. This documentation focuses only on the Web API.  The API is designed around the REST ideology, providing semi-simple and usually predictable URIs to access and modify objects. Requests support standard HTTP methods like GET, PUT, POST, and DELETE and standard status codes. Response bodies are always UTF-8 encoded JSON objects, unless explicitly documented otherwise.  <div class=\"callout callout-error\">   <strong>🛑 Warning! Do not touch Photon!</strong><br>   Photon is only used by the in-game client and should <b>not</b> be touched. Doing so may result in permanent account termination. </div>  <div class=\"callout callout-info\">   <strong>ℹ️ API Key and Authentication</strong><br>   The API Key has always been the same and is currently <code>JlE5Jldo5Jibnk5O5hTx6XVqsJu4WJ26</code>.   Read <a href=\"#tag--authentication\">Authentication</a> for how to log in. </div>  # Using the API  For simply exploring what the API can do it is strongly recommended to download [Insomnia](https://insomnia.rest/download), a free and open-source API client that\'s great for sending requests to the API in an orderly fashion. Insomnia allows you to send data in the format that\'s required for VRChat\'s API. It is also possible to try out the API in your browser, by first logging in at [vrchat.com/home](https://vrchat.com/home/) and then going to [vrchat.com/api/1/auth/user](https://vrchat.com/api/1/auth/user), but the information will be much harder to work with.  For more permanent operation such as software development it is instead recommended to use one of the existing language SDKs. This community project maintains API libraries in several languages, which allows you to interact with the API with simple function calls rather than having to implement the HTTP protocol yourself. Most of these libraries are automatically generated from the API specification, sometimes with additional helpful wrapper code to make usage easier. This allows them to be almost automatically updated and expanded upon as soon as a new feature is introduced in the specification itself. The libraries can be found on [GitHub](https://github.com/vrchatapi) or following:  * [NodeJS (JavaScript)](https://www.npmjs.com/package/vrchat) * [Dart](https://pub.dev/packages/vrchat_dart) * [Rust](https://crates.io/crates/vrchatapi) * [C#](https://github.com/vrchatapi/vrchatapi-csharp) * [Python](https://github.com/vrchatapi/VRChatPython)  # Pagination  Most endpoints enforce pagination, meaning they will only return 10 entries by default, and never more than 100.<br> Using both the limit and offset parameters allows you to easily paginate through a large number of objects.  | Query Parameter | Type | Description | | ----------|--|------- | | `limit` | integer  | The number of objects to return. This value often defaults to 10. Highest limit is always 100.| | `offset` | integer  | A zero-based offset from the default object sorting.|  If a request returns fewer objects than the `limit` parameter, there are no more items available to return.  # Contribution  Do you want to get involved in the documentation effort? Do you want to help improve one of the language API libraries? This project is an [OPEN Open Source Project](https://openopensource.org)! This means that individuals making significant and valuable contributions are given commit-access to the project. It also means we are very open and welcoming of new people making contributions, unlike some more guarded open-source projects.  [![Discord](https://img.shields.io/static/v1?label=vrchatapi&message=discord&color=blueviolet&style=for-the-badge)](https://discord.gg/qjZE9C9fkB)
  *
- * The version of the OpenAPI document: 1.1.2
+ * The version of the OpenAPI document: 1.2.2
  * Contact: me@ruby.js.org
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -1012,11 +1011,11 @@ export interface CurrentUser {
      */
     last_login: string;
     /**
-     * 
-     * @type {Platform}
+     * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+     * @type {string}
      * @memberof CurrentUser
      */
-    last_platform: Platform;
+    last_platform: string;
     /**
      * 
      * @type {boolean}
@@ -1322,6 +1321,31 @@ export interface FileVersion {
      * @memberof FileVersion
      */
     deleted?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface FriendStatus
+ */
+export interface FriendStatus {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FriendStatus
+     */
+    isFriend: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FriendStatus
+     */
+    outgoingRequest: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FriendStatus
+     */
+    incomingRequest: boolean;
 }
 /**
  * 
@@ -1720,11 +1744,11 @@ export interface InlineObject6 {
      */
     name: string;
     /**
-     * 
-     * @type {Platform}
+     * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+     * @type {string}
      * @memberof InlineObject6
      */
-    platform?: Platform;
+    platform?: string;
     /**
      * 
      * @type {ReleaseStatus}
@@ -1811,11 +1835,11 @@ export interface InlineObject7 {
      */
     name?: string;
     /**
-     * 
-     * @type {Platform}
+     * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+     * @type {string}
      * @memberof InlineObject7
      */
-    platform?: Platform;
+    platform?: string;
     /**
      * 
      * @type {ReleaseStatus}
@@ -1956,22 +1980,40 @@ export interface InlineResponse2002 {
 export interface InlineResponse2003 {
     /**
      * 
-     * @type {boolean}
+     * @type {string}
      * @memberof InlineResponse2003
      */
-    isFriend: boolean;
+    uploadId: string;
     /**
      * 
-     * @type {boolean}
+     * @type {string}
      * @memberof InlineResponse2003
      */
-    outgoingRequest: boolean;
+    fileName: string;
     /**
      * 
-     * @type {boolean}
+     * @type {number}
      * @memberof InlineResponse2003
      */
-    incomingRequest: boolean;
+    nextPartNumber: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2003
+     */
+    maxParts: number;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof InlineResponse2003
+     */
+    parts: Array<object>;
+    /**
+     * Unknown
+     * @type {Array<object>}
+     * @memberof InlineResponse2003
+     */
+    etags: Array<object>;
 }
 /**
  * 
@@ -1984,37 +2026,7 @@ export interface InlineResponse2004 {
      * @type {string}
      * @memberof InlineResponse2004
      */
-    uploadId: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2004
-     */
-    fileName: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2004
-     */
-    nextPartNumber: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2004
-     */
-    maxParts: number;
-    /**
-     * 
-     * @type {Array<object>}
-     * @memberof InlineResponse2004
-     */
-    parts: Array<object>;
-    /**
-     * Unknown
-     * @type {Array<object>}
-     * @memberof InlineResponse2004
-     */
-    etags: Array<object>;
+    url: string;
 }
 /**
  * 
@@ -2027,7 +2039,13 @@ export interface InlineResponse2005 {
      * @type {string}
      * @memberof InlineResponse2005
      */
-    url: string;
+    id: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof InlineResponse2005
+     */
+    metadata: object;
 }
 /**
  * 
@@ -2037,40 +2055,21 @@ export interface InlineResponse2005 {
 export interface InlineResponse2006 {
     /**
      * 
-     * @type {string}
-     * @memberof InlineResponse2006
-     */
-    id: string;
-    /**
-     * 
-     * @type {object}
-     * @memberof InlineResponse2006
-     */
-    metadata: object;
-}
-/**
- * 
- * @export
- * @interface InlineResponse2007
- */
-export interface InlineResponse2007 {
-    /**
-     * 
      * @type {boolean}
-     * @memberof InlineResponse2007
+     * @memberof InlineResponse2006
      */
     canPubilsh: boolean;
 }
 /**
  * 
  * @export
- * @interface InlineResponse403
+ * @interface InlineResponse400
  */
-export interface InlineResponse403 {
+export interface InlineResponse400 {
     /**
      * 
      * @type {Error}
-     * @memberof InlineResponse403
+     * @memberof InlineResponse400
      */
     error: Error;
 }
@@ -2237,15 +2236,74 @@ export interface InstancePlatforms {
 /**
  * 
  * @export
+ * @interface InviteMessage
+ */
+export interface InviteMessage {
+    /**
+     * 
+     * @type {string}
+     * @memberof InviteMessage
+     */
+    id: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InviteMessage
+     */
+    slot: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InviteMessage
+     */
+    message: string;
+    /**
+     * 
+     * @type {InviteMessageType}
+     * @memberof InviteMessage
+     */
+    messageType: InviteMessageType;
+    /**
+     * 
+     * @type {string}
+     * @memberof InviteMessage
+     */
+    updatedAt: string;
+    /**
+     * Changes to 60 when updated, although probably server-side configurable.
+     * @type {number}
+     * @memberof InviteMessage
+     */
+    remainingCooldownMinutes: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InviteMessage
+     */
+    canBeUpdated: boolean;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum InviteMessageType {
+    Message = 'message'
+}
+
+/**
+ * 
+ * @export
  * @interface LimitedUnityPackage
  */
 export interface LimitedUnityPackage {
     /**
-     * 
-     * @type {Platform}
+     * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+     * @type {string}
      * @memberof LimitedUnityPackage
      */
-    platform: Platform;
+    platform: string;
     /**
      * 
      * @type {string}
@@ -2326,11 +2384,11 @@ export interface LimitedUser {
      */
     developerType: DeveloperType;
     /**
-     * 
-     * @type {Platform}
+     * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+     * @type {string}
      * @memberof LimitedUser
      */
-    last_platform: Platform;
+    last_platform: string;
     /**
      * 
      * @type {UserStatus}
@@ -2343,12 +2401,6 @@ export interface LimitedUser {
      * @memberof LimitedUser
      */
     isFriend: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof LimitedUser
-     */
-    location: string;
     /**
      * <- Always empty.
      * @type {Array<string>}
@@ -2686,17 +2738,6 @@ export interface Permission {
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export enum Platform {
-    Standalonewindows = 'standalonewindows',
-    Android = 'android'
-}
-
-/**
- * 
- * @export
  * @interface PlayerModeration
  */
 export interface PlayerModeration {
@@ -2781,7 +2822,7 @@ export interface Response {
      * @type {string}
      * @memberof Response
      */
-    message: string;
+    message?: string;
     /**
      * 
      * @type {number}
@@ -2857,11 +2898,11 @@ export interface UnityPackage {
      */
     assetVersion: number;
     /**
-     * 
-     * @type {Platform}
+     * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+     * @type {string}
      * @memberof UnityPackage
      */
-    platform: Platform;
+    platform: string;
     /**
      * 
      * @type {string}
@@ -2966,11 +3007,11 @@ export interface User {
      */
     last_login: string;
     /**
-     * 
-     * @type {Platform}
+     * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+     * @type {string}
      * @memberof User
      */
-    last_platform: Platform;
+    last_platform: string;
     /**
      * 
      * @type {boolean}
@@ -4145,7 +4186,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFavoritedAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getFavoritedAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Avatar>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFavoritedAvatars(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4254,7 +4295,7 @@ export const AvatarsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFavoritedAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): AxiosPromise<void> {
+        getFavoritedAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): AxiosPromise<Array<Avatar>> {
             return localVarFp.getFavoritedAvatars(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4816,7 +4857,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async clearFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
+        async clearFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.clearFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4878,7 +4919,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeFavorite(favoriteId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
+        async removeFavorite(favoriteId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeFavorite(favoriteId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4925,7 +4966,7 @@ export const FavoritesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clearFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any): AxiosPromise<Error> {
+        clearFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any): AxiosPromise<Success> {
             return localVarFp.clearFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4982,7 +5023,7 @@ export const FavoritesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeFavorite(favoriteId: string, options?: any): AxiosPromise<Error> {
+        removeFavorite(favoriteId: string, options?: any): AxiosPromise<Success> {
             return localVarFp.removeFavorite(favoriteId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5669,7 +5710,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFileDataUploadStatus(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+        async getFileDataUploadStatus(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFileDataUploadStatus(fileId, versionId, fileType, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5697,7 +5738,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async startFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', partNumber: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+        async startFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', partNumber: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.startFileDataUpload(fileId, versionId, fileType, partNumber, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5796,7 +5837,7 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFileDataUploadStatus(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', options?: any): AxiosPromise<InlineResponse2004> {
+        getFileDataUploadStatus(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', options?: any): AxiosPromise<InlineResponse2003> {
             return localVarFp.getFileDataUploadStatus(fileId, versionId, fileType, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5822,7 +5863,7 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        startFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', partNumber: number, options?: any): AxiosPromise<InlineResponse2005> {
+        startFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', partNumber: number, options?: any): AxiosPromise<InlineResponse2004> {
             return localVarFp.startFileDataUpload(fileId, versionId, fileType, partNumber, options).then((request) => request(axios, basePath));
         },
     };
@@ -6217,7 +6258,7 @@ export const FriendsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFriendStatus(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+        async getFriendStatus(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FriendStatus>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFriendStatus(userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6282,7 +6323,7 @@ export const FriendsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFriendStatus(userId: string, options?: any): AxiosPromise<InlineResponse2003> {
+        getFriendStatus(userId: string, options?: any): AxiosPromise<FriendStatus> {
             return localVarFp.getFriendStatus(userId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6377,6 +6418,349 @@ export class FriendsApi extends BaseAPI {
      */
     public unfriend(userId: string, options?: any) {
         return FriendsApiFp(this.configuration).unfriend(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * InviteApi - axios parameter creator
+ * @export
+ */
+export const InviteApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Returns a single Invite Message. This returns the exact same information but less than `getInviteMessages`. Admin Credentials are required to view messages of other users!
+         * @summary Get Invite Messages
+         * @param {string} userId 
+         * @param {number} messageId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInviteMessage: async (userId: string, messageId: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('getInviteMessage', 'userId', userId)
+            // verify required parameter 'messageId' is not null or undefined
+            assertParamExists('getInviteMessage', 'messageId', messageId)
+            const localVarPath = `/message/{userId}/message/{messageId}`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)))
+                .replace(`{${"messageId"}}`, encodeURIComponent(String(messageId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of all that users Invite Messages. Admin Credentials are required to view messages of other users!
+         * @summary List Invite Messages
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInviteMessages: async (userId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('getInviteMessages', 'userId', userId)
+            const localVarPath = `/message/{userId}/message`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Resets a single Invite Message back to it\'s original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, but resetting it does not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 Too Fast Error.
+         * @summary Reset Invite Message
+         * @param {string} userId 
+         * @param {number} messageId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetInviteMessage: async (userId: string, messageId: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('resetInviteMessage', 'userId', userId)
+            // verify required parameter 'messageId' is not null or undefined
+            assertParamExists('resetInviteMessage', 'messageId', messageId)
+            const localVarPath = `/message/{userId}/message/{messageId}`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)))
+                .replace(`{${"messageId"}}`, encodeURIComponent(String(messageId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 Too Fast Error.
+         * @summary Update Invite Message
+         * @param {string} userId 
+         * @param {number} messageId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateInviteMessage: async (userId: string, messageId: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('updateInviteMessage', 'userId', userId)
+            // verify required parameter 'messageId' is not null or undefined
+            assertParamExists('updateInviteMessage', 'messageId', messageId)
+            const localVarPath = `/message/{userId}/message/{messageId}`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)))
+                .replace(`{${"messageId"}}`, encodeURIComponent(String(messageId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * InviteApi - functional programming interface
+ * @export
+ */
+export const InviteApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = InviteApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Returns a single Invite Message. This returns the exact same information but less than `getInviteMessages`. Admin Credentials are required to view messages of other users!
+         * @summary Get Invite Messages
+         * @param {string} userId 
+         * @param {number} messageId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getInviteMessage(userId: string, messageId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InviteMessage>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInviteMessage(userId, messageId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of all that users Invite Messages. Admin Credentials are required to view messages of other users!
+         * @summary List Invite Messages
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getInviteMessages(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInviteMessages(userId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Resets a single Invite Message back to it\'s original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, but resetting it does not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 Too Fast Error.
+         * @summary Reset Invite Message
+         * @param {string} userId 
+         * @param {number} messageId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async resetInviteMessage(userId: string, messageId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.resetInviteMessage(userId, messageId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 Too Fast Error.
+         * @summary Update Invite Message
+         * @param {string} userId 
+         * @param {number} messageId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateInviteMessage(userId: string, messageId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateInviteMessage(userId, messageId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * InviteApi - factory interface
+ * @export
+ */
+export const InviteApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = InviteApiFp(configuration)
+    return {
+        /**
+         * Returns a single Invite Message. This returns the exact same information but less than `getInviteMessages`. Admin Credentials are required to view messages of other users!
+         * @summary Get Invite Messages
+         * @param {string} userId 
+         * @param {number} messageId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInviteMessage(userId: string, messageId: number, options?: any): AxiosPromise<InviteMessage> {
+            return localVarFp.getInviteMessage(userId, messageId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of all that users Invite Messages. Admin Credentials are required to view messages of other users!
+         * @summary List Invite Messages
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInviteMessages(userId: string, options?: any): AxiosPromise<Array<InviteMessage>> {
+            return localVarFp.getInviteMessages(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Resets a single Invite Message back to it\'s original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, but resetting it does not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 Too Fast Error.
+         * @summary Reset Invite Message
+         * @param {string} userId 
+         * @param {number} messageId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetInviteMessage(userId: string, messageId: number, options?: any): AxiosPromise<Array<InviteMessage>> {
+            return localVarFp.resetInviteMessage(userId, messageId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 Too Fast Error.
+         * @summary Update Invite Message
+         * @param {string} userId 
+         * @param {number} messageId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateInviteMessage(userId: string, messageId: number, options?: any): AxiosPromise<Array<InviteMessage>> {
+            return localVarFp.updateInviteMessage(userId, messageId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * InviteApi - object-oriented interface
+ * @export
+ * @class InviteApi
+ * @extends {BaseAPI}
+ */
+export class InviteApi extends BaseAPI {
+    /**
+     * Returns a single Invite Message. This returns the exact same information but less than `getInviteMessages`. Admin Credentials are required to view messages of other users!
+     * @summary Get Invite Messages
+     * @param {string} userId 
+     * @param {number} messageId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InviteApi
+     */
+    public getInviteMessage(userId: string, messageId: number, options?: any) {
+        return InviteApiFp(this.configuration).getInviteMessage(userId, messageId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of all that users Invite Messages. Admin Credentials are required to view messages of other users!
+     * @summary List Invite Messages
+     * @param {string} userId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InviteApi
+     */
+    public getInviteMessages(userId: string, options?: any) {
+        return InviteApiFp(this.configuration).getInviteMessages(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Resets a single Invite Message back to it\'s original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, but resetting it does not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 Too Fast Error.
+     * @summary Reset Invite Message
+     * @param {string} userId 
+     * @param {number} messageId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InviteApi
+     */
+    public resetInviteMessage(userId: string, messageId: number, options?: any) {
+        return InviteApiFp(this.configuration).resetInviteMessage(userId, messageId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 Too Fast Error.
+     * @summary Update Invite Message
+     * @param {string} userId 
+     * @param {number} messageId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InviteApi
+     */
+    public updateInviteMessage(userId: string, messageId: number, options?: any) {
+        return InviteApiFp(this.configuration).updateInviteMessage(userId, messageId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -7244,7 +7628,7 @@ export const PlayermoderationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deletePlayerModeration(playerModerationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
+        async deletePlayerModeration(playerModerationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deletePlayerModeration(playerModerationId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7289,7 +7673,7 @@ export const PlayermoderationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unmoderateUser(inlineObject13?: InlineObject13, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
+        async unmoderateUser(inlineObject13?: InlineObject13, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.unmoderateUser(inlineObject13, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7319,7 +7703,7 @@ export const PlayermoderationApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deletePlayerModeration(playerModerationId: string, options?: any): AxiosPromise<Error> {
+        deletePlayerModeration(playerModerationId: string, options?: any): AxiosPromise<Success> {
             return localVarFp.deletePlayerModeration(playerModerationId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -7360,7 +7744,7 @@ export const PlayermoderationApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unmoderateUser(inlineObject13?: InlineObject13, options?: any): AxiosPromise<Error> {
+        unmoderateUser(inlineObject13?: InlineObject13, options?: any): AxiosPromise<Success> {
             return localVarFp.unmoderateUser(inlineObject13, options).then((request) => request(axios, basePath));
         },
     };
@@ -7808,63 +8192,6 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Search and list any Active users by text query.  **Has been locked down and now always respond with \"Invalid Admin Credentials\".**
-         * @summary Search Active Users
-         * @param {string} search Username to search for
-         * @param {string} [developerType] Active user by developer type, none for normal users and internal for moderators
-         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
-         * @param {number} [n] The number of objects to return.
-         * @param {*} [options] Override http request option.
-         * @deprecated
-         * @throws {RequiredError}
-         */
-        searchActiveUsers: async (search: string, developerType?: string, offset?: number, n?: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'search' is not null or undefined
-            assertParamExists('searchActiveUsers', 'search', search)
-            const localVarPath = `/users/active`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication apiKeyCookie required
-
-            // authentication authCookie required
-
-            if (search !== undefined) {
-                localVarQueryParameter['search'] = search;
-            }
-
-            if (developerType !== undefined) {
-                localVarQueryParameter['developerType'] = developerType;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
-            }
-
-            if (n !== undefined) {
-                localVarQueryParameter['n'] = n;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Search and list any users by text query
          * @summary Search All Users
          * @param {string} [search] Searches by &#x60;displayName&#x60;. Will return empty array if search query is empty or missing.
@@ -7993,21 +8320,6 @@ export const UsersApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Search and list any Active users by text query.  **Has been locked down and now always respond with \"Invalid Admin Credentials\".**
-         * @summary Search Active Users
-         * @param {string} search Username to search for
-         * @param {string} [developerType] Active user by developer type, none for normal users and internal for moderators
-         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
-         * @param {number} [n] The number of objects to return.
-         * @param {*} [options] Override http request option.
-         * @deprecated
-         * @throws {RequiredError}
-         */
-        async searchActiveUsers(search: string, developerType?: string, offset?: number, n?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedUser>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchActiveUsers(search, developerType, offset, n, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
          * Search and list any users by text query
          * @summary Search All Users
          * @param {string} [search] Searches by &#x60;displayName&#x60;. Will return empty array if search query is empty or missing.
@@ -8062,20 +8374,6 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          */
         getUserByName(username: string, options?: any): AxiosPromise<User> {
             return localVarFp.getUserByName(username, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Search and list any Active users by text query.  **Has been locked down and now always respond with \"Invalid Admin Credentials\".**
-         * @summary Search Active Users
-         * @param {string} search Username to search for
-         * @param {string} [developerType] Active user by developer type, none for normal users and internal for moderators
-         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
-         * @param {number} [n] The number of objects to return.
-         * @param {*} [options] Override http request option.
-         * @deprecated
-         * @throws {RequiredError}
-         */
-        searchActiveUsers(search: string, developerType?: string, offset?: number, n?: number, options?: any): AxiosPromise<Array<LimitedUser>> {
-            return localVarFp.searchActiveUsers(search, developerType, offset, n, options).then((request) => request(axios, basePath));
         },
         /**
          * Search and list any users by text query
@@ -8133,22 +8431,6 @@ export class UsersApi extends BaseAPI {
      */
     public getUserByName(username: string, options?: any) {
         return UsersApiFp(this.configuration).getUserByName(username, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Search and list any Active users by text query.  **Has been locked down and now always respond with \"Invalid Admin Credentials\".**
-     * @summary Search Active Users
-     * @param {string} search Username to search for
-     * @param {string} [developerType] Active user by developer type, none for normal users and internal for moderators
-     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
-     * @param {number} [n] The number of objects to return.
-     * @param {*} [options] Override http request option.
-     * @deprecated
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public searchActiveUsers(search: string, developerType?: string, offset?: number, n?: number, options?: any) {
-        return UsersApiFp(this.configuration).searchActiveUsers(search, developerType, offset, n, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9057,7 +9339,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @deprecated
          * @throws {RequiredError}
          */
-        async getWorldMetadata(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+        async getWorldMetadata(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWorldMetadata(worldId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9068,7 +9350,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWorldPublishStatus(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
+        async getWorldPublishStatus(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWorldPublishStatus(worldId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9254,7 +9536,7 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
          * @deprecated
          * @throws {RequiredError}
          */
-        getWorldMetadata(worldId: string, options?: any): AxiosPromise<InlineResponse2006> {
+        getWorldMetadata(worldId: string, options?: any): AxiosPromise<InlineResponse2005> {
             return localVarFp.getWorldMetadata(worldId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9264,7 +9546,7 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWorldPublishStatus(worldId: string, options?: any): AxiosPromise<InlineResponse2007> {
+        getWorldPublishStatus(worldId: string, options?: any): AxiosPromise<InlineResponse2006> {
             return localVarFp.getWorldPublishStatus(worldId, options).then((request) => request(axios, basePath));
         },
         /**

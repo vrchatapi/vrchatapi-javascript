@@ -21,5 +21,10 @@ sed -i '/"dependencies"/a     "@types/tough-cookie": "^4.0.1",' ./package.json
 sed -i '/"dependencies"/a     "axios-cookiejar-support": "^1.0.1",' ./package.json
 sed -i '/"dependencies"/a     "tough-cookie": "^4.0.0",' ./package.json
 
+# Remove messily pasted markdown at top of every file
+for i in *.ts; do
+    sed -i '/VRChat API Banner/d' $i
+done
+
 npm install
 npm run build
