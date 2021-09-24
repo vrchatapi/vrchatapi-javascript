@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * VRChat API Documentation
- *boop
+ *
  * The version of the OpenAPI document: 1.3.2
  * Contact: me@ruby.js.org
  *
