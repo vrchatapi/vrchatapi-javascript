@@ -27,10 +27,12 @@ jobs:
         run: bash ./generate.sh
       - name: Check version number
         run: |
-          echo "spec_version=$(grep "version:" ./openapi/openapi.yaml  | cut -d " " -f 4)" >> $GITHUB_ENV
+          echo "spec_version=$(grep "version" ./package.json | cut -d "\"" -f 4)" >> $GITHUB_ENV
+      - name: Print version number
+        run: echo ${{ env.spec_version }}
       - name: Deploy SDK back into main branch
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: main
           folder: .
-          commit-message: "Upgrade SDK to latest spec ${{ env.action_state }}"
+          commit-message: "Upgrade SDK to latest spec ${{ env.spec_version }}"
