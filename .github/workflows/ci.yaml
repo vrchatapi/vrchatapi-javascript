@@ -31,14 +31,8 @@ jobs:
       - name: Print version number
         run: echo ${{ env.spec_version }}
       - name: Deploy SDK back into main branch
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: main
           folder: .
           commit-message: "Upgrade SDK to latest spec ${{ env.spec_version }}"
-      - name: Tag commit
-        uses: tvdias/github-tagger@v0.0.2
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          tag: "${{ env.spec_version }}"
-          commit-sha: main
