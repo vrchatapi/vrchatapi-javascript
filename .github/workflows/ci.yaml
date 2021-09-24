@@ -36,3 +36,9 @@ jobs:
           branch: main
           folder: .
           commit-message: "Upgrade SDK to latest spec ${{ env.spec_version }}"
+      - name: Tag commit
+        uses: tvdias/github-tagger@v0.0.1
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          tag: "${{ env.spec_version }}"
+          commit-sha: main
