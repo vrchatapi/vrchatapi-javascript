@@ -12,15 +12,15 @@ jobs:
     steps:
       - uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: 16
       - uses: actions/checkout@v2
       - name: 'Cache node_modules'
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-v14-${{ hashFiles('**/generate.sh') }}
+          key: ${{ runner.os }}-node-v16-${{ hashFiles('**/generate.sh') }}
           restore-keys: |
-            ${{ runner.os }}-node-v14
+            ${{ runner.os }}-node-v16
       - name: Install OpenAPI Generator CLI
         run: npm install @openapitools/openapi-generator-cli
       - name: Generate SDK Client
