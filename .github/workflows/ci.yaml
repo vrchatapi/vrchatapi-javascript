@@ -1,0 +1,32 @@
+#on:
+#  repository_dispatch:
+#    types: [spec_release]
+on: push
+
+name: Generate VRChat API SDK
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    name: Generate OpenAPI Client
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - uses: actions/checkout@v2
+      - name: 'Cache node_modules'
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-v14-${{ hashFiles('**/generate.sh') }}
+          restore-keys: |
+            ${{ runner.os }}-node-v14
+      - name: Install OpenAPI Generator CLI
+        run: npm install @openapitools/openapi-generator-cli
+      - name: Generate SDK Client
+        run: bash ./generate.sh
+      - name: Deploy SDK back into main branch
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: main
+          folder: .
