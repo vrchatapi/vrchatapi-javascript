@@ -1,7 +1,9 @@
 #!/bin/bash
 
+npm install @openapitools/openapi-generator-cli
+
 rm *.ts -rf
-openapi-generator-cli generate \
+./node_modules/\@openapitools/openapi-generator-cli/main.js generate \
 -g typescript-axios \
 --additional-properties=npmName=vrchat \
 --git-user-id=vrchatapi \
