@@ -25,8 +25,12 @@ jobs:
         run: npm install @openapitools/openapi-generator-cli
       - name: Generate SDK Client
         run: bash ./generate.sh
+      - name: Check version number
+        run: |
+          echo "spec_version=$(grep "version:" ./openapi/openapi.yaml  | cut -d " " -f 4)" >> $GITHUB_ENV
       - name: Deploy SDK back into main branch
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: main
           folder: .
+          commit-message: "Upgrade SDK to latest spec ${{ env.action_state }}"
