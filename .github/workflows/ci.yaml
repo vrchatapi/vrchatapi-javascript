@@ -8,7 +8,7 @@ name: Generate VRChat API SDK
 jobs:
   generate:
     runs-on: ubuntu-latest
-    name: Generate OpenAPI Client
+    name: Generate VRChat API SDK
     steps:
       - uses: actions/setup-node@v1
         with:
@@ -35,4 +35,8 @@ jobs:
         with:
           branch: main
           folder: .
-          commit-message: "Upgrade SDK to latest spec ${{ env.spec_version }}"
+          commit-message: "Upgrade Node SDK to spec ${{ env.spec_version }}"
+      - name: Upload to NPM
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
