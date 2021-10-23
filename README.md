@@ -1,4 +1,4 @@
-![](https://github.com/vrchatapi/vrchatapi.github.io/blob/master/assets/img/lang/lang_javascript_banner_1500x300.png?raw=true)
+![](https://github.com/vrchatapi/vrchatapi.github.io/blob/main/static/assets/img/lang/lang_javascript_banner_1500x300.png?raw=true)
 
 # VRChat API Library for JavaScript/TypeScript
 
