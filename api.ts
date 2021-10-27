@@ -13,7 +13,7 @@
 
 
 import { Configuration } from './configuration';
-import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
+import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
@@ -32,494 +32,494 @@ export interface APIConfig {
      * @type {boolean}
      * @memberof APIConfig
      */
-    VoiceEnableDegradation: boolean;
+    'VoiceEnableDegradation': boolean;
     /**
      * Unknown, probably voice optimization testing
      * @type {boolean}
      * @memberof APIConfig
      */
-    VoiceEnableReceiverLimiting: boolean;
+    'VoiceEnableReceiverLimiting': boolean;
     /**
      * VRChat\'s office address
      * @type {string}
      * @memberof APIConfig
      */
-    address: string;
+    'address': string;
     /**
      * Public Announcements
      * @type {Set<PublicAnnouncement>}
      * @memberof APIConfig
      */
-    announcements: Set<PublicAnnouncement>;
+    'announcements': Set<PublicAnnouncement>;
     /**
      * apiKey to be used for all other requests
      * @type {string}
      * @memberof APIConfig
      */
-    apiKey: string;
+    'apiKey': string;
     /**
      * Game name
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    appName: string;
+    'appName': string;
     /**
      * Build tag of the API server
      * @type {string}
      * @memberof APIConfig
      */
-    buildVersionTag: string;
+    'buildVersionTag': string;
     /**
      * apiKey to be used for all other requests
      * @type {string}
      * @memberof APIConfig
      */
-    clientApiKey: string;
+    'clientApiKey': string;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    clientBPSCeiling: number;
+    'clientBPSCeiling': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    clientDisconnectTimeout: number;
+    'clientDisconnectTimeout': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    clientReservedPlayerBPS: number;
+    'clientReservedPlayerBPS': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    clientSentCountAllowance: number;
+    'clientSentCountAllowance': number;
     /**
      * VRChat\'s contact email
      * @type {string}
      * @memberof APIConfig
      */
-    contactEmail: string;
+    'contactEmail': string;
     /**
      * VRChat\'s copyright-issues-related email
      * @type {string}
      * @memberof APIConfig
      */
-    copyrightEmail: string;
+    'copyrightEmail': string;
     /**
      * Current version number of the Terms of Service
      * @type {number}
      * @memberof APIConfig
      */
-    currentTOSVersion: number;
+    'currentTOSVersion': number;
     /**
      * 
      * @type {string}
      * @memberof APIConfig
      */
-    defaultAvatar: string;
+    'defaultAvatar': string;
     /**
      * 
      * @type {DeploymentGroup}
      * @memberof APIConfig
      */
-    deploymentGroup: DeploymentGroup;
+    'deploymentGroup': DeploymentGroup;
     /**
      * Version number for game development build
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    devAppVersionStandalone: string;
+    'devAppVersionStandalone': string;
     /**
      * Developer Download link
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    devDownloadLinkWindows: string;
+    'devDownloadLinkWindows': string;
     /**
      * Link to download the development SDK, use downloadUrls instead
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    devSdkUrl: string;
+    'devSdkUrl': string;
     /**
      * Version of the development SDK
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    devSdkVersion: string;
+    'devSdkVersion': string;
     /**
      * Version number for server development build
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    devServerVersionStandalone: string;
+    'devServerVersionStandalone': string;
     /**
      * Unknown, \"dis\" maybe for disconnect?
      * @type {string}
      * @memberof APIConfig
      */
-    dis_countdown: string;
+    'dis-countdown': string;
     /**
      * Toggles if copying avatars should be disabled
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableAvatarCopying: boolean;
+    'disableAvatarCopying': boolean;
     /**
      * Toggles if avatar gating should be disabled. Avatar gating restricts uploading of avatars to people with the `system_avatar_access` Tag or `admin_avatar_access` Tag
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableAvatarGating: boolean;
+    'disableAvatarGating': boolean;
     /**
      * Toggles if the Community Labs should be disabled
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableCommunityLabs: boolean;
+    'disableCommunityLabs': boolean;
     /**
      * Toggles if promotion out of Community Labs should be disabled
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableCommunityLabsPromotion: boolean;
+    'disableCommunityLabsPromotion': boolean;
     /**
      * Unknown
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableEmail: boolean;
+    'disableEmail': boolean;
     /**
      * Toggles if Analytics should be disabled.
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableEventStream: boolean;
+    'disableEventStream': boolean;
     /**
      * Toggles if feedback gating should be disabled. Feedback gating restricts submission of feedback (reporting a World or User) to people with the `system_feedback_access` Tag.
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableFeedbackGating: boolean;
+    'disableFeedbackGating': boolean;
     /**
      * Unknown, probably toggles compilation of frontend web builds? So internal flag?
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableFrontendBuilds: boolean;
+    'disableFrontendBuilds': boolean;
     /**
      * Unknown
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableHello: boolean;
+    'disableHello': boolean;
     /**
      * Toggles if signing up for Subscriptions in Oculus is disabled or not.
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableOculusSubs: boolean;
+    'disableOculusSubs': boolean;
     /**
      * Toggles if new user account registration should be disabled.
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableRegistration: boolean;
+    'disableRegistration': boolean;
     /**
      * Toggles if Steam Networking should be disabled. VRChat these days uses Photon Unity Networking (PUN) instead.
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableSteamNetworking: boolean;
+    'disableSteamNetworking': boolean;
     /**
      * Toggles if 2FA should be disabled.
      * @type {boolean}
      * @memberof APIConfig
      * @deprecated
      */
-    disableTwoFactorAuth: boolean;
+    'disableTwoFactorAuth': boolean;
     /**
      * Toggles if Udon should be universally disabled in-game.
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableUdon: boolean;
+    'disableUdon': boolean;
     /**
      * Toggles if account upgrading \"linking with Steam/Oculus\" should be disabled.
      * @type {boolean}
      * @memberof APIConfig
      */
-    disableUpgradeAccount: boolean;
+    'disableUpgradeAccount': boolean;
     /**
      * Download link for game on the Oculus Rift website.
      * @type {string}
      * @memberof APIConfig
      */
-    downloadLinkWindows: string;
+    'downloadLinkWindows': string;
     /**
      * 
      * @type {DownloadURLList}
      * @memberof APIConfig
      */
-    downloadUrls: DownloadURLList;
+    'downloadUrls': DownloadURLList;
     /**
      * Array of DynamicWorldRow objects, used by the game to display the list of world rows
      * @type {Set<DynamicWorldRow>}
      * @memberof APIConfig
      */
-    dynamicWorldRows: Set<DynamicWorldRow>;
+    'dynamicWorldRows': Set<DynamicWorldRow>;
     /**
      * 
      * @type {APIEventConfig}
      * @memberof APIConfig
      */
-    events: APIEventConfig;
+    'events': APIEventConfig;
     /**
      * Unknown
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    gearDemoRoomId: string;
+    'gearDemoRoomId': string;
     /**
      * 
      * @type {string}
      * @memberof APIConfig
      */
-    homeWorldId: string;
+    'homeWorldId': string;
     /**
      * Redirect target if you try to open the base API domain in your browser
      * @type {string}
      * @memberof APIConfig
      */
-    homepageRedirectTarget: string;
+    'homepageRedirectTarget': string;
     /**
      * 
      * @type {string}
      * @memberof APIConfig
      */
-    hubWorldId: string;
+    'hubWorldId': string;
     /**
      * VRChat\'s job application email
      * @type {string}
      * @memberof APIConfig
      */
-    jobsEmail: string;
+    'jobsEmail': string;
     /**
      * MOTD
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    messageOfTheDay: string;
+    'messageOfTheDay': string;
     /**
      * VRChat\'s moderation related email
      * @type {string}
      * @memberof APIConfig
      */
-    moderationEmail: string;
+    'moderationEmail': string;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    moderationQueryPeriod: number;
+    'moderationQueryPeriod': number;
     /**
      * Used in-game to notify a user they aren\'t allowed to select avatars in private worlds
      * @type {string}
      * @memberof APIConfig
      */
-    notAllowedToSelectAvatarInPrivateWorldMessage: string;
+    'notAllowedToSelectAvatarInPrivateWorldMessage': string;
     /**
      * Extra [plugin](https://doc.photonengine.com/en-us/server/current/plugins/manual) to run in each instance
      * @type {string}
      * @memberof APIConfig
      */
-    plugin: string;
+    'plugin': string;
     /**
      * Version number for game release build
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    releaseAppVersionStandalone: string;
+    'releaseAppVersionStandalone': string;
     /**
      * Link to download the release SDK
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    releaseSdkUrl: string;
+    'releaseSdkUrl': string;
     /**
      * Version of the release SDK
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    releaseSdkVersion: string;
+    'releaseSdkVersion': string;
     /**
      * Version number for server release build
      * @type {string}
      * @memberof APIConfig
      * @deprecated
      */
-    releaseServerVersionStandalone: string;
+    'releaseServerVersionStandalone': string;
     /**
      * Link to the developer FAQ
      * @type {string}
      * @memberof APIConfig
      */
-    sdkDeveloperFaqUrl: string;
+    'sdkDeveloperFaqUrl': string;
     /**
      * Link to the official VRChat Discord
      * @type {string}
      * @memberof APIConfig
      */
-    sdkDiscordUrl: string;
+    'sdkDiscordUrl': string;
     /**
      * Used in the SDK to notify a user they aren\'t allowed to upload avatars/worlds yet
      * @type {string}
      * @memberof APIConfig
      */
-    sdkNotAllowedToPublishMessage: string;
+    'sdkNotAllowedToPublishMessage': string;
     /**
      * Unity version supported by the SDK
      * @type {string}
      * @memberof APIConfig
      */
-    sdkUnityVersion: string;
+    'sdkUnityVersion': string;
     /**
      * Server name of the API server currently responding
      * @type {string}
      * @memberof APIConfig
      */
-    serverName: string;
+    'serverName': string;
     /**
      * VRChat\'s support email
      * @type {string}
      * @memberof APIConfig
      */
-    supportEmail: string;
+    'supportEmail': string;
     /**
      * 
      * @type {string}
      * @memberof APIConfig
      */
-    timeOutWorldId: string;
+    'timeOutWorldId': string;
     /**
      * 
      * @type {string}
      * @memberof APIConfig
      */
-    tutorialWorldId: string;
+    'tutorialWorldId': string;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    updateRateMsMaximum: number;
+    'updateRateMsMaximum': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    updateRateMsMinimum: number;
+    'updateRateMsMinimum': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    updateRateMsNormal: number;
+    'updateRateMsNormal': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    updateRateMsUdonManual: number;
+    'updateRateMsUdonManual': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    uploadAnalysisPercent: number;
+    'uploadAnalysisPercent': number;
     /**
      * List of allowed URLs that bypass the \"Allow untrusted URL\'s\" setting in-game
      * @type {Array<string>}
      * @memberof APIConfig
      */
-    urlList: Array<string>;
+    'urlList': Array<string>;
     /**
      * Unknown
      * @type {boolean}
      * @memberof APIConfig
      */
-    useReliableUdpForVoice: boolean;
+    'useReliableUdpForVoice': boolean;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    userUpdatePeriod: number;
+    'userUpdatePeriod': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    userVerificationDelay: number;
+    'userVerificationDelay': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    userVerificationRetry: number;
+    'userVerificationRetry': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    userVerificationTimeout: number;
+    'userVerificationTimeout': number;
     /**
      * Download link for game on the Steam website.
      * @type {string}
      * @memberof APIConfig
      */
-    viveWindowsUrl: string;
+    'viveWindowsUrl': string;
     /**
      * List of allowed URLs that are allowed to host avatar assets
      * @type {Array<string>}
      * @memberof APIConfig
      */
-    whiteListedAssetUrls: Array<string>;
+    'whiteListedAssetUrls': Array<string>;
     /**
      * Unknown
      * @type {number}
      * @memberof APIConfig
      */
-    worldUpdatePeriod: number;
+    'worldUpdatePeriod': number;
     /**
      * Currently used youtube-dl.exe hash in SHA-256-delimited format
      * @type {string}
      * @memberof APIConfig
      */
-    youtubedl_hash: string;
+    'youtubedl-hash': string;
     /**
      * Currently used youtube-dl.exe version
      * @type {string}
      * @memberof APIConfig
      */
-    youtubedl_version: string;
+    'youtubedl-version': string;
 }
 /**
  * 
@@ -532,61 +532,61 @@ export interface APIEventConfig {
      * @type {number}
      * @memberof APIEventConfig
      */
-    distanceClose: number;
+    'distanceClose': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIEventConfig
      */
-    distanceFactor: number;
+    'distanceFactor': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIEventConfig
      */
-    distanceFar: number;
+    'distanceFar': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIEventConfig
      */
-    groupDistance: number;
+    'groupDistance': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIEventConfig
      */
-    maximumBunchSize: number;
+    'maximumBunchSize': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIEventConfig
      */
-    notVisibleFactor: number;
+    'notVisibleFactor': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIEventConfig
      */
-    playerOrderBucketSize: number;
+    'playerOrderBucketSize': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIEventConfig
      */
-    playerOrderFactor: number;
+    'playerOrderFactor': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIEventConfig
      */
-    slowUpdateFactorThreshold: number;
+    'slowUpdateFactorThreshold': number;
     /**
      * Unknown
      * @type {number}
      * @memberof APIEventConfig
      */
-    viewSegmentLength: number;
+    'viewSegmentLength': number;
 }
 /**
  * 
@@ -599,110 +599,110 @@ export interface Avatar {
      * @type {string}
      * @memberof Avatar
      */
-    assetUrl?: string;
+    'assetUrl'?: string;
     /**
      * Not present from general serach `/avatars`, only on specific requests `/avatars/{avatarId}`. **Deprecation:** `Object` has unknown usage/fields, and is always empty. Use normal `Url` field instead.
      * @type {object}
      * @memberof Avatar
      */
-    assetUrlObject?: object;
+    'assetUrlObject'?: object;
     /**
      * 
      * @type {string}
      * @memberof Avatar
      */
-    authorId: string;
+    'authorId': string;
     /**
      * 
      * @type {string}
      * @memberof Avatar
      */
-    authorName: string;
+    'authorName': string;
     /**
      * 
      * @type {string}
      * @memberof Avatar
      */
-    created_at: string;
+    'created_at': string;
     /**
      * 
      * @type {string}
      * @memberof Avatar
      */
-    description: string;
+    'description': string;
     /**
      * 
      * @type {boolean}
      * @memberof Avatar
      */
-    featured: boolean;
+    'featured': boolean;
     /**
      * 
      * @type {string}
      * @memberof Avatar
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof Avatar
      */
-    imageUrl: string;
+    'imageUrl': string;
     /**
      * 
      * @type {string}
      * @memberof Avatar
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {ReleaseStatus}
      * @memberof Avatar
      */
-    releaseStatus: ReleaseStatus;
+    'releaseStatus': ReleaseStatus;
     /**
      * 
      * @type {Array<string>}
      * @memberof Avatar
      */
-    tags: Array<string>;
+    'tags': Array<string>;
     /**
      * 
      * @type {string}
      * @memberof Avatar
      */
-    thumbnailImageUrl: string;
+    'thumbnailImageUrl': string;
     /**
      * 
      * @type {string}
      * @memberof Avatar
      */
-    unityPackageUrl: string;
+    'unityPackageUrl': string;
     /**
      * 
      * @type {AvatarUnityPackageUrlObject}
      * @memberof Avatar
      * @deprecated
      */
-    unityPackageUrlObject: AvatarUnityPackageUrlObject;
+    'unityPackageUrlObject': AvatarUnityPackageUrlObject;
     /**
      * 
      * @type {Set<UnityPackage>}
      * @memberof Avatar
      */
-    unityPackages: Set<UnityPackage>;
+    'unityPackages': Set<UnityPackage>;
     /**
      * 
      * @type {string}
      * @memberof Avatar
      */
-    updated_at: string;
+    'updated_at': string;
     /**
      * 
      * @type {number}
      * @memberof Avatar
      */
-    version: number;
+    'version': number;
 }
 /**
  * **Deprecation:** `Object` has unknown usage/fields, and is always empty. Use normal `Url` field instead.
@@ -715,7 +715,7 @@ export interface AvatarUnityPackageUrlObject {
      * @type {string}
      * @memberof AvatarUnityPackageUrlObject
      */
-    unityPackageUrl?: string;
+    'unityPackageUrl'?: string;
 }
 /**
  * 
@@ -728,278 +728,278 @@ export interface CurrentUser {
      * @type {number}
      * @memberof CurrentUser
      */
-    acceptedTOSVersion: number;
+    'acceptedTOSVersion': number;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    accountDeletionDate?: string | null;
+    'accountDeletionDate'?: string | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof CurrentUser
      */
-    activeFriends?: Array<string>;
+    'activeFriends'?: Array<string>;
     /**
      * 
      * @type {boolean}
      * @memberof CurrentUser
      */
-    allowAvatarCopying: boolean;
+    'allowAvatarCopying': boolean;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    bio: string;
+    'bio': string;
     /**
      * 
      * @type {Array<string>}
      * @memberof CurrentUser
      */
-    bioLinks: Array<string>;
+    'bioLinks': Array<string>;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    currentAvatar: string;
+    'currentAvatar': string;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    currentAvatarAssetUrl: string;
+    'currentAvatarAssetUrl': string;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    currentAvatarImageUrl: string;
+    'currentAvatarImageUrl': string;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    currentAvatarThumbnailImageUrl: string;
+    'currentAvatarThumbnailImageUrl': string;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    date_joined: string;
+    'date_joined': string;
     /**
      * 
      * @type {DeveloperType}
      * @memberof CurrentUser
      */
-    developerType: DeveloperType;
+    'developerType': DeveloperType;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    displayName: string;
+    'displayName': string;
     /**
      * 
      * @type {boolean}
      * @memberof CurrentUser
      */
-    emailVerified: boolean;
+    'emailVerified': boolean;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    fallbackAvatar?: string;
+    'fallbackAvatar'?: string;
     /**
      * Always empty array.
      * @type {Array<string>}
      * @memberof CurrentUser
      * @deprecated
      */
-    friendGroupNames: Array<string>;
+    'friendGroupNames': Array<string>;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    friendKey: string;
+    'friendKey': string;
     /**
      * 
      * @type {Array<string>}
      * @memberof CurrentUser
      */
-    friends: Array<string>;
+    'friends': Array<string>;
     /**
      * 
      * @type {boolean}
      * @memberof CurrentUser
      */
-    hasBirthday: boolean;
+    'hasBirthday': boolean;
     /**
      * 
      * @type {boolean}
      * @memberof CurrentUser
      */
-    hasEmail: boolean;
+    'hasEmail': boolean;
     /**
      * 
      * @type {boolean}
      * @memberof CurrentUser
      */
-    hasLoggedInFromClient: boolean;
+    'hasLoggedInFromClient': boolean;
     /**
      * 
      * @type {boolean}
      * @memberof CurrentUser
      */
-    hasPendingEmail: boolean;
+    'hasPendingEmail': boolean;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    homeLocation: string;
+    'homeLocation': string;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {boolean}
      * @memberof CurrentUser
      */
-    isFriend: boolean;
+    'isFriend': boolean;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    last_login: string;
+    'last_login': string;
     /**
      * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
      * @type {string}
      * @memberof CurrentUser
      */
-    last_platform: string;
+    'last_platform': string;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    obfuscatedEmail: string;
+    'obfuscatedEmail': string;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    obfuscatedPendingEmail: string;
+    'obfuscatedPendingEmail': string;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    oculusId: string;
+    'oculusId': string;
     /**
      * 
      * @type {Array<string>}
      * @memberof CurrentUser
      */
-    offlineFriends?: Array<string>;
+    'offlineFriends'?: Array<string>;
     /**
      * 
      * @type {Array<string>}
      * @memberof CurrentUser
      */
-    onlineFriends?: Array<string>;
+    'onlineFriends'?: Array<string>;
     /**
      * 
      * @type {Array<PastDisplayName>}
      * @memberof CurrentUser
      */
-    pastDisplayNames: Array<PastDisplayName>;
+    'pastDisplayNames': Array<PastDisplayName>;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    profilePicOverride: string;
+    'profilePicOverride': string;
     /**
      * 
      * @type {UserState}
      * @memberof CurrentUser
      */
-    state: UserState;
+    'state': UserState;
     /**
      * 
      * @type {UserStatus}
      * @memberof CurrentUser
      */
-    status: UserStatus;
+    'status': UserStatus;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    statusDescription: string;
+    'statusDescription': string;
     /**
      * 
      * @type {boolean}
      * @memberof CurrentUser
      */
-    statusFirstTime: boolean;
+    'statusFirstTime': boolean;
     /**
      * 
      * @type {Array<string>}
      * @memberof CurrentUser
      */
-    statusHistory: Array<string>;
+    'statusHistory': Array<string>;
     /**
      * 
      * @type {object}
      * @memberof CurrentUser
      */
-    steamDetails: object;
+    'steamDetails': object;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    steamId: string;
+    'steamId': string;
     /**
      * 
      * @type {Array<string>}
      * @memberof CurrentUser
      */
-    tags: Array<string>;
+    'tags': Array<string>;
     /**
      * 
      * @type {boolean}
      * @memberof CurrentUser
      */
-    twoFactorAuthEnabled: boolean;
+    'twoFactorAuthEnabled': boolean;
     /**
      * 
      * @type {boolean}
      * @memberof CurrentUser
      */
-    unsubscribe: boolean;
+    'unsubscribe': boolean;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    userIcon: string;
+    'userIcon': string;
     /**
      * 
      * @type {string}
      * @memberof CurrentUser
      */
-    username: string;
+    'username': string;
 }
 /**
  * Used to identify which API deployment cluster is currently responding.  `blue` and `green` are used by Production. `grape`and `cherry` are used during Development.  [Blue Green Deployment by Martin Fowler](https://martinfowler.com/bliki/BlueGreenDeployment.html)
@@ -1039,19 +1039,19 @@ export interface DownloadURLList {
      * @memberof DownloadURLList
      * @deprecated
      */
-    sdk2: string;
+    'sdk2': string;
     /**
      * Download link for SDK3 for Avatars
      * @type {string}
      * @memberof DownloadURLList
      */
-    sdk3_avatars: string;
+    'sdk3-avatars': string;
     /**
      * Download link for SDK3 for Worlds
      * @type {string}
      * @memberof DownloadURLList
      */
-    sdk3_worlds: string;
+    'sdk3-worlds': string;
 }
 /**
  * 
@@ -1064,43 +1064,43 @@ export interface DynamicWorldRow {
      * @type {number}
      * @memberof DynamicWorldRow
      */
-    index: number;
+    'index': number;
     /**
      * 
      * @type {string}
      * @memberof DynamicWorldRow
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof DynamicWorldRow
      */
-    platform: string;
+    'platform': string;
     /**
      * 
      * @type {string}
      * @memberof DynamicWorldRow
      */
-    sortHeading: string;
+    'sortHeading': string;
     /**
      * 
      * @type {string}
      * @memberof DynamicWorldRow
      */
-    sortOrder: string;
+    'sortOrder': string;
     /**
      * 
      * @type {string}
      * @memberof DynamicWorldRow
      */
-    sortOwnership: string;
+    'sortOwnership': string;
     /**
      * Tag to filter worlds for this row. Not always present.
      * @type {string}
      * @memberof DynamicWorldRow
      */
-    tag?: string;
+    'tag'?: string;
 }
 /**
  * 
@@ -1113,25 +1113,25 @@ export interface Favorite {
      * @type {string}
      * @memberof Favorite
      */
-    favoriteId: string;
+    'favoriteId': string;
     /**
      * 
      * @type {string}
      * @memberof Favorite
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {Array<string>}
      * @memberof Favorite
      */
-    tags: Array<string>;
+    'tags': Array<string>;
     /**
      * 
      * @type {FavoriteType}
      * @memberof Favorite
      */
-    type: FavoriteType;
+    'type': FavoriteType;
 }
 /**
  * 
@@ -1144,49 +1144,49 @@ export interface FavoriteGroup {
      * @type {string}
      * @memberof FavoriteGroup
      */
-    displayName: string;
+    'displayName': string;
     /**
      * 
      * @type {string}
      * @memberof FavoriteGroup
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof FavoriteGroup
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof FavoriteGroup
      */
-    ownerDisplayName: string;
+    'ownerDisplayName': string;
     /**
      * 
      * @type {string}
      * @memberof FavoriteGroup
      */
-    ownerId: string;
+    'ownerId': string;
     /**
      * 
      * @type {Array<string>}
      * @memberof FavoriteGroup
      */
-    tags: Array<string>;
+    'tags': Array<string>;
     /**
      * 
      * @type {FavoriteType}
      * @memberof FavoriteGroup
      */
-    type: FavoriteType;
+    'type': FavoriteType;
     /**
      * 
      * @type {FavoriteGroupVisibility}
      * @memberof FavoriteGroup
      */
-    visibility: FavoriteGroupVisibility;
+    'visibility': FavoriteGroupVisibility;
 }
 /**
  * 
@@ -1223,43 +1223,43 @@ export interface FileData {
      * @type {string}
      * @memberof FileData
      */
-    category: FileDataCategoryEnum;
+    'category': FileDataCategoryEnum;
     /**
      * 
      * @type {string}
      * @memberof FileData
      */
-    fileName: string;
+    'fileName': string;
     /**
      * 
      * @type {string}
      * @memberof FileData
      */
-    md5: string;
+    'md5': string;
     /**
      * 
      * @type {number}
      * @memberof FileData
      */
-    sizeInBytes: number;
+    'sizeInBytes': number;
     /**
      * 
      * @type {FileStatus}
      * @memberof FileData
      */
-    status: FileStatus;
+    'status': FileStatus;
     /**
      * 
      * @type {string}
      * @memberof FileData
      */
-    uploadId: string;
+    'uploadId': string;
     /**
      * 
      * @type {string}
      * @memberof FileData
      */
-    url: string;
+    'url': string;
 }
 
 /**
@@ -1295,43 +1295,43 @@ export interface FileVersion {
      * @type {string}
      * @memberof FileVersion
      */
-    created_at: string;
+    'created_at': string;
     /**
      * Usually only present if `true`
      * @type {boolean}
      * @memberof FileVersion
      */
-    deleted?: boolean;
+    'deleted'?: boolean;
     /**
      * 
      * @type {FileData}
      * @memberof FileVersion
      */
-    delta?: FileData;
+    'delta'?: FileData;
     /**
      * 
      * @type {FileData}
      * @memberof FileVersion
      */
-    file?: FileData;
+    'file'?: FileData;
     /**
      * 
      * @type {FileData}
      * @memberof FileVersion
      */
-    signature?: FileData;
+    'signature'?: FileData;
     /**
      * 
      * @type {FileStatus}
      * @memberof FileVersion
      */
-    status: FileStatus;
+    'status': FileStatus;
     /**
      * Incremental version counter, can only be increased.
      * @type {number}
      * @memberof FileVersion
      */
-    version: number;
+    'version': number;
 }
 /**
  * 
@@ -1344,19 +1344,19 @@ export interface FriendStatus {
      * @type {boolean}
      * @memberof FriendStatus
      */
-    incomingRequest: boolean;
+    'incomingRequest': boolean;
     /**
      * 
      * @type {boolean}
      * @memberof FriendStatus
      */
-    isFriend: boolean;
+    'isFriend': boolean;
     /**
      * 
      * @type {boolean}
      * @memberof FriendStatus
      */
-    outgoingRequest: boolean;
+    'outgoingRequest': boolean;
 }
 /**
  * 
@@ -1369,7 +1369,7 @@ export interface InlineObject {
      * @type {string}
      * @memberof InlineObject
      */
-    code: string;
+    'code': string;
 }
 /**
  * 
@@ -1382,7 +1382,7 @@ export interface InlineObject1 {
      * @type {string}
      * @memberof InlineObject1
      */
-    code: string;
+    'code': string;
 }
 /**
  * 
@@ -1395,55 +1395,55 @@ export interface InlineObject10 {
      * @type {string}
      * @memberof InlineObject10
      */
-    assetUrl?: string;
+    'assetUrl'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject10
      */
-    id?: string;
+    'id'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject10
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject10
      */
-    description?: string;
+    'description'?: string;
     /**
      * 
      * @type {Array<string>}
      * @memberof InlineObject10
      */
-    tags?: Array<string>;
+    'tags'?: Array<string>;
     /**
      * 
      * @type {string}
      * @memberof InlineObject10
      */
-    imageUrl: string;
+    'imageUrl': string;
     /**
      * 
      * @type {ReleaseStatus}
      * @memberof InlineObject10
      */
-    releaseStatus?: ReleaseStatus;
+    'releaseStatus'?: ReleaseStatus;
     /**
      * 
      * @type {number}
      * @memberof InlineObject10
      */
-    version?: number;
+    'version'?: number;
     /**
      * 
      * @type {string}
      * @memberof InlineObject10
      */
-    unityPackageUrl?: string;
+    'unityPackageUrl'?: string;
 }
 /**
  * 
@@ -1456,55 +1456,55 @@ export interface InlineObject11 {
      * @type {string}
      * @memberof InlineObject11
      */
-    assetUrl?: string;
+    'assetUrl'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject11
      */
-    id?: string;
+    'id'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject11
      */
-    name?: string;
+    'name'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject11
      */
-    description?: string;
+    'description'?: string;
     /**
      * 
      * @type {Array<string>}
      * @memberof InlineObject11
      */
-    tags?: Array<string>;
+    'tags'?: Array<string>;
     /**
      * 
      * @type {string}
      * @memberof InlineObject11
      */
-    imageUrl?: string;
+    'imageUrl'?: string;
     /**
      * 
      * @type {ReleaseStatus}
      * @memberof InlineObject11
      */
-    releaseStatus?: ReleaseStatus;
+    'releaseStatus'?: ReleaseStatus;
     /**
      * 
      * @type {number}
      * @memberof InlineObject11
      */
-    version?: number;
+    'version'?: number;
     /**
      * 
      * @type {string}
      * @memberof InlineObject11
      */
-    unityPackageUrl?: string;
+    'unityPackageUrl'?: string;
 }
 /**
  * 
@@ -1517,13 +1517,13 @@ export interface InlineObject12 {
      * @type {string}
      * @memberof InlineObject12
      */
-    moderated: string;
+    'moderated': string;
     /**
      * 
      * @type {PlayerModerationType}
      * @memberof InlineObject12
      */
-    type: PlayerModerationType;
+    'type': PlayerModerationType;
 }
 /**
  * 
@@ -1536,13 +1536,13 @@ export interface InlineObject13 {
      * @type {string}
      * @memberof InlineObject13
      */
-    moderated?: string;
+    'moderated'?: string;
     /**
      * 
      * @type {PlayerModerationType}
      * @memberof InlineObject13
      */
-    type: PlayerModerationType;
+    'type': PlayerModerationType;
 }
 /**
  * 
@@ -1555,55 +1555,55 @@ export interface InlineObject2 {
      * @type {string}
      * @memberof InlineObject2
      */
-    email?: string;
+    'email'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject2
      */
-    birthday?: string;
+    'birthday'?: string;
     /**
      * 
      * @type {number}
      * @memberof InlineObject2
      */
-    acceptedTOSVersion?: number;
+    'acceptedTOSVersion'?: number;
     /**
      * 
      * @type {Array<string>}
      * @memberof InlineObject2
      */
-    tags?: Array<string>;
+    'tags'?: Array<string>;
     /**
      * 
      * @type {UserStatus}
      * @memberof InlineObject2
      */
-    status?: UserStatus;
+    'status'?: UserStatus;
     /**
      * 
      * @type {string}
      * @memberof InlineObject2
      */
-    statusDescription?: string;
+    'statusDescription'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject2
      */
-    bio?: string;
+    'bio'?: string;
     /**
      * 
      * @type {Array<string>}
      * @memberof InlineObject2
      */
-    bioLinks?: Array<string>;
+    'bioLinks'?: Array<string>;
     /**
      * MUST be a valid VRChat /file/ url.
      * @type {string}
      * @memberof InlineObject2
      */
-    userIcon?: string;
+    'userIcon'?: string;
 }
 /**
  * 
@@ -1616,25 +1616,25 @@ export interface InlineObject3 {
      * @type {string}
      * @memberof InlineObject3
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {MIMEType}
      * @memberof InlineObject3
      */
-    mimeType: MIMEType;
+    'mimeType': MIMEType;
     /**
      * 
      * @type {string}
      * @memberof InlineObject3
      */
-    extension: string;
+    'extension': string;
     /**
      * 
      * @type {Array<string>}
      * @memberof InlineObject3
      */
-    tags?: Array<string>;
+    'tags'?: Array<string>;
 }
 /**
  * 
@@ -1647,25 +1647,25 @@ export interface InlineObject4 {
      * @type {string}
      * @memberof InlineObject4
      */
-    signatureMd5: string;
+    'signatureMd5': string;
     /**
      * 
      * @type {number}
      * @memberof InlineObject4
      */
-    signatureSizeInBytes: number;
+    'signatureSizeInBytes': number;
     /**
      * 
      * @type {string}
      * @memberof InlineObject4
      */
-    fileMd5?: string;
+    'fileMd5'?: string;
     /**
      * 
      * @type {number}
      * @memberof InlineObject4
      */
-    fileSizeInBytes?: number;
+    'fileSizeInBytes'?: number;
 }
 /**
  * 
@@ -1678,21 +1678,21 @@ export interface InlineObject5 {
      * @type {Set<string>}
      * @memberof InlineObject5
      */
-    etags?: Set<string>;
+    'etags'?: Set<string>;
     /**
      * Always a zero in string form, despite how many parts uploaded.
      * @type {string}
      * @memberof InlineObject5
      * @deprecated
      */
-    nextPartNumber: string;
+    'nextPartNumber': string;
     /**
      * Always a zero in string form, despite how many parts uploaded.
      * @type {string}
      * @memberof InlineObject5
      * @deprecated
      */
-    maxParts: string;
+    'maxParts': string;
 }
 /**
  * 
@@ -1705,85 +1705,85 @@ export interface InlineObject6 {
      * @type {string}
      * @memberof InlineObject6
      */
-    assetUrl: string;
+    'assetUrl': string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject6
      */
-    assetVersion?: string;
+    'assetVersion'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject6
      */
-    authorId?: string;
+    'authorId'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject6
      */
-    authorName?: string;
+    'authorName'?: string;
     /**
      * 
      * @type {number}
      * @memberof InlineObject6
      */
-    capacity?: number;
+    'capacity'?: number;
     /**
      * 
      * @type {string}
      * @memberof InlineObject6
      */
-    description?: string;
+    'description'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject6
      */
-    id?: string;
+    'id'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject6
      */
-    imageUrl: string;
+    'imageUrl': string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject6
      */
-    name: string;
+    'name': string;
     /**
      * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
      * @type {string}
      * @memberof InlineObject6
      */
-    platform?: string;
+    'platform'?: string;
     /**
      * 
      * @type {ReleaseStatus}
      * @memberof InlineObject6
      */
-    releaseStatus?: ReleaseStatus;
+    'releaseStatus'?: ReleaseStatus;
     /**
      * 
      * @type {Array<string>}
      * @memberof InlineObject6
      */
-    tags?: Array<string>;
+    'tags'?: Array<string>;
     /**
      * 
      * @type {string}
      * @memberof InlineObject6
      */
-    unityPackageUrl?: string;
+    'unityPackageUrl'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject6
      */
-    unityVersion?: string;
+    'unityVersion'?: string;
 }
 /**
  * 
@@ -1796,85 +1796,85 @@ export interface InlineObject7 {
      * @type {string}
      * @memberof InlineObject7
      */
-    assetUrl?: string;
+    'assetUrl'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject7
      */
-    assetVersion?: string;
+    'assetVersion'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject7
      */
-    authorId?: string;
+    'authorId'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject7
      */
-    authorName?: string;
+    'authorName'?: string;
     /**
      * 
      * @type {number}
      * @memberof InlineObject7
      */
-    capacity?: number;
+    'capacity'?: number;
     /**
      * 
      * @type {string}
      * @memberof InlineObject7
      */
-    description?: string;
+    'description'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject7
      */
-    id?: string;
+    'id'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject7
      */
-    imageUrl?: string;
+    'imageUrl'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject7
      */
-    name?: string;
+    'name'?: string;
     /**
      * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
      * @type {string}
      * @memberof InlineObject7
      */
-    platform?: string;
+    'platform'?: string;
     /**
      * 
      * @type {ReleaseStatus}
      * @memberof InlineObject7
      */
-    releaseStatus?: ReleaseStatus;
+    'releaseStatus'?: ReleaseStatus;
     /**
      * 
      * @type {Array<string>}
      * @memberof InlineObject7
      */
-    tags?: Array<string>;
+    'tags'?: Array<string>;
     /**
      * 
      * @type {string}
      * @memberof InlineObject7
      */
-    unityPackageUrl?: string;
+    'unityPackageUrl'?: string;
     /**
      * 
      * @type {string}
      * @memberof InlineObject7
      */
-    unityVersion?: string;
+    'unityVersion'?: string;
 }
 /**
  * 
@@ -1887,19 +1887,19 @@ export interface InlineObject8 {
      * @type {FavoriteType}
      * @memberof InlineObject8
      */
-    type: FavoriteType;
+    'type': FavoriteType;
     /**
      * Must be either AvatarID, WorldID or UserID.
      * @type {string}
      * @memberof InlineObject8
      */
-    favoriteId: string;
+    'favoriteId': string;
     /**
      * Tags indicate which group this favorite belongs to. Adding multiple groups makes it show up in all. Removing it from one in that case removes it from all.
      * @type {Array<string>}
      * @memberof InlineObject8
      */
-    tags: Array<string>;
+    'tags': Array<string>;
 }
 /**
  * 
@@ -1912,19 +1912,19 @@ export interface InlineObject9 {
      * @type {string}
      * @memberof InlineObject9
      */
-    displayName?: string;
+    'displayName'?: string;
     /**
      * 
      * @type {FavoriteGroupVisibility}
      * @memberof InlineObject9
      */
-    visibility?: FavoriteGroupVisibility;
+    'visibility'?: FavoriteGroupVisibility;
     /**
      * Tags on FavoriteGroups are believed to do nothing.
      * @type {Array<string>}
      * @memberof InlineObject9
      */
-    tags?: Array<string>;
+    'tags'?: Array<string>;
 }
 /**
  * 
@@ -1937,13 +1937,13 @@ export interface InlineResponse200 {
      * @type {boolean}
      * @memberof InlineResponse200
      */
-    ok: boolean;
+    'ok': boolean;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse200
      */
-    token: string;
+    'token': string;
 }
 /**
  * 
@@ -1956,7 +1956,7 @@ export interface InlineResponse2001 {
      * @type {boolean}
      * @memberof InlineResponse2001
      */
-    verified: boolean;
+    'verified': boolean;
 }
 /**
  * 
@@ -1969,19 +1969,19 @@ export interface InlineResponse2002 {
      * @type {boolean}
      * @memberof InlineResponse2002
      */
-    ok: boolean;
+    'ok': boolean;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse2002
      */
-    serverName: string;
+    'serverName': string;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse2002
      */
-    buildVersionTag: string;
+    'buildVersionTag': string;
 }
 /**
  * 
@@ -1994,37 +1994,37 @@ export interface InlineResponse2003 {
      * @type {string}
      * @memberof InlineResponse2003
      */
-    uploadId: string;
+    'uploadId': string;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse2003
      */
-    fileName: string;
+    'fileName': string;
     /**
      * 
      * @type {number}
      * @memberof InlineResponse2003
      */
-    nextPartNumber: number;
+    'nextPartNumber': number;
     /**
      * 
      * @type {number}
      * @memberof InlineResponse2003
      */
-    maxParts: number;
+    'maxParts': number;
     /**
      * 
      * @type {Array<object>}
      * @memberof InlineResponse2003
      */
-    parts: Array<object>;
+    'parts': Array<object>;
     /**
      * Unknown
      * @type {Array<object>}
      * @memberof InlineResponse2003
      */
-    etags: Array<object>;
+    'etags': Array<object>;
 }
 /**
  * 
@@ -2037,7 +2037,7 @@ export interface InlineResponse2004 {
      * @type {string}
      * @memberof InlineResponse2004
      */
-    url: string;
+    'url': string;
 }
 /**
  * 
@@ -2050,13 +2050,13 @@ export interface InlineResponse2005 {
      * @type {string}
      * @memberof InlineResponse2005
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {object}
      * @memberof InlineResponse2005
      */
-    metadata: object;
+    'metadata': object;
 }
 /**
  * 
@@ -2069,7 +2069,7 @@ export interface InlineResponse2006 {
      * @type {boolean}
      * @memberof InlineResponse2006
      */
-    canPubilsh: boolean;
+    'canPubilsh': boolean;
 }
 /**
  * 
@@ -2082,7 +2082,7 @@ export interface InlineResponse400 {
      * @type {Error}
      * @memberof InlineResponse400
      */
-    error: Error;
+    'error': Error;
 }
 /**
  * 
@@ -2095,135 +2095,135 @@ export interface Instance {
      * @type {boolean}
      * @memberof Instance
      */
-    active: boolean;
+    'active': boolean;
     /**
      * 
      * @type {boolean}
      * @memberof Instance
      */
-    canRequestInvite: boolean;
+    'canRequestInvite': boolean;
     /**
      * 
      * @type {number}
      * @memberof Instance
      */
-    capacity: number;
+    'capacity': number;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    clientNumber: string;
+    'clientNumber': string;
     /**
      * 
      * @type {boolean}
      * @memberof Instance
      */
-    full: boolean;
+    'full': boolean;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    instanceId: string;
+    'instanceId': string;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    location: string;
+    'location': string;
     /**
      * 
      * @type {number}
      * @memberof Instance
      */
-    n_users: number;
+    'n_users': number;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    nonce?: string;
+    'nonce'?: string;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    ownerId?: string;
+    'ownerId'?: string;
     /**
      * 
      * @type {boolean}
      * @memberof Instance
      */
-    permanent: boolean;
+    'permanent': boolean;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    photonRegion: string;
+    'photonRegion': string;
     /**
      * 
      * @type {InstancePlatforms}
      * @memberof Instance
      */
-    platforms: InstancePlatforms;
+    'platforms': InstancePlatforms;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    region: string;
+    'region': string;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    shortName: string;
+    'shortName': string;
     /**
      * 
      * @type {Array<string>}
      * @memberof Instance
      */
-    tags: Array<string>;
+    'tags': Array<string>;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    type: string;
+    'type': string;
     /**
      * Always empty on non-existing instances, and non-present on existing instances.
      * @type {Array<object>}
      * @memberof Instance
      * @deprecated
      */
-    users?: Array<object>;
+    'users'?: Array<object>;
     /**
      * Only present on non-existing instances, and only contains a very small subject of World object. Use World API instead.
      * @type {object}
      * @memberof Instance
      * @deprecated
      */
-    world?: object;
+    'world'?: object;
     /**
      * 
      * @type {string}
      * @memberof Instance
      */
-    worldId: string;
+    'worldId': string;
 }
 /**
  * 
@@ -2236,13 +2236,13 @@ export interface InstancePlatforms {
      * @type {number}
      * @memberof InstancePlatforms
      */
-    android: number;
+    'android': number;
     /**
      * 
      * @type {number}
      * @memberof InstancePlatforms
      */
-    standalonewindows: number;
+    'standalonewindows': number;
 }
 /**
  * 
@@ -2255,43 +2255,43 @@ export interface InviteMessage {
      * @type {boolean}
      * @memberof InviteMessage
      */
-    canBeUpdated: boolean;
+    'canBeUpdated': boolean;
     /**
      * 
      * @type {string}
      * @memberof InviteMessage
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof InviteMessage
      */
-    message: string;
+    'message': string;
     /**
      * 
      * @type {InviteMessageType}
      * @memberof InviteMessage
      */
-    messageType: InviteMessageType;
+    'messageType': InviteMessageType;
     /**
      * Changes to 60 when updated, although probably server-side configurable.
      * @type {number}
      * @memberof InviteMessage
      */
-    remainingCooldownMinutes: number;
+    'remainingCooldownMinutes': number;
     /**
      * 
      * @type {number}
      * @memberof InviteMessage
      */
-    slot: number;
+    'slot': number;
     /**
      * 
      * @type {string}
      * @memberof InviteMessage
      */
-    updatedAt: string;
+    'updatedAt': string;
 }
 /**
  * 
@@ -2314,7 +2314,7 @@ export interface InviteRequest {
      * @type {string}
      * @memberof InviteRequest
      */
-    instanceId: string;
+    'instanceId': string;
 }
 /**
  * 
@@ -2327,7 +2327,7 @@ export interface InviteResponse {
      * @type {number}
      * @memberof InviteResponse
      */
-    responseSlot: number;
+    'responseSlot': number;
 }
 /**
  * 
@@ -2340,13 +2340,13 @@ export interface LimitedUnityPackage {
      * @type {string}
      * @memberof LimitedUnityPackage
      */
-    platform: string;
+    'platform': string;
     /**
      * 
      * @type {string}
      * @memberof LimitedUnityPackage
      */
-    unityVersion: string;
+    'unityVersion': string;
 }
 /**
  * 
@@ -2359,91 +2359,91 @@ export interface LimitedUser {
      * @type {string}
      * @memberof LimitedUser
      */
-    bio?: string;
+    'bio'?: string;
     /**
      * 
      * @type {string}
      * @memberof LimitedUser
      */
-    currentAvatarImageUrl: string;
+    'currentAvatarImageUrl': string;
     /**
      * 
      * @type {string}
      * @memberof LimitedUser
      */
-    currentAvatarThumbnailImageUrl: string;
+    'currentAvatarThumbnailImageUrl': string;
     /**
      * 
      * @type {DeveloperType}
      * @memberof LimitedUser
      */
-    developerType: DeveloperType;
+    'developerType': DeveloperType;
     /**
      * 
      * @type {string}
      * @memberof LimitedUser
      */
-    displayName: string;
+    'displayName': string;
     /**
      * 
      * @type {string}
      * @memberof LimitedUser
      */
-    fallbackAvatar: string;
+    'fallbackAvatar': string;
     /**
      * 
      * @type {string}
      * @memberof LimitedUser
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {boolean}
      * @memberof LimitedUser
      */
-    isFriend: boolean;
+    'isFriend': boolean;
     /**
      * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
      * @type {string}
      * @memberof LimitedUser
      */
-    last_platform: string;
+    'last_platform': string;
     /**
      * 
      * @type {string}
      * @memberof LimitedUser
      */
-    profilePicOverride: string;
+    'profilePicOverride': string;
     /**
      * 
      * @type {UserStatus}
      * @memberof LimitedUser
      */
-    status: UserStatus;
+    'status': UserStatus;
     /**
      * 
      * @type {string}
      * @memberof LimitedUser
      */
-    statusDescription: string;
+    'statusDescription': string;
     /**
      * <- Always empty.
      * @type {Array<string>}
      * @memberof LimitedUser
      */
-    tags: Array<string>;
+    'tags': Array<string>;
     /**
      * 
      * @type {string}
      * @memberof LimitedUser
      */
-    userIcon: string;
+    'userIcon': string;
     /**
      * 
      * @type {string}
      * @memberof LimitedUser
      */
-    username: string;
+    'username': string;
 }
 /**
  * 
@@ -2456,115 +2456,115 @@ export interface LimitedWorld {
      * @type {string}
      * @memberof LimitedWorld
      */
-    authorId: string;
+    'authorId': string;
     /**
      * 
      * @type {string}
      * @memberof LimitedWorld
      */
-    authorName: string;
+    'authorName': string;
     /**
      * 
      * @type {number}
      * @memberof LimitedWorld
      */
-    capacity: number;
+    'capacity': number;
     /**
      * 
      * @type {string}
      * @memberof LimitedWorld
      */
-    created_at: string;
+    'created_at': string;
     /**
      * 
      * @type {number}
      * @memberof LimitedWorld
      */
-    favorites: number;
+    'favorites': number;
     /**
      * 
      * @type {number}
      * @memberof LimitedWorld
      */
-    heat: number;
+    'heat': number;
     /**
      * 
      * @type {string}
      * @memberof LimitedWorld
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof LimitedWorld
      */
-    imageUrl: string;
+    'imageUrl': string;
     /**
      * 
      * @type {string}
      * @memberof LimitedWorld
      */
-    labsPublicationDate: string;
+    'labsPublicationDate': string;
     /**
      * 
      * @type {string}
      * @memberof LimitedWorld
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {number}
      * @memberof LimitedWorld
      */
-    occupants: number;
+    'occupants': number;
     /**
      * 
      * @type {string}
      * @memberof LimitedWorld
      */
-    organization: string;
+    'organization': string;
     /**
      * 
      * @type {number}
      * @memberof LimitedWorld
      */
-    popularity: number;
+    'popularity': number;
     /**
      * 
      * @type {string}
      * @memberof LimitedWorld
      */
-    publicationDate: string;
+    'publicationDate': string;
     /**
      * 
      * @type {ReleaseStatus}
      * @memberof LimitedWorld
      */
-    releaseStatus: ReleaseStatus;
+    'releaseStatus': ReleaseStatus;
     /**
      * 
      * @type {Array<string>}
      * @memberof LimitedWorld
      */
-    tags: Array<string>;
+    'tags': Array<string>;
     /**
      * 
      * @type {string}
      * @memberof LimitedWorld
      */
-    thumbnailImageUrl: string;
+    'thumbnailImageUrl': string;
     /**
      * 
      * @type {Array<LimitedUnityPackage>}
      * @memberof LimitedWorld
      */
-    unityPackages: Array<LimitedUnityPackage>;
+    'unityPackages': Array<LimitedUnityPackage>;
     /**
      * 
      * @type {string}
      * @memberof LimitedWorld
      */
-    updated_at: string;
+    'updated_at': string;
 }
 /**
  * 
@@ -2600,7 +2600,7 @@ export interface ModelError {
      * @type {Response}
      * @memberof ModelError
      */
-    error?: Response;
+    'error'?: Response;
 }
 /**
  * 
@@ -2613,43 +2613,43 @@ export interface ModelFile {
      * @type {string}
      * @memberof ModelFile
      */
-    extension: string;
+    'extension': string;
     /**
      * 
      * @type {string}
      * @memberof ModelFile
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {MIMEType}
      * @memberof ModelFile
      */
-    mimeType: MIMEType;
+    'mimeType': MIMEType;
     /**
      * 
      * @type {string}
      * @memberof ModelFile
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof ModelFile
      */
-    ownerId: string;
+    'ownerId': string;
     /**
      * 
      * @type {Array<string>}
      * @memberof ModelFile
      */
-    tags: Array<string>;
+    'tags': Array<string>;
     /**
      * 
      * @type {Set<FileVersion>}
      * @memberof ModelFile
      */
-    versions: Set<FileVersion>;
+    'versions': Set<FileVersion>;
 }
 /**
  * 
@@ -2662,49 +2662,49 @@ export interface Notification {
      * @type {string}
      * @memberof Notification
      */
-    created_at: string;
+    'created_at': string;
     /**
      * **NOTICE:** This is not a JSON object, this is a json **encoded** object, meaning you have to json-de-encode to get the NotificationDetail object depending on the NotificationType.
      * @type {string}
      * @memberof Notification
      */
-    details: string;
+    'details': string;
     /**
      * 
      * @type {string}
      * @memberof Notification
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof Notification
      */
-    message: string;
+    'message': string;
     /**
      * 
      * @type {boolean}
      * @memberof Notification
      */
-    seen: boolean;
+    'seen': boolean;
     /**
      * 
      * @type {string}
      * @memberof Notification
      */
-    senderUserId: string;
+    'senderUserId': string;
     /**
      * 
      * @type {string}
      * @memberof Notification
      */
-    senderUsername: string;
+    'senderUsername': string;
     /**
      * 
      * @type {NotificationType}
      * @memberof Notification
      */
-    type: NotificationType;
+    'type': NotificationType;
 }
 /**
  * 
@@ -2732,13 +2732,13 @@ export interface PastDisplayName {
      * @type {string}
      * @memberof PastDisplayName
      */
-    displayName: string;
+    'displayName': string;
     /**
      * 
      * @type {string}
      * @memberof PastDisplayName
      */
-    updated_at: string;
+    'updated_at': string;
 }
 /**
  * 
@@ -2751,25 +2751,25 @@ export interface Permission {
      * @type {object}
      * @memberof Permission
      */
-    data?: object;
+    'data'?: object;
     /**
      * 
      * @type {string}
      * @memberof Permission
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof Permission
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof Permission
      */
-    ownerId: string;
+    'ownerId': string;
 }
 /**
  * 
@@ -2782,43 +2782,43 @@ export interface PlayerModeration {
      * @type {string}
      * @memberof PlayerModeration
      */
-    created: string;
+    'created': string;
     /**
      * 
      * @type {string}
      * @memberof PlayerModeration
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof PlayerModeration
      */
-    sourceDisplayName: string;
+    'sourceDisplayName': string;
     /**
      * 
      * @type {string}
      * @memberof PlayerModeration
      */
-    sourceUserId: string;
+    'sourceUserId': string;
     /**
      * 
      * @type {string}
      * @memberof PlayerModeration
      */
-    targetDisplayName: string;
+    'targetDisplayName': string;
     /**
      * 
      * @type {string}
      * @memberof PlayerModeration
      */
-    targetUserId: string;
+    'targetUserId': string;
     /**
      * 
      * @type {PlayerModerationType}
      * @memberof PlayerModeration
      */
-    type: PlayerModerationType;
+    'type': PlayerModerationType;
 }
 /**
  * 
@@ -2846,13 +2846,13 @@ export interface PublicAnnouncement {
      * @type {string}
      * @memberof PublicAnnouncement
      */
-    name: string;
+    'name': string;
     /**
      * Announcement text
      * @type {string}
      * @memberof PublicAnnouncement
      */
-    text: string;
+    'text': string;
 }
 /**
  * 
@@ -2877,13 +2877,13 @@ export interface Response {
      * @type {string}
      * @memberof Response
      */
-    message?: string;
+    'message'?: string;
     /**
      * 
      * @type {number}
      * @memberof Response
      */
-    status_code: number;
+    'status_code': number;
 }
 /**
  * 
@@ -2896,7 +2896,7 @@ export interface Success {
      * @type {Response}
      * @memberof Success
      */
-    success?: Response;
+    'success'?: Response;
 }
 /**
  * 
@@ -2909,61 +2909,61 @@ export interface UnityPackage {
      * @type {string}
      * @memberof UnityPackage
      */
-    assetUrl?: string;
+    'assetUrl'?: string;
     /**
      * 
      * @type {object}
      * @memberof UnityPackage
      */
-    assetUrlObject?: object;
+    'assetUrlObject'?: object;
     /**
      * 
      * @type {number}
      * @memberof UnityPackage
      */
-    assetVersion: number;
+    'assetVersion': number;
     /**
      * 
      * @type {string}
      * @memberof UnityPackage
      */
-    created_at?: string;
+    'created_at'?: string;
     /**
      * 
      * @type {string}
      * @memberof UnityPackage
      */
-    id: string;
+    'id': string;
     /**
      * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
      * @type {string}
      * @memberof UnityPackage
      */
-    platform: string;
+    'platform': string;
     /**
      * 
      * @type {string}
      * @memberof UnityPackage
      */
-    pluginUrl?: string;
+    'pluginUrl'?: string;
     /**
      * 
      * @type {object}
      * @memberof UnityPackage
      */
-    pluginUrlObject?: object;
+    'pluginUrlObject'?: object;
     /**
      * 
      * @type {number}
      * @memberof UnityPackage
      */
-    unitySortNumber?: number;
+    'unitySortNumber'?: number;
     /**
      * 
      * @type {string}
      * @memberof UnityPackage
      */
-    unityVersion: string;
+    'unityVersion': string;
 }
 /**
  * 
@@ -2976,139 +2976,139 @@ export interface User {
      * @type {boolean}
      * @memberof User
      */
-    allowAvatarCopying: boolean;
+    'allowAvatarCopying': boolean;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    bio: string;
+    'bio': string;
     /**
      * 
      * @type {Array<string>}
      * @memberof User
      */
-    bioLinks: Array<string>;
+    'bioLinks': Array<string>;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    currentAvatarImageUrl: string;
+    'currentAvatarImageUrl': string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    currentAvatarThumbnailImageUrl: string;
+    'currentAvatarThumbnailImageUrl': string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    date_joined: string;
+    'date_joined': string;
     /**
      * 
      * @type {DeveloperType}
      * @memberof User
      */
-    developerType: DeveloperType;
+    'developerType': DeveloperType;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    displayName: string;
+    'displayName': string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    friendKey: string;
+    'friendKey': string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    instanceId?: string;
+    'instanceId'?: string;
     /**
      * 
      * @type {boolean}
      * @memberof User
      */
-    isFriend: boolean;
+    'isFriend': boolean;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    last_login: string;
+    'last_login': string;
     /**
      * This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
      * @type {string}
      * @memberof User
      */
-    last_platform: string;
+    'last_platform': string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    location?: string;
+    'location'?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    profilePicOverride: string;
+    'profilePicOverride': string;
     /**
      * 
      * @type {UserState}
      * @memberof User
      */
-    state: UserState;
+    'state': UserState;
     /**
      * 
      * @type {UserStatus}
      * @memberof User
      */
-    status: UserStatus;
+    'status': UserStatus;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    statusDescription: string;
+    'statusDescription': string;
     /**
      * 
      * @type {Array<string>}
      * @memberof User
      */
-    tags: Array<string>;
+    'tags': Array<string>;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    userIcon: string;
+    'userIcon': string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    username: string;
+    'username': string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    worldId?: string;
+    'worldId'?: string;
 }
 /**
  * Status object representing if a queried user by username or userId exists or not. This model is primarily used by the `/auth/exists` endpoint, which in turn is used during registration. Please see the documentation on that endpoint for more information on usage.
@@ -3121,7 +3121,7 @@ export interface UserExists {
      * @type {boolean}
      * @memberof UserExists
      */
-    userExists: boolean;
+    'userExists': boolean;
 }
 /**
  * * \"online\" User is online in VRChat * \"active\" User is online, but not in VRChat * \"offline\" User is offline  Always offline when returned through `getCurrentUser` (/auth/user).
@@ -3160,193 +3160,193 @@ export interface World {
      * @type {string}
      * @memberof World
      */
-    assetUrl: string;
+    'assetUrl': string;
     /**
      * 
      * @type {object}
      * @memberof World
      */
-    assetUrlObject: object;
+    'assetUrlObject': object;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    authorId: string;
+    'authorId': string;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    authorName: string;
+    'authorName': string;
     /**
      * 
      * @type {number}
      * @memberof World
      */
-    capacity: number;
+    'capacity': number;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    created_at: string;
+    'created_at': string;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    description: string;
+    'description': string;
     /**
      * 
      * @type {number}
      * @memberof World
      */
-    favorites?: number;
+    'favorites'?: number;
     /**
      * 
      * @type {boolean}
      * @memberof World
      */
-    featured: boolean;
+    'featured': boolean;
     /**
      * 
      * @type {number}
      * @memberof World
      */
-    heat: number;
+    'heat': number;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    imageUrl: string;
+    'imageUrl': string;
     /**
      * 
      * @type {Array<Array<object>>}
      * @memberof World
      */
-    instances?: Array<Array<object>>;
+    'instances'?: Array<Array<object>>;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    labsPublicationDate: string;
+    'labsPublicationDate': string;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    namespace: string;
+    'namespace': string;
     /**
      * 
      * @type {number}
      * @memberof World
      */
-    occupants?: number;
+    'occupants'?: number;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    organization: string;
+    'organization': string;
     /**
      * 
      * @type {object}
      * @memberof World
      */
-    pluginUrlObject: object;
+    'pluginUrlObject': object;
     /**
      * 
      * @type {number}
      * @memberof World
      */
-    popularity: number;
+    'popularity': number;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    previewYoutubeId?: string;
+    'previewYoutubeId'?: string;
     /**
      * 
      * @type {number}
      * @memberof World
      */
-    privateOccupants?: number;
+    'privateOccupants'?: number;
     /**
      * 
      * @type {number}
      * @memberof World
      */
-    publicOccupants?: number;
+    'publicOccupants'?: number;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    publicationDate: string;
+    'publicationDate': string;
     /**
      * 
      * @type {ReleaseStatus}
      * @memberof World
      */
-    releaseStatus: ReleaseStatus;
+    'releaseStatus': ReleaseStatus;
     /**
      * 
      * @type {Array<string>}
      * @memberof World
      */
-    tags: Array<string>;
+    'tags': Array<string>;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    thumbnailImageUrl: string;
+    'thumbnailImageUrl': string;
     /**
      * 
      * @type {object}
      * @memberof World
      */
-    unityPackageUrlObject: object;
+    'unityPackageUrlObject': object;
     /**
      * 
      * @type {Array<UnityPackage>}
      * @memberof World
      */
-    unityPackages: Array<UnityPackage>;
+    'unityPackages': Array<UnityPackage>;
     /**
      * 
      * @type {string}
      * @memberof World
      */
-    updated_at: string;
+    'updated_at': string;
     /**
      * 
      * @type {number}
      * @memberof World
      */
-    version: number;
+    'version': number;
     /**
      * 
      * @type {number}
      * @memberof World
      */
-    visits: number;
+    'visits': number;
 }
 
 /**
@@ -3365,7 +3365,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        checkUserExists: async (email?: string, displayName?: string, userId?: string, excludeUserId?: string, options: any = {}): Promise<RequestArgs> => {
+        checkUserExists: async (email?: string, displayName?: string, userId?: string, excludeUserId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/exists`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3398,7 +3398,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3414,7 +3414,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteUser: async (userId: string, options: any = {}): Promise<RequestArgs> => {
+        deleteUser: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('deleteUser', 'userId', userId)
             const localVarPath = `/user/{userId}/delete`
@@ -3436,7 +3436,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3451,7 +3451,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCurrentUser: async (options: any = {}): Promise<RequestArgs> => {
+        getCurrentUser: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/user`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3474,7 +3474,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3489,7 +3489,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        logout: async (options: any = {}): Promise<RequestArgs> => {
+        logout: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/logout`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3506,7 +3506,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3522,7 +3522,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        verify2FA: async (inlineObject?: InlineObject, options: any = {}): Promise<RequestArgs> => {
+        verify2FA: async (inlineObject?: InlineObject, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/twofactorauth/totp/verify`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3541,7 +3541,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration)
@@ -3557,7 +3557,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        verifyAuthToken: async (options: any = {}): Promise<RequestArgs> => {
+        verifyAuthToken: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3574,7 +3574,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3590,7 +3590,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        verifyRecoveryCode: async (inlineObject1?: InlineObject1, options: any = {}): Promise<RequestArgs> => {
+        verifyRecoveryCode: async (inlineObject1?: InlineObject1, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/twofactorauth/otp/verify`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3609,7 +3609,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
@@ -3639,7 +3639,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async checkUserExists(email?: string, displayName?: string, userId?: string, excludeUserId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserExists>> {
+        async checkUserExists(email?: string, displayName?: string, userId?: string, excludeUserId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserExists>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.checkUserExists(email, displayName, userId, excludeUserId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3650,7 +3650,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteUser(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentUser>> {
+        async deleteUser(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentUser>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteUser(userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3660,7 +3660,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCurrentUser(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentUser>> {
+        async getCurrentUser(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentUser>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCurrentUser(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3670,7 +3670,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async logout(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+        async logout(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.logout(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3681,7 +3681,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async verify2FA(inlineObject?: InlineObject, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async verify2FA(inlineObject?: InlineObject, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.verify2FA(inlineObject, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3691,7 +3691,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async verifyAuthToken(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async verifyAuthToken(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.verifyAuthToken(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3702,7 +3702,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async verifyRecoveryCode(inlineObject1?: InlineObject1, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async verifyRecoveryCode(inlineObject1?: InlineObject1, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.verifyRecoveryCode(inlineObject1, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3807,7 +3807,7 @@ export class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public checkUserExists(email?: string, displayName?: string, userId?: string, excludeUserId?: string, options?: any) {
+    public checkUserExists(email?: string, displayName?: string, userId?: string, excludeUserId?: string, options?: AxiosRequestConfig) {
         return AuthenticationApiFp(this.configuration).checkUserExists(email, displayName, userId, excludeUserId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -3819,7 +3819,7 @@ export class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public deleteUser(userId: string, options?: any) {
+    public deleteUser(userId: string, options?: AxiosRequestConfig) {
         return AuthenticationApiFp(this.configuration).deleteUser(userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -3830,7 +3830,7 @@ export class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public getCurrentUser(options?: any) {
+    public getCurrentUser(options?: AxiosRequestConfig) {
         return AuthenticationApiFp(this.configuration).getCurrentUser(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -3841,7 +3841,7 @@ export class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public logout(options?: any) {
+    public logout(options?: AxiosRequestConfig) {
         return AuthenticationApiFp(this.configuration).logout(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -3853,7 +3853,7 @@ export class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public verify2FA(inlineObject?: InlineObject, options?: any) {
+    public verify2FA(inlineObject?: InlineObject, options?: AxiosRequestConfig) {
         return AuthenticationApiFp(this.configuration).verify2FA(inlineObject, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -3864,7 +3864,7 @@ export class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public verifyAuthToken(options?: any) {
+    public verifyAuthToken(options?: AxiosRequestConfig) {
         return AuthenticationApiFp(this.configuration).verifyAuthToken(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -3876,7 +3876,7 @@ export class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public verifyRecoveryCode(inlineObject1?: InlineObject1, options?: any) {
+    public verifyRecoveryCode(inlineObject1?: InlineObject1, options?: AxiosRequestConfig) {
         return AuthenticationApiFp(this.configuration).verifyRecoveryCode(inlineObject1, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -3895,7 +3895,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createAvatar: async (inlineObject10?: InlineObject10, options: any = {}): Promise<RequestArgs> => {
+        createAvatar: async (inlineObject10?: InlineObject10, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/avatars`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3916,7 +3916,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject10, localVarRequestOptions, configuration)
@@ -3933,7 +3933,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteAvatar: async (avatarId: string, options: any = {}): Promise<RequestArgs> => {
+        deleteAvatar: async (avatarId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'avatarId' is not null or undefined
             assertParamExists('deleteAvatar', 'avatarId', avatarId)
             const localVarPath = `/avatars/{avatarId}`
@@ -3955,7 +3955,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3971,7 +3971,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAvatar: async (avatarId: string, options: any = {}): Promise<RequestArgs> => {
+        getAvatar: async (avatarId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'avatarId' is not null or undefined
             assertParamExists('getAvatar', 'avatarId', avatarId)
             const localVarPath = `/avatars/{avatarId}`
@@ -3993,7 +3993,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4021,7 +4021,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFavoritedAvatars: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: any = {}): Promise<RequestArgs> => {
+        getFavoritedAvatars: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/avatars/favorites`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4092,7 +4092,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4120,7 +4120,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchAvatars: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: any = {}): Promise<RequestArgs> => {
+        searchAvatars: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/avatars`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4191,7 +4191,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4207,7 +4207,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        selectAvatar: async (avatarId: string, options: any = {}): Promise<RequestArgs> => {
+        selectAvatar: async (avatarId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'avatarId' is not null or undefined
             assertParamExists('selectAvatar', 'avatarId', avatarId)
             const localVarPath = `/avatars/{avatarId}/select`
@@ -4229,7 +4229,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4246,7 +4246,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateAvatar: async (avatarId: string, inlineObject11?: InlineObject11, options: any = {}): Promise<RequestArgs> => {
+        updateAvatar: async (avatarId: string, inlineObject11?: InlineObject11, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'avatarId' is not null or undefined
             assertParamExists('updateAvatar', 'avatarId', avatarId)
             const localVarPath = `/avatars/{avatarId}`
@@ -4270,7 +4270,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject11, localVarRequestOptions, configuration)
@@ -4297,7 +4297,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createAvatar(inlineObject10?: InlineObject10, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
+        async createAvatar(inlineObject10?: InlineObject10, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createAvatar(inlineObject10, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4308,7 +4308,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteAvatar(avatarId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
+        async deleteAvatar(avatarId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteAvatar(avatarId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4319,7 +4319,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAvatar(avatarId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
+        async getAvatar(avatarId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAvatar(avatarId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4342,7 +4342,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFavoritedAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Avatar>>> {
+        async getFavoritedAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Avatar>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFavoritedAvatars(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4365,7 +4365,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Avatar>>> {
+        async searchAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Avatar>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchAvatars(featured, sort, user, userId, n, order, offset, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4376,7 +4376,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async selectAvatar(avatarId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentUser>> {
+        async selectAvatar(avatarId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentUser>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.selectAvatar(avatarId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4388,7 +4388,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateAvatar(avatarId: string, inlineObject11?: InlineObject11, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
+        async updateAvatar(avatarId: string, inlineObject11?: InlineObject11, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Avatar>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateAvatar(avatarId, inlineObject11, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4515,7 +4515,7 @@ export class AvatarsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AvatarsApi
      */
-    public createAvatar(inlineObject10?: InlineObject10, options?: any) {
+    public createAvatar(inlineObject10?: InlineObject10, options?: AxiosRequestConfig) {
         return AvatarsApiFp(this.configuration).createAvatar(inlineObject10, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4527,7 +4527,7 @@ export class AvatarsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AvatarsApi
      */
-    public deleteAvatar(avatarId: string, options?: any) {
+    public deleteAvatar(avatarId: string, options?: AxiosRequestConfig) {
         return AvatarsApiFp(this.configuration).deleteAvatar(avatarId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4539,7 +4539,7 @@ export class AvatarsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AvatarsApi
      */
-    public getAvatar(avatarId: string, options?: any) {
+    public getAvatar(avatarId: string, options?: AxiosRequestConfig) {
         return AvatarsApiFp(this.configuration).getAvatar(avatarId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4563,7 +4563,7 @@ export class AvatarsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AvatarsApi
      */
-    public getFavoritedAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any) {
+    public getFavoritedAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig) {
         return AvatarsApiFp(this.configuration).getFavoritedAvatars(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4587,7 +4587,7 @@ export class AvatarsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AvatarsApi
      */
-    public searchAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any) {
+    public searchAvatars(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig) {
         return AvatarsApiFp(this.configuration).searchAvatars(featured, sort, user, userId, n, order, offset, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4599,7 +4599,7 @@ export class AvatarsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AvatarsApi
      */
-    public selectAvatar(avatarId: string, options?: any) {
+    public selectAvatar(avatarId: string, options?: AxiosRequestConfig) {
         return AvatarsApiFp(this.configuration).selectAvatar(avatarId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4612,7 +4612,7 @@ export class AvatarsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AvatarsApi
      */
-    public updateAvatar(avatarId: string, inlineObject11?: InlineObject11, options?: any) {
+    public updateAvatar(avatarId: string, inlineObject11?: InlineObject11, options?: AxiosRequestConfig) {
         return AvatarsApiFp(this.configuration).updateAvatar(avatarId, inlineObject11, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -4631,7 +4631,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addFavorite: async (inlineObject8?: InlineObject8, options: any = {}): Promise<RequestArgs> => {
+        addFavorite: async (inlineObject8?: InlineObject8, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/favorites`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4652,7 +4652,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject8, localVarRequestOptions, configuration)
@@ -4671,7 +4671,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clearFavoriteGroup: async (favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options: any = {}): Promise<RequestArgs> => {
+        clearFavoriteGroup: async (favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'favoriteGroupType' is not null or undefined
             assertParamExists('clearFavoriteGroup', 'favoriteGroupType', favoriteGroupType)
             // verify required parameter 'favoriteGroupName' is not null or undefined
@@ -4699,7 +4699,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4715,7 +4715,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFavorite: async (favoriteId: string, options: any = {}): Promise<RequestArgs> => {
+        getFavorite: async (favoriteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'favoriteId' is not null or undefined
             assertParamExists('getFavorite', 'favoriteId', favoriteId)
             const localVarPath = `/favorites/{favoriteId}`
@@ -4737,7 +4737,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4755,7 +4755,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFavoriteGroup: async (favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options: any = {}): Promise<RequestArgs> => {
+        getFavoriteGroup: async (favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'favoriteGroupType' is not null or undefined
             assertParamExists('getFavoriteGroup', 'favoriteGroupType', favoriteGroupType)
             // verify required parameter 'favoriteGroupName' is not null or undefined
@@ -4783,7 +4783,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4801,7 +4801,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFavoriteGroups: async (n?: number, offset?: number, ownerId?: string, options: any = {}): Promise<RequestArgs> => {
+        getFavoriteGroups: async (n?: number, offset?: number, ownerId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/favorite/groups`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4832,7 +4832,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4851,7 +4851,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFavorites: async (n?: number, offset?: number, type?: string, tag?: string, options: any = {}): Promise<RequestArgs> => {
+        getFavorites: async (n?: number, offset?: number, type?: string, tag?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/favorites`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4886,7 +4886,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4902,7 +4902,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeFavorite: async (favoriteId: string, options: any = {}): Promise<RequestArgs> => {
+        removeFavorite: async (favoriteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'favoriteId' is not null or undefined
             assertParamExists('removeFavorite', 'favoriteId', favoriteId)
             const localVarPath = `/favorites/{favoriteId}`
@@ -4924,7 +4924,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4943,7 +4943,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateFavoriteGroup: async (favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, inlineObject9?: InlineObject9, options: any = {}): Promise<RequestArgs> => {
+        updateFavoriteGroup: async (favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, inlineObject9?: InlineObject9, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'favoriteGroupType' is not null or undefined
             assertParamExists('updateFavoriteGroup', 'favoriteGroupType', favoriteGroupType)
             // verify required parameter 'favoriteGroupName' is not null or undefined
@@ -4973,7 +4973,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject9, localVarRequestOptions, configuration)
@@ -5000,7 +5000,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addFavorite(inlineObject8?: InlineObject8, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Favorite>> {
+        async addFavorite(inlineObject8?: InlineObject8, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Favorite>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.addFavorite(inlineObject8, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5013,7 +5013,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async clearFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+        async clearFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.clearFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5024,7 +5024,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFavorite(favoriteId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Favorite>> {
+        async getFavorite(favoriteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Favorite>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFavorite(favoriteId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5037,7 +5037,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FavoriteGroup>> {
+        async getFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FavoriteGroup>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5050,7 +5050,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFavoriteGroups(n?: number, offset?: number, ownerId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FavoriteGroup>>> {
+        async getFavoriteGroups(n?: number, offset?: number, ownerId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FavoriteGroup>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFavoriteGroups(n, offset, ownerId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5064,7 +5064,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFavorites(n?: number, offset?: number, type?: string, tag?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Favorite>>> {
+        async getFavorites(n?: number, offset?: number, type?: string, tag?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Favorite>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFavorites(n, offset, type, tag, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5075,7 +5075,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeFavorite(favoriteId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+        async removeFavorite(favoriteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeFavorite(favoriteId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5089,7 +5089,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, inlineObject9?: InlineObject9, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async updateFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, inlineObject9?: InlineObject9, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, inlineObject9, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5213,7 +5213,7 @@ export class FavoritesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FavoritesApi
      */
-    public addFavorite(inlineObject8?: InlineObject8, options?: any) {
+    public addFavorite(inlineObject8?: InlineObject8, options?: AxiosRequestConfig) {
         return FavoritesApiFp(this.configuration).addFavorite(inlineObject8, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5227,7 +5227,7 @@ export class FavoritesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FavoritesApi
      */
-    public clearFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any) {
+    public clearFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: AxiosRequestConfig) {
         return FavoritesApiFp(this.configuration).clearFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5239,7 +5239,7 @@ export class FavoritesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FavoritesApi
      */
-    public getFavorite(favoriteId: string, options?: any) {
+    public getFavorite(favoriteId: string, options?: AxiosRequestConfig) {
         return FavoritesApiFp(this.configuration).getFavorite(favoriteId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5253,7 +5253,7 @@ export class FavoritesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FavoritesApi
      */
-    public getFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: any) {
+    public getFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, options?: AxiosRequestConfig) {
         return FavoritesApiFp(this.configuration).getFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5267,7 +5267,7 @@ export class FavoritesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FavoritesApi
      */
-    public getFavoriteGroups(n?: number, offset?: number, ownerId?: string, options?: any) {
+    public getFavoriteGroups(n?: number, offset?: number, ownerId?: string, options?: AxiosRequestConfig) {
         return FavoritesApiFp(this.configuration).getFavoriteGroups(n, offset, ownerId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5282,7 +5282,7 @@ export class FavoritesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FavoritesApi
      */
-    public getFavorites(n?: number, offset?: number, type?: string, tag?: string, options?: any) {
+    public getFavorites(n?: number, offset?: number, type?: string, tag?: string, options?: AxiosRequestConfig) {
         return FavoritesApiFp(this.configuration).getFavorites(n, offset, type, tag, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5294,7 +5294,7 @@ export class FavoritesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FavoritesApi
      */
-    public removeFavorite(favoriteId: string, options?: any) {
+    public removeFavorite(favoriteId: string, options?: AxiosRequestConfig) {
         return FavoritesApiFp(this.configuration).removeFavorite(favoriteId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5309,7 +5309,7 @@ export class FavoritesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FavoritesApi
      */
-    public updateFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, inlineObject9?: InlineObject9, options?: any) {
+    public updateFavoriteGroup(favoriteGroupType: 'world' | 'friend' | 'avatar', favoriteGroupName: string, userId: string, inlineObject9?: InlineObject9, options?: AxiosRequestConfig) {
         return FavoritesApiFp(this.configuration).updateFavoriteGroup(favoriteGroupType, favoriteGroupName, userId, inlineObject9, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -5328,7 +5328,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFile: async (inlineObject3?: InlineObject3, options: any = {}): Promise<RequestArgs> => {
+        createFile: async (inlineObject3?: InlineObject3, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/file`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5349,7 +5349,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject3, localVarRequestOptions, configuration)
@@ -5367,7 +5367,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFileVersion: async (fileId: string, inlineObject4?: InlineObject4, options: any = {}): Promise<RequestArgs> => {
+        createFileVersion: async (fileId: string, inlineObject4?: InlineObject4, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('createFileVersion', 'fileId', fileId)
             const localVarPath = `/file/{fileId}`
@@ -5391,7 +5391,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject4, localVarRequestOptions, configuration)
@@ -5408,7 +5408,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFile: async (fileId: string, options: any = {}): Promise<RequestArgs> => {
+        deleteFile: async (fileId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('deleteFile', 'fileId', fileId)
             const localVarPath = `/file/{fileId}`
@@ -5430,7 +5430,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -5447,7 +5447,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFileVersion: async (fileId: string, versionId: number, options: any = {}): Promise<RequestArgs> => {
+        deleteFileVersion: async (fileId: string, versionId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('deleteFileVersion', 'fileId', fileId)
             // verify required parameter 'versionId' is not null or undefined
@@ -5472,7 +5472,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -5489,7 +5489,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        downloadFileVersion: async (fileId: string, versionId: number, options: any = {}): Promise<RequestArgs> => {
+        downloadFileVersion: async (fileId: string, versionId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('downloadFileVersion', 'fileId', fileId)
             // verify required parameter 'versionId' is not null or undefined
@@ -5514,7 +5514,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -5533,7 +5533,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        finishFileDataUpload: async (fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject5?: InlineObject5, options: any = {}): Promise<RequestArgs> => {
+        finishFileDataUpload: async (fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject5?: InlineObject5, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('finishFileDataUpload', 'fileId', fileId)
             // verify required parameter 'versionId' is not null or undefined
@@ -5563,7 +5563,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject5, localVarRequestOptions, configuration)
@@ -5580,7 +5580,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFile: async (fileId: string, options: any = {}): Promise<RequestArgs> => {
+        getFile: async (fileId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('getFile', 'fileId', fileId)
             const localVarPath = `/file/{fileId}`
@@ -5602,7 +5602,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -5620,7 +5620,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFileDataUploadStatus: async (fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', options: any = {}): Promise<RequestArgs> => {
+        getFileDataUploadStatus: async (fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('getFileDataUploadStatus', 'fileId', fileId)
             // verify required parameter 'versionId' is not null or undefined
@@ -5648,7 +5648,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -5667,7 +5667,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFiles: async (tag?: string, userId?: string, n?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+        getFiles: async (tag?: string, userId?: string, n?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/files`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5702,7 +5702,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -5721,7 +5721,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        startFileDataUpload: async (fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', partNumber: number, options: any = {}): Promise<RequestArgs> => {
+        startFileDataUpload: async (fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', partNumber: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'fileId' is not null or undefined
             assertParamExists('startFileDataUpload', 'fileId', fileId)
             // verify required parameter 'versionId' is not null or undefined
@@ -5755,7 +5755,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -5781,7 +5781,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createFile(inlineObject3?: InlineObject3, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+        async createFile(inlineObject3?: InlineObject3, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createFile(inlineObject3, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5793,7 +5793,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createFileVersion(fileId: string, inlineObject4?: InlineObject4, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+        async createFileVersion(fileId: string, inlineObject4?: InlineObject4, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createFileVersion(fileId, inlineObject4, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5804,7 +5804,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteFile(fileId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+        async deleteFile(fileId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteFile(fileId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5816,7 +5816,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteFileVersion(fileId: string, versionId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+        async deleteFileVersion(fileId: string, versionId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteFileVersion(fileId, versionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5828,7 +5828,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async downloadFileVersion(fileId: string, versionId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async downloadFileVersion(fileId: string, versionId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.downloadFileVersion(fileId, versionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5842,7 +5842,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async finishFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject5?: InlineObject5, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+        async finishFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject5?: InlineObject5, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.finishFileDataUpload(fileId, versionId, fileType, inlineObject5, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5853,7 +5853,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFile(fileId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+        async getFile(fileId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFile(fileId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5866,7 +5866,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFileDataUploadStatus(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+        async getFileDataUploadStatus(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFileDataUploadStatus(fileId, versionId, fileType, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5880,7 +5880,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFiles(tag?: string, userId?: string, n?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<any>>> {
+        async getFiles(tag?: string, userId?: string, n?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<any>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFiles(tag, userId, n, offset, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5894,7 +5894,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async startFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', partNumber: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+        async startFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', partNumber: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.startFileDataUpload(fileId, versionId, fileType, partNumber, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6040,7 +6040,7 @@ export class FilesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public createFile(inlineObject3?: InlineObject3, options?: any) {
+    public createFile(inlineObject3?: InlineObject3, options?: AxiosRequestConfig) {
         return FilesApiFp(this.configuration).createFile(inlineObject3, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6053,7 +6053,7 @@ export class FilesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public createFileVersion(fileId: string, inlineObject4?: InlineObject4, options?: any) {
+    public createFileVersion(fileId: string, inlineObject4?: InlineObject4, options?: AxiosRequestConfig) {
         return FilesApiFp(this.configuration).createFileVersion(fileId, inlineObject4, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6065,7 +6065,7 @@ export class FilesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public deleteFile(fileId: string, options?: any) {
+    public deleteFile(fileId: string, options?: AxiosRequestConfig) {
         return FilesApiFp(this.configuration).deleteFile(fileId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6078,7 +6078,7 @@ export class FilesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public deleteFileVersion(fileId: string, versionId: number, options?: any) {
+    public deleteFileVersion(fileId: string, versionId: number, options?: AxiosRequestConfig) {
         return FilesApiFp(this.configuration).deleteFileVersion(fileId, versionId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6091,7 +6091,7 @@ export class FilesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public downloadFileVersion(fileId: string, versionId: number, options?: any) {
+    public downloadFileVersion(fileId: string, versionId: number, options?: AxiosRequestConfig) {
         return FilesApiFp(this.configuration).downloadFileVersion(fileId, versionId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6106,7 +6106,7 @@ export class FilesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public finishFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject5?: InlineObject5, options?: any) {
+    public finishFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', inlineObject5?: InlineObject5, options?: AxiosRequestConfig) {
         return FilesApiFp(this.configuration).finishFileDataUpload(fileId, versionId, fileType, inlineObject5, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6118,7 +6118,7 @@ export class FilesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public getFile(fileId: string, options?: any) {
+    public getFile(fileId: string, options?: AxiosRequestConfig) {
         return FilesApiFp(this.configuration).getFile(fileId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6132,7 +6132,7 @@ export class FilesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public getFileDataUploadStatus(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', options?: any) {
+    public getFileDataUploadStatus(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', options?: AxiosRequestConfig) {
         return FilesApiFp(this.configuration).getFileDataUploadStatus(fileId, versionId, fileType, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6147,7 +6147,7 @@ export class FilesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public getFiles(tag?: string, userId?: string, n?: number, offset?: number, options?: any) {
+    public getFiles(tag?: string, userId?: string, n?: number, offset?: number, options?: AxiosRequestConfig) {
         return FilesApiFp(this.configuration).getFiles(tag, userId, n, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6162,7 +6162,7 @@ export class FilesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public startFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', partNumber: number, options?: any) {
+    public startFileDataUpload(fileId: string, versionId: number, fileType: 'file' | 'signature' | 'delta', partNumber: number, options?: AxiosRequestConfig) {
         return FilesApiFp(this.configuration).startFileDataUpload(fileId, versionId, fileType, partNumber, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -6181,7 +6181,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFriendRequest: async (userId: string, options: any = {}): Promise<RequestArgs> => {
+        deleteFriendRequest: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('deleteFriendRequest', 'userId', userId)
             const localVarPath = `/user/{userId}/friendRequest`
@@ -6203,7 +6203,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -6219,7 +6219,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        friend: async (userId: string, options: any = {}): Promise<RequestArgs> => {
+        friend: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('friend', 'userId', userId)
             const localVarPath = `/user/{userId}/friendRequest`
@@ -6241,7 +6241,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -6257,7 +6257,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFriendStatus: async (userId: string, options: any = {}): Promise<RequestArgs> => {
+        getFriendStatus: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('getFriendStatus', 'userId', userId)
             const localVarPath = `/user/{userId}/friendStatus`
@@ -6279,7 +6279,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -6297,7 +6297,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFriends: async (offset?: number, n?: number, offline?: boolean, options: any = {}): Promise<RequestArgs> => {
+        getFriends: async (offset?: number, n?: number, offline?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/user/friends`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6328,7 +6328,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -6344,7 +6344,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unfriend: async (userId: string, options: any = {}): Promise<RequestArgs> => {
+        unfriend: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('unfriend', 'userId', userId)
             const localVarPath = `/auth/user/friends/{userId}`
@@ -6366,7 +6366,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -6392,7 +6392,7 @@ export const FriendsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteFriendRequest(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+        async deleteFriendRequest(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteFriendRequest(userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6403,7 +6403,7 @@ export const FriendsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async friend(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
+        async friend(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.friend(userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6414,7 +6414,7 @@ export const FriendsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFriendStatus(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FriendStatus>> {
+        async getFriendStatus(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FriendStatus>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFriendStatus(userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6427,7 +6427,7 @@ export const FriendsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFriends(offset?: number, n?: number, offline?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedUser>>> {
+        async getFriends(offset?: number, n?: number, offline?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedUser>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFriends(offset, n, offline, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6438,7 +6438,7 @@ export const FriendsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unfriend(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+        async unfriend(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.unfriend(userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6522,7 +6522,7 @@ export class FriendsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FriendsApi
      */
-    public deleteFriendRequest(userId: string, options?: any) {
+    public deleteFriendRequest(userId: string, options?: AxiosRequestConfig) {
         return FriendsApiFp(this.configuration).deleteFriendRequest(userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6534,7 +6534,7 @@ export class FriendsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FriendsApi
      */
-    public friend(userId: string, options?: any) {
+    public friend(userId: string, options?: AxiosRequestConfig) {
         return FriendsApiFp(this.configuration).friend(userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6546,7 +6546,7 @@ export class FriendsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FriendsApi
      */
-    public getFriendStatus(userId: string, options?: any) {
+    public getFriendStatus(userId: string, options?: AxiosRequestConfig) {
         return FriendsApiFp(this.configuration).getFriendStatus(userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6560,7 +6560,7 @@ export class FriendsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FriendsApi
      */
-    public getFriends(offset?: number, n?: number, offline?: boolean, options?: any) {
+    public getFriends(offset?: number, n?: number, offline?: boolean, options?: AxiosRequestConfig) {
         return FriendsApiFp(this.configuration).getFriends(offset, n, offline, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6572,7 +6572,7 @@ export class FriendsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FriendsApi
      */
-    public unfriend(userId: string, options?: any) {
+    public unfriend(userId: string, options?: AxiosRequestConfig) {
         return FriendsApiFp(this.configuration).unfriend(userId, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -6593,7 +6593,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInviteMessage: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options: any = {}): Promise<RequestArgs> => {
+        getInviteMessage: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('getInviteMessage', 'userId', userId)
             // verify required parameter 'messageType' is not null or undefined
@@ -6621,7 +6621,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -6638,7 +6638,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInviteMessages: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', options: any = {}): Promise<RequestArgs> => {
+        getInviteMessages: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('getInviteMessages', 'userId', userId)
             // verify required parameter 'messageType' is not null or undefined
@@ -6663,7 +6663,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -6680,7 +6680,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inviteUser: async (userId: string, inviteRequest?: InviteRequest, options: any = {}): Promise<RequestArgs> => {
+        inviteUser: async (userId: string, inviteRequest?: InviteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('inviteUser', 'userId', userId)
             const localVarPath = `/invite/{userId}`
@@ -6704,7 +6704,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inviteRequest, localVarRequestOptions, configuration)
@@ -6721,7 +6721,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        requestInvite: async (userId: string, options: any = {}): Promise<RequestArgs> => {
+        requestInvite: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('requestInvite', 'userId', userId)
             const localVarPath = `/requestInvite/{userId}`
@@ -6743,7 +6743,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -6761,7 +6761,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resetInviteMessage: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options: any = {}): Promise<RequestArgs> => {
+        resetInviteMessage: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('resetInviteMessage', 'userId', userId)
             // verify required parameter 'messageType' is not null or undefined
@@ -6789,7 +6789,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -6806,7 +6806,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        respondInvite: async (notificationId: string, inviteResponse?: InviteResponse, options: any = {}): Promise<RequestArgs> => {
+        respondInvite: async (notificationId: string, inviteResponse?: InviteResponse, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'notificationId' is not null or undefined
             assertParamExists('respondInvite', 'notificationId', notificationId)
             const localVarPath = `/invite/{notificationId}/response`
@@ -6830,7 +6830,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inviteResponse, localVarRequestOptions, configuration)
@@ -6849,7 +6849,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateInviteMessage: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options: any = {}): Promise<RequestArgs> => {
+        updateInviteMessage: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('updateInviteMessage', 'userId', userId)
             // verify required parameter 'messageType' is not null or undefined
@@ -6877,7 +6877,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -6905,7 +6905,7 @@ export const InviteApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InviteMessage>> {
+        async getInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InviteMessage>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInviteMessage(userId, messageType, messageId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6917,7 +6917,7 @@ export const InviteApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInviteMessages(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
+        async getInviteMessages(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInviteMessages(userId, messageType, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6929,7 +6929,7 @@ export const InviteApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async inviteUser(userId: string, inviteRequest?: InviteRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
+        async inviteUser(userId: string, inviteRequest?: InviteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.inviteUser(userId, inviteRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6940,7 +6940,7 @@ export const InviteApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async requestInvite(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
+        async requestInvite(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.requestInvite(userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6953,7 +6953,7 @@ export const InviteApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async resetInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
+        async resetInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.resetInviteMessage(userId, messageType, messageId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6965,7 +6965,7 @@ export const InviteApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async respondInvite(notificationId: string, inviteResponse?: InviteResponse, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
+        async respondInvite(notificationId: string, inviteResponse?: InviteResponse, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.respondInvite(notificationId, inviteResponse, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6978,7 +6978,7 @@ export const InviteApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
+        async updateInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateInviteMessage(userId, messageType, messageId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7091,7 +7091,7 @@ export class InviteApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InviteApi
      */
-    public getInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: any) {
+    public getInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: AxiosRequestConfig) {
         return InviteApiFp(this.configuration).getInviteMessage(userId, messageType, messageId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7104,7 +7104,7 @@ export class InviteApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InviteApi
      */
-    public getInviteMessages(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', options?: any) {
+    public getInviteMessages(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', options?: AxiosRequestConfig) {
         return InviteApiFp(this.configuration).getInviteMessages(userId, messageType, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7117,7 +7117,7 @@ export class InviteApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InviteApi
      */
-    public inviteUser(userId: string, inviteRequest?: InviteRequest, options?: any) {
+    public inviteUser(userId: string, inviteRequest?: InviteRequest, options?: AxiosRequestConfig) {
         return InviteApiFp(this.configuration).inviteUser(userId, inviteRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7129,7 +7129,7 @@ export class InviteApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InviteApi
      */
-    public requestInvite(userId: string, options?: any) {
+    public requestInvite(userId: string, options?: AxiosRequestConfig) {
         return InviteApiFp(this.configuration).requestInvite(userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7143,7 +7143,7 @@ export class InviteApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InviteApi
      */
-    public resetInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: any) {
+    public resetInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: AxiosRequestConfig) {
         return InviteApiFp(this.configuration).resetInviteMessage(userId, messageType, messageId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7156,7 +7156,7 @@ export class InviteApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InviteApi
      */
-    public respondInvite(notificationId: string, inviteResponse?: InviteResponse, options?: any) {
+    public respondInvite(notificationId: string, inviteResponse?: InviteResponse, options?: AxiosRequestConfig) {
         return InviteApiFp(this.configuration).respondInvite(notificationId, inviteResponse, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7170,7 +7170,7 @@ export class InviteApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof InviteApi
      */
-    public updateInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: any) {
+    public updateInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', messageId: number, options?: AxiosRequestConfig) {
         return InviteApiFp(this.configuration).updateInviteMessage(userId, messageType, messageId, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -7189,7 +7189,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        acceptFriendRequest: async (notificationId: string, options: any = {}): Promise<RequestArgs> => {
+        acceptFriendRequest: async (notificationId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'notificationId' is not null or undefined
             assertParamExists('acceptFriendRequest', 'notificationId', notificationId)
             const localVarPath = `/auth/user/notifications/{notificationId}/accept`
@@ -7211,7 +7211,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -7226,7 +7226,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clearNotifications: async (options: any = {}): Promise<RequestArgs> => {
+        clearNotifications: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/user/notifications/clear`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7245,7 +7245,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -7261,7 +7261,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteNotification: async (notificationId: string, options: any = {}): Promise<RequestArgs> => {
+        deleteNotification: async (notificationId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'notificationId' is not null or undefined
             assertParamExists('deleteNotification', 'notificationId', notificationId)
             const localVarPath = `/auth/user/notifications/{notificationId}/hide`
@@ -7283,7 +7283,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -7304,7 +7304,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getNotifications: async (type?: string, sent?: boolean, hidden?: boolean, after?: string, n?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+        getNotifications: async (type?: string, sent?: boolean, hidden?: boolean, after?: string, n?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/user/notifications`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7347,7 +7347,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -7363,7 +7363,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        markNotificationAsRead: async (notificationId: string, options: any = {}): Promise<RequestArgs> => {
+        markNotificationAsRead: async (notificationId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'notificationId' is not null or undefined
             assertParamExists('markNotificationAsRead', 'notificationId', notificationId)
             const localVarPath = `/auth/user/notifications/{notificationId}/see`
@@ -7385,7 +7385,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -7411,7 +7411,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async acceptFriendRequest(notificationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+        async acceptFriendRequest(notificationId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.acceptFriendRequest(notificationId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7421,7 +7421,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async clearNotifications(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+        async clearNotifications(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.clearNotifications(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7432,7 +7432,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteNotification(notificationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
+        async deleteNotification(notificationId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteNotification(notificationId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7448,7 +7448,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getNotifications(type?: string, sent?: boolean, hidden?: boolean, after?: string, n?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Notification>>> {
+        async getNotifications(type?: string, sent?: boolean, hidden?: boolean, after?: string, n?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Notification>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getNotifications(type, sent, hidden, after, n, offset, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7459,7 +7459,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async markNotificationAsRead(notificationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
+        async markNotificationAsRead(notificationId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Notification>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.markNotificationAsRead(notificationId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7545,7 +7545,7 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public acceptFriendRequest(notificationId: string, options?: any) {
+    public acceptFriendRequest(notificationId: string, options?: AxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).acceptFriendRequest(notificationId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7556,7 +7556,7 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public clearNotifications(options?: any) {
+    public clearNotifications(options?: AxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).clearNotifications(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7568,7 +7568,7 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public deleteNotification(notificationId: string, options?: any) {
+    public deleteNotification(notificationId: string, options?: AxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).deleteNotification(notificationId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7585,7 +7585,7 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public getNotifications(type?: string, sent?: boolean, hidden?: boolean, after?: string, n?: number, offset?: number, options?: any) {
+    public getNotifications(type?: string, sent?: boolean, hidden?: boolean, after?: string, n?: number, offset?: number, options?: AxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).getNotifications(type, sent, hidden, after, n, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7597,7 +7597,7 @@ export class NotificationsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof NotificationsApi
      */
-    public markNotificationAsRead(notificationId: string, options?: any) {
+    public markNotificationAsRead(notificationId: string, options?: AxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).markNotificationAsRead(notificationId, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -7615,7 +7615,7 @@ export const PermissionsApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAssignedPermissions: async (options: any = {}): Promise<RequestArgs> => {
+        getAssignedPermissions: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/permissions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7634,7 +7634,7 @@ export const PermissionsApiAxiosParamCreator = function (configuration?: Configu
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -7650,7 +7650,7 @@ export const PermissionsApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPermission: async (permissionId: string, options: any = {}): Promise<RequestArgs> => {
+        getPermission: async (permissionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'permissionId' is not null or undefined
             assertParamExists('getPermission', 'permissionId', permissionId)
             const localVarPath = `/permissions/{permissionId}`
@@ -7672,7 +7672,7 @@ export const PermissionsApiAxiosParamCreator = function (configuration?: Configu
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -7697,7 +7697,7 @@ export const PermissionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAssignedPermissions(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Permission>>> {
+        async getAssignedPermissions(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Permission>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAssignedPermissions(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7708,7 +7708,7 @@ export const PermissionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPermission(permissionId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Permission>> {
+        async getPermission(permissionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Permission>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPermission(permissionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -7758,7 +7758,7 @@ export class PermissionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PermissionsApi
      */
-    public getAssignedPermissions(options?: any) {
+    public getAssignedPermissions(options?: AxiosRequestConfig) {
         return PermissionsApiFp(this.configuration).getAssignedPermissions(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -7770,7 +7770,7 @@ export class PermissionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PermissionsApi
      */
-    public getPermission(permissionId: string, options?: any) {
+    public getPermission(permissionId: string, options?: AxiosRequestConfig) {
         return PermissionsApiFp(this.configuration).getPermission(permissionId, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -7788,7 +7788,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clearAllPlayerModerations: async (options: any = {}): Promise<RequestArgs> => {
+        clearAllPlayerModerations: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/user/playermoderations`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7807,7 +7807,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -7823,7 +7823,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deletePlayerModeration: async (playerModerationId: string, options: any = {}): Promise<RequestArgs> => {
+        deletePlayerModeration: async (playerModerationId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'playerModerationId' is not null or undefined
             assertParamExists('deletePlayerModeration', 'playerModerationId', playerModerationId)
             const localVarPath = `/auth/user/playermoderations/{playerModerationId}`
@@ -7845,7 +7845,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -7861,7 +7861,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPlayerModeration: async (playerModerationId: string, options: any = {}): Promise<RequestArgs> => {
+        getPlayerModeration: async (playerModerationId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'playerModerationId' is not null or undefined
             assertParamExists('getPlayerModeration', 'playerModerationId', playerModerationId)
             const localVarPath = `/auth/user/playermoderations/{playerModerationId}`
@@ -7883,7 +7883,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -7900,7 +7900,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPlayerModerations: async (type?: string, targetUserId?: string, options: any = {}): Promise<RequestArgs> => {
+        getPlayerModerations: async (type?: string, targetUserId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/user/playermoderations`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7927,7 +7927,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -7943,7 +7943,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        moderateUser: async (inlineObject12?: InlineObject12, options: any = {}): Promise<RequestArgs> => {
+        moderateUser: async (inlineObject12?: InlineObject12, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/user/playermoderations`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7964,7 +7964,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject12, localVarRequestOptions, configuration)
@@ -7981,7 +7981,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unmoderateUser: async (inlineObject13?: InlineObject13, options: any = {}): Promise<RequestArgs> => {
+        unmoderateUser: async (inlineObject13?: InlineObject13, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/user/unplayermoderate`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8002,7 +8002,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject13, localVarRequestOptions, configuration)
@@ -8028,7 +8028,7 @@ export const PlayermoderationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async clearAllPlayerModerations(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
+        async clearAllPlayerModerations(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Error>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.clearAllPlayerModerations(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8039,7 +8039,7 @@ export const PlayermoderationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deletePlayerModeration(playerModerationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+        async deletePlayerModeration(playerModerationId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deletePlayerModeration(playerModerationId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8050,7 +8050,7 @@ export const PlayermoderationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPlayerModeration(playerModerationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlayerModeration>> {
+        async getPlayerModeration(playerModerationId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlayerModeration>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPlayerModeration(playerModerationId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8062,7 +8062,7 @@ export const PlayermoderationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPlayerModerations(type?: string, targetUserId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PlayerModeration>>> {
+        async getPlayerModerations(type?: string, targetUserId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PlayerModeration>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPlayerModerations(type, targetUserId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8073,7 +8073,7 @@ export const PlayermoderationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async moderateUser(inlineObject12?: InlineObject12, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlayerModeration>> {
+        async moderateUser(inlineObject12?: InlineObject12, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PlayerModeration>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.moderateUser(inlineObject12, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8084,7 +8084,7 @@ export const PlayermoderationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unmoderateUser(inlineObject13?: InlineObject13, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+        async unmoderateUser(inlineObject13?: InlineObject13, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.unmoderateUser(inlineObject13, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8175,7 +8175,7 @@ export class PlayermoderationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PlayermoderationApi
      */
-    public clearAllPlayerModerations(options?: any) {
+    public clearAllPlayerModerations(options?: AxiosRequestConfig) {
         return PlayermoderationApiFp(this.configuration).clearAllPlayerModerations(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -8187,7 +8187,7 @@ export class PlayermoderationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PlayermoderationApi
      */
-    public deletePlayerModeration(playerModerationId: string, options?: any) {
+    public deletePlayerModeration(playerModerationId: string, options?: AxiosRequestConfig) {
         return PlayermoderationApiFp(this.configuration).deletePlayerModeration(playerModerationId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -8199,7 +8199,7 @@ export class PlayermoderationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PlayermoderationApi
      */
-    public getPlayerModeration(playerModerationId: string, options?: any) {
+    public getPlayerModeration(playerModerationId: string, options?: AxiosRequestConfig) {
         return PlayermoderationApiFp(this.configuration).getPlayerModeration(playerModerationId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -8212,7 +8212,7 @@ export class PlayermoderationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PlayermoderationApi
      */
-    public getPlayerModerations(type?: string, targetUserId?: string, options?: any) {
+    public getPlayerModerations(type?: string, targetUserId?: string, options?: AxiosRequestConfig) {
         return PlayermoderationApiFp(this.configuration).getPlayerModerations(type, targetUserId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -8224,7 +8224,7 @@ export class PlayermoderationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PlayermoderationApi
      */
-    public moderateUser(inlineObject12?: InlineObject12, options?: any) {
+    public moderateUser(inlineObject12?: InlineObject12, options?: AxiosRequestConfig) {
         return PlayermoderationApiFp(this.configuration).moderateUser(inlineObject12, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -8236,7 +8236,7 @@ export class PlayermoderationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PlayermoderationApi
      */
-    public unmoderateUser(inlineObject13?: InlineObject13, options?: any) {
+    public unmoderateUser(inlineObject13?: InlineObject13, options?: AxiosRequestConfig) {
         return PlayermoderationApiFp(this.configuration).unmoderateUser(inlineObject13, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -8256,7 +8256,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCSS: async (variant?: 'public' | 'internal', branch?: string, options: any = {}): Promise<RequestArgs> => {
+        getCSS: async (variant?: 'public' | 'internal', branch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/css/app.js`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8279,7 +8279,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -8294,7 +8294,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConfig: async (options: any = {}): Promise<RequestArgs> => {
+        getConfig: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/config`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8309,7 +8309,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -8324,7 +8324,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCurrentOnlineUsers: async (options: any = {}): Promise<RequestArgs> => {
+        getCurrentOnlineUsers: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/visits`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8339,7 +8339,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -8355,7 +8355,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
          * @deprecated
          * @throws {RequiredError}
          */
-        getHealth: async (options: any = {}): Promise<RequestArgs> => {
+        getHealth: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/health`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8370,7 +8370,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -8387,7 +8387,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getJavaScript: async (variant?: 'public' | 'internal', branch?: string, options: any = {}): Promise<RequestArgs> => {
+        getJavaScript: async (variant?: 'public' | 'internal', branch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/js/app.js`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8410,7 +8410,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -8425,7 +8425,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystemTime: async (options: any = {}): Promise<RequestArgs> => {
+        getSystemTime: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/time`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8440,7 +8440,7 @@ export const SystemApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -8467,7 +8467,7 @@ export const SystemApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCSS(variant?: 'public' | 'internal', branch?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+        async getCSS(variant?: 'public' | 'internal', branch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCSS(variant, branch, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8477,7 +8477,7 @@ export const SystemApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getConfig(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<APIConfig>> {
+        async getConfig(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<APIConfig>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getConfig(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8487,7 +8487,7 @@ export const SystemApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCurrentOnlineUsers(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
+        async getCurrentOnlineUsers(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCurrentOnlineUsers(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8498,7 +8498,7 @@ export const SystemApiFp = function(configuration?: Configuration) {
          * @deprecated
          * @throws {RequiredError}
          */
-        async getHealth(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+        async getHealth(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getHealth(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8510,7 +8510,7 @@ export const SystemApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getJavaScript(variant?: 'public' | 'internal', branch?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+        async getJavaScript(variant?: 'public' | 'internal', branch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getJavaScript(variant, branch, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8520,7 +8520,7 @@ export const SystemApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSystemTime(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+        async getSystemTime(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSystemTime(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8612,7 +8612,7 @@ export class SystemApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SystemApi
      */
-    public getCSS(variant?: 'public' | 'internal', branch?: string, options?: any) {
+    public getCSS(variant?: 'public' | 'internal', branch?: string, options?: AxiosRequestConfig) {
         return SystemApiFp(this.configuration).getCSS(variant, branch, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -8623,7 +8623,7 @@ export class SystemApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SystemApi
      */
-    public getConfig(options?: any) {
+    public getConfig(options?: AxiosRequestConfig) {
         return SystemApiFp(this.configuration).getConfig(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -8634,7 +8634,7 @@ export class SystemApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SystemApi
      */
-    public getCurrentOnlineUsers(options?: any) {
+    public getCurrentOnlineUsers(options?: AxiosRequestConfig) {
         return SystemApiFp(this.configuration).getCurrentOnlineUsers(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -8646,7 +8646,7 @@ export class SystemApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SystemApi
      */
-    public getHealth(options?: any) {
+    public getHealth(options?: AxiosRequestConfig) {
         return SystemApiFp(this.configuration).getHealth(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -8659,7 +8659,7 @@ export class SystemApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SystemApi
      */
-    public getJavaScript(variant?: 'public' | 'internal', branch?: string, options?: any) {
+    public getJavaScript(variant?: 'public' | 'internal', branch?: string, options?: AxiosRequestConfig) {
         return SystemApiFp(this.configuration).getJavaScript(variant, branch, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -8670,7 +8670,7 @@ export class SystemApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SystemApi
      */
-    public getSystemTime(options?: any) {
+    public getSystemTime(options?: AxiosRequestConfig) {
         return SystemApiFp(this.configuration).getSystemTime(options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -8689,7 +8689,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUser: async (userId: string, options: any = {}): Promise<RequestArgs> => {
+        getUser: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('getUser', 'userId', userId)
             const localVarPath = `/users/{userId}`
@@ -8711,7 +8711,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -8727,7 +8727,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUserByName: async (username: string, options: any = {}): Promise<RequestArgs> => {
+        getUserByName: async (username: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'username' is not null or undefined
             assertParamExists('getUserByName', 'username', username)
             const localVarPath = `/users/{username}/name`
@@ -8749,7 +8749,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -8768,7 +8768,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchUsers: async (search?: string, developerType?: string, n?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+        searchUsers: async (search?: string, developerType?: string, n?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/users`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8803,7 +8803,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -8820,7 +8820,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUser: async (userId: string, inlineObject2?: InlineObject2, options: any = {}): Promise<RequestArgs> => {
+        updateUser: async (userId: string, inlineObject2?: InlineObject2, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('updateUser', 'userId', userId)
             const localVarPath = `/users/{userId}`
@@ -8844,7 +8844,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
@@ -8871,7 +8871,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getUser(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+        async getUser(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUser(userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8882,7 +8882,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getUserByName(username: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+        async getUserByName(username: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserByName(username, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8896,7 +8896,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchUsers(search?: string, developerType?: string, n?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedUser>>> {
+        async searchUsers(search?: string, developerType?: string, n?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedUser>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchUsers(search, developerType, n, offset, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8908,7 +8908,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateUser(userId: string, inlineObject2?: InlineObject2, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentUser>> {
+        async updateUser(userId: string, inlineObject2?: InlineObject2, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentUser>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(userId, inlineObject2, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8984,7 +8984,7 @@ export class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public getUser(userId: string, options?: any) {
+    public getUser(userId: string, options?: AxiosRequestConfig) {
         return UsersApiFp(this.configuration).getUser(userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -8996,7 +8996,7 @@ export class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public getUserByName(username: string, options?: any) {
+    public getUserByName(username: string, options?: AxiosRequestConfig) {
         return UsersApiFp(this.configuration).getUserByName(username, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -9011,7 +9011,7 @@ export class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public searchUsers(search?: string, developerType?: string, n?: number, offset?: number, options?: any) {
+    public searchUsers(search?: string, developerType?: string, n?: number, offset?: number, options?: AxiosRequestConfig) {
         return UsersApiFp(this.configuration).searchUsers(search, developerType, n, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -9024,7 +9024,7 @@ export class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public updateUser(userId: string, inlineObject2?: InlineObject2, options?: any) {
+    public updateUser(userId: string, inlineObject2?: InlineObject2, options?: AxiosRequestConfig) {
         return UsersApiFp(this.configuration).updateUser(userId, inlineObject2, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -9043,7 +9043,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWorld: async (inlineObject6?: InlineObject6, options: any = {}): Promise<RequestArgs> => {
+        createWorld: async (inlineObject6?: InlineObject6, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/worlds`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9060,7 +9060,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject6, localVarRequestOptions, configuration)
@@ -9077,7 +9077,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteWorld: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+        deleteWorld: async (worldId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'worldId' is not null or undefined
             assertParamExists('deleteWorld', 'worldId', worldId)
             const localVarPath = `/worlds/{worldId}`
@@ -9099,7 +9099,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -9126,7 +9126,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getActiveWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: any = {}): Promise<RequestArgs> => {
+        getActiveWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/worlds/active`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9193,7 +9193,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -9221,7 +9221,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFavoritedWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: any = {}): Promise<RequestArgs> => {
+        getFavoritedWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/worlds/favorites`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9292,7 +9292,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -9320,7 +9320,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRecentWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: any = {}): Promise<RequestArgs> => {
+        getRecentWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/worlds/recent`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9391,7 +9391,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -9407,7 +9407,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWorld: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+        getWorld: async (worldId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'worldId' is not null or undefined
             assertParamExists('getWorld', 'worldId', worldId)
             const localVarPath = `/worlds/{worldId}`
@@ -9427,7 +9427,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -9444,7 +9444,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWorldInstance: async (worldId: string, instanceId: string, options: any = {}): Promise<RequestArgs> => {
+        getWorldInstance: async (worldId: string, instanceId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'worldId' is not null or undefined
             assertParamExists('getWorldInstance', 'worldId', worldId)
             // verify required parameter 'instanceId' is not null or undefined
@@ -9469,7 +9469,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -9486,7 +9486,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @deprecated
          * @throws {RequiredError}
          */
-        getWorldMetadata: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+        getWorldMetadata: async (worldId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'worldId' is not null or undefined
             assertParamExists('getWorldMetadata', 'worldId', worldId)
             const localVarPath = `/worlds/{worldId}/metadata`
@@ -9508,7 +9508,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -9524,7 +9524,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWorldPublishStatus: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+        getWorldPublishStatus: async (worldId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'worldId' is not null or undefined
             assertParamExists('getWorldPublishStatus', 'worldId', worldId)
             const localVarPath = `/worlds/{worldId}/publish`
@@ -9546,7 +9546,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -9562,7 +9562,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishWorld: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+        publishWorld: async (worldId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'worldId' is not null or undefined
             assertParamExists('publishWorld', 'worldId', worldId)
             const localVarPath = `/worlds/{worldId}/publish`
@@ -9584,7 +9584,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -9613,7 +9613,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: any = {}): Promise<RequestArgs> => {
+        searchWorlds: async (featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/worlds`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9688,7 +9688,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -9704,7 +9704,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unpublishWorld: async (worldId: string, options: any = {}): Promise<RequestArgs> => {
+        unpublishWorld: async (worldId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'worldId' is not null or undefined
             assertParamExists('unpublishWorld', 'worldId', worldId)
             const localVarPath = `/worlds/{worldId}/publish`
@@ -9726,7 +9726,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -9743,7 +9743,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWorld: async (worldId: string, inlineObject7?: InlineObject7, options: any = {}): Promise<RequestArgs> => {
+        updateWorld: async (worldId: string, inlineObject7?: InlineObject7, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'worldId' is not null or undefined
             assertParamExists('updateWorld', 'worldId', worldId)
             const localVarPath = `/worlds/{worldId}`
@@ -9767,7 +9767,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject7, localVarRequestOptions, configuration)
@@ -9794,7 +9794,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createWorld(inlineObject6?: InlineObject6, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
+        async createWorld(inlineObject6?: InlineObject6, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createWorld(inlineObject6, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9805,7 +9805,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteWorld(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async deleteWorld(worldId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteWorld(worldId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9827,7 +9827,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getActiveWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+        async getActiveWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getActiveWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9850,7 +9850,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFavoritedWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+        async getFavoritedWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFavoritedWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9873,7 +9873,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRecentWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+        async getRecentWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRecentWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9884,7 +9884,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWorld(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
+        async getWorld(worldId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWorld(worldId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9896,7 +9896,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWorldInstance(worldId: string, instanceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Instance>> {
+        async getWorldInstance(worldId: string, instanceId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Instance>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWorldInstance(worldId, instanceId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9908,7 +9908,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @deprecated
          * @throws {RequiredError}
          */
-        async getWorldMetadata(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+        async getWorldMetadata(worldId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWorldMetadata(worldId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9919,7 +9919,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWorldPublishStatus(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+        async getWorldPublishStatus(worldId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWorldPublishStatus(worldId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9930,7 +9930,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async publishWorld(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async publishWorld(worldId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.publishWorld(worldId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9954,7 +9954,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+        async searchWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9965,7 +9965,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unpublishWorld(worldId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async unpublishWorld(worldId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.unpublishWorld(worldId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9977,7 +9977,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateWorld(worldId: string, inlineObject7?: InlineObject7, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
+        async updateWorld(worldId: string, inlineObject7?: InlineObject7, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<World>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateWorld(worldId, inlineObject7, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -10190,7 +10190,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public createWorld(inlineObject6?: InlineObject6, options?: any) {
+    public createWorld(inlineObject6?: InlineObject6, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).createWorld(inlineObject6, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10202,7 +10202,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public deleteWorld(worldId: string, options?: any) {
+    public deleteWorld(worldId: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).deleteWorld(worldId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10225,7 +10225,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public getActiveWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any) {
+    public getActiveWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).getActiveWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10249,7 +10249,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public getFavoritedWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any) {
+    public getFavoritedWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).getFavoritedWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10273,7 +10273,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public getRecentWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any) {
+    public getRecentWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).getRecentWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10285,7 +10285,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public getWorld(worldId: string, options?: any) {
+    public getWorld(worldId: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).getWorld(worldId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10298,7 +10298,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public getWorldInstance(worldId: string, instanceId: string, options?: any) {
+    public getWorldInstance(worldId: string, instanceId: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).getWorldInstance(worldId, instanceId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10311,7 +10311,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public getWorldMetadata(worldId: string, options?: any) {
+    public getWorldMetadata(worldId: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).getWorldMetadata(worldId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10323,7 +10323,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public getWorldPublishStatus(worldId: string, options?: any) {
+    public getWorldPublishStatus(worldId: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).getWorldPublishStatus(worldId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10335,7 +10335,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public publishWorld(worldId: string, options?: any) {
+    public publishWorld(worldId: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).publishWorld(worldId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10360,7 +10360,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public searchWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any) {
+    public searchWorlds(featured?: string, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10372,7 +10372,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public unpublishWorld(worldId: string, options?: any) {
+    public unpublishWorld(worldId: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).unpublishWorld(worldId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -10385,7 +10385,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public updateWorld(worldId: string, inlineObject7?: InlineObject7, options?: any) {
+    public updateWorld(worldId: string, inlineObject7?: InlineObject7, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).updateWorld(worldId, inlineObject7, options).then((request) => request(this.axios, this.basePath));
     }
 }
