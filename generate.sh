@@ -10,7 +10,7 @@ rm *.ts -rf
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-javascript \
 -o . \
--i https://vrchatapi.github.io/specification/openapi.yaml \
+-i https://raw.githubusercontent.com/vrchatapi/specification/gh-pages/openapi.yaml \
 --http-user-agent="vrchatapi-javascript"
 
 # Modify package.json
