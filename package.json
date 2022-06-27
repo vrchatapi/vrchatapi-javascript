@@ -21,7 +21,7 @@
 "tough-cookie": "^4.0.0",
 "axios-cookiejar-support": "^4.0.2",
 "@types/tough-cookie": "^4.0.1",
-    "axios": "^0.21.4"
+    "axios": "^^0.27.2"
   },
   "devDependencies": {
     "@types/node": "^12.11.5",
