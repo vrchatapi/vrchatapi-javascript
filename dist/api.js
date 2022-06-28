@@ -79,11 +79,6 @@ var axios_1 = require("axios");
 var common_1 = require("./common");
 // @ts-ignore
 var base_1 = require("./base");
-var axios_cookiejar_support_1 = require("axios-cookiejar-support");
-axios_cookiejar_support_1.wrapper(axios_1.default);
-var tough_cookie_1 = require("tough-cookie");
-axios_1.default.defaults.jar = new tough_cookie_1.CookieJar();
-axios_1.default.defaults.withCredentials = true;
 /**
  * Used to identify which API deployment cluster is currently responding.  `blue` and `green` are used by Production. `grape`and `cherry` are used during Development.  [Blue Green Deployment by Martin Fowler](https://martinfowler.com/bliki/BlueGreenDeployment.html)
  * @export
