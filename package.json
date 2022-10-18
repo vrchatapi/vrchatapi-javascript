@@ -18,9 +18,6 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-"tough-cookie": "^4.0.0",
-"axios-cookiejar-support": "^1.0.1",
-"@types/tough-cookie": "^4.0.1",
     "axios": "^0.21.4"
   },
   "devDependencies": {
