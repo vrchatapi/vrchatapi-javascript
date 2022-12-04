@@ -769,7 +769,7 @@ export interface Avatar {
      */
     'releaseStatus': ReleaseStatus;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof Avatar
      */
@@ -869,7 +869,7 @@ export interface CreateAvatarRequest {
      */
     'description'?: string;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof CreateAvatarRequest
      */
@@ -924,7 +924,7 @@ export interface CreateFileRequest {
      */
     'extension': string;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof CreateFileRequest
      */
@@ -1017,25 +1017,25 @@ export interface CreateGroupGalleryRequest {
      */
     'membersOnly'?: boolean;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof CreateGroupGalleryRequest
      */
     'roleIdsToView'?: Array<string> | null;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof CreateGroupGalleryRequest
      */
     'roleIdsToSubmit'?: Array<string> | null;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof CreateGroupGalleryRequest
      */
     'roleIdsToAutoApprove'?: Array<string> | null;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof CreateGroupGalleryRequest
      */
@@ -1225,7 +1225,7 @@ export interface CreateWorldRequest {
      */
     'releaseStatus'?: ReleaseStatus;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof CreateWorldRequest
      */
@@ -1443,7 +1443,7 @@ export interface CurrentUser {
      */
     'onlineFriends'?: Array<string>;
     /**
-     * 
+     *  
      * @type {Array<PastDisplayName>}
      * @memberof CurrentUser
      */
@@ -1540,12 +1540,15 @@ export interface CurrentUser {
  * @enum {string}
  */
 
-export enum DeploymentGroup {
-    Blue = 'blue',
-    Green = 'green',
-    Grape = 'grape',
-    Cherry = 'cherry'
-}
+export const DeploymentGroup = {
+    Blue: 'blue',
+    Green: 'green',
+    Grape: 'grape',
+    Cherry: 'cherry'
+} as const;
+
+export type DeploymentGroup = typeof DeploymentGroup[keyof typeof DeploymentGroup];
+
 
 /**
  * \"none\" User is a normal user \"trusted\" Unknown \"internal\" Is a VRChat Developer \"moderator\" Is a VRChat Moderator  Staff can hide their developerType at will.
@@ -1553,12 +1556,15 @@ export enum DeploymentGroup {
  * @enum {string}
  */
 
-export enum DeveloperType {
-    None = 'none',
-    Trusted = 'trusted',
-    Internal = 'internal',
-    Moderator = 'moderator'
-}
+export const DeveloperType = {
+    None: 'none',
+    Trusted: 'trusted',
+    Internal: 'internal',
+    Moderator: 'moderator'
+} as const;
+
+export type DeveloperType = typeof DeveloperType[keyof typeof DeveloperType];
+
 
 /**
  * 
@@ -1634,7 +1640,7 @@ export interface Favorite {
      */
     'id': string;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof Favorite
      */
@@ -1683,7 +1689,7 @@ export interface FavoriteGroup {
      */
     'ownerId': string;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof FavoriteGroup
      */
@@ -1707,11 +1713,14 @@ export interface FavoriteGroup {
  * @enum {string}
  */
 
-export enum FavoriteGroupVisibility {
-    Private = 'private',
-    Friends = 'friends',
-    Public = 'public'
-}
+export const FavoriteGroupVisibility = {
+    Private: 'private',
+    Friends: 'friends',
+    Public: 'public'
+} as const;
+
+export type FavoriteGroupVisibility = typeof FavoriteGroupVisibility[keyof typeof FavoriteGroupVisibility];
+
 
 /**
  * 
@@ -1719,11 +1728,14 @@ export enum FavoriteGroupVisibility {
  * @enum {string}
  */
 
-export enum FavoriteType {
-    World = 'world',
-    Friend = 'friend',
-    Avatar = 'avatar'
-}
+export const FavoriteType = {
+    World: 'world',
+    Friend: 'friend',
+    Avatar: 'avatar'
+} as const;
+
+export type FavoriteType = typeof FavoriteType[keyof typeof FavoriteType];
+
 
 /**
  * 
@@ -1775,15 +1787,13 @@ export interface FileData {
     'url': string;
 }
 
-/**
-    * @export
-    * @enum {string}
-    */
-export enum FileDataCategoryEnum {
-    Multipart = 'multipart',
-    Queued = 'queued',
-    Simple = 'simple'
-}
+export const FileDataCategoryEnum = {
+    Multipart: 'multipart',
+    Queued: 'queued',
+    Simple: 'simple'
+} as const;
+
+export type FileDataCategoryEnum = typeof FileDataCategoryEnum[keyof typeof FileDataCategoryEnum];
 
 /**
  * 
@@ -1791,12 +1801,15 @@ export enum FileDataCategoryEnum {
  * @enum {string}
  */
 
-export enum FileStatus {
-    Waiting = 'waiting',
-    Complete = 'complete',
-    None = 'none',
-    Queued = 'queued'
-}
+export const FileStatus = {
+    Waiting: 'waiting',
+    Complete: 'complete',
+    None: 'none',
+    Queued: 'queued'
+} as const;
+
+export type FileStatus = typeof FileStatus[keyof typeof FileStatus];
+
 
 /**
  * 
@@ -2070,13 +2083,13 @@ export interface Group {
      */
     'joinState'?: GroupJoinState;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof Group
      */
     'tags'?: Array<string>;
     /**
-     * 
+     *  
      * @type {Array<GroupGallery>}
      * @memberof Group
      */
@@ -2265,25 +2278,25 @@ export interface GroupGallery {
      */
     'membersOnly'?: boolean;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof GroupGallery
      */
     'roleIdsToView'?: Array<string> | null;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof GroupGallery
      */
     'roleIdsToSubmit'?: Array<string> | null;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof GroupGallery
      */
     'roleIdsToAutoApprove'?: Array<string> | null;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof GroupGallery
      */
@@ -2374,12 +2387,15 @@ export interface GroupGalleryImage {
  * @enum {string}
  */
 
-export enum GroupJoinState {
-    Closed = 'closed',
-    Invite = 'invite',
-    Request = 'request',
-    Open = 'open'
-}
+export const GroupJoinState = {
+    Closed: 'closed',
+    Invite: 'invite',
+    Request: 'request',
+    Open: 'open'
+} as const;
+
+export type GroupJoinState = typeof GroupJoinState[keyof typeof GroupJoinState];
+
 
 /**
  * 
@@ -2534,12 +2550,15 @@ export interface GroupMemberLimitedUser {
  * @enum {string}
  */
 
-export enum GroupMemberStatus {
-    Inactive = 'inactive',
-    Member = 'member',
-    Requested = 'requested',
-    Invited = 'invited'
-}
+export const GroupMemberStatus = {
+    Inactive: 'inactive',
+    Member: 'member',
+    Requested: 'requested',
+    Invited: 'invited'
+} as const;
+
+export type GroupMemberStatus = typeof GroupMemberStatus[keyof typeof GroupMemberStatus];
+
 
 /**
  * 
@@ -2669,10 +2688,13 @@ export interface GroupPermission {
  * @enum {string}
  */
 
-export enum GroupPrivacy {
-    Default = 'default',
-    Private = 'private'
-}
+export const GroupPrivacy = {
+    Default: 'default',
+    Private: 'private'
+} as const;
+
+export type GroupPrivacy = typeof GroupPrivacy[keyof typeof GroupPrivacy];
+
 
 /**
  * 
@@ -2759,12 +2781,15 @@ export interface GroupRole {
  * @enum {string}
  */
 
-export enum GroupRoleTemplate {
-    Default = 'default',
-    ManagedFree = 'managedFree',
-    ManagedInvite = 'managedInvite',
-    ManagedRequest = 'managedRequest'
-}
+export const GroupRoleTemplate = {
+    Default: 'default',
+    ManagedFree: 'managedFree',
+    ManagedInvite: 'managedInvite',
+    ManagedRequest: 'managedRequest'
+} as const;
+
+export type GroupRoleTemplate = typeof GroupRoleTemplate[keyof typeof GroupRoleTemplate];
+
 
 /**
  * 
@@ -2772,11 +2797,14 @@ export enum GroupRoleTemplate {
  * @enum {string}
  */
 
-export enum GroupUserVisibility {
-    Visible = 'visible',
-    Hidden = 'hidden',
-    Friends = 'friends'
-}
+export const GroupUserVisibility = {
+    Visible: 'visible',
+    Hidden: 'hidden',
+    Friends: 'friends'
+} as const;
+
+export type GroupUserVisibility = typeof GroupUserVisibility[keyof typeof GroupUserVisibility];
+
 
 /**
  * 
@@ -2809,7 +2837,7 @@ export interface InfoPush {
      */
     'priority': number;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof InfoPush
      */
@@ -2964,16 +2992,14 @@ export interface InfoPushDataClickable {
     'parameters'?: Array<string>;
 }
 
-/**
-    * @export
-    * @enum {string}
-    */
-export enum InfoPushDataClickableCommandEnum {
-    OpenUrl = 'OpenURL',
-    OpenVrcPlusMenu = 'OpenVRCPlusMenu',
-    OpenSafetyMenu = 'OpenSafetyMenu',
-    CannedWorldSearch = 'CannedWorldSearch'
-}
+export const InfoPushDataClickableCommandEnum = {
+    OpenUrl: 'OpenURL',
+    OpenVrcPlusMenu: 'OpenVRCPlusMenu',
+    OpenSafetyMenu: 'OpenSafetyMenu',
+    CannedWorldSearch: 'CannedWorldSearch'
+} as const;
+
+export type InfoPushDataClickableCommandEnum = typeof InfoPushDataClickableCommandEnum[keyof typeof InfoPushDataClickableCommandEnum];
 
 /**
  * * `hidden` field is only present if InstanceType is `hidden` aka \"Friends+\", and is instance creator. * `friends` field is only present if InstanceType is `friends` aka \"Friends\", and is instance creator. * `private` field is only present if InstanceType is `private` aka \"Invite\" or \"Invite+\", and is instance creator.
@@ -3165,12 +3191,15 @@ export interface InstanceShortNameResponse {
  * @enum {string}
  */
 
-export enum InstanceType {
-    Public = 'public',
-    Hidden = 'hidden',
-    Friends = 'friends',
-    Private = 'private'
-}
+export const InstanceType = {
+    Public: 'public',
+    Hidden: 'hidden',
+    Friends: 'friends',
+    Private: 'private'
+} as const;
+
+export type InstanceType = typeof InstanceType[keyof typeof InstanceType];
+
 
 /**
  * 
@@ -3227,12 +3256,15 @@ export interface InviteMessage {
  * @enum {string}
  */
 
-export enum InviteMessageType {
-    Message = 'message',
-    Response = 'response',
-    Request = 'request',
-    RequestResponse = 'requestResponse'
-}
+export const InviteMessageType = {
+    Message: 'message',
+    Response: 'response',
+    Request: 'request',
+    RequestResponse: 'requestResponse'
+} as const;
+
+export type InviteMessageType = typeof InviteMessageType[keyof typeof InviteMessageType];
+
 
 /**
  * 
@@ -3303,10 +3335,13 @@ export interface License {
  * @enum {string}
  */
 
-export enum LicenseAction {
-    Wear = 'wear',
-    Have = 'have'
-}
+export const LicenseAction = {
+    Wear: 'wear',
+    Have: 'have'
+} as const;
+
+export type LicenseAction = typeof LicenseAction[keyof typeof LicenseAction];
+
 
 /**
  * 
@@ -3345,12 +3380,15 @@ export interface LicenseGroup {
  * @enum {string}
  */
 
-export enum LicenseType {
-    Avatar = 'avatar',
-    LicenseGroup = 'licenseGroup',
-    Permission = 'permission',
-    Product = 'product'
-}
+export const LicenseType = {
+    Avatar: 'avatar',
+    LicenseGroup: 'licenseGroup',
+    Permission: 'permission',
+    Product: 'product'
+} as const;
+
+export type LicenseType = typeof LicenseType[keyof typeof LicenseType];
+
 
 /**
  * 
@@ -3578,7 +3616,7 @@ export interface LimitedWorld {
      */
     'releaseStatus': ReleaseStatus;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof LimitedWorld
      */
@@ -3590,7 +3628,7 @@ export interface LimitedWorld {
      */
     'thumbnailImageUrl': string;
     /**
-     * 
+     *  
      * @type {Array<LimitedUnityPackage>}
      * @memberof LimitedWorld
      */
@@ -3608,22 +3646,25 @@ export interface LimitedWorld {
  * @enum {string}
  */
 
-export enum MIMEType {
-    ImageJpeg = 'image/jpeg',
-    ImageJpg = 'image/jpg',
-    ImagePng = 'image/png',
-    ImageWebp = 'image/webp',
-    ImageGif = 'image/gif',
-    ImageBmp = 'image/bmp',
-    ImageSvgxml = 'image/svg＋xml',
-    ImageTiff = 'image/tiff',
-    ApplicationXAvatar = 'application/x-avatar',
-    ApplicationXWorld = 'application/x-world',
-    ApplicationGzip = 'application/gzip',
-    ApplicationXRsyncSignature = 'application/x-rsync-signature',
-    ApplicationXRsyncDelta = 'application/x-rsync-delta',
-    ApplicationOctetStream = 'application/octet-stream'
-}
+export const MIMEType = {
+    ImageJpeg: 'image/jpeg',
+    ImageJpg: 'image/jpg',
+    ImagePng: 'image/png',
+    ImageWebp: 'image/webp',
+    ImageGif: 'image/gif',
+    ImageBmp: 'image/bmp',
+    ImageSvgxml: 'image/svg＋xml',
+    ImageTiff: 'image/tiff',
+    ApplicationXAvatar: 'application/x-avatar',
+    ApplicationXWorld: 'application/x-world',
+    ApplicationGzip: 'application/gzip',
+    ApplicationXRsyncSignature: 'application/x-rsync-signature',
+    ApplicationXRsyncDelta: 'application/x-rsync-delta',
+    ApplicationOctetStream: 'application/octet-stream'
+} as const;
+
+export type MIMEType = typeof MIMEType[keyof typeof MIMEType];
+
 
 /**
  * 
@@ -3675,13 +3716,13 @@ export interface ModelFile {
      */
     'ownerId': string;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof ModelFile
      */
     'tags': Array<string>;
     /**
-     * 
+     *  
      * @type {Set<FileVersion>}
      * @memberof ModelFile
      */
@@ -3774,14 +3815,17 @@ export interface Notification {
  * @enum {string}
  */
 
-export enum NotificationType {
-    FriendRequest = 'friendRequest',
-    Invite = 'invite',
-    InviteResponse = 'inviteResponse',
-    RequestInvite = 'requestInvite',
-    RequestInviteResponse = 'requestInviteResponse',
-    Votetokick = 'votetokick'
-}
+export const NotificationType = {
+    FriendRequest: 'friendRequest',
+    Invite: 'invite',
+    InviteResponse: 'inviteResponse',
+    RequestInvite: 'requestInvite',
+    RequestInviteResponse: 'requestInviteResponse',
+    Votetokick: 'votetokick'
+} as const;
+
+export type NotificationType = typeof NotificationType[keyof typeof NotificationType];
+
 
 /**
  * 
@@ -3789,10 +3833,13 @@ export enum NotificationType {
  * @enum {string}
  */
 
-export enum OrderOption {
-    Ascending = 'ascending',
-    Descending = 'descending'
-}
+export const OrderOption = {
+    Ascending: 'ascending',
+    Descending: 'descending'
+} as const;
+
+export type OrderOption = typeof OrderOption[keyof typeof OrderOption];
+
 
 /**
  * 
@@ -3801,7 +3848,7 @@ export enum OrderOption {
  */
 export interface PaginatedGroupAuditLogEntryList {
     /**
-     * 
+     *  
      * @type {Array<GroupAuditLogEntry>}
      * @memberof PaginatedGroupAuditLogEntryList
      */
@@ -3924,14 +3971,17 @@ export interface PlayerModeration {
  * @enum {string}
  */
 
-export enum PlayerModerationType {
-    Mute = 'mute',
-    Unmute = 'unmute',
-    Block = 'block',
-    Unblock = 'unblock',
-    InteractOn = 'interactOn',
-    InteractOff = 'interactOff'
-}
+export const PlayerModerationType = {
+    Mute: 'mute',
+    Unmute: 'unmute',
+    Block: 'block',
+    Unblock: 'unblock',
+    InteractOn: 'interactOn',
+    InteractOff: 'interactOff'
+} as const;
+
+export type PlayerModerationType = typeof PlayerModerationType[keyof typeof PlayerModerationType];
+
 
 /**
  * API/Photon region.
@@ -3939,14 +3989,17 @@ export enum PlayerModerationType {
  * @enum {string}
  */
 
-export enum Region {
-    Us = 'us',
-    Use = 'use',
-    Usw = 'usw',
-    Eu = 'eu',
-    Jp = 'jp',
-    Unknown = 'unknown'
-}
+export const Region = {
+    Us: 'us',
+    Use: 'use',
+    Usw: 'usw',
+    Eu: 'eu',
+    Jp: 'jp',
+    Unknown: 'unknown'
+} as const;
+
+export type Region = typeof Region[keyof typeof Region];
+
 
 /**
  * 
@@ -3954,11 +4007,14 @@ export enum Region {
  * @enum {string}
  */
 
-export enum ReleaseStatus {
-    Public = 'public',
-    Private = 'private',
-    Hidden = 'hidden'
-}
+export const ReleaseStatus = {
+    Public: 'public',
+    Private: 'private',
+    Hidden: 'hidden'
+} as const;
+
+export type ReleaseStatus = typeof ReleaseStatus[keyof typeof ReleaseStatus];
+
 
 /**
  * 
@@ -4067,26 +4123,29 @@ export interface SentNotification {
  * @enum {string}
  */
 
-export enum SortOption {
-    Popularity = 'popularity',
-    Heat = 'heat',
-    Trust = 'trust',
-    Shuffle = 'shuffle',
-    Random = 'random',
-    Favorites = 'favorites',
-    ReportScore = 'reportScore',
-    ReportCount = 'reportCount',
-    PublicationDate = 'publicationDate',
-    LabsPublicationDate = 'labsPublicationDate',
-    Created = 'created',
-    CreatedAt = '_created_at',
-    Updated = 'updated',
-    UpdatedAt = '_updated_at',
-    Order = 'order',
-    Relevance = 'relevance',
-    Magic = 'magic',
-    Name = 'name'
-}
+export const SortOption = {
+    Popularity: 'popularity',
+    Heat: 'heat',
+    Trust: 'trust',
+    Shuffle: 'shuffle',
+    Random: 'random',
+    Favorites: 'favorites',
+    ReportScore: 'reportScore',
+    ReportCount: 'reportCount',
+    PublicationDate: 'publicationDate',
+    LabsPublicationDate: 'labsPublicationDate',
+    Created: 'created',
+    CreatedAt: '_created_at',
+    Updated: 'updated',
+    UpdatedAt: '_updated_at',
+    Order: 'order',
+    Relevance: 'relevance',
+    Magic: 'magic',
+    Name: 'name'
+} as const;
+
+export type SortOption = typeof SortOption[keyof typeof SortOption];
+
 
 /**
  * 
@@ -4137,13 +4196,16 @@ export interface Subscription {
  * @enum {string}
  */
 
-export enum SubscriptionPeriod {
-    Hour = 'hour',
-    Day = 'day',
-    Week = 'week',
-    Month = 'month',
-    Year = 'year'
-}
+export const SubscriptionPeriod = {
+    Hour: 'hour',
+    Day: 'day',
+    Week: 'week',
+    Month: 'month',
+    Year: 'year'
+} as const;
+
+export type SubscriptionPeriod = typeof SubscriptionPeriod[keyof typeof SubscriptionPeriod];
+
 
 /**
  * 
@@ -4334,12 +4396,15 @@ export interface TransactionAgreement {
  * @enum {string}
  */
 
-export enum TransactionStatus {
-    Active = 'active',
-    Failed = 'failed',
-    Expired = 'expired',
-    Chargeback = 'chargeback'
-}
+export const TransactionStatus = {
+    Active: 'active',
+    Failed: 'failed',
+    Expired: 'expired',
+    Chargeback: 'chargeback'
+} as const;
+
+export type TransactionStatus = typeof TransactionStatus[keyof typeof TransactionStatus];
+
 
 /**
  * 
@@ -4520,7 +4585,7 @@ export interface UpdateAvatarRequest {
      */
     'description'?: string;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof UpdateAvatarRequest
      */
@@ -4600,25 +4665,25 @@ export interface UpdateGroupGalleryRequest {
      */
     'membersOnly'?: boolean;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof UpdateGroupGalleryRequest
      */
     'roleIdsToView'?: Array<string> | null;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof UpdateGroupGalleryRequest
      */
     'roleIdsToSubmit'?: Array<string> | null;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof UpdateGroupGalleryRequest
      */
     'roleIdsToAutoApprove'?: Array<string> | null;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof UpdateGroupGalleryRequest
      */
@@ -4710,7 +4775,7 @@ export interface UpdateGroupRequest {
      */
     'rules'?: string;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof UpdateGroupRequest
      */
@@ -4791,7 +4856,7 @@ export interface UpdateUserRequest {
      */
     'acceptedTOSVersion'?: number;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof UpdateUserRequest
      */
@@ -4894,7 +4959,7 @@ export interface UpdateWorldRequest {
      */
     'releaseStatus'?: ReleaseStatus;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof UpdateWorldRequest
      */
@@ -5051,7 +5116,7 @@ export interface User {
      */
     'statusDescription': string;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof User
      */
@@ -5113,11 +5178,14 @@ export interface UserExists {
  * @enum {string}
  */
 
-export enum UserState {
-    Offline = 'offline',
-    Active = 'active',
-    Online = 'online'
-}
+export const UserState = {
+    Offline: 'offline',
+    Active: 'active',
+    Online: 'online'
+} as const;
+
+export type UserState = typeof UserState[keyof typeof UserState];
+
 
 /**
  * Defines the User\'s current status, for example \"ask me\", \"join me\" or \"offline. This status is a combined indicator of their online activity and privacy preference.
@@ -5125,13 +5193,16 @@ export enum UserState {
  * @enum {string}
  */
 
-export enum UserStatus {
-    Active = 'active',
-    JoinMe = 'join me',
-    AskMe = 'ask me',
-    Busy = 'busy',
-    Offline = 'offline'
-}
+export const UserStatus = {
+    Active: 'active',
+    JoinMe: 'join me',
+    AskMe: 'ask me',
+    Busy: 'busy',
+    Offline: 'offline'
+} as const;
+
+export type UserStatus = typeof UserStatus[keyof typeof UserStatus];
+
 
 /**
  * 
@@ -5401,7 +5472,7 @@ export interface World {
      */
     'releaseStatus': ReleaseStatus;
     /**
-     * 
+     *  
      * @type {Array<string>}
      * @memberof World
      */
