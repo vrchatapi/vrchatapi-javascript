@@ -47,10 +47,10 @@ export interface APIConfig {
     'address': string;
     /**
      * Public Announcements
-     * @type {Set<PublicAnnouncement>}
+     * @type {Set<APIConfigAnnouncement>}
      * @memberof APIConfig
      */
-    'announcements': Set<PublicAnnouncement>;
+    'announcements': Set<APIConfigAnnouncement>;
     /**
      * apiKey to be used for all other requests
      * @type {string}
@@ -270,10 +270,10 @@ export interface APIConfig {
     'downloadLinkWindows': string;
     /**
      * 
-     * @type {DownloadURLList}
+     * @type {APIConfigDownloadURLList}
      * @memberof APIConfig
      */
-    'downloadUrls': DownloadURLList;
+    'downloadUrls': APIConfigDownloadURLList;
     /**
      * Array of DynamicWorldRow objects, used by the game to display the list of world rows
      * @type {Set<DynamicContentRow>}
@@ -282,10 +282,10 @@ export interface APIConfig {
     'dynamicWorldRows': Set<DynamicContentRow>;
     /**
      * 
-     * @type {APIEventConfig}
+     * @type {APIConfigEvents}
      * @memberof APIConfig
      */
-    'events': APIEventConfig;
+    'events': APIConfigEvents;
     /**
      * Unknown
      * @type {string}
@@ -522,69 +522,114 @@ export interface APIConfig {
     'player-url-resolver-version': string;
 }
 /**
+ * Public Announcement
+ * @export
+ * @interface APIConfigAnnouncement
+ */
+export interface APIConfigAnnouncement {
+    /**
+     * Announcement name
+     * @type {string}
+     * @memberof APIConfigAnnouncement
+     */
+    'name': string;
+    /**
+     * Announcement text
+     * @type {string}
+     * @memberof APIConfigAnnouncement
+     */
+    'text': string;
+}
+/**
+ * Download links for various development assets.
+ * @export
+ * @interface APIConfigDownloadURLList
+ */
+export interface APIConfigDownloadURLList {
+    /**
+     * Download link for legacy SDK2
+     * @type {string}
+     * @memberof APIConfigDownloadURLList
+     * @deprecated
+     */
+    'sdk2': string;
+    /**
+     * Download link for SDK3 for Avatars
+     * @type {string}
+     * @memberof APIConfigDownloadURLList
+     */
+    'sdk3-avatars': string;
+    /**
+     * Download link for SDK3 for Worlds
+     * @type {string}
+     * @memberof APIConfigDownloadURLList
+     */
+    'sdk3-worlds': string;
+}
+/**
  * 
  * @export
- * @interface APIEventConfig
+ * @interface APIConfigEvents
  */
-export interface APIEventConfig {
+export interface APIConfigEvents {
     /**
      * Unknown
      * @type {number}
-     * @memberof APIEventConfig
+     * @memberof APIConfigEvents
      */
     'distanceClose': number;
     /**
      * Unknown
      * @type {number}
-     * @memberof APIEventConfig
+     * @memberof APIConfigEvents
      */
     'distanceFactor': number;
     /**
      * Unknown
      * @type {number}
-     * @memberof APIEventConfig
+     * @memberof APIConfigEvents
      */
     'distanceFar': number;
     /**
      * Unknown
      * @type {number}
-     * @memberof APIEventConfig
+     * @memberof APIConfigEvents
      */
     'groupDistance': number;
     /**
      * Unknown
      * @type {number}
-     * @memberof APIEventConfig
+     * @memberof APIConfigEvents
      */
     'maximumBunchSize': number;
     /**
      * Unknown
      * @type {number}
-     * @memberof APIEventConfig
+     * @memberof APIConfigEvents
      */
     'notVisibleFactor': number;
     /**
      * Unknown
      * @type {number}
-     * @memberof APIEventConfig
+     * @memberof APIConfigEvents
      */
     'playerOrderBucketSize': number;
     /**
      * Unknown
      * @type {number}
-     * @memberof APIEventConfig
+     * @memberof APIConfigEvents
      */
     'playerOrderFactor': number;
     /**
      * Unknown
      * @type {number}
-     * @memberof APIEventConfig
+     * @memberof APIConfigEvents
      */
     'slowUpdateFactorThreshold': number;
     /**
      * Unknown
      * @type {number}
-     * @memberof APIEventConfig
+     * @memberof APIConfigEvents
      */
     'viewSegmentLength': number;
 }
@@ -637,6 +682,19 @@ export interface AddFavoriteRequest {
      * @memberof AddFavoriteRequest
      */
     'tags': Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface AddGroupGalleryImageRequest
+ */
+export interface AddGroupGalleryImageRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof AddGroupGalleryImageRequest
+     */
+    'fileId': string;
 }
 /**
  * 
@@ -711,7 +769,7 @@ export interface Avatar {
      */
     'releaseStatus': ReleaseStatus;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof Avatar
      */
@@ -770,6 +828,19 @@ export interface AvatarUnityPackageUrlObject {
 /**
  * 
  * @export
+ * @interface BanGroupMemberRequest
+ */
+export interface BanGroupMemberRequest {
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof BanGroupMemberRequest
+     */
+    'userId': string;
+}
+/**
+ * 
+ * @export
  * @interface CreateAvatarRequest
  */
 export interface CreateAvatarRequest {
@@ -798,7 +869,7 @@ export interface CreateAvatarRequest {
      */
     'description'?: string;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof CreateAvatarRequest
      */
@@ -853,7 +924,7 @@ export interface CreateFileRequest {
      */
     'extension': string;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof CreateFileRequest
      */
@@ -889,6 +960,197 @@ export interface CreateFileVersionRequest {
      * @memberof CreateFileVersionRequest
      */
     'fileSizeInBytes'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CreateGroupAnnouncementRequest
+ */
+export interface CreateGroupAnnouncementRequest {
+    /**
+     * Announcement title
+     * @type {string}
+     * @memberof CreateGroupAnnouncementRequest
+     */
+    'title': string;
+    /**
+     * Announcement text
+     * @type {string}
+     * @memberof CreateGroupAnnouncementRequest
+     */
+    'text'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupAnnouncementRequest
+     */
+    'imageId'?: string;
+    /**
+     * Send notification to group members.
+     * @type {boolean}
+     * @memberof CreateGroupAnnouncementRequest
+     */
+    'sendNotification'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface CreateGroupGalleryRequest
+ */
+export interface CreateGroupGalleryRequest {
+    /**
+     * Name of the gallery.
+     * @type {string}
+     * @memberof CreateGroupGalleryRequest
+     */
+    'name': string;
+    /**
+     * Description of the gallery.
+     * @type {string}
+     * @memberof CreateGroupGalleryRequest
+     */
+    'description'?: string;
+    /**
+     * Whether the gallery is members only.
+     * @type {boolean}
+     * @memberof CreateGroupGalleryRequest
+     */
+    'membersOnly'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateGroupGalleryRequest
+     */
+    'roleIdsToView'?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateGroupGalleryRequest
+     */
+    'roleIdsToSubmit'?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateGroupGalleryRequest
+     */
+    'roleIdsToAutoApprove'?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateGroupGalleryRequest
+     */
+    'roleIdsToManage'?: Array<string> | null;
+}
+/**
+ * 
+ * @export
+ * @interface CreateGroupInviteRequest
+ */
+export interface CreateGroupInviteRequest {
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof CreateGroupInviteRequest
+     */
+    'userId': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateGroupInviteRequest
+     */
+    'confirmOverrideBlock'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface CreateGroupRequest
+ */
+export interface CreateGroupRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupRequest
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupRequest
+     */
+    'shortCode': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupRequest
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {GroupJoinState}
+     * @memberof CreateGroupRequest
+     */
+    'joinState'?: GroupJoinState;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupRequest
+     */
+    'iconId'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupRequest
+     */
+    'bannerId'?: string | null;
+    /**
+     * 
+     * @type {GroupPrivacy}
+     * @memberof CreateGroupRequest
+     */
+    'privacy'?: GroupPrivacy;
+    /**
+     * 
+     * @type {GroupRoleTemplate}
+     * @memberof CreateGroupRequest
+     */
+    'roleTemplate': GroupRoleTemplate;
+}
+/**
+ * 
+ * @export
+ * @interface CreateGroupRoleRequest
+ */
+export interface CreateGroupRoleRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupRoleRequest
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupRoleRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupRoleRequest
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateGroupRoleRequest
+     */
+    'isSelfAssignable'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateGroupRoleRequest
+     */
+    'permissions'?: Array<string>;
 }
 /**
  * 
@@ -963,7 +1225,7 @@ export interface CreateWorldRequest {
      */
     'releaseStatus'?: ReleaseStatus;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof CreateWorldRequest
      */
@@ -1181,7 +1443,7 @@ export interface CurrentUser {
      */
     'onlineFriends'?: Array<string>;
     /**
-     *  
+     * 
      * @type {Array<PastDisplayName>}
      * @memberof CurrentUser
      */
@@ -1278,15 +1540,12 @@ export interface CurrentUser {
  * @enum {string}
  */
 
-export const DeploymentGroup = {
-    Blue: 'blue',
-    Green: 'green',
-    Grape: 'grape',
-    Cherry: 'cherry'
-} as const;
-
-export type DeploymentGroup = typeof DeploymentGroup[keyof typeof DeploymentGroup];
-
+export enum DeploymentGroup {
+    Blue = 'blue',
+    Green = 'green',
+    Grape = 'grape',
+    Cherry = 'cherry'
+}
 
 /**
  * \"none\" User is a normal user \"trusted\" Unknown \"internal\" Is a VRChat Developer \"moderator\" Is a VRChat Moderator  Staff can hide their developerType at will.
@@ -1294,42 +1553,13 @@ export type DeploymentGroup = typeof DeploymentGroup[keyof typeof DeploymentGrou
  * @enum {string}
  */
 
-export const DeveloperType = {
-    None: 'none',
-    Trusted: 'trusted',
-    Internal: 'internal',
-    Moderator: 'moderator'
-} as const;
-
-export type DeveloperType = typeof DeveloperType[keyof typeof DeveloperType];
-
-
-/**
- * Download links for various development assets.
- * @export
- * @interface DownloadURLList
- */
-export interface DownloadURLList {
-    /**
-     * Download link for legacy SDK2
-     * @type {string}
-     * @memberof DownloadURLList
-     * @deprecated
-     */
-    'sdk2': string;
-    /**
-     * Download link for SDK3 for Avatars
-     * @type {string}
-     * @memberof DownloadURLList
-     */
-    'sdk3-avatars': string;
-    /**
-     * Download link for SDK3 for Worlds
-     * @type {string}
-     * @memberof DownloadURLList
-     */
-    'sdk3-worlds': string;
+export enum DeveloperType {
+    None = 'none',
+    Trusted = 'trusted',
+    Internal = 'internal',
+    Moderator = 'moderator'
 }
+
 /**
  * 
  * @export
@@ -1404,7 +1634,7 @@ export interface Favorite {
      */
     'id': string;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof Favorite
      */
@@ -1453,7 +1683,7 @@ export interface FavoriteGroup {
      */
     'ownerId': string;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof FavoriteGroup
      */
@@ -1477,14 +1707,11 @@ export interface FavoriteGroup {
  * @enum {string}
  */
 
-export const FavoriteGroupVisibility = {
-    Private: 'private',
-    Friends: 'friends',
-    Public: 'public'
-} as const;
-
-export type FavoriteGroupVisibility = typeof FavoriteGroupVisibility[keyof typeof FavoriteGroupVisibility];
-
+export enum FavoriteGroupVisibility {
+    Private = 'private',
+    Friends = 'friends',
+    Public = 'public'
+}
 
 /**
  * 
@@ -1492,14 +1719,11 @@ export type FavoriteGroupVisibility = typeof FavoriteGroupVisibility[keyof typeo
  * @enum {string}
  */
 
-export const FavoriteType = {
-    World: 'world',
-    Friend: 'friend',
-    Avatar: 'avatar'
-} as const;
-
-export type FavoriteType = typeof FavoriteType[keyof typeof FavoriteType];
-
+export enum FavoriteType {
+    World = 'world',
+    Friend = 'friend',
+    Avatar = 'avatar'
+}
 
 /**
  * 
@@ -1551,13 +1775,15 @@ export interface FileData {
     'url': string;
 }
 
-export const FileDataCategoryEnum = {
-    Multipart: 'multipart',
-    Queued: 'queued',
-    Simple: 'simple'
-} as const;
-
-export type FileDataCategoryEnum = typeof FileDataCategoryEnum[keyof typeof FileDataCategoryEnum];
+/**
+    * @export
+    * @enum {string}
+    */
+export enum FileDataCategoryEnum {
+    Multipart = 'multipart',
+    Queued = 'queued',
+    Simple = 'simple'
+}
 
 /**
  * 
@@ -1565,15 +1791,12 @@ export type FileDataCategoryEnum = typeof FileDataCategoryEnum[keyof typeof File
  * @enum {string}
  */
 
-export const FileStatus = {
-    Waiting: 'waiting',
-    Complete: 'complete',
-    None: 'none',
-    Queued: 'queued'
-} as const;
-
-export type FileStatus = typeof FileStatus[keyof typeof FileStatus];
-
+export enum FileStatus {
+    Waiting = 'waiting',
+    Complete = 'complete',
+    None = 'none',
+    Queued = 'queued'
+}
 
 /**
  * 
@@ -1735,6 +1958,829 @@ export interface FriendStatus {
 /**
  * 
  * @export
+ * @interface Group
+ */
+export interface Group {
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'shortCode'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'discriminator'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'iconUrl'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'bannerUrl'?: string | null;
+    /**
+     * 
+     * @type {GroupPrivacy}
+     * @memberof Group
+     */
+    'privacy'?: GroupPrivacy;
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof Group
+     */
+    'ownerId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'rules'?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Group
+     */
+    'links'?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Group
+     */
+    'languages'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'iconId'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'bannerId'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Group
+     */
+    'memberCount'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'memberCountSyncedAt'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Group
+     */
+    'isVerified'?: boolean;
+    /**
+     * 
+     * @type {GroupJoinState}
+     * @memberof Group
+     */
+    'joinState'?: GroupJoinState;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Group
+     */
+    'tags'?: Array<string>;
+    /**
+     * 
+     * @type {Array<GroupGallery>}
+     * @memberof Group
+     */
+    'galleries'?: Array<GroupGallery>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Group
+     */
+    'createdAt'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Group
+     */
+    'onlineMemberCount'?: number;
+    /**
+     * 
+     * @type {GroupMemberStatus}
+     * @memberof Group
+     */
+    'membershipStatus'?: GroupMemberStatus;
+    /**
+     * 
+     * @type {GroupMyMember}
+     * @memberof Group
+     */
+    'myMember'?: GroupMyMember;
+    /**
+     * Only returned if ?includeRoles=true is specified.
+     * @type {Array<GroupRole>}
+     * @memberof Group
+     */
+    'roles'?: Array<GroupRole> | null;
+}
+/**
+ * 
+ * @export
+ * @interface GroupAnnouncement
+ */
+export interface GroupAnnouncement {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAnnouncement
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAnnouncement
+     */
+    'groupId'?: string;
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof GroupAnnouncement
+     */
+    'authorId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAnnouncement
+     */
+    'title'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAnnouncement
+     */
+    'text'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAnnouncement
+     */
+    'imageId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAnnouncement
+     */
+    'imageUrl'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAnnouncement
+     */
+    'createdAt'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAnnouncement
+     */
+    'updatedAt'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface GroupAuditLogEntry
+ */
+export interface GroupAuditLogEntry {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAuditLogEntry
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAuditLogEntry
+     */
+    'created_at'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAuditLogEntry
+     */
+    'groupId'?: string;
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof GroupAuditLogEntry
+     */
+    'actorId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupAuditLogEntry
+     */
+    'actorDisplayname'?: string;
+    /**
+     * Typically GroupID or GroupRoleID, but could be other types of IDs.
+     * @type {string}
+     * @memberof GroupAuditLogEntry
+     */
+    'targetId'?: string;
+    /**
+     * The type of event that occurred. This is a string that is prefixed with the type of object that the event occurred on. For example, a group role update event would be prefixed with `group.role`.
+     * @type {string}
+     * @memberof GroupAuditLogEntry
+     */
+    'eventType'?: string;
+    /**
+     * A human-readable description of the event.
+     * @type {string}
+     * @memberof GroupAuditLogEntry
+     */
+    'description'?: string;
+    /**
+     * The data associated with the event. The format of this data is dependent on the event type.
+     * @type {object}
+     * @memberof GroupAuditLogEntry
+     */
+    'data'?: object;
+}
+/**
+ * 
+ * @export
+ * @interface GroupGallery
+ */
+export interface GroupGallery {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupGallery
+     */
+    'id'?: string;
+    /**
+     * Name of the gallery.
+     * @type {string}
+     * @memberof GroupGallery
+     */
+    'name'?: string;
+    /**
+     * Description of the gallery.
+     * @type {string}
+     * @memberof GroupGallery
+     */
+    'description'?: string;
+    /**
+     * Whether the gallery is members only.
+     * @type {boolean}
+     * @memberof GroupGallery
+     */
+    'membersOnly'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GroupGallery
+     */
+    'roleIdsToView'?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GroupGallery
+     */
+    'roleIdsToSubmit'?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GroupGallery
+     */
+    'roleIdsToAutoApprove'?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GroupGallery
+     */
+    'roleIdsToManage'?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupGallery
+     */
+    'createdAt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupGallery
+     */
+    'updatedAt'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface GroupGalleryImage
+ */
+export interface GroupGalleryImage {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupGalleryImage
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupGalleryImage
+     */
+    'groupId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupGalleryImage
+     */
+    'galleryId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupGalleryImage
+     */
+    'fileId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupGalleryImage
+     */
+    'imageUrl'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupGalleryImage
+     */
+    'createdAt'?: string;
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof GroupGalleryImage
+     */
+    'submittedByUserId'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupGalleryImage
+     */
+    'approved'?: boolean;
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof GroupGalleryImage
+     */
+    'approvedByUserId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupGalleryImage
+     */
+    'approvedAt'?: string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum GroupJoinState {
+    Closed = 'closed',
+    Invite = 'invite',
+    Request = 'request',
+    Open = 'open'
+}
+
+/**
+ * 
+ * @export
+ * @interface GroupLimitedMember
+ */
+export interface GroupLimitedMember {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupLimitedMember
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupLimitedMember
+     */
+    'groupId'?: string;
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof GroupLimitedMember
+     */
+    'userId'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupLimitedMember
+     */
+    'isRepresenting'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface GroupMember
+ */
+export interface GroupMember {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMember
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMember
+     */
+    'groupId'?: string;
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof GroupMember
+     */
+    'userId'?: string;
+    /**
+     * Whether the user is representing the group. This makes the group show up above the name tag in-game.
+     * @type {boolean}
+     * @memberof GroupMember
+     */
+    'isRepresenting'?: boolean;
+    /**
+     * 
+     * @type {GroupMemberLimitedUser}
+     * @memberof GroupMember
+     */
+    'user'?: GroupMemberLimitedUser;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GroupMember
+     */
+    'roleIds'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMember
+     */
+    'joinedAt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMember
+     */
+    'membershipStatus'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMember
+     */
+    'visibility'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupMember
+     */
+    'isSubscribedToAnnouncements'?: boolean;
+    /**
+     * Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
+     * @type {string}
+     * @memberof GroupMember
+     */
+    'createdAt'?: string | null;
+    /**
+     * Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
+     * @type {string}
+     * @memberof GroupMember
+     */
+    'bannedAt'?: string | null;
+    /**
+     * Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
+     * @type {string}
+     * @memberof GroupMember
+     */
+    'managerNotes'?: string | null;
+}
+/**
+ * Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
+ * @export
+ * @interface GroupMemberLimitedUser
+ */
+export interface GroupMemberLimitedUser {
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof GroupMemberLimitedUser
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMemberLimitedUser
+     */
+    'displayName'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMemberLimitedUser
+     */
+    'thumbnailUrl'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMemberLimitedUser
+     */
+    'iconUrl'?: string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum GroupMemberStatus {
+    Inactive = 'inactive',
+    Member = 'member',
+    Requested = 'requested',
+    Invited = 'invited'
+}
+
+/**
+ * 
+ * @export
+ * @interface GroupMyMember
+ */
+export interface GroupMyMember {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMyMember
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMyMember
+     */
+    'groupId'?: string;
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof GroupMyMember
+     */
+    'userId'?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GroupMyMember
+     */
+    'roleIds'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMyMember
+     */
+    'managerNotes'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMyMember
+     */
+    'membershipStatus'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupMyMember
+     */
+    'isSubscribedToAnnouncements'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMyMember
+     */
+    'visibility'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupMyMember
+     */
+    'isRepresenting'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMyMember
+     */
+    'joinedAt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMyMember
+     */
+    'bannedAt'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupMyMember
+     */
+    'has2FA'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GroupMyMember
+     */
+    'permissions'?: Array<string>;
+}
+/**
+ * A permission that can be granted to a role in a group.
+ * @export
+ * @interface GroupPermission
+ */
+export interface GroupPermission {
+    /**
+     * The name of the permission.
+     * @type {string}
+     * @memberof GroupPermission
+     */
+    'name'?: string;
+    /**
+     * The display name of the permission.
+     * @type {string}
+     * @memberof GroupPermission
+     */
+    'displayName'?: string;
+    /**
+     * Human-readable description of the permission.
+     * @type {string}
+     * @memberof GroupPermission
+     */
+    'help'?: string;
+    /**
+     * Whether this permission is a \"management\" permission.
+     * @type {boolean}
+     * @memberof GroupPermission
+     */
+    'isManagementPermission'?: boolean;
+    /**
+     * Whether the user is allowed to add this permission to a role.
+     * @type {boolean}
+     * @memberof GroupPermission
+     */
+    'allowedToAdd'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum GroupPrivacy {
+    Default = 'default',
+    Private = 'private'
+}
+
+/**
+ * 
+ * @export
+ * @interface GroupRole
+ */
+export interface GroupRole {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupRole
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupRole
+     */
+    'groupId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupRole
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupRole
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupRole
+     */
+    'isSelfAssignable'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GroupRole
+     */
+    'permissions'?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupRole
+     */
+    'isManagementRole'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupRole
+     */
+    'requiresTwoFactor'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupRole
+     */
+    'requiresPurchase'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof GroupRole
+     */
+    'order'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupRole
+     */
+    'createdAt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupRole
+     */
+    'updatedAt'?: string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum GroupRoleTemplate {
+    Default = 'default',
+    ManagedFree = 'managedFree',
+    ManagedInvite = 'managedInvite',
+    ManagedRequest = 'managedRequest'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum GroupUserVisibility {
+    Visible = 'visible',
+    Hidden = 'hidden',
+    Friends = 'friends'
+}
+
+/**
+ * 
+ * @export
  * @interface InfoPush
  */
 export interface InfoPush {
@@ -1763,7 +2809,7 @@ export interface InfoPush {
      */
     'priority': number;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof InfoPush
      */
@@ -1918,14 +2964,16 @@ export interface InfoPushDataClickable {
     'parameters'?: Array<string>;
 }
 
-export const InfoPushDataClickableCommandEnum = {
-    OpenUrl: 'OpenURL',
-    OpenVrcPlusMenu: 'OpenVRCPlusMenu',
-    OpenSafetyMenu: 'OpenSafetyMenu',
-    CannedWorldSearch: 'CannedWorldSearch'
-} as const;
-
-export type InfoPushDataClickableCommandEnum = typeof InfoPushDataClickableCommandEnum[keyof typeof InfoPushDataClickableCommandEnum];
+/**
+    * @export
+    * @enum {string}
+    */
+export enum InfoPushDataClickableCommandEnum {
+    OpenUrl = 'OpenURL',
+    OpenVrcPlusMenu = 'OpenVRCPlusMenu',
+    OpenSafetyMenu = 'OpenSafetyMenu',
+    CannedWorldSearch = 'CannedWorldSearch'
+}
 
 /**
  * * `hidden` field is only present if InstanceType is `hidden` aka \"Friends+\", and is instance creator. * `friends` field is only present if InstanceType is `friends` aka \"Friends\", and is instance creator. * `private` field is only present if InstanceType is `private` aka \"Invite\" or \"Invite+\", and is instance creator.
@@ -2117,15 +3165,12 @@ export interface InstanceShortNameResponse {
  * @enum {string}
  */
 
-export const InstanceType = {
-    Public: 'public',
-    Hidden: 'hidden',
-    Friends: 'friends',
-    Private: 'private'
-} as const;
-
-export type InstanceType = typeof InstanceType[keyof typeof InstanceType];
-
+export enum InstanceType {
+    Public = 'public',
+    Hidden = 'hidden',
+    Friends = 'friends',
+    Private = 'private'
+}
 
 /**
  * 
@@ -2182,15 +3227,12 @@ export interface InviteMessage {
  * @enum {string}
  */
 
-export const InviteMessageType = {
-    Message: 'message',
-    Response: 'response',
-    Request: 'request',
-    RequestResponse: 'requestResponse'
-} as const;
-
-export type InviteMessageType = typeof InviteMessageType[keyof typeof InviteMessageType];
-
+export enum InviteMessageType {
+    Message = 'message',
+    Response = 'response',
+    Request = 'request',
+    RequestResponse = 'requestResponse'
+}
 
 /**
  * 
@@ -2261,13 +3303,10 @@ export interface License {
  * @enum {string}
  */
 
-export const LicenseAction = {
-    Wear: 'wear',
-    Have: 'have'
-} as const;
-
-export type LicenseAction = typeof LicenseAction[keyof typeof LicenseAction];
-
+export enum LicenseAction {
+    Wear = 'wear',
+    Have = 'have'
+}
 
 /**
  * 
@@ -2306,15 +3345,12 @@ export interface LicenseGroup {
  * @enum {string}
  */
 
-export const LicenseType = {
-    Avatar: 'avatar',
-    LicenseGroup: 'licenseGroup',
-    Permission: 'permission',
-    Product: 'product'
-} as const;
-
-export type LicenseType = typeof LicenseType[keyof typeof LicenseType];
-
+export enum LicenseType {
+    Avatar = 'avatar',
+    LicenseGroup = 'licenseGroup',
+    Permission = 'permission',
+    Product = 'product'
+}
 
 /**
  * 
@@ -2542,7 +3578,7 @@ export interface LimitedWorld {
      */
     'releaseStatus': ReleaseStatus;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof LimitedWorld
      */
@@ -2554,7 +3590,7 @@ export interface LimitedWorld {
      */
     'thumbnailImageUrl': string;
     /**
-     *  
+     * 
      * @type {Array<LimitedUnityPackage>}
      * @memberof LimitedWorld
      */
@@ -2572,25 +3608,22 @@ export interface LimitedWorld {
  * @enum {string}
  */
 
-export const MIMEType = {
-    ImageJpeg: 'image/jpeg',
-    ImageJpg: 'image/jpg',
-    ImagePng: 'image/png',
-    ImageWebp: 'image/webp',
-    ImageGif: 'image/gif',
-    ImageBmp: 'image/bmp',
-    ImageSvgxml: 'image/svg＋xml',
-    ImageTiff: 'image/tiff',
-    ApplicationXAvatar: 'application/x-avatar',
-    ApplicationXWorld: 'application/x-world',
-    ApplicationGzip: 'application/gzip',
-    ApplicationXRsyncSignature: 'application/x-rsync-signature',
-    ApplicationXRsyncDelta: 'application/x-rsync-delta',
-    ApplicationOctetStream: 'application/octet-stream'
-} as const;
-
-export type MIMEType = typeof MIMEType[keyof typeof MIMEType];
-
+export enum MIMEType {
+    ImageJpeg = 'image/jpeg',
+    ImageJpg = 'image/jpg',
+    ImagePng = 'image/png',
+    ImageWebp = 'image/webp',
+    ImageGif = 'image/gif',
+    ImageBmp = 'image/bmp',
+    ImageSvgxml = 'image/svg＋xml',
+    ImageTiff = 'image/tiff',
+    ApplicationXAvatar = 'application/x-avatar',
+    ApplicationXWorld = 'application/x-world',
+    ApplicationGzip = 'application/gzip',
+    ApplicationXRsyncSignature = 'application/x-rsync-signature',
+    ApplicationXRsyncDelta = 'application/x-rsync-delta',
+    ApplicationOctetStream = 'application/octet-stream'
+}
 
 /**
  * 
@@ -2642,13 +3675,13 @@ export interface ModelFile {
      */
     'ownerId': string;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof ModelFile
      */
     'tags': Array<string>;
     /**
-     *  
+     * 
      * @type {Set<FileVersion>}
      * @memberof ModelFile
      */
@@ -2686,7 +3719,7 @@ export interface Notification {
      */
     'created_at': string;
     /**
-     * **NOTICE:** This is not a JSON object, this is a json **encoded** object, meaning you have to json-de-encode to get the NotificationDetail object depending on the NotificationType.
+     * **NOTICE:** This is not a JSON object when received from the REST API, but it is when received from the Websocket API. When received from the REST API, this is a json **encoded** object, meaning you have to json-de-encode to get the NotificationDetail object depending on the NotificationType.
      * @type {string}
      * @memberof Notification
      */
@@ -2704,11 +3737,17 @@ export interface Notification {
      */
     'message': string;
     /**
-     * 
+     * Not included in notification objects received from the Websocket API
      * @type {boolean}
      * @memberof Notification
      */
-    'seen': boolean;
+    'seen'?: boolean;
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof Notification
+     */
+    'receiverUserId'?: string;
     /**
      * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
      * @type {string}
@@ -2735,18 +3774,51 @@ export interface Notification {
  * @enum {string}
  */
 
-export const NotificationType = {
-    FriendRequest: 'friendRequest',
-    Invite: 'invite',
-    InviteResponse: 'inviteResponse',
-    RequestInvite: 'requestInvite',
-    RequestInviteResponse: 'requestInviteResponse',
-    Votetokick: 'votetokick'
-} as const;
+export enum NotificationType {
+    FriendRequest = 'friendRequest',
+    Invite = 'invite',
+    InviteResponse = 'inviteResponse',
+    RequestInvite = 'requestInvite',
+    RequestInviteResponse = 'requestInviteResponse',
+    Votetokick = 'votetokick'
+}
 
-export type NotificationType = typeof NotificationType[keyof typeof NotificationType];
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
 
+export enum OrderOption {
+    Ascending = 'ascending',
+    Descending = 'descending'
+}
 
+/**
+ * 
+ * @export
+ * @interface PaginatedGroupAuditLogEntryList
+ */
+export interface PaginatedGroupAuditLogEntryList {
+    /**
+     * 
+     * @type {Array<GroupAuditLogEntry>}
+     * @memberof PaginatedGroupAuditLogEntryList
+     */
+    'results'?: Array<GroupAuditLogEntry>;
+    /**
+     * The total number of results that the query would return if there were no pagination.
+     * @type {number}
+     * @memberof PaginatedGroupAuditLogEntryList
+     */
+    'totalCount'?: number;
+    /**
+     * Whether there are more results after this page.
+     * @type {boolean}
+     * @memberof PaginatedGroupAuditLogEntryList
+     */
+    'hasNext'?: boolean;
+}
 /**
  * 
  * @export
@@ -2852,54 +3924,29 @@ export interface PlayerModeration {
  * @enum {string}
  */
 
-export const PlayerModerationType = {
-    Mute: 'mute',
-    Unmute: 'unmute',
-    Block: 'block',
-    Unblock: 'unblock',
-    InteractOn: 'interactOn',
-    InteractOff: 'interactOff'
-} as const;
-
-export type PlayerModerationType = typeof PlayerModerationType[keyof typeof PlayerModerationType];
-
-
-/**
- * Public Announcement
- * @export
- * @interface PublicAnnouncement
- */
-export interface PublicAnnouncement {
-    /**
-     * Announcement name
-     * @type {string}
-     * @memberof PublicAnnouncement
-     */
-    'name': string;
-    /**
-     * Announcement text
-     * @type {string}
-     * @memberof PublicAnnouncement
-     */
-    'text': string;
+export enum PlayerModerationType {
+    Mute = 'mute',
+    Unmute = 'unmute',
+    Block = 'block',
+    Unblock = 'unblock',
+    InteractOn = 'interactOn',
+    InteractOff = 'interactOff'
 }
+
 /**
  * API/Photon region.
  * @export
  * @enum {string}
  */
 
-export const Region = {
-    Us: 'us',
-    Use: 'use',
-    Usw: 'usw',
-    Eu: 'eu',
-    Jp: 'jp',
-    Unknown: 'unknown'
-} as const;
-
-export type Region = typeof Region[keyof typeof Region];
-
+export enum Region {
+    Us = 'us',
+    Use = 'use',
+    Usw = 'usw',
+    Eu = 'eu',
+    Jp = 'jp',
+    Unknown = 'unknown'
+}
 
 /**
  * 
@@ -2907,14 +3954,11 @@ export type Region = typeof Region[keyof typeof Region];
  * @enum {string}
  */
 
-export const ReleaseStatus = {
-    Public: 'public',
-    Private: 'private',
-    Hidden: 'hidden'
-} as const;
-
-export type ReleaseStatus = typeof ReleaseStatus[keyof typeof ReleaseStatus];
-
+export enum ReleaseStatus {
+    Public = 'public',
+    Private = 'private',
+    Hidden = 'hidden'
+}
 
 /**
  * 
@@ -2928,6 +3972,19 @@ export interface RequestInviteRequest {
      * @memberof RequestInviteRequest
      */
     'messageSlot'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface RespondGroupJoinRequest
+ */
+export interface RespondGroupJoinRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof RespondGroupJoinRequest
+     */
+    'action'?: string;
 }
 /**
  * 
@@ -3007,6 +4064,33 @@ export interface SentNotification {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export enum SortOption {
+    Popularity = 'popularity',
+    Heat = 'heat',
+    Trust = 'trust',
+    Shuffle = 'shuffle',
+    Random = 'random',
+    Favorites = 'favorites',
+    ReportScore = 'reportScore',
+    ReportCount = 'reportCount',
+    PublicationDate = 'publicationDate',
+    LabsPublicationDate = 'labsPublicationDate',
+    Created = 'created',
+    CreatedAt = '_created_at',
+    Updated = 'updated',
+    UpdatedAt = '_updated_at',
+    Order = 'order',
+    Relevance = 'relevance',
+    Magic = 'magic',
+    Name = 'name'
+}
+
+/**
+ * 
+ * @export
  * @interface Subscription
  */
 export interface Subscription {
@@ -3053,16 +4137,13 @@ export interface Subscription {
  * @enum {string}
  */
 
-export const SubscriptionPeriod = {
-    Hour: 'hour',
-    Day: 'day',
-    Week: 'week',
-    Month: 'month',
-    Year: 'year'
-} as const;
-
-export type SubscriptionPeriod = typeof SubscriptionPeriod[keyof typeof SubscriptionPeriod];
-
+export enum SubscriptionPeriod {
+    Hour = 'hour',
+    Day = 'day',
+    Week = 'week',
+    Month = 'month',
+    Year = 'year'
+}
 
 /**
  * 
@@ -3253,15 +4334,12 @@ export interface TransactionAgreement {
  * @enum {string}
  */
 
-export const TransactionStatus = {
-    Active: 'active',
-    Failed: 'failed',
-    Expired: 'expired',
-    Chargeback: 'chargeback'
-} as const;
-
-export type TransactionStatus = typeof TransactionStatus[keyof typeof TransactionStatus];
-
+export enum TransactionStatus {
+    Active = 'active',
+    Failed = 'failed',
+    Expired = 'expired',
+    Chargeback = 'chargeback'
+}
 
 /**
  * 
@@ -3442,7 +4520,7 @@ export interface UpdateAvatarRequest {
      */
     'description'?: string;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof UpdateAvatarRequest
      */
@@ -3500,6 +4578,184 @@ export interface UpdateFavoriteGroupRequest {
 /**
  * 
  * @export
+ * @interface UpdateGroupGalleryRequest
+ */
+export interface UpdateGroupGalleryRequest {
+    /**
+     * Name of the gallery.
+     * @type {string}
+     * @memberof UpdateGroupGalleryRequest
+     */
+    'name'?: string;
+    /**
+     * Description of the gallery.
+     * @type {string}
+     * @memberof UpdateGroupGalleryRequest
+     */
+    'description'?: string;
+    /**
+     * Whether the gallery is members only.
+     * @type {boolean}
+     * @memberof UpdateGroupGalleryRequest
+     */
+    'membersOnly'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UpdateGroupGalleryRequest
+     */
+    'roleIdsToView'?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UpdateGroupGalleryRequest
+     */
+    'roleIdsToSubmit'?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UpdateGroupGalleryRequest
+     */
+    'roleIdsToAutoApprove'?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UpdateGroupGalleryRequest
+     */
+    'roleIdsToManage'?: Array<string> | null;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateGroupMemberRequest
+ */
+export interface UpdateGroupMemberRequest {
+    /**
+     * 
+     * @type {GroupUserVisibility}
+     * @memberof UpdateGroupMemberRequest
+     */
+    'visibility'?: GroupUserVisibility;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateGroupMemberRequest
+     */
+    'isSubscribedToAnnouncements'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupMemberRequest
+     */
+    'managerNotes'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateGroupRequest
+ */
+export interface UpdateGroupRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupRequest
+     */
+    'shortCode'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupRequest
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {GroupJoinState}
+     * @memberof UpdateGroupRequest
+     */
+    'joinState'?: GroupJoinState;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupRequest
+     */
+    'iconId'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupRequest
+     */
+    'bannerId'?: string | null;
+    /**
+     * 3 letter language code
+     * @type {Array<string>}
+     * @memberof UpdateGroupRequest
+     */
+    'languages'?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UpdateGroupRequest
+     */
+    'links'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupRequest
+     */
+    'rules'?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UpdateGroupRequest
+     */
+    'tags'?: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateGroupRoleRequest
+ */
+export interface UpdateGroupRoleRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupRoleRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupRoleRequest
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateGroupRoleRequest
+     */
+    'isSelfAssignable'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UpdateGroupRoleRequest
+     */
+    'permissions'?: Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateGroupRoleRequest
+     */
+    'order'?: number;
+}
+/**
+ * 
+ * @export
  * @interface UpdateInviteMessageRequest
  */
 export interface UpdateInviteMessageRequest {
@@ -3535,7 +4791,7 @@ export interface UpdateUserRequest {
      */
     'acceptedTOSVersion'?: number;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof UpdateUserRequest
      */
@@ -3638,7 +4894,7 @@ export interface UpdateWorldRequest {
      */
     'releaseStatus'?: ReleaseStatus;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof UpdateWorldRequest
      */
@@ -3795,7 +5051,7 @@ export interface User {
      */
     'statusDescription': string;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof User
      */
@@ -3857,14 +5113,11 @@ export interface UserExists {
  * @enum {string}
  */
 
-export const UserState = {
-    Offline: 'offline',
-    Active: 'active',
-    Online: 'online'
-} as const;
-
-export type UserState = typeof UserState[keyof typeof UserState];
-
+export enum UserState {
+    Offline = 'offline',
+    Active = 'active',
+    Online = 'online'
+}
 
 /**
  * Defines the User\'s current status, for example \"ask me\", \"join me\" or \"offline. This status is a combined indicator of their online activity and privacy preference.
@@ -3872,16 +5125,13 @@ export type UserState = typeof UserState[keyof typeof UserState];
  * @enum {string}
  */
 
-export const UserStatus = {
-    Active: 'active',
-    JoinMe: 'join me',
-    AskMe: 'ask me',
-    Busy: 'busy',
-    Offline: 'offline'
-} as const;
-
-export type UserStatus = typeof UserStatus[keyof typeof UserStatus];
-
+export enum UserStatus {
+    Active = 'active',
+    JoinMe = 'join me',
+    AskMe = 'ask me',
+    Busy = 'busy',
+    Offline = 'offline'
+}
 
 /**
  * 
@@ -4151,7 +5401,7 @@ export interface World {
      */
     'releaseStatus': ReleaseStatus;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof World
      */
@@ -4281,7 +5531,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
         /**
          * Deletes the account with given ID. Normal users only have permission to delete their own account. Account deletion is 14 days from this request, and will be cancelled if you do an authenticated request with the account afterwards.  **VRC+ NOTE:** Despite the 14-days cooldown, any VRC+ subscription will be cancelled **immediately**.  **METHOD NOTE:** Despite this being a Delete action, the method type required is PUT.
          * @summary Delete User
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4517,7 +5767,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
         /**
          * Deletes the account with given ID. Normal users only have permission to delete their own account. Account deletion is 14 days from this request, and will be cancelled if you do an authenticated request with the account afterwards.  **VRC+ NOTE:** Despite the 14-days cooldown, any VRC+ subscription will be cancelled **immediately**.  **METHOD NOTE:** Despite this being a Delete action, the method type required is PUT.
          * @summary Delete User
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4603,7 +5853,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
         /**
          * Deletes the account with given ID. Normal users only have permission to delete their own account. Account deletion is 14 days from this request, and will be cancelled if you do an authenticated request with the account afterwards.  **VRC+ NOTE:** Despite the 14-days cooldown, any VRC+ subscription will be cancelled **immediately**.  **METHOD NOTE:** Despite this being a Delete action, the method type required is PUT.
          * @summary Delete User
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4685,7 +5935,7 @@ export class AuthenticationApi extends BaseAPI {
     /**
      * Deletes the account with given ID. Normal users only have permission to delete their own account. Account deletion is 14 days from this request, and will be cancelled if you do an authenticated request with the account afterwards.  **VRC+ NOTE:** Despite the 14-days cooldown, any VRC+ subscription will be cancelled **immediately**.  **METHOD NOTE:** Despite this being a Delete action, the method type required is PUT.
      * @summary Delete User
-     * @param {string} userId 
+     * @param {string} userId Must be a valid user ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthenticationApi
@@ -4800,7 +6050,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
          * @summary Delete Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4838,7 +6088,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get information about a specific Avatar.
          * @summary Get Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4877,14 +6127,14 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
          * Search and list favorited avatars by query filters.
          * @summary List Favorited Avatars
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
@@ -4892,7 +6142,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFavoritedAvatars: async (featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getFavoritedAvatars: async (featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/avatars/favorites`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4975,7 +6225,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get the current avatar for the user. This will return an error for any other user than the one logged in.
          * @summary Get Own Avatar
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5014,22 +6264,22 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
          * Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
          * @summary Search Avatars
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {'me'} [user] Set to &#x60;me&#x60; for searching own avatars.
          * @param {string} [userId] Filter by UserID.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchAvatars: async (featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchAvatars: async (featured?: boolean, sort?: SortOption, user?: 'me', userId?: string, n?: number, order?: OrderOption, offset?: number, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/avatars`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5112,7 +6362,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Switches into that avatar.
          * @summary Select Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5150,7 +6400,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Switches into that avatar as your fallback avatar.
          * @summary Select Fallback Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5188,7 +6438,7 @@ export const AvatarsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Update information about a specific avatar.
          * @summary Update Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {UpdateAvatarRequest} [updateAvatarRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5251,7 +6501,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
         /**
          * Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
          * @summary Delete Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5262,7 +6512,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
         /**
          * Get information about a specific Avatar.
          * @summary Get Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5274,14 +6524,14 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
          * Search and list favorited avatars by query filters.
          * @summary List Favorited Avatars
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
@@ -5289,14 +6539,14 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFavoritedAvatars(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Avatar>>> {
+        async getFavoritedAvatars(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Avatar>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFavoritedAvatars(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get the current avatar for the user. This will return an error for any other user than the one logged in.
          * @summary Get Own Avatar
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5308,29 +6558,29 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
          * Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
          * @summary Search Avatars
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {'me'} [user] Set to &#x60;me&#x60; for searching own avatars.
          * @param {string} [userId] Filter by UserID.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchAvatars(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Avatar>>> {
+        async searchAvatars(featured?: boolean, sort?: SortOption, user?: 'me', userId?: string, n?: number, order?: OrderOption, offset?: number, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Avatar>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchAvatars(featured, sort, user, userId, n, order, offset, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Switches into that avatar.
          * @summary Select Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5341,7 +6591,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
         /**
          * Switches into that avatar as your fallback avatar.
          * @summary Select Fallback Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5352,7 +6602,7 @@ export const AvatarsApiFp = function(configuration?: Configuration) {
         /**
          * Update information about a specific avatar.
          * @summary Update Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {UpdateAvatarRequest} [updateAvatarRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5384,7 +6634,7 @@ export const AvatarsApiFactory = function (configuration?: Configuration, basePa
         /**
          * Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
          * @summary Delete Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5394,7 +6644,7 @@ export const AvatarsApiFactory = function (configuration?: Configuration, basePa
         /**
          * Get information about a specific Avatar.
          * @summary Get Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5405,14 +6655,14 @@ export const AvatarsApiFactory = function (configuration?: Configuration, basePa
          * Search and list favorited avatars by query filters.
          * @summary List Favorited Avatars
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
@@ -5420,13 +6670,13 @@ export const AvatarsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFavoritedAvatars(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): AxiosPromise<Array<Avatar>> {
+        getFavoritedAvatars(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): AxiosPromise<Array<Avatar>> {
             return localVarFp.getFavoritedAvatars(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(axios, basePath));
         },
         /**
          * Get the current avatar for the user. This will return an error for any other user than the one logged in.
          * @summary Get Own Avatar
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5437,28 +6687,28 @@ export const AvatarsApiFactory = function (configuration?: Configuration, basePa
          * Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
          * @summary Search Avatars
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {'me'} [user] Set to &#x60;me&#x60; for searching own avatars.
          * @param {string} [userId] Filter by UserID.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchAvatars(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): AxiosPromise<Array<Avatar>> {
+        searchAvatars(featured?: boolean, sort?: SortOption, user?: 'me', userId?: string, n?: number, order?: OrderOption, offset?: number, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): AxiosPromise<Array<Avatar>> {
             return localVarFp.searchAvatars(featured, sort, user, userId, n, order, offset, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(axios, basePath));
         },
         /**
          * Switches into that avatar.
          * @summary Select Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5468,7 +6718,7 @@ export const AvatarsApiFactory = function (configuration?: Configuration, basePa
         /**
          * Switches into that avatar as your fallback avatar.
          * @summary Select Fallback Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5478,7 +6728,7 @@ export const AvatarsApiFactory = function (configuration?: Configuration, basePa
         /**
          * Update information about a specific avatar.
          * @summary Update Avatar
-         * @param {string} avatarId 
+         * @param {string} avatarId Must be a valid avatar ID.
          * @param {UpdateAvatarRequest} [updateAvatarRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5511,7 +6761,7 @@ export class AvatarsApi extends BaseAPI {
     /**
      * Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
      * @summary Delete Avatar
-     * @param {string} avatarId 
+     * @param {string} avatarId Must be a valid avatar ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AvatarsApi
@@ -5523,7 +6773,7 @@ export class AvatarsApi extends BaseAPI {
     /**
      * Get information about a specific Avatar.
      * @summary Get Avatar
-     * @param {string} avatarId 
+     * @param {string} avatarId Must be a valid avatar ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AvatarsApi
@@ -5536,14 +6786,14 @@ export class AvatarsApi extends BaseAPI {
      * Search and list favorited avatars by query filters.
      * @summary List Favorited Avatars
      * @param {boolean} [featured] Filters on featured results.
-     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {SortOption} [sort] The sort order of the results.
      * @param {number} [n] The number of objects to return.
-     * @param {'ascending' | 'descending'} [order] 
+     * @param {OrderOption} [order] Result ordering
      * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
      * @param {string} [search] Filters by world name.
      * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
      * @param {string} [notag] Tags to exclude (comma-separated).
-     * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
      * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
      * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
      * @param {string} [platform] The platform the asset supports.
@@ -5552,14 +6802,14 @@ export class AvatarsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AvatarsApi
      */
-    public getFavoritedAvatars(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig) {
+    public getFavoritedAvatars(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig) {
         return AvatarsApiFp(this.configuration).getFavoritedAvatars(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Get the current avatar for the user. This will return an error for any other user than the one logged in.
      * @summary Get Own Avatar
-     * @param {string} userId 
+     * @param {string} userId Must be a valid user ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AvatarsApi
@@ -5572,15 +6822,15 @@ export class AvatarsApi extends BaseAPI {
      * Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
      * @summary Search Avatars
      * @param {boolean} [featured] Filters on featured results.
-     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {SortOption} [sort] The sort order of the results.
      * @param {'me'} [user] Set to &#x60;me&#x60; for searching own avatars.
      * @param {string} [userId] Filter by UserID.
      * @param {number} [n] The number of objects to return.
-     * @param {'ascending' | 'descending'} [order] 
+     * @param {OrderOption} [order] Result ordering
      * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
      * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
      * @param {string} [notag] Tags to exclude (comma-separated).
-     * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
      * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
      * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
      * @param {string} [platform] The platform the asset supports.
@@ -5588,14 +6838,14 @@ export class AvatarsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AvatarsApi
      */
-    public searchAvatars(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig) {
+    public searchAvatars(featured?: boolean, sort?: SortOption, user?: 'me', userId?: string, n?: number, order?: OrderOption, offset?: number, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig) {
         return AvatarsApiFp(this.configuration).searchAvatars(featured, sort, user, userId, n, order, offset, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Switches into that avatar.
      * @summary Select Avatar
-     * @param {string} avatarId 
+     * @param {string} avatarId Must be a valid avatar ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AvatarsApi
@@ -5607,7 +6857,7 @@ export class AvatarsApi extends BaseAPI {
     /**
      * Switches into that avatar as your fallback avatar.
      * @summary Select Fallback Avatar
-     * @param {string} avatarId 
+     * @param {string} avatarId Must be a valid avatar ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AvatarsApi
@@ -5619,7 +6869,7 @@ export class AvatarsApi extends BaseAPI {
     /**
      * Update information about a specific avatar.
      * @summary Update Avatar
-     * @param {string} avatarId 
+     * @param {string} avatarId Must be a valid avatar ID.
      * @param {UpdateAvatarRequest} [updateAvatarRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5674,7 +6924,7 @@ export const EconomyApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get a single License Group by given ID.
          * @summary Get License Group
-         * @param {string} licenseGroupId 
+         * @param {string} licenseGroupId Must be a valid license group ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5712,7 +6962,7 @@ export const EconomyApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get a single Steam transactions by ID. This returns the exact same information as `getSteamTransactions`, so no point in using this endpoint.
          * @summary Get Steam Transaction
-         * @param {string} transactionId 
+         * @param {string} transactionId Must be a valid transaction ID.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -5839,7 +7089,7 @@ export const EconomyApiFp = function(configuration?: Configuration) {
         /**
          * Get a single License Group by given ID.
          * @summary Get License Group
-         * @param {string} licenseGroupId 
+         * @param {string} licenseGroupId Must be a valid license group ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5850,7 +7100,7 @@ export const EconomyApiFp = function(configuration?: Configuration) {
         /**
          * Get a single Steam transactions by ID. This returns the exact same information as `getSteamTransactions`, so no point in using this endpoint.
          * @summary Get Steam Transaction
-         * @param {string} transactionId 
+         * @param {string} transactionId Must be a valid transaction ID.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -5901,7 +7151,7 @@ export const EconomyApiFactory = function (configuration?: Configuration, basePa
         /**
          * Get a single License Group by given ID.
          * @summary Get License Group
-         * @param {string} licenseGroupId 
+         * @param {string} licenseGroupId Must be a valid license group ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5911,7 +7161,7 @@ export const EconomyApiFactory = function (configuration?: Configuration, basePa
         /**
          * Get a single Steam transactions by ID. This returns the exact same information as `getSteamTransactions`, so no point in using this endpoint.
          * @summary Get Steam Transaction
-         * @param {string} transactionId 
+         * @param {string} transactionId Must be a valid transaction ID.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -5961,7 +7211,7 @@ export class EconomyApi extends BaseAPI {
     /**
      * Get a single License Group by given ID.
      * @summary Get License Group
-     * @param {string} licenseGroupId 
+     * @param {string} licenseGroupId Must be a valid license group ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EconomyApi
@@ -5973,7 +7223,7 @@ export class EconomyApi extends BaseAPI {
     /**
      * Get a single Steam transactions by ID. This returns the exact same information as `getSteamTransactions`, so no point in using this endpoint.
      * @summary Get Steam Transaction
-     * @param {string} transactionId 
+     * @param {string} transactionId Must be a valid transaction ID.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -6055,8 +7305,8 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
          * Clear ALL contents of a specific favorite group.
          * @summary Clear Favorite Group
          * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-         * @param {string} favoriteGroupName 
-         * @param {string} userId 
+         * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6100,7 +7350,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Return information about a specific Favorite.
          * @summary Show Favorite
-         * @param {string} favoriteId 
+         * @param {string} favoriteId Must be a valid favorite ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6139,8 +7389,8 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
          * Fetch information about a specific favorite group.
          * @summary Show Favorite Group
          * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-         * @param {string} favoriteGroupName 
-         * @param {string} userId 
+         * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6287,7 +7537,7 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Remove a favorite from your favorites list.
          * @summary Remove Favorite
-         * @param {string} favoriteId 
+         * @param {string} favoriteId Must be a valid favorite ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6326,8 +7576,8 @@ export const FavoritesApiAxiosParamCreator = function (configuration?: Configura
          * Update information about a specific favorite group.
          * @summary Update Favorite Group
          * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-         * @param {string} favoriteGroupName 
-         * @param {string} userId 
+         * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+         * @param {string} userId Must be a valid user ID.
          * @param {UpdateFavoriteGroupRequest} [updateFavoriteGroupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6397,8 +7647,8 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * Clear ALL contents of a specific favorite group.
          * @summary Clear Favorite Group
          * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-         * @param {string} favoriteGroupName 
-         * @param {string} userId 
+         * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6409,7 +7659,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
         /**
          * Return information about a specific Favorite.
          * @summary Show Favorite
-         * @param {string} favoriteId 
+         * @param {string} favoriteId Must be a valid favorite ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6421,8 +7671,8 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * Fetch information about a specific favorite group.
          * @summary Show Favorite Group
          * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-         * @param {string} favoriteGroupName 
-         * @param {string} userId 
+         * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6460,7 +7710,7 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
         /**
          * Remove a favorite from your favorites list.
          * @summary Remove Favorite
-         * @param {string} favoriteId 
+         * @param {string} favoriteId Must be a valid favorite ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6472,8 +7722,8 @@ export const FavoritesApiFp = function(configuration?: Configuration) {
          * Update information about a specific favorite group.
          * @summary Update Favorite Group
          * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-         * @param {string} favoriteGroupName 
-         * @param {string} userId 
+         * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+         * @param {string} userId Must be a valid user ID.
          * @param {UpdateFavoriteGroupRequest} [updateFavoriteGroupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6506,8 +7756,8 @@ export const FavoritesApiFactory = function (configuration?: Configuration, base
          * Clear ALL contents of a specific favorite group.
          * @summary Clear Favorite Group
          * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-         * @param {string} favoriteGroupName 
-         * @param {string} userId 
+         * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6517,7 +7767,7 @@ export const FavoritesApiFactory = function (configuration?: Configuration, base
         /**
          * Return information about a specific Favorite.
          * @summary Show Favorite
-         * @param {string} favoriteId 
+         * @param {string} favoriteId Must be a valid favorite ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6528,8 +7778,8 @@ export const FavoritesApiFactory = function (configuration?: Configuration, base
          * Fetch information about a specific favorite group.
          * @summary Show Favorite Group
          * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-         * @param {string} favoriteGroupName 
-         * @param {string} userId 
+         * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6564,7 +7814,7 @@ export const FavoritesApiFactory = function (configuration?: Configuration, base
         /**
          * Remove a favorite from your favorites list.
          * @summary Remove Favorite
-         * @param {string} favoriteId 
+         * @param {string} favoriteId Must be a valid favorite ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6575,8 +7825,8 @@ export const FavoritesApiFactory = function (configuration?: Configuration, base
          * Update information about a specific favorite group.
          * @summary Update Favorite Group
          * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-         * @param {string} favoriteGroupName 
-         * @param {string} userId 
+         * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+         * @param {string} userId Must be a valid user ID.
          * @param {UpdateFavoriteGroupRequest} [updateFavoriteGroupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6610,8 +7860,8 @@ export class FavoritesApi extends BaseAPI {
      * Clear ALL contents of a specific favorite group.
      * @summary Clear Favorite Group
      * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-     * @param {string} favoriteGroupName 
-     * @param {string} userId 
+     * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+     * @param {string} userId Must be a valid user ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FavoritesApi
@@ -6623,7 +7873,7 @@ export class FavoritesApi extends BaseAPI {
     /**
      * Return information about a specific Favorite.
      * @summary Show Favorite
-     * @param {string} favoriteId 
+     * @param {string} favoriteId Must be a valid favorite ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FavoritesApi
@@ -6636,8 +7886,8 @@ export class FavoritesApi extends BaseAPI {
      * Fetch information about a specific favorite group.
      * @summary Show Favorite Group
      * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-     * @param {string} favoriteGroupName 
-     * @param {string} userId 
+     * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+     * @param {string} userId Must be a valid user ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FavoritesApi
@@ -6678,7 +7928,7 @@ export class FavoritesApi extends BaseAPI {
     /**
      * Remove a favorite from your favorites list.
      * @summary Remove Favorite
-     * @param {string} favoriteId 
+     * @param {string} favoriteId Must be a valid favorite ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FavoritesApi
@@ -6691,8 +7941,8 @@ export class FavoritesApi extends BaseAPI {
      * Update information about a specific favorite group.
      * @summary Update Favorite Group
      * @param {'world' | 'friend' | 'avatar'} favoriteGroupType The type of group to fetch, must be a valid FavoriteType.
-     * @param {string} favoriteGroupName 
-     * @param {string} userId 
+     * @param {string} favoriteGroupName The name of the group to fetch, must be a name of a FavoriteGroup.
+     * @param {string} userId Must be a valid user ID.
      * @param {UpdateFavoriteGroupRequest} [updateFavoriteGroupRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6751,7 +8001,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
          * @summary Create File Version
-         * @param {string} fileId 
+         * @param {string} fileId Must be a valid file ID.
          * @param {CreateFileVersionRequest} [createFileVersionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6793,7 +8043,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Deletes a File object.
          * @summary Delete File
-         * @param {string} fileId 
+         * @param {string} fileId Must be a valid file ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6831,8 +8081,8 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Delete a specific version of a file. You can only delete the latest version.
          * @summary Delete File Version
-         * @param {string} fileId 
-         * @param {number} versionId 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6873,8 +8123,8 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Downloads the file with the provided version number.  **Version Note:** Version 0 is always when the file was created. The real data is usually always located in version 1 and up.  **Extension Note:** Files are not guaranteed to have a file extensions. UnityPackage files tends to have it, images through this endpoint do not. You are responsible for appending file extension from the `extension` field when neccesary.
          * @summary Download File Version
-         * @param {string} fileId 
-         * @param {number} versionId 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6915,9 +8165,9 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Finish an upload of a FileData. This will mark it as \"complete\". After uploading the `file` for Avatars and Worlds you then have to upload a `signature` file.
          * @summary Finish FileData Upload
-         * @param {string} fileId 
-         * @param {number} versionId 
-         * @param {'file' | 'signature' | 'delta'} fileType 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
+         * @param {'file' | 'signature' | 'delta'} fileType Type of file.
          * @param {FinishFileDataUploadRequest} [finishFileDataUploadRequest] Please see documentation on ETag\&#39;s: [https://teppen.io/2018/06/23/aws_s3_etags/](https://teppen.io/2018/06/23/aws_s3_etags/)  ETag\&#39;s should NOT be present when uploading a &#x60;signature&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6965,7 +8215,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Shows general information about the \"File\" object. Each File can have several \"Version\"\'s, and each Version can have multiple real files or \"Data\" blobs.
          * @summary Show File
-         * @param {string} fileId 
+         * @param {string} fileId Must be a valid file ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7003,9 +8253,9 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Retrieves the upload status for file upload. Can currently only be accessed when `status` is `waiting`. Trying to access it on a file version already uploaded currently times out.
          * @summary Check FileData Upload Status
-         * @param {string} fileId 
-         * @param {number} versionId 
-         * @param {'file' | 'signature' | 'delta'} fileType 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
+         * @param {'file' | 'signature' | 'delta'} fileType Type of file.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7103,10 +8353,10 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Starts an upload of a specific FilePart. This endpoint will return an AWS URL which you can PUT data to. You need to call this and receive a new AWS API URL for each `partNumber`. Please see AWS\'s REST documentation on \"PUT Object to S3\" on how to upload. Once all parts has been uploaded, proceed to `/finish` endpoint.  **Note:** `nextPartNumber` seems like it is always ignored. Despite it returning 0, first partNumber is always 1.
          * @summary Start FileData Upload
-         * @param {string} fileId 
-         * @param {number} versionId 
-         * @param {'file' | 'signature' | 'delta'} fileType 
-         * @param {number} [partNumber] 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
+         * @param {'file' | 'signature' | 'delta'} fileType Type of file.
+         * @param {number} [partNumber] The part number to start uploading. If not provided, the first part will be started.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7175,7 +8425,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
         /**
          * Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
          * @summary Create File Version
-         * @param {string} fileId 
+         * @param {string} fileId Must be a valid file ID.
          * @param {CreateFileVersionRequest} [createFileVersionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7187,7 +8437,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
         /**
          * Deletes a File object.
          * @summary Delete File
-         * @param {string} fileId 
+         * @param {string} fileId Must be a valid file ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7198,8 +8448,8 @@ export const FilesApiFp = function(configuration?: Configuration) {
         /**
          * Delete a specific version of a file. You can only delete the latest version.
          * @summary Delete File Version
-         * @param {string} fileId 
-         * @param {number} versionId 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7210,8 +8460,8 @@ export const FilesApiFp = function(configuration?: Configuration) {
         /**
          * Downloads the file with the provided version number.  **Version Note:** Version 0 is always when the file was created. The real data is usually always located in version 1 and up.  **Extension Note:** Files are not guaranteed to have a file extensions. UnityPackage files tends to have it, images through this endpoint do not. You are responsible for appending file extension from the `extension` field when neccesary.
          * @summary Download File Version
-         * @param {string} fileId 
-         * @param {number} versionId 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7222,9 +8472,9 @@ export const FilesApiFp = function(configuration?: Configuration) {
         /**
          * Finish an upload of a FileData. This will mark it as \"complete\". After uploading the `file` for Avatars and Worlds you then have to upload a `signature` file.
          * @summary Finish FileData Upload
-         * @param {string} fileId 
-         * @param {number} versionId 
-         * @param {'file' | 'signature' | 'delta'} fileType 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
+         * @param {'file' | 'signature' | 'delta'} fileType Type of file.
          * @param {FinishFileDataUploadRequest} [finishFileDataUploadRequest] Please see documentation on ETag\&#39;s: [https://teppen.io/2018/06/23/aws_s3_etags/](https://teppen.io/2018/06/23/aws_s3_etags/)  ETag\&#39;s should NOT be present when uploading a &#x60;signature&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7236,7 +8486,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
         /**
          * Shows general information about the \"File\" object. Each File can have several \"Version\"\'s, and each Version can have multiple real files or \"Data\" blobs.
          * @summary Show File
-         * @param {string} fileId 
+         * @param {string} fileId Must be a valid file ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7247,9 +8497,9 @@ export const FilesApiFp = function(configuration?: Configuration) {
         /**
          * Retrieves the upload status for file upload. Can currently only be accessed when `status` is `waiting`. Trying to access it on a file version already uploaded currently times out.
          * @summary Check FileData Upload Status
-         * @param {string} fileId 
-         * @param {number} versionId 
-         * @param {'file' | 'signature' | 'delta'} fileType 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
+         * @param {'file' | 'signature' | 'delta'} fileType Type of file.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7274,10 +8524,10 @@ export const FilesApiFp = function(configuration?: Configuration) {
         /**
          * Starts an upload of a specific FilePart. This endpoint will return an AWS URL which you can PUT data to. You need to call this and receive a new AWS API URL for each `partNumber`. Please see AWS\'s REST documentation on \"PUT Object to S3\" on how to upload. Once all parts has been uploaded, proceed to `/finish` endpoint.  **Note:** `nextPartNumber` seems like it is always ignored. Despite it returning 0, first partNumber is always 1.
          * @summary Start FileData Upload
-         * @param {string} fileId 
-         * @param {number} versionId 
-         * @param {'file' | 'signature' | 'delta'} fileType 
-         * @param {number} [partNumber] 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
+         * @param {'file' | 'signature' | 'delta'} fileType Type of file.
+         * @param {number} [partNumber] The part number to start uploading. If not provided, the first part will be started.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7308,7 +8558,7 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
         /**
          * Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
          * @summary Create File Version
-         * @param {string} fileId 
+         * @param {string} fileId Must be a valid file ID.
          * @param {CreateFileVersionRequest} [createFileVersionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7319,7 +8569,7 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
         /**
          * Deletes a File object.
          * @summary Delete File
-         * @param {string} fileId 
+         * @param {string} fileId Must be a valid file ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7329,8 +8579,8 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
         /**
          * Delete a specific version of a file. You can only delete the latest version.
          * @summary Delete File Version
-         * @param {string} fileId 
-         * @param {number} versionId 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7340,8 +8590,8 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
         /**
          * Downloads the file with the provided version number.  **Version Note:** Version 0 is always when the file was created. The real data is usually always located in version 1 and up.  **Extension Note:** Files are not guaranteed to have a file extensions. UnityPackage files tends to have it, images through this endpoint do not. You are responsible for appending file extension from the `extension` field when neccesary.
          * @summary Download File Version
-         * @param {string} fileId 
-         * @param {number} versionId 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7351,9 +8601,9 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
         /**
          * Finish an upload of a FileData. This will mark it as \"complete\". After uploading the `file` for Avatars and Worlds you then have to upload a `signature` file.
          * @summary Finish FileData Upload
-         * @param {string} fileId 
-         * @param {number} versionId 
-         * @param {'file' | 'signature' | 'delta'} fileType 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
+         * @param {'file' | 'signature' | 'delta'} fileType Type of file.
          * @param {FinishFileDataUploadRequest} [finishFileDataUploadRequest] Please see documentation on ETag\&#39;s: [https://teppen.io/2018/06/23/aws_s3_etags/](https://teppen.io/2018/06/23/aws_s3_etags/)  ETag\&#39;s should NOT be present when uploading a &#x60;signature&#x60;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7364,7 +8614,7 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
         /**
          * Shows general information about the \"File\" object. Each File can have several \"Version\"\'s, and each Version can have multiple real files or \"Data\" blobs.
          * @summary Show File
-         * @param {string} fileId 
+         * @param {string} fileId Must be a valid file ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7374,9 +8624,9 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
         /**
          * Retrieves the upload status for file upload. Can currently only be accessed when `status` is `waiting`. Trying to access it on a file version already uploaded currently times out.
          * @summary Check FileData Upload Status
-         * @param {string} fileId 
-         * @param {number} versionId 
-         * @param {'file' | 'signature' | 'delta'} fileType 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
+         * @param {'file' | 'signature' | 'delta'} fileType Type of file.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7399,10 +8649,10 @@ export const FilesApiFactory = function (configuration?: Configuration, basePath
         /**
          * Starts an upload of a specific FilePart. This endpoint will return an AWS URL which you can PUT data to. You need to call this and receive a new AWS API URL for each `partNumber`. Please see AWS\'s REST documentation on \"PUT Object to S3\" on how to upload. Once all parts has been uploaded, proceed to `/finish` endpoint.  **Note:** `nextPartNumber` seems like it is always ignored. Despite it returning 0, first partNumber is always 1.
          * @summary Start FileData Upload
-         * @param {string} fileId 
-         * @param {number} versionId 
-         * @param {'file' | 'signature' | 'delta'} fileType 
-         * @param {number} [partNumber] 
+         * @param {string} fileId Must be a valid file ID.
+         * @param {number} versionId Version ID of the asset.
+         * @param {'file' | 'signature' | 'delta'} fileType Type of file.
+         * @param {number} [partNumber] The part number to start uploading. If not provided, the first part will be started.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7434,7 +8684,7 @@ export class FilesApi extends BaseAPI {
     /**
      * Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
      * @summary Create File Version
-     * @param {string} fileId 
+     * @param {string} fileId Must be a valid file ID.
      * @param {CreateFileVersionRequest} [createFileVersionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -7447,7 +8697,7 @@ export class FilesApi extends BaseAPI {
     /**
      * Deletes a File object.
      * @summary Delete File
-     * @param {string} fileId 
+     * @param {string} fileId Must be a valid file ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FilesApi
@@ -7459,8 +8709,8 @@ export class FilesApi extends BaseAPI {
     /**
      * Delete a specific version of a file. You can only delete the latest version.
      * @summary Delete File Version
-     * @param {string} fileId 
-     * @param {number} versionId 
+     * @param {string} fileId Must be a valid file ID.
+     * @param {number} versionId Version ID of the asset.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FilesApi
@@ -7472,8 +8722,8 @@ export class FilesApi extends BaseAPI {
     /**
      * Downloads the file with the provided version number.  **Version Note:** Version 0 is always when the file was created. The real data is usually always located in version 1 and up.  **Extension Note:** Files are not guaranteed to have a file extensions. UnityPackage files tends to have it, images through this endpoint do not. You are responsible for appending file extension from the `extension` field when neccesary.
      * @summary Download File Version
-     * @param {string} fileId 
-     * @param {number} versionId 
+     * @param {string} fileId Must be a valid file ID.
+     * @param {number} versionId Version ID of the asset.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FilesApi
@@ -7485,9 +8735,9 @@ export class FilesApi extends BaseAPI {
     /**
      * Finish an upload of a FileData. This will mark it as \"complete\". After uploading the `file` for Avatars and Worlds you then have to upload a `signature` file.
      * @summary Finish FileData Upload
-     * @param {string} fileId 
-     * @param {number} versionId 
-     * @param {'file' | 'signature' | 'delta'} fileType 
+     * @param {string} fileId Must be a valid file ID.
+     * @param {number} versionId Version ID of the asset.
+     * @param {'file' | 'signature' | 'delta'} fileType Type of file.
      * @param {FinishFileDataUploadRequest} [finishFileDataUploadRequest] Please see documentation on ETag\&#39;s: [https://teppen.io/2018/06/23/aws_s3_etags/](https://teppen.io/2018/06/23/aws_s3_etags/)  ETag\&#39;s should NOT be present when uploading a &#x60;signature&#x60;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -7500,7 +8750,7 @@ export class FilesApi extends BaseAPI {
     /**
      * Shows general information about the \"File\" object. Each File can have several \"Version\"\'s, and each Version can have multiple real files or \"Data\" blobs.
      * @summary Show File
-     * @param {string} fileId 
+     * @param {string} fileId Must be a valid file ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FilesApi
@@ -7512,9 +8762,9 @@ export class FilesApi extends BaseAPI {
     /**
      * Retrieves the upload status for file upload. Can currently only be accessed when `status` is `waiting`. Trying to access it on a file version already uploaded currently times out.
      * @summary Check FileData Upload Status
-     * @param {string} fileId 
-     * @param {number} versionId 
-     * @param {'file' | 'signature' | 'delta'} fileType 
+     * @param {string} fileId Must be a valid file ID.
+     * @param {number} versionId Version ID of the asset.
+     * @param {'file' | 'signature' | 'delta'} fileType Type of file.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FilesApi
@@ -7541,10 +8791,10 @@ export class FilesApi extends BaseAPI {
     /**
      * Starts an upload of a specific FilePart. This endpoint will return an AWS URL which you can PUT data to. You need to call this and receive a new AWS API URL for each `partNumber`. Please see AWS\'s REST documentation on \"PUT Object to S3\" on how to upload. Once all parts has been uploaded, proceed to `/finish` endpoint.  **Note:** `nextPartNumber` seems like it is always ignored. Despite it returning 0, first partNumber is always 1.
      * @summary Start FileData Upload
-     * @param {string} fileId 
-     * @param {number} versionId 
-     * @param {'file' | 'signature' | 'delta'} fileType 
-     * @param {number} [partNumber] 
+     * @param {string} fileId Must be a valid file ID.
+     * @param {number} versionId Version ID of the asset.
+     * @param {'file' | 'signature' | 'delta'} fileType Type of file.
+     * @param {number} [partNumber] The part number to start uploading. If not provided, the first part will be started.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FilesApi
@@ -7564,7 +8814,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Deletes an outgoing pending friend request to another user. To delete an incoming friend request, use the `deleteNotification` endpoint instead.
          * @summary Delete Friend Request
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7602,7 +8852,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Send a friend request to another user.
          * @summary Send Friend Request
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7640,7 +8890,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Retrieve if the user is currently a friend with a given user, if they have an outgoing friend request, and if they have an incoming friend request. The proper way to receive and accept friend request is by checking if the user has an incoming `Notification` of type `friendRequest`, and then accepting that notification.
          * @summary Check Friend Status
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7727,7 +8977,7 @@ export const FriendsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Unfriend a user by ID.
          * @summary Unfriend
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7775,7 +9025,7 @@ export const FriendsApiFp = function(configuration?: Configuration) {
         /**
          * Deletes an outgoing pending friend request to another user. To delete an incoming friend request, use the `deleteNotification` endpoint instead.
          * @summary Delete Friend Request
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7786,7 +9036,7 @@ export const FriendsApiFp = function(configuration?: Configuration) {
         /**
          * Send a friend request to another user.
          * @summary Send Friend Request
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7797,7 +9047,7 @@ export const FriendsApiFp = function(configuration?: Configuration) {
         /**
          * Retrieve if the user is currently a friend with a given user, if they have an outgoing friend request, and if they have an incoming friend request. The proper way to receive and accept friend request is by checking if the user has an incoming `Notification` of type `friendRequest`, and then accepting that notification.
          * @summary Check Friend Status
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7821,7 +9071,7 @@ export const FriendsApiFp = function(configuration?: Configuration) {
         /**
          * Unfriend a user by ID.
          * @summary Unfriend
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7842,7 +9092,7 @@ export const FriendsApiFactory = function (configuration?: Configuration, basePa
         /**
          * Deletes an outgoing pending friend request to another user. To delete an incoming friend request, use the `deleteNotification` endpoint instead.
          * @summary Delete Friend Request
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7852,7 +9102,7 @@ export const FriendsApiFactory = function (configuration?: Configuration, basePa
         /**
          * Send a friend request to another user.
          * @summary Send Friend Request
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7862,7 +9112,7 @@ export const FriendsApiFactory = function (configuration?: Configuration, basePa
         /**
          * Retrieve if the user is currently a friend with a given user, if they have an outgoing friend request, and if they have an incoming friend request. The proper way to receive and accept friend request is by checking if the user has an incoming `Notification` of type `friendRequest`, and then accepting that notification.
          * @summary Check Friend Status
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7884,7 +9134,7 @@ export const FriendsApiFactory = function (configuration?: Configuration, basePa
         /**
          * Unfriend a user by ID.
          * @summary Unfriend
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7904,7 +9154,7 @@ export class FriendsApi extends BaseAPI {
     /**
      * Deletes an outgoing pending friend request to another user. To delete an incoming friend request, use the `deleteNotification` endpoint instead.
      * @summary Delete Friend Request
-     * @param {string} userId 
+     * @param {string} userId Must be a valid user ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FriendsApi
@@ -7916,7 +9166,7 @@ export class FriendsApi extends BaseAPI {
     /**
      * Send a friend request to another user.
      * @summary Send Friend Request
-     * @param {string} userId 
+     * @param {string} userId Must be a valid user ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FriendsApi
@@ -7928,7 +9178,7 @@ export class FriendsApi extends BaseAPI {
     /**
      * Retrieve if the user is currently a friend with a given user, if they have an outgoing friend request, and if they have an incoming friend request. The proper way to receive and accept friend request is by checking if the user has an incoming `Notification` of type `friendRequest`, and then accepting that notification.
      * @summary Check Friend Status
-     * @param {string} userId 
+     * @param {string} userId Must be a valid user ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FriendsApi
@@ -7954,13 +9204,2910 @@ export class FriendsApi extends BaseAPI {
     /**
      * Unfriend a user by ID.
      * @summary Unfriend
-     * @param {string} userId 
+     * @param {string} userId Must be a valid user ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FriendsApi
      */
     public unfriend(userId: string, options?: AxiosRequestConfig) {
         return FriendsApiFp(this.configuration).unfriend(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * GroupsApi - axios parameter creator
+ * @export
+ */
+export const GroupsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Adds an image to a Group gallery.
+         * @summary Add Group Gallery Image
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {AddGroupGalleryImageRequest} [addGroupGalleryImageRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addGroupGalleryImage: async (groupId: string, groupGalleryId: string, addGroupGalleryImageRequest?: AddGroupGalleryImageRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('addGroupGalleryImage', 'groupId', groupId)
+            // verify required parameter 'groupGalleryId' is not null or undefined
+            assertParamExists('addGroupGalleryImage', 'groupGalleryId', groupGalleryId)
+            const localVarPath = `/groups/{groupId}/galleries/{groupGalleryId}/images`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"groupGalleryId"}}`, encodeURIComponent(String(groupGalleryId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(addGroupGalleryImageRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Adds a Role to a Group Member
+         * @summary Add Role to GroupMember
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addGroupMemberRole: async (groupId: string, userId: string, groupRoleId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('addGroupMemberRole', 'groupId', groupId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('addGroupMemberRole', 'userId', userId)
+            // verify required parameter 'groupRoleId' is not null or undefined
+            assertParamExists('addGroupMemberRole', 'groupRoleId', groupRoleId)
+            const localVarPath = `/groups/{groupId}/members/{userId}/roles/{groupRoleId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)))
+                .replace(`{${"groupRoleId"}}`, encodeURIComponent(String(groupRoleId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Bans a user from a Group.
+         * @summary Ban Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {BanGroupMemberRequest} [banGroupMemberRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        banGroupMember: async (groupId: string, banGroupMemberRequest?: BanGroupMemberRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('banGroupMember', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/bans`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(banGroupMemberRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Cancels a request sent to join the group.
+         * @summary Cancel Group Join Request
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelGroupRequest: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('cancelGroupRequest', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/requests`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a Group and returns a Group object. **Requires VRC+ Subscription.**
+         * @summary Create Group
+         * @param {CreateGroupRequest} [createGroupRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGroup: async (createGroupRequest?: CreateGroupRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/groups`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createGroupRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates an Announcement for a Group.
+         * @summary Create Group Announcement
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupAnnouncementRequest} [createGroupAnnouncementRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGroupAnnouncement: async (groupId: string, createGroupAnnouncementRequest?: CreateGroupAnnouncementRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('createGroupAnnouncement', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/announcement`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createGroupAnnouncementRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a gallery for a Group.
+         * @summary Create Group Gallery
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupGalleryRequest} [createGroupGalleryRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGroupGallery: async (groupId: string, createGroupGalleryRequest?: CreateGroupGalleryRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('createGroupGallery', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/galleries`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createGroupGalleryRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Sends an invite to a user to join the group.
+         * @summary Invite User to Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupInviteRequest} [createGroupInviteRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGroupInvite: async (groupId: string, createGroupInviteRequest?: CreateGroupInviteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('createGroupInvite', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/invites`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createGroupInviteRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Create a Group role.
+         * @summary Create GroupRole
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupRoleRequest} [createGroupRoleRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGroupRole: async (groupId: string, createGroupRoleRequest?: CreateGroupRoleRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('createGroupRole', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/roles`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createGroupRoleRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a Group.
+         * @summary Delete Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroup: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('deleteGroup', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes the announcement for a Group.
+         * @summary Delete Group Announcement
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroupAnnouncement: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('deleteGroupAnnouncement', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/announcement`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a gallery for a Group.
+         * @summary Delete Group Gallery
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroupGallery: async (groupId: string, groupGalleryId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('deleteGroupGallery', 'groupId', groupId)
+            // verify required parameter 'groupGalleryId' is not null or undefined
+            assertParamExists('deleteGroupGallery', 'groupGalleryId', groupGalleryId)
+            const localVarPath = `/groups/{groupId}/galleries/{groupGalleryId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"groupGalleryId"}}`, encodeURIComponent(String(groupGalleryId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes an image from a Group gallery.
+         * @summary Delete Group Gallery Image
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {string} groupGalleryImageId Must be a valid group gallery image ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroupGalleryImage: async (groupId: string, groupGalleryId: string, groupGalleryImageId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('deleteGroupGalleryImage', 'groupId', groupId)
+            // verify required parameter 'groupGalleryId' is not null or undefined
+            assertParamExists('deleteGroupGalleryImage', 'groupGalleryId', groupGalleryId)
+            // verify required parameter 'groupGalleryImageId' is not null or undefined
+            assertParamExists('deleteGroupGalleryImage', 'groupGalleryImageId', groupGalleryImageId)
+            const localVarPath = `/groups/{groupId}/galleries/{groupGalleryId}/images/{groupGalleryImageId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"groupGalleryId"}}`, encodeURIComponent(String(groupGalleryId)))
+                .replace(`{${"groupGalleryImageId"}}`, encodeURIComponent(String(groupGalleryImageId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes an Group invite sent to a User
+         * @summary Delete User Invite
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroupInvite: async (groupId: string, userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('deleteGroupInvite', 'groupId', groupId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('deleteGroupInvite', 'userId', userId)
+            const localVarPath = `/groups/{groupId}/invites/{userId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a Group Role by ID and returns the remaining roles.
+         * @summary Delete Group Role
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroupRole: async (groupId: string, groupRoleId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('deleteGroupRole', 'groupId', groupId)
+            // verify required parameter 'groupRoleId' is not null or undefined
+            assertParamExists('deleteGroupRole', 'groupRoleId', groupRoleId)
+            const localVarPath = `/groups/{groupId}/roles/{groupRoleId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"groupRoleId"}}`, encodeURIComponent(String(groupRoleId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a single Group by ID.
+         * @summary Get Group by ID
+         * @param {string} groupId Must be a valid group ID.
+         * @param {boolean} [includeRoles] Include roles for the Group object. Defaults to false.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroup: async (groupId: string, includeRoles?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('getGroup', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (includeRoles !== undefined) {
+                localVarQueryParameter['includeRoles'] = includeRoles;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns the announcement for a Group. If no announcement has been made, then it returns **empty object**.  If an announcement exists, then it will always return all fields except `imageId` and `imageUrl` which may be null.
+         * @summary Get Group Announcement
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupAnnouncements: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('getGroupAnnouncements', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/announcement`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of audit logs for a Group.
+         * @summary Get Group Audit Logs
+         * @param {string} groupId Must be a valid group ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [startDate] The start date of the search range.
+         * @param {string} [endDate] The end date of the search range.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupAuditLogs: async (groupId: string, n?: number, offset?: number, startDate?: string, endDate?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('getGroupAuditLogs', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/auditLogs`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (startDate !== undefined) {
+                localVarQueryParameter['startDate'] = (startDate as any instanceof Date) ?
+                    (startDate as any).toISOString() :
+                    startDate;
+            }
+
+            if (endDate !== undefined) {
+                localVarQueryParameter['endDate'] = (endDate as any instanceof Date) ?
+                    (endDate as any).toISOString() :
+                    endDate;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of banned users for a Group.
+         * @summary Get Group Bans
+         * @param {string} groupId Must be a valid group ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupBans: async (groupId: string, n?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('getGroupBans', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/bans`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of images for a Group gallery.
+         * @summary Get Group Gallery Images
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {boolean} [approved] If specified, only returns images that have been approved or not approved.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupGalleryImages: async (groupId: string, groupGalleryId: string, n?: number, offset?: number, approved?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('getGroupGalleryImages', 'groupId', groupId)
+            // verify required parameter 'groupGalleryId' is not null or undefined
+            assertParamExists('getGroupGalleryImages', 'groupGalleryId', groupGalleryId)
+            const localVarPath = `/groups/{groupId}/galleries/{groupGalleryId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"groupGalleryId"}}`, encodeURIComponent(String(groupGalleryId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (approved !== undefined) {
+                localVarQueryParameter['approved'] = approved;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of members that have been invited to the Group.
+         * @summary Get Group Invites Sent
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupInvites: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('getGroupInvites', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/invites`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a LimitedGroup Member.
+         * @summary Get Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupMember: async (groupId: string, userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('getGroupMember', 'groupId', groupId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('getGroupMember', 'userId', userId)
+            const localVarPath = `/groups/{groupId}/members/{userId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a List of all **other** Group Members. This endpoint will never return the user calling the endpoint. Information about the user calling the endpoint must be found in the `myMember` field of the Group object.
+         * @summary List Group Members
+         * @param {string} groupId Must be a valid group ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupMembers: async (groupId: string, n?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('getGroupMembers', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/members`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a List of all possible/available permissions for a Group.
+         * @summary List Group Permissions
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupPermissions: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('getGroupPermissions', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/permissions`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of members that have requested to join the Group.
+         * @summary Get Group Join Requests
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupRequests: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('getGroupRequests', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/requests`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a Group Role by ID.
+         * @summary Get Group Roles
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupRoles: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('getGroupRoles', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/roles`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Join a Group by ID and returns the joined Group.
+         * @summary Join Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        joinGroup: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('joinGroup', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/join`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Kicks a Group Member from the Group. The current user must have the \"Remove Group Members\" permission.
+         * @summary Kick Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        kickGroupMember: async (groupId: string, userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('kickGroupMember', 'groupId', groupId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('kickGroupMember', 'userId', userId)
+            const localVarPath = `/groups/{groupId}/members/{userId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Leave a group by ID.
+         * @summary Leave Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        leaveGroup: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('leaveGroup', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/leave`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes a Role from a Group Member
+         * @summary Remove Role from GroupMember
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        removeGroupMemberRole: async (groupId: string, userId: string, groupRoleId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('removeGroupMemberRole', 'groupId', groupId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('removeGroupMemberRole', 'userId', userId)
+            // verify required parameter 'groupRoleId' is not null or undefined
+            assertParamExists('removeGroupMemberRole', 'groupRoleId', groupRoleId)
+            const localVarPath = `/groups/{groupId}/members/{userId}/roles/{groupRoleId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)))
+                .replace(`{${"groupRoleId"}}`, encodeURIComponent(String(groupRoleId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Responds to a Group Join Request with Accept/Deny
+         * @summary Respond Group Join request
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {RespondGroupJoinRequest} [respondGroupJoinRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        respondGroupJoinRequest: async (groupId: string, userId: string, respondGroupJoinRequest?: RespondGroupJoinRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('respondGroupJoinRequest', 'groupId', groupId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('respondGroupJoinRequest', 'userId', userId)
+            const localVarPath = `/groups/{groupId}/requests/{userId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(respondGroupJoinRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Unbans a user from a Group.
+         * @summary Unban Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unbanGroupMember: async (groupId: string, userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('unbanGroupMember', 'groupId', groupId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('unbanGroupMember', 'userId', userId)
+            const localVarPath = `/groups/{groupId}/bans/{userId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates a Group and returns it.
+         * @summary Update Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {UpdateGroupRequest} [updateGroupRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGroup: async (groupId: string, updateGroupRequest?: UpdateGroupRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('updateGroup', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateGroupRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates a gallery for a Group.
+         * @summary Update Group Gallery
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {UpdateGroupGalleryRequest} [updateGroupGalleryRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGroupGallery: async (groupId: string, groupGalleryId: string, updateGroupGalleryRequest?: UpdateGroupGalleryRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('updateGroupGallery', 'groupId', groupId)
+            // verify required parameter 'groupGalleryId' is not null or undefined
+            assertParamExists('updateGroupGallery', 'groupGalleryId', groupGalleryId)
+            const localVarPath = `/groups/{groupId}/galleries/{groupGalleryId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"groupGalleryId"}}`, encodeURIComponent(String(groupGalleryId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateGroupGalleryRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates a Group Member
+         * @summary Update Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {UpdateGroupMemberRequest} [updateGroupMemberRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGroupMember: async (groupId: string, userId: string, updateGroupMemberRequest?: UpdateGroupMemberRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('updateGroupMember', 'groupId', groupId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('updateGroupMember', 'userId', userId)
+            const localVarPath = `/groups/{groupId}/members/{userId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateGroupMemberRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates a group role by ID.
+         * @summary Update Group Role
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {UpdateGroupRoleRequest} [updateGroupRoleRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGroupRole: async (groupId: string, groupRoleId: string, updateGroupRoleRequest?: UpdateGroupRoleRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('updateGroupRole', 'groupId', groupId)
+            // verify required parameter 'groupRoleId' is not null or undefined
+            assertParamExists('updateGroupRole', 'groupRoleId', groupRoleId)
+            const localVarPath = `/groups/{groupId}/roles/{groupRoleId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"groupRoleId"}}`, encodeURIComponent(String(groupRoleId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateGroupRoleRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * GroupsApi - functional programming interface
+ * @export
+ */
+export const GroupsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = GroupsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Adds an image to a Group gallery.
+         * @summary Add Group Gallery Image
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {AddGroupGalleryImageRequest} [addGroupGalleryImageRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async addGroupGalleryImage(groupId: string, groupGalleryId: string, addGroupGalleryImageRequest?: AddGroupGalleryImageRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupGalleryImage>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addGroupGalleryImage(groupId, groupGalleryId, addGroupGalleryImageRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Adds a Role to a Group Member
+         * @summary Add Role to GroupMember
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async addGroupMemberRole(groupId: string, userId: string, groupRoleId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addGroupMemberRole(groupId, userId, groupRoleId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Bans a user from a Group.
+         * @summary Ban Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {BanGroupMemberRequest} [banGroupMemberRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async banGroupMember(groupId: string, banGroupMemberRequest?: BanGroupMemberRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMember>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.banGroupMember(groupId, banGroupMemberRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Cancels a request sent to join the group.
+         * @summary Cancel Group Join Request
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cancelGroupRequest(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelGroupRequest(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Creates a Group and returns a Group object. **Requires VRC+ Subscription.**
+         * @summary Create Group
+         * @param {CreateGroupRequest} [createGroupRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createGroup(createGroupRequest?: CreateGroupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Group>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createGroup(createGroupRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Creates an Announcement for a Group.
+         * @summary Create Group Announcement
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupAnnouncementRequest} [createGroupAnnouncementRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createGroupAnnouncement(groupId: string, createGroupAnnouncementRequest?: CreateGroupAnnouncementRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupAnnouncement>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createGroupAnnouncement(groupId, createGroupAnnouncementRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Creates a gallery for a Group.
+         * @summary Create Group Gallery
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupGalleryRequest} [createGroupGalleryRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createGroupGallery(groupId: string, createGroupGalleryRequest?: CreateGroupGalleryRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupGallery>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createGroupGallery(groupId, createGroupGalleryRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Sends an invite to a user to join the group.
+         * @summary Invite User to Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupInviteRequest} [createGroupInviteRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createGroupInvite(groupId: string, createGroupInviteRequest?: CreateGroupInviteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createGroupInvite(groupId, createGroupInviteRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Create a Group role.
+         * @summary Create GroupRole
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupRoleRequest} [createGroupRoleRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createGroupRole(groupId: string, createGroupRoleRequest?: CreateGroupRoleRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupRole>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createGroupRole(groupId, createGroupRoleRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Deletes a Group.
+         * @summary Delete Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteGroup(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteGroup(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Deletes the announcement for a Group.
+         * @summary Delete Group Announcement
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteGroupAnnouncement(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteGroupAnnouncement(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Deletes a gallery for a Group.
+         * @summary Delete Group Gallery
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteGroupGallery(groupId: string, groupGalleryId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteGroupGallery(groupId, groupGalleryId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Deletes an image from a Group gallery.
+         * @summary Delete Group Gallery Image
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {string} groupGalleryImageId Must be a valid group gallery image ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteGroupGalleryImage(groupId: string, groupGalleryId: string, groupGalleryImageId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Success>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteGroupGalleryImage(groupId, groupGalleryId, groupGalleryImageId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Deletes an Group invite sent to a User
+         * @summary Delete User Invite
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteGroupInvite(groupId: string, userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteGroupInvite(groupId, userId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Deletes a Group Role by ID and returns the remaining roles.
+         * @summary Delete Group Role
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteGroupRole(groupId: string, groupRoleId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GroupRole>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteGroupRole(groupId, groupRoleId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a single Group by ID.
+         * @summary Get Group by ID
+         * @param {string} groupId Must be a valid group ID.
+         * @param {boolean} [includeRoles] Include roles for the Group object. Defaults to false.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGroup(groupId: string, includeRoles?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Group>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGroup(groupId, includeRoles, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns the announcement for a Group. If no announcement has been made, then it returns **empty object**.  If an announcement exists, then it will always return all fields except `imageId` and `imageUrl` which may be null.
+         * @summary Get Group Announcement
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGroupAnnouncements(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupAnnouncement>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGroupAnnouncements(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of audit logs for a Group.
+         * @summary Get Group Audit Logs
+         * @param {string} groupId Must be a valid group ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [startDate] The start date of the search range.
+         * @param {string} [endDate] The end date of the search range.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGroupAuditLogs(groupId: string, n?: number, offset?: number, startDate?: string, endDate?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedGroupAuditLogEntryList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGroupAuditLogs(groupId, n, offset, startDate, endDate, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of banned users for a Group.
+         * @summary Get Group Bans
+         * @param {string} groupId Must be a valid group ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGroupBans(groupId: string, n?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GroupMember>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGroupBans(groupId, n, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of images for a Group gallery.
+         * @summary Get Group Gallery Images
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {boolean} [approved] If specified, only returns images that have been approved or not approved.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGroupGalleryImages(groupId: string, groupGalleryId: string, n?: number, offset?: number, approved?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GroupGalleryImage>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGroupGalleryImages(groupId, groupGalleryId, n, offset, approved, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of members that have been invited to the Group.
+         * @summary Get Group Invites Sent
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGroupInvites(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GroupMember>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGroupInvites(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a LimitedGroup Member.
+         * @summary Get Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGroupMember(groupId: string, userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupLimitedMember>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGroupMember(groupId, userId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a List of all **other** Group Members. This endpoint will never return the user calling the endpoint. Information about the user calling the endpoint must be found in the `myMember` field of the Group object.
+         * @summary List Group Members
+         * @param {string} groupId Must be a valid group ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGroupMembers(groupId: string, n?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GroupMember>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGroupMembers(groupId, n, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a List of all possible/available permissions for a Group.
+         * @summary List Group Permissions
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGroupPermissions(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GroupPermission>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGroupPermissions(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of members that have requested to join the Group.
+         * @summary Get Group Join Requests
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGroupRequests(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GroupMember>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGroupRequests(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a Group Role by ID.
+         * @summary Get Group Roles
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGroupRoles(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GroupRole>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGroupRoles(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Join a Group by ID and returns the joined Group.
+         * @summary Join Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async joinGroup(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Group>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.joinGroup(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Kicks a Group Member from the Group. The current user must have the \"Remove Group Members\" permission.
+         * @summary Kick Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async kickGroupMember(groupId: string, userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.kickGroupMember(groupId, userId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Leave a group by ID.
+         * @summary Leave Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async leaveGroup(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.leaveGroup(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Removes a Role from a Group Member
+         * @summary Remove Role from GroupMember
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async removeGroupMemberRole(groupId: string, userId: string, groupRoleId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.removeGroupMemberRole(groupId, userId, groupRoleId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Responds to a Group Join Request with Accept/Deny
+         * @summary Respond Group Join request
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {RespondGroupJoinRequest} [respondGroupJoinRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async respondGroupJoinRequest(groupId: string, userId: string, respondGroupJoinRequest?: RespondGroupJoinRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.respondGroupJoinRequest(groupId, userId, respondGroupJoinRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Unbans a user from a Group.
+         * @summary Unban Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async unbanGroupMember(groupId: string, userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMember>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unbanGroupMember(groupId, userId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Updates a Group and returns it.
+         * @summary Update Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {UpdateGroupRequest} [updateGroupRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Group>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateGroup(groupId, updateGroupRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Updates a gallery for a Group.
+         * @summary Update Group Gallery
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {UpdateGroupGalleryRequest} [updateGroupGalleryRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateGroupGallery(groupId: string, groupGalleryId: string, updateGroupGalleryRequest?: UpdateGroupGalleryRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupGallery>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateGroupGallery(groupId, groupGalleryId, updateGroupGalleryRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Updates a Group Member
+         * @summary Update Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {UpdateGroupMemberRequest} [updateGroupMemberRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateGroupMember(groupId: string, userId: string, updateGroupMemberRequest?: UpdateGroupMemberRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupLimitedMember>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateGroupMember(groupId, userId, updateGroupMemberRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Updates a group role by ID.
+         * @summary Update Group Role
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {UpdateGroupRoleRequest} [updateGroupRoleRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateGroupRole(groupId: string, groupRoleId: string, updateGroupRoleRequest?: UpdateGroupRoleRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GroupRole>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateGroupRole(groupId, groupRoleId, updateGroupRoleRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * GroupsApi - factory interface
+ * @export
+ */
+export const GroupsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = GroupsApiFp(configuration)
+    return {
+        /**
+         * Adds an image to a Group gallery.
+         * @summary Add Group Gallery Image
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {AddGroupGalleryImageRequest} [addGroupGalleryImageRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addGroupGalleryImage(groupId: string, groupGalleryId: string, addGroupGalleryImageRequest?: AddGroupGalleryImageRequest, options?: any): AxiosPromise<GroupGalleryImage> {
+            return localVarFp.addGroupGalleryImage(groupId, groupGalleryId, addGroupGalleryImageRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Adds a Role to a Group Member
+         * @summary Add Role to GroupMember
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addGroupMemberRole(groupId: string, userId: string, groupRoleId: string, options?: any): AxiosPromise<Array<string>> {
+            return localVarFp.addGroupMemberRole(groupId, userId, groupRoleId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Bans a user from a Group.
+         * @summary Ban Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {BanGroupMemberRequest} [banGroupMemberRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        banGroupMember(groupId: string, banGroupMemberRequest?: BanGroupMemberRequest, options?: any): AxiosPromise<GroupMember> {
+            return localVarFp.banGroupMember(groupId, banGroupMemberRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Cancels a request sent to join the group.
+         * @summary Cancel Group Join Request
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelGroupRequest(groupId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.cancelGroupRequest(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates a Group and returns a Group object. **Requires VRC+ Subscription.**
+         * @summary Create Group
+         * @param {CreateGroupRequest} [createGroupRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGroup(createGroupRequest?: CreateGroupRequest, options?: any): AxiosPromise<Group> {
+            return localVarFp.createGroup(createGroupRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates an Announcement for a Group.
+         * @summary Create Group Announcement
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupAnnouncementRequest} [createGroupAnnouncementRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGroupAnnouncement(groupId: string, createGroupAnnouncementRequest?: CreateGroupAnnouncementRequest, options?: any): AxiosPromise<GroupAnnouncement> {
+            return localVarFp.createGroupAnnouncement(groupId, createGroupAnnouncementRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates a gallery for a Group.
+         * @summary Create Group Gallery
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupGalleryRequest} [createGroupGalleryRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGroupGallery(groupId: string, createGroupGalleryRequest?: CreateGroupGalleryRequest, options?: any): AxiosPromise<GroupGallery> {
+            return localVarFp.createGroupGallery(groupId, createGroupGalleryRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Sends an invite to a user to join the group.
+         * @summary Invite User to Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupInviteRequest} [createGroupInviteRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGroupInvite(groupId: string, createGroupInviteRequest?: CreateGroupInviteRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.createGroupInvite(groupId, createGroupInviteRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Create a Group role.
+         * @summary Create GroupRole
+         * @param {string} groupId Must be a valid group ID.
+         * @param {CreateGroupRoleRequest} [createGroupRoleRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGroupRole(groupId: string, createGroupRoleRequest?: CreateGroupRoleRequest, options?: any): AxiosPromise<GroupRole> {
+            return localVarFp.createGroupRole(groupId, createGroupRoleRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes a Group.
+         * @summary Delete Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroup(groupId: string, options?: any): AxiosPromise<Success> {
+            return localVarFp.deleteGroup(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes the announcement for a Group.
+         * @summary Delete Group Announcement
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroupAnnouncement(groupId: string, options?: any): AxiosPromise<Success> {
+            return localVarFp.deleteGroupAnnouncement(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes a gallery for a Group.
+         * @summary Delete Group Gallery
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroupGallery(groupId: string, groupGalleryId: string, options?: any): AxiosPromise<Success> {
+            return localVarFp.deleteGroupGallery(groupId, groupGalleryId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes an image from a Group gallery.
+         * @summary Delete Group Gallery Image
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {string} groupGalleryImageId Must be a valid group gallery image ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroupGalleryImage(groupId: string, groupGalleryId: string, groupGalleryImageId: string, options?: any): AxiosPromise<Success> {
+            return localVarFp.deleteGroupGalleryImage(groupId, groupGalleryId, groupGalleryImageId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes an Group invite sent to a User
+         * @summary Delete User Invite
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroupInvite(groupId: string, userId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.deleteGroupInvite(groupId, userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes a Group Role by ID and returns the remaining roles.
+         * @summary Delete Group Role
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGroupRole(groupId: string, groupRoleId: string, options?: any): AxiosPromise<Array<GroupRole>> {
+            return localVarFp.deleteGroupRole(groupId, groupRoleId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a single Group by ID.
+         * @summary Get Group by ID
+         * @param {string} groupId Must be a valid group ID.
+         * @param {boolean} [includeRoles] Include roles for the Group object. Defaults to false.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroup(groupId: string, includeRoles?: boolean, options?: any): AxiosPromise<Group> {
+            return localVarFp.getGroup(groupId, includeRoles, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns the announcement for a Group. If no announcement has been made, then it returns **empty object**.  If an announcement exists, then it will always return all fields except `imageId` and `imageUrl` which may be null.
+         * @summary Get Group Announcement
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupAnnouncements(groupId: string, options?: any): AxiosPromise<GroupAnnouncement> {
+            return localVarFp.getGroupAnnouncements(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of audit logs for a Group.
+         * @summary Get Group Audit Logs
+         * @param {string} groupId Must be a valid group ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {string} [startDate] The start date of the search range.
+         * @param {string} [endDate] The end date of the search range.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupAuditLogs(groupId: string, n?: number, offset?: number, startDate?: string, endDate?: string, options?: any): AxiosPromise<PaginatedGroupAuditLogEntryList> {
+            return localVarFp.getGroupAuditLogs(groupId, n, offset, startDate, endDate, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of banned users for a Group.
+         * @summary Get Group Bans
+         * @param {string} groupId Must be a valid group ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupBans(groupId: string, n?: number, offset?: number, options?: any): AxiosPromise<Array<GroupMember>> {
+            return localVarFp.getGroupBans(groupId, n, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of images for a Group gallery.
+         * @summary Get Group Gallery Images
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {boolean} [approved] If specified, only returns images that have been approved or not approved.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupGalleryImages(groupId: string, groupGalleryId: string, n?: number, offset?: number, approved?: boolean, options?: any): AxiosPromise<Array<GroupGalleryImage>> {
+            return localVarFp.getGroupGalleryImages(groupId, groupGalleryId, n, offset, approved, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of members that have been invited to the Group.
+         * @summary Get Group Invites Sent
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupInvites(groupId: string, options?: any): AxiosPromise<Array<GroupMember>> {
+            return localVarFp.getGroupInvites(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a LimitedGroup Member.
+         * @summary Get Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupMember(groupId: string, userId: string, options?: any): AxiosPromise<GroupLimitedMember> {
+            return localVarFp.getGroupMember(groupId, userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a List of all **other** Group Members. This endpoint will never return the user calling the endpoint. Information about the user calling the endpoint must be found in the `myMember` field of the Group object.
+         * @summary List Group Members
+         * @param {string} groupId Must be a valid group ID.
+         * @param {number} [n] The number of objects to return.
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupMembers(groupId: string, n?: number, offset?: number, options?: any): AxiosPromise<Array<GroupMember>> {
+            return localVarFp.getGroupMembers(groupId, n, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a List of all possible/available permissions for a Group.
+         * @summary List Group Permissions
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupPermissions(groupId: string, options?: any): AxiosPromise<Array<GroupPermission>> {
+            return localVarFp.getGroupPermissions(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of members that have requested to join the Group.
+         * @summary Get Group Join Requests
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupRequests(groupId: string, options?: any): AxiosPromise<Array<GroupMember>> {
+            return localVarFp.getGroupRequests(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a Group Role by ID.
+         * @summary Get Group Roles
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupRoles(groupId: string, options?: any): AxiosPromise<Array<GroupRole>> {
+            return localVarFp.getGroupRoles(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Join a Group by ID and returns the joined Group.
+         * @summary Join Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        joinGroup(groupId: string, options?: any): AxiosPromise<Group> {
+            return localVarFp.joinGroup(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Kicks a Group Member from the Group. The current user must have the \"Remove Group Members\" permission.
+         * @summary Kick Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        kickGroupMember(groupId: string, userId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.kickGroupMember(groupId, userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Leave a group by ID.
+         * @summary Leave Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        leaveGroup(groupId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.leaveGroup(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes a Role from a Group Member
+         * @summary Remove Role from GroupMember
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        removeGroupMemberRole(groupId: string, userId: string, groupRoleId: string, options?: any): AxiosPromise<Array<string>> {
+            return localVarFp.removeGroupMemberRole(groupId, userId, groupRoleId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Responds to a Group Join Request with Accept/Deny
+         * @summary Respond Group Join request
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {RespondGroupJoinRequest} [respondGroupJoinRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        respondGroupJoinRequest(groupId: string, userId: string, respondGroupJoinRequest?: RespondGroupJoinRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.respondGroupJoinRequest(groupId, userId, respondGroupJoinRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Unbans a user from a Group.
+         * @summary Unban Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unbanGroupMember(groupId: string, userId: string, options?: any): AxiosPromise<GroupMember> {
+            return localVarFp.unbanGroupMember(groupId, userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates a Group and returns it.
+         * @summary Update Group
+         * @param {string} groupId Must be a valid group ID.
+         * @param {UpdateGroupRequest} [updateGroupRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options?: any): AxiosPromise<Group> {
+            return localVarFp.updateGroup(groupId, updateGroupRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates a gallery for a Group.
+         * @summary Update Group Gallery
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupGalleryId Must be a valid group gallery ID.
+         * @param {UpdateGroupGalleryRequest} [updateGroupGalleryRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGroupGallery(groupId: string, groupGalleryId: string, updateGroupGalleryRequest?: UpdateGroupGalleryRequest, options?: any): AxiosPromise<GroupGallery> {
+            return localVarFp.updateGroupGallery(groupId, groupGalleryId, updateGroupGalleryRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates a Group Member
+         * @summary Update Group Member
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} userId Must be a valid user ID.
+         * @param {UpdateGroupMemberRequest} [updateGroupMemberRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGroupMember(groupId: string, userId: string, updateGroupMemberRequest?: UpdateGroupMemberRequest, options?: any): AxiosPromise<GroupLimitedMember> {
+            return localVarFp.updateGroupMember(groupId, userId, updateGroupMemberRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates a group role by ID.
+         * @summary Update Group Role
+         * @param {string} groupId Must be a valid group ID.
+         * @param {string} groupRoleId Must be a valid group role ID.
+         * @param {UpdateGroupRoleRequest} [updateGroupRoleRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGroupRole(groupId: string, groupRoleId: string, updateGroupRoleRequest?: UpdateGroupRoleRequest, options?: any): AxiosPromise<Array<GroupRole>> {
+            return localVarFp.updateGroupRole(groupId, groupRoleId, updateGroupRoleRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * GroupsApi - object-oriented interface
+ * @export
+ * @class GroupsApi
+ * @extends {BaseAPI}
+ */
+export class GroupsApi extends BaseAPI {
+    /**
+     * Adds an image to a Group gallery.
+     * @summary Add Group Gallery Image
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} groupGalleryId Must be a valid group gallery ID.
+     * @param {AddGroupGalleryImageRequest} [addGroupGalleryImageRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public addGroupGalleryImage(groupId: string, groupGalleryId: string, addGroupGalleryImageRequest?: AddGroupGalleryImageRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).addGroupGalleryImage(groupId, groupGalleryId, addGroupGalleryImageRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Adds a Role to a Group Member
+     * @summary Add Role to GroupMember
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} userId Must be a valid user ID.
+     * @param {string} groupRoleId Must be a valid group role ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public addGroupMemberRole(groupId: string, userId: string, groupRoleId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).addGroupMemberRole(groupId, userId, groupRoleId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Bans a user from a Group.
+     * @summary Ban Group Member
+     * @param {string} groupId Must be a valid group ID.
+     * @param {BanGroupMemberRequest} [banGroupMemberRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public banGroupMember(groupId: string, banGroupMemberRequest?: BanGroupMemberRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).banGroupMember(groupId, banGroupMemberRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Cancels a request sent to join the group.
+     * @summary Cancel Group Join Request
+     * @param {string} groupId Must be a valid group ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public cancelGroupRequest(groupId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).cancelGroupRequest(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Creates a Group and returns a Group object. **Requires VRC+ Subscription.**
+     * @summary Create Group
+     * @param {CreateGroupRequest} [createGroupRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public createGroup(createGroupRequest?: CreateGroupRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).createGroup(createGroupRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Creates an Announcement for a Group.
+     * @summary Create Group Announcement
+     * @param {string} groupId Must be a valid group ID.
+     * @param {CreateGroupAnnouncementRequest} [createGroupAnnouncementRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public createGroupAnnouncement(groupId: string, createGroupAnnouncementRequest?: CreateGroupAnnouncementRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).createGroupAnnouncement(groupId, createGroupAnnouncementRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Creates a gallery for a Group.
+     * @summary Create Group Gallery
+     * @param {string} groupId Must be a valid group ID.
+     * @param {CreateGroupGalleryRequest} [createGroupGalleryRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public createGroupGallery(groupId: string, createGroupGalleryRequest?: CreateGroupGalleryRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).createGroupGallery(groupId, createGroupGalleryRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Sends an invite to a user to join the group.
+     * @summary Invite User to Group
+     * @param {string} groupId Must be a valid group ID.
+     * @param {CreateGroupInviteRequest} [createGroupInviteRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public createGroupInvite(groupId: string, createGroupInviteRequest?: CreateGroupInviteRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).createGroupInvite(groupId, createGroupInviteRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Create a Group role.
+     * @summary Create GroupRole
+     * @param {string} groupId Must be a valid group ID.
+     * @param {CreateGroupRoleRequest} [createGroupRoleRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public createGroupRole(groupId: string, createGroupRoleRequest?: CreateGroupRoleRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).createGroupRole(groupId, createGroupRoleRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes a Group.
+     * @summary Delete Group
+     * @param {string} groupId Must be a valid group ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public deleteGroup(groupId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).deleteGroup(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes the announcement for a Group.
+     * @summary Delete Group Announcement
+     * @param {string} groupId Must be a valid group ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public deleteGroupAnnouncement(groupId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).deleteGroupAnnouncement(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes a gallery for a Group.
+     * @summary Delete Group Gallery
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} groupGalleryId Must be a valid group gallery ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public deleteGroupGallery(groupId: string, groupGalleryId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).deleteGroupGallery(groupId, groupGalleryId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes an image from a Group gallery.
+     * @summary Delete Group Gallery Image
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} groupGalleryId Must be a valid group gallery ID.
+     * @param {string} groupGalleryImageId Must be a valid group gallery image ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public deleteGroupGalleryImage(groupId: string, groupGalleryId: string, groupGalleryImageId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).deleteGroupGalleryImage(groupId, groupGalleryId, groupGalleryImageId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes an Group invite sent to a User
+     * @summary Delete User Invite
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} userId Must be a valid user ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public deleteGroupInvite(groupId: string, userId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).deleteGroupInvite(groupId, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes a Group Role by ID and returns the remaining roles.
+     * @summary Delete Group Role
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} groupRoleId Must be a valid group role ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public deleteGroupRole(groupId: string, groupRoleId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).deleteGroupRole(groupId, groupRoleId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a single Group by ID.
+     * @summary Get Group by ID
+     * @param {string} groupId Must be a valid group ID.
+     * @param {boolean} [includeRoles] Include roles for the Group object. Defaults to false.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public getGroup(groupId: string, includeRoles?: boolean, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).getGroup(groupId, includeRoles, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns the announcement for a Group. If no announcement has been made, then it returns **empty object**.  If an announcement exists, then it will always return all fields except `imageId` and `imageUrl` which may be null.
+     * @summary Get Group Announcement
+     * @param {string} groupId Must be a valid group ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public getGroupAnnouncements(groupId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).getGroupAnnouncements(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of audit logs for a Group.
+     * @summary Get Group Audit Logs
+     * @param {string} groupId Must be a valid group ID.
+     * @param {number} [n] The number of objects to return.
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {string} [startDate] The start date of the search range.
+     * @param {string} [endDate] The end date of the search range.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public getGroupAuditLogs(groupId: string, n?: number, offset?: number, startDate?: string, endDate?: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).getGroupAuditLogs(groupId, n, offset, startDate, endDate, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of banned users for a Group.
+     * @summary Get Group Bans
+     * @param {string} groupId Must be a valid group ID.
+     * @param {number} [n] The number of objects to return.
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public getGroupBans(groupId: string, n?: number, offset?: number, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).getGroupBans(groupId, n, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of images for a Group gallery.
+     * @summary Get Group Gallery Images
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} groupGalleryId Must be a valid group gallery ID.
+     * @param {number} [n] The number of objects to return.
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {boolean} [approved] If specified, only returns images that have been approved or not approved.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public getGroupGalleryImages(groupId: string, groupGalleryId: string, n?: number, offset?: number, approved?: boolean, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).getGroupGalleryImages(groupId, groupGalleryId, n, offset, approved, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of members that have been invited to the Group.
+     * @summary Get Group Invites Sent
+     * @param {string} groupId Must be a valid group ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public getGroupInvites(groupId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).getGroupInvites(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a LimitedGroup Member.
+     * @summary Get Group Member
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} userId Must be a valid user ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public getGroupMember(groupId: string, userId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).getGroupMember(groupId, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a List of all **other** Group Members. This endpoint will never return the user calling the endpoint. Information about the user calling the endpoint must be found in the `myMember` field of the Group object.
+     * @summary List Group Members
+     * @param {string} groupId Must be a valid group ID.
+     * @param {number} [n] The number of objects to return.
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public getGroupMembers(groupId: string, n?: number, offset?: number, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).getGroupMembers(groupId, n, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a List of all possible/available permissions for a Group.
+     * @summary List Group Permissions
+     * @param {string} groupId Must be a valid group ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public getGroupPermissions(groupId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).getGroupPermissions(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of members that have requested to join the Group.
+     * @summary Get Group Join Requests
+     * @param {string} groupId Must be a valid group ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public getGroupRequests(groupId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).getGroupRequests(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a Group Role by ID.
+     * @summary Get Group Roles
+     * @param {string} groupId Must be a valid group ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public getGroupRoles(groupId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).getGroupRoles(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Join a Group by ID and returns the joined Group.
+     * @summary Join Group
+     * @param {string} groupId Must be a valid group ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public joinGroup(groupId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).joinGroup(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Kicks a Group Member from the Group. The current user must have the \"Remove Group Members\" permission.
+     * @summary Kick Group Member
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} userId Must be a valid user ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public kickGroupMember(groupId: string, userId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).kickGroupMember(groupId, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Leave a group by ID.
+     * @summary Leave Group
+     * @param {string} groupId Must be a valid group ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public leaveGroup(groupId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).leaveGroup(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes a Role from a Group Member
+     * @summary Remove Role from GroupMember
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} userId Must be a valid user ID.
+     * @param {string} groupRoleId Must be a valid group role ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public removeGroupMemberRole(groupId: string, userId: string, groupRoleId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).removeGroupMemberRole(groupId, userId, groupRoleId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Responds to a Group Join Request with Accept/Deny
+     * @summary Respond Group Join request
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} userId Must be a valid user ID.
+     * @param {RespondGroupJoinRequest} [respondGroupJoinRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public respondGroupJoinRequest(groupId: string, userId: string, respondGroupJoinRequest?: RespondGroupJoinRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).respondGroupJoinRequest(groupId, userId, respondGroupJoinRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Unbans a user from a Group.
+     * @summary Unban Group Member
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} userId Must be a valid user ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public unbanGroupMember(groupId: string, userId: string, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).unbanGroupMember(groupId, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates a Group and returns it.
+     * @summary Update Group
+     * @param {string} groupId Must be a valid group ID.
+     * @param {UpdateGroupRequest} [updateGroupRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).updateGroup(groupId, updateGroupRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates a gallery for a Group.
+     * @summary Update Group Gallery
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} groupGalleryId Must be a valid group gallery ID.
+     * @param {UpdateGroupGalleryRequest} [updateGroupGalleryRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public updateGroupGallery(groupId: string, groupGalleryId: string, updateGroupGalleryRequest?: UpdateGroupGalleryRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).updateGroupGallery(groupId, groupGalleryId, updateGroupGalleryRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates a Group Member
+     * @summary Update Group Member
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} userId Must be a valid user ID.
+     * @param {UpdateGroupMemberRequest} [updateGroupMemberRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public updateGroupMember(groupId: string, userId: string, updateGroupMemberRequest?: UpdateGroupMemberRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).updateGroupMember(groupId, userId, updateGroupMemberRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates a group role by ID.
+     * @summary Update Group Role
+     * @param {string} groupId Must be a valid group ID.
+     * @param {string} groupRoleId Must be a valid group role ID.
+     * @param {UpdateGroupRoleRequest} [updateGroupRoleRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public updateGroupRole(groupId: string, groupRoleId: string, updateGroupRoleRequest?: UpdateGroupRoleRequest, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).updateGroupRole(groupId, groupRoleId, updateGroupRoleRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -7974,8 +12121,8 @@ export const InstancesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.  If an invalid instanceId is provided, this endpoint will simply return \"null\"!
          * @summary Get Instance
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8016,7 +12163,7 @@ export const InstancesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.
          * @summary Get Instance By Short Name
-         * @param {string} shortName 
+         * @param {string} shortName Must be a valid instance short name.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8054,8 +12201,8 @@ export const InstancesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Returns an instance short name.
          * @summary Get Instance Short Name
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8096,8 +12243,8 @@ export const InstancesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Sends an invite to the instance to yourself.
          * @summary Send Self Invite
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8148,8 +12295,8 @@ export const InstancesApiFp = function(configuration?: Configuration) {
         /**
          * Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.  If an invalid instanceId is provided, this endpoint will simply return \"null\"!
          * @summary Get Instance
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8160,7 +12307,7 @@ export const InstancesApiFp = function(configuration?: Configuration) {
         /**
          * Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.
          * @summary Get Instance By Short Name
-         * @param {string} shortName 
+         * @param {string} shortName Must be a valid instance short name.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8171,8 +12318,8 @@ export const InstancesApiFp = function(configuration?: Configuration) {
         /**
          * Returns an instance short name.
          * @summary Get Instance Short Name
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8183,8 +12330,8 @@ export const InstancesApiFp = function(configuration?: Configuration) {
         /**
          * Sends an invite to the instance to yourself.
          * @summary Send Self Invite
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8205,8 +12352,8 @@ export const InstancesApiFactory = function (configuration?: Configuration, base
         /**
          * Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.  If an invalid instanceId is provided, this endpoint will simply return \"null\"!
          * @summary Get Instance
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8216,7 +12363,7 @@ export const InstancesApiFactory = function (configuration?: Configuration, base
         /**
          * Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.
          * @summary Get Instance By Short Name
-         * @param {string} shortName 
+         * @param {string} shortName Must be a valid instance short name.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8226,8 +12373,8 @@ export const InstancesApiFactory = function (configuration?: Configuration, base
         /**
          * Returns an instance short name.
          * @summary Get Instance Short Name
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8237,8 +12384,8 @@ export const InstancesApiFactory = function (configuration?: Configuration, base
         /**
          * Sends an invite to the instance to yourself.
          * @summary Send Self Invite
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8258,8 +12405,8 @@ export class InstancesApi extends BaseAPI {
     /**
      * Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.  If an invalid instanceId is provided, this endpoint will simply return \"null\"!
      * @summary Get Instance
-     * @param {string} worldId 
-     * @param {string} instanceId 
+     * @param {string} worldId Must be a valid world ID.
+     * @param {string} instanceId Must be a valid instance ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
@@ -8271,7 +12418,7 @@ export class InstancesApi extends BaseAPI {
     /**
      * Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.
      * @summary Get Instance By Short Name
-     * @param {string} shortName 
+     * @param {string} shortName Must be a valid instance short name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
@@ -8283,8 +12430,8 @@ export class InstancesApi extends BaseAPI {
     /**
      * Returns an instance short name.
      * @summary Get Instance Short Name
-     * @param {string} worldId 
-     * @param {string} instanceId 
+     * @param {string} worldId Must be a valid world ID.
+     * @param {string} instanceId Must be a valid instance ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
@@ -8296,8 +12443,8 @@ export class InstancesApi extends BaseAPI {
     /**
      * Sends an invite to the instance to yourself.
      * @summary Send Self Invite
-     * @param {string} worldId 
-     * @param {string} instanceId 
+     * @param {string} worldId Must be a valid world ID.
+     * @param {string} instanceId Must be a valid instance ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InstancesApi
@@ -8317,13 +12464,13 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Returns a single Invite Message. This returns the exact same information but less than `getInviteMessages`. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
          * @summary Get Invite Message
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-         * @param {number} slot 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+         * @param {number} slot The message slot to fetch of a given message type.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInviteMessage: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getInviteMessage: async (userId: string, messageType: InviteMessageType, slot: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('getInviteMessage', 'userId', userId)
             // verify required parameter 'messageType' is not null or undefined
@@ -8363,12 +12510,12 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Returns a list of all the users Invite Messages. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
          * @summary List Invite Messages
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInviteMessages: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getInviteMessages: async (userId: string, messageType: InviteMessageType, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('getInviteMessages', 'userId', userId)
             // verify required parameter 'messageType' is not null or undefined
@@ -8405,8 +12552,8 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Sends self an invite to an instance
          * @summary Invite Myself To Instance
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8447,7 +12594,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Sends an invite to a user. Returns the Notification of type `invite` that was sent.
          * @summary Invite User
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {InviteRequest} [inviteRequest] Slot number of the Invite Message to use when inviting a user.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8489,7 +12636,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Requests an invite from a user. Returns the Notification of type `requestInvite` that was sent.
          * @summary Request Invite
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {RequestInviteRequest} [requestInviteRequest] Slot number of the Request Message to use when request an invite.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8531,13 +12678,13 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Resets a single Invite Message back to its original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, so it is not possible to reset within the 60 minutes countdown. Resetting it does however not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite  The DELETE endpoint does not have/require any request body.
          * @summary Reset Invite Message
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-         * @param {number} slot 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+         * @param {number} slot The message slot to fetch of a given message type.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resetInviteMessage: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        resetInviteMessage: async (userId: string, messageType: InviteMessageType, slot: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('resetInviteMessage', 'userId', userId)
             // verify required parameter 'messageType' is not null or undefined
@@ -8577,7 +12724,7 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Respond to an invite request by sending a world invite to the requesting user. `:notificationId` is the ID of the requesting notification.
          * @summary Respond Invite
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {InviteResponse} [inviteResponse] Slot number of the Response Message to use when responding to a user.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8619,14 +12766,14 @@ export const InviteApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
          * @summary Update Invite Message
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-         * @param {number} slot 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+         * @param {number} slot The message slot to fetch of a given message type.
          * @param {UpdateInviteMessageRequest} [updateInviteMessageRequest] Message of what to set the invite message to.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateInviteMessage: async (userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, updateInviteMessageRequest?: UpdateInviteMessageRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateInviteMessage: async (userId: string, messageType: InviteMessageType, slot: number, updateInviteMessageRequest?: UpdateInviteMessageRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('updateInviteMessage', 'userId', userId)
             // verify required parameter 'messageType' is not null or undefined
@@ -8679,33 +12826,33 @@ export const InviteApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single Invite Message. This returns the exact same information but less than `getInviteMessages`. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
          * @summary Get Invite Message
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-         * @param {number} slot 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+         * @param {number} slot The message slot to fetch of a given message type.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InviteMessage>> {
+        async getInviteMessage(userId: string, messageType: InviteMessageType, slot: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InviteMessage>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInviteMessage(userId, messageType, slot, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Returns a list of all the users Invite Messages. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
          * @summary List Invite Messages
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInviteMessages(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
+        async getInviteMessages(userId: string, messageType: InviteMessageType, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInviteMessages(userId, messageType, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Sends self an invite to an instance
          * @summary Invite Myself To Instance
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8716,7 +12863,7 @@ export const InviteApiFp = function(configuration?: Configuration) {
         /**
          * Sends an invite to a user. Returns the Notification of type `invite` that was sent.
          * @summary Invite User
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {InviteRequest} [inviteRequest] Slot number of the Invite Message to use when inviting a user.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8728,7 +12875,7 @@ export const InviteApiFp = function(configuration?: Configuration) {
         /**
          * Requests an invite from a user. Returns the Notification of type `requestInvite` that was sent.
          * @summary Request Invite
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {RequestInviteRequest} [requestInviteRequest] Slot number of the Request Message to use when request an invite.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8740,20 +12887,20 @@ export const InviteApiFp = function(configuration?: Configuration) {
         /**
          * Resets a single Invite Message back to its original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, so it is not possible to reset within the 60 minutes countdown. Resetting it does however not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite  The DELETE endpoint does not have/require any request body.
          * @summary Reset Invite Message
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-         * @param {number} slot 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+         * @param {number} slot The message slot to fetch of a given message type.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async resetInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
+        async resetInviteMessage(userId: string, messageType: InviteMessageType, slot: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.resetInviteMessage(userId, messageType, slot, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Respond to an invite request by sending a world invite to the requesting user. `:notificationId` is the ID of the requesting notification.
          * @summary Respond Invite
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {InviteResponse} [inviteResponse] Slot number of the Response Message to use when responding to a user.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8765,14 +12912,14 @@ export const InviteApiFp = function(configuration?: Configuration) {
         /**
          * Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
          * @summary Update Invite Message
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-         * @param {number} slot 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+         * @param {number} slot The message slot to fetch of a given message type.
          * @param {UpdateInviteMessageRequest} [updateInviteMessageRequest] Message of what to set the invite message to.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, updateInviteMessageRequest?: UpdateInviteMessageRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
+        async updateInviteMessage(userId: string, messageType: InviteMessageType, slot: number, updateInviteMessageRequest?: UpdateInviteMessageRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InviteMessage>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateInviteMessage(userId, messageType, slot, updateInviteMessageRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -8789,31 +12936,31 @@ export const InviteApiFactory = function (configuration?: Configuration, basePat
         /**
          * Returns a single Invite Message. This returns the exact same information but less than `getInviteMessages`. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
          * @summary Get Invite Message
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-         * @param {number} slot 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+         * @param {number} slot The message slot to fetch of a given message type.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, options?: any): AxiosPromise<InviteMessage> {
+        getInviteMessage(userId: string, messageType: InviteMessageType, slot: number, options?: any): AxiosPromise<InviteMessage> {
             return localVarFp.getInviteMessage(userId, messageType, slot, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a list of all the users Invite Messages. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
          * @summary List Invite Messages
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInviteMessages(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', options?: any): AxiosPromise<Array<InviteMessage>> {
+        getInviteMessages(userId: string, messageType: InviteMessageType, options?: any): AxiosPromise<Array<InviteMessage>> {
             return localVarFp.getInviteMessages(userId, messageType, options).then((request) => request(axios, basePath));
         },
         /**
          * Sends self an invite to an instance
          * @summary Invite Myself To Instance
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -8823,7 +12970,7 @@ export const InviteApiFactory = function (configuration?: Configuration, basePat
         /**
          * Sends an invite to a user. Returns the Notification of type `invite` that was sent.
          * @summary Invite User
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {InviteRequest} [inviteRequest] Slot number of the Invite Message to use when inviting a user.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8834,7 +12981,7 @@ export const InviteApiFactory = function (configuration?: Configuration, basePat
         /**
          * Requests an invite from a user. Returns the Notification of type `requestInvite` that was sent.
          * @summary Request Invite
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {RequestInviteRequest} [requestInviteRequest] Slot number of the Request Message to use when request an invite.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8845,19 +12992,19 @@ export const InviteApiFactory = function (configuration?: Configuration, basePat
         /**
          * Resets a single Invite Message back to its original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, so it is not possible to reset within the 60 minutes countdown. Resetting it does however not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite  The DELETE endpoint does not have/require any request body.
          * @summary Reset Invite Message
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-         * @param {number} slot 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+         * @param {number} slot The message slot to fetch of a given message type.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resetInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, options?: any): AxiosPromise<Array<InviteMessage>> {
+        resetInviteMessage(userId: string, messageType: InviteMessageType, slot: number, options?: any): AxiosPromise<Array<InviteMessage>> {
             return localVarFp.resetInviteMessage(userId, messageType, slot, options).then((request) => request(axios, basePath));
         },
         /**
          * Respond to an invite request by sending a world invite to the requesting user. `:notificationId` is the ID of the requesting notification.
          * @summary Respond Invite
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {InviteResponse} [inviteResponse] Slot number of the Response Message to use when responding to a user.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8868,14 +13015,14 @@ export const InviteApiFactory = function (configuration?: Configuration, basePat
         /**
          * Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
          * @summary Update Invite Message
-         * @param {string} userId 
-         * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-         * @param {number} slot 
+         * @param {string} userId Must be a valid user ID.
+         * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+         * @param {number} slot The message slot to fetch of a given message type.
          * @param {UpdateInviteMessageRequest} [updateInviteMessageRequest] Message of what to set the invite message to.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, updateInviteMessageRequest?: UpdateInviteMessageRequest, options?: any): AxiosPromise<Array<InviteMessage>> {
+        updateInviteMessage(userId: string, messageType: InviteMessageType, slot: number, updateInviteMessageRequest?: UpdateInviteMessageRequest, options?: any): AxiosPromise<Array<InviteMessage>> {
             return localVarFp.updateInviteMessage(userId, messageType, slot, updateInviteMessageRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -8891,35 +13038,35 @@ export class InviteApi extends BaseAPI {
     /**
      * Returns a single Invite Message. This returns the exact same information but less than `getInviteMessages`. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
      * @summary Get Invite Message
-     * @param {string} userId 
-     * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-     * @param {number} slot 
+     * @param {string} userId Must be a valid user ID.
+     * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+     * @param {number} slot The message slot to fetch of a given message type.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InviteApi
      */
-    public getInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, options?: AxiosRequestConfig) {
+    public getInviteMessage(userId: string, messageType: InviteMessageType, slot: number, options?: AxiosRequestConfig) {
         return InviteApiFp(this.configuration).getInviteMessage(userId, messageType, slot, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns a list of all the users Invite Messages. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
      * @summary List Invite Messages
-     * @param {string} userId 
-     * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
+     * @param {string} userId Must be a valid user ID.
+     * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InviteApi
      */
-    public getInviteMessages(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', options?: AxiosRequestConfig) {
+    public getInviteMessages(userId: string, messageType: InviteMessageType, options?: AxiosRequestConfig) {
         return InviteApiFp(this.configuration).getInviteMessages(userId, messageType, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Sends self an invite to an instance
      * @summary Invite Myself To Instance
-     * @param {string} worldId 
-     * @param {string} instanceId 
+     * @param {string} worldId Must be a valid world ID.
+     * @param {string} instanceId Must be a valid instance ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InviteApi
@@ -8931,7 +13078,7 @@ export class InviteApi extends BaseAPI {
     /**
      * Sends an invite to a user. Returns the Notification of type `invite` that was sent.
      * @summary Invite User
-     * @param {string} userId 
+     * @param {string} userId Must be a valid user ID.
      * @param {InviteRequest} [inviteRequest] Slot number of the Invite Message to use when inviting a user.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -8944,7 +13091,7 @@ export class InviteApi extends BaseAPI {
     /**
      * Requests an invite from a user. Returns the Notification of type `requestInvite` that was sent.
      * @summary Request Invite
-     * @param {string} userId 
+     * @param {string} userId Must be a valid user ID.
      * @param {RequestInviteRequest} [requestInviteRequest] Slot number of the Request Message to use when request an invite.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -8957,21 +13104,21 @@ export class InviteApi extends BaseAPI {
     /**
      * Resets a single Invite Message back to its original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, so it is not possible to reset within the 60 minutes countdown. Resetting it does however not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite  The DELETE endpoint does not have/require any request body.
      * @summary Reset Invite Message
-     * @param {string} userId 
-     * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-     * @param {number} slot 
+     * @param {string} userId Must be a valid user ID.
+     * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+     * @param {number} slot The message slot to fetch of a given message type.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InviteApi
      */
-    public resetInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, options?: AxiosRequestConfig) {
+    public resetInviteMessage(userId: string, messageType: InviteMessageType, slot: number, options?: AxiosRequestConfig) {
         return InviteApiFp(this.configuration).resetInviteMessage(userId, messageType, slot, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Respond to an invite request by sending a world invite to the requesting user. `:notificationId` is the ID of the requesting notification.
      * @summary Respond Invite
-     * @param {string} notificationId 
+     * @param {string} notificationId Must be a valid notification ID.
      * @param {InviteResponse} [inviteResponse] Slot number of the Response Message to use when responding to a user.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -8984,15 +13131,15 @@ export class InviteApi extends BaseAPI {
     /**
      * Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
      * @summary Update Invite Message
-     * @param {string} userId 
-     * @param {'message' | 'response' | 'request' | 'requestResponse'} messageType 
-     * @param {number} slot 
+     * @param {string} userId Must be a valid user ID.
+     * @param {InviteMessageType} messageType The type of message to fetch, must be a valid InviteMessageType.
+     * @param {number} slot The message slot to fetch of a given message type.
      * @param {UpdateInviteMessageRequest} [updateInviteMessageRequest] Message of what to set the invite message to.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InviteApi
      */
-    public updateInviteMessage(userId: string, messageType: 'message' | 'response' | 'request' | 'requestResponse', slot: number, updateInviteMessageRequest?: UpdateInviteMessageRequest, options?: AxiosRequestConfig) {
+    public updateInviteMessage(userId: string, messageType: InviteMessageType, slot: number, updateInviteMessageRequest?: UpdateInviteMessageRequest, options?: AxiosRequestConfig) {
         return InviteApiFp(this.configuration).updateInviteMessage(userId, messageType, slot, updateInviteMessageRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -9007,7 +13154,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
         /**
          * Accept a friend request by notification `frq_` ID. Friend requests can be found using the NotificationsAPI `getNotifications` by filtering of type `friendRequest`.
          * @summary Accept Friend Request
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9079,7 +13226,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
         /**
          * Delete a notification.
          * @summary Delete Notification
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9181,7 +13328,7 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
         /**
          * Mark a notification as seen.
          * @summary Mark Notification As Read
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9229,7 +13376,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
         /**
          * Accept a friend request by notification `frq_` ID. Friend requests can be found using the NotificationsAPI `getNotifications` by filtering of type `friendRequest`.
          * @summary Accept Friend Request
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9250,7 +13397,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
         /**
          * Delete a notification.
          * @summary Delete Notification
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9277,7 +13424,7 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
         /**
          * Mark a notification as seen.
          * @summary Mark Notification As Read
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9298,7 +13445,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
         /**
          * Accept a friend request by notification `frq_` ID. Friend requests can be found using the NotificationsAPI `getNotifications` by filtering of type `friendRequest`.
          * @summary Accept Friend Request
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9317,7 +13464,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
         /**
          * Delete a notification.
          * @summary Delete Notification
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9342,7 +13489,7 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
         /**
          * Mark a notification as seen.
          * @summary Mark Notification As Read
-         * @param {string} notificationId 
+         * @param {string} notificationId Must be a valid notification ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9362,7 +13509,7 @@ export class NotificationsApi extends BaseAPI {
     /**
      * Accept a friend request by notification `frq_` ID. Friend requests can be found using the NotificationsAPI `getNotifications` by filtering of type `friendRequest`.
      * @summary Accept Friend Request
-     * @param {string} notificationId 
+     * @param {string} notificationId Must be a valid notification ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotificationsApi
@@ -9385,7 +13532,7 @@ export class NotificationsApi extends BaseAPI {
     /**
      * Delete a notification.
      * @summary Delete Notification
-     * @param {string} notificationId 
+     * @param {string} notificationId Must be a valid notification ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotificationsApi
@@ -9414,7 +13561,7 @@ export class NotificationsApi extends BaseAPI {
     /**
      * Mark a notification as seen.
      * @summary Mark Notification As Read
-     * @param {string} notificationId 
+     * @param {string} notificationId Must be a valid notification ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotificationsApi
@@ -9468,7 +13615,7 @@ export const PermissionsApiAxiosParamCreator = function (configuration?: Configu
         /**
          * Returns a single permission. This endpoint is pretty useless, as it returns the exact same information as `/auth/permissions`.
          * @summary Get Permission
-         * @param {string} permissionId 
+         * @param {string} permissionId Must be a valid permission ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9526,7 +13673,7 @@ export const PermissionsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single permission. This endpoint is pretty useless, as it returns the exact same information as `/auth/permissions`.
          * @summary Get Permission
-         * @param {string} permissionId 
+         * @param {string} permissionId Must be a valid permission ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9556,7 +13703,7 @@ export const PermissionsApiFactory = function (configuration?: Configuration, ba
         /**
          * Returns a single permission. This endpoint is pretty useless, as it returns the exact same information as `/auth/permissions`.
          * @summary Get Permission
-         * @param {string} permissionId 
+         * @param {string} permissionId Must be a valid permission ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9587,7 +13734,7 @@ export class PermissionsApi extends BaseAPI {
     /**
      * Returns a single permission. This endpoint is pretty useless, as it returns the exact same information as `/auth/permissions`.
      * @summary Get Permission
-     * @param {string} permissionId 
+     * @param {string} permissionId Must be a valid permission ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PermissionsApi
@@ -9641,7 +13788,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
         /**
          * Deletes a specific player moderation based on it\'s `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
          * @summary Delete Player Moderation
-         * @param {string} playerModerationId 
+         * @param {string} playerModerationId Must be a valid &#x60;pmod_&#x60; ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9679,7 +13826,7 @@ export const PlayermoderationApiAxiosParamCreator = function (configuration?: Co
         /**
          * Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
          * @summary Get Player Moderation
-         * @param {string} playerModerationId 
+         * @param {string} playerModerationId Must be a valid &#x60;pmod_&#x60; ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9857,7 +14004,7 @@ export const PlayermoderationApiFp = function(configuration?: Configuration) {
         /**
          * Deletes a specific player moderation based on it\'s `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
          * @summary Delete Player Moderation
-         * @param {string} playerModerationId 
+         * @param {string} playerModerationId Must be a valid &#x60;pmod_&#x60; ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9868,7 +14015,7 @@ export const PlayermoderationApiFp = function(configuration?: Configuration) {
         /**
          * Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
          * @summary Get Player Moderation
-         * @param {string} playerModerationId 
+         * @param {string} playerModerationId Must be a valid &#x60;pmod_&#x60; ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9932,7 +14079,7 @@ export const PlayermoderationApiFactory = function (configuration?: Configuratio
         /**
          * Deletes a specific player moderation based on it\'s `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
          * @summary Delete Player Moderation
-         * @param {string} playerModerationId 
+         * @param {string} playerModerationId Must be a valid &#x60;pmod_&#x60; ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9942,7 +14089,7 @@ export const PlayermoderationApiFactory = function (configuration?: Configuratio
         /**
          * Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
          * @summary Get Player Moderation
-         * @param {string} playerModerationId 
+         * @param {string} playerModerationId Must be a valid &#x60;pmod_&#x60; ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -10004,7 +14151,7 @@ export class PlayermoderationApi extends BaseAPI {
     /**
      * Deletes a specific player moderation based on it\'s `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
      * @summary Delete Player Moderation
-     * @param {string} playerModerationId 
+     * @param {string} playerModerationId Must be a valid &#x60;pmod_&#x60; ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlayermoderationApi
@@ -10016,7 +14163,7 @@ export class PlayermoderationApi extends BaseAPI {
     /**
      * Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
      * @summary Get Player Moderation
-     * @param {string} playerModerationId 
+     * @param {string} playerModerationId Must be a valid &#x60;pmod_&#x60; ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlayermoderationApi
@@ -10583,7 +14730,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Get public user information about a specific user using their ID.
          * @summary Get User by ID
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -10621,7 +14768,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * ~~Get public user information about a specific user using their name.~~  **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). This endpoint now require Admin Credentials.
          * @summary Get User by Username
-         * @param {string} username 
+         * @param {string} username Username of the user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -10631,6 +14778,82 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             assertParamExists('getUserByName', 'username', username)
             const localVarPath = `/users/{username}/name`
                 .replace(`{${"username"}}`, encodeURIComponent(String(username)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a list of Groups the user has requested to be invited into.
+         * @summary Get User Group Requests
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserGroupRequests: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('getUserGroupRequests', 'userId', userId)
+            const localVarPath = `/users/{userId}/groups/requested`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyCookie required
+
+            // authentication authCookie required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get user\'s public groups
+         * @summary Get User Groups
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserGroups: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('getUserGroups', 'userId', userId)
+            const localVarPath = `/users/{userId}/groups`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -10714,7 +14937,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Update a users information such as the email and birthday.
          * @summary Update User Info
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {UpdateUserRequest} [updateUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10766,7 +14989,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         /**
          * Get public user information about a specific user using their ID.
          * @summary Get User by ID
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -10777,13 +15000,35 @@ export const UsersApiFp = function(configuration?: Configuration) {
         /**
          * ~~Get public user information about a specific user using their name.~~  **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). This endpoint now require Admin Credentials.
          * @summary Get User by Username
-         * @param {string} username 
+         * @param {string} username Username of the user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
         async getUserByName(username: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserByName(username, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a list of Groups the user has requested to be invited into.
+         * @summary Get User Group Requests
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUserGroupRequests(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Group>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUserGroupRequests(userId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get user\'s public groups
+         * @summary Get User Groups
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUserGroups(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Group>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUserGroups(userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10803,7 +15048,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         /**
          * Update a users information such as the email and birthday.
          * @summary Update User Info
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {UpdateUserRequest} [updateUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10825,7 +15070,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         /**
          * Get public user information about a specific user using their ID.
          * @summary Get User by ID
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -10835,13 +15080,33 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         /**
          * ~~Get public user information about a specific user using their name.~~  **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). This endpoint now require Admin Credentials.
          * @summary Get User by Username
-         * @param {string} username 
+         * @param {string} username Username of the user
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
          */
         getUserByName(username: string, options?: any): AxiosPromise<User> {
             return localVarFp.getUserByName(username, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a list of Groups the user has requested to be invited into.
+         * @summary Get User Group Requests
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserGroupRequests(userId: string, options?: any): AxiosPromise<Array<Group>> {
+            return localVarFp.getUserGroupRequests(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get user\'s public groups
+         * @summary Get User Groups
+         * @param {string} userId Must be a valid user ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserGroups(userId: string, options?: any): AxiosPromise<Array<Group>> {
+            return localVarFp.getUserGroups(userId, options).then((request) => request(axios, basePath));
         },
         /**
          * Search and list any users by text query
@@ -10859,7 +15124,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         /**
          * Update a users information such as the email and birthday.
          * @summary Update User Info
-         * @param {string} userId 
+         * @param {string} userId Must be a valid user ID.
          * @param {UpdateUserRequest} [updateUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10880,7 +15145,7 @@ export class UsersApi extends BaseAPI {
     /**
      * Get public user information about a specific user using their ID.
      * @summary Get User by ID
-     * @param {string} userId 
+     * @param {string} userId Must be a valid user ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
@@ -10892,7 +15157,7 @@ export class UsersApi extends BaseAPI {
     /**
      * ~~Get public user information about a specific user using their name.~~  **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). This endpoint now require Admin Credentials.
      * @summary Get User by Username
-     * @param {string} username 
+     * @param {string} username Username of the user
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -10900,6 +15165,30 @@ export class UsersApi extends BaseAPI {
      */
     public getUserByName(username: string, options?: AxiosRequestConfig) {
         return UsersApiFp(this.configuration).getUserByName(username, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a list of Groups the user has requested to be invited into.
+     * @summary Get User Group Requests
+     * @param {string} userId Must be a valid user ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public getUserGroupRequests(userId: string, options?: AxiosRequestConfig) {
+        return UsersApiFp(this.configuration).getUserGroupRequests(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get user\'s public groups
+     * @summary Get User Groups
+     * @param {string} userId Must be a valid user ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public getUserGroups(userId: string, options?: AxiosRequestConfig) {
+        return UsersApiFp(this.configuration).getUserGroups(userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10920,7 +15209,7 @@ export class UsersApi extends BaseAPI {
     /**
      * Update a users information such as the email and birthday.
      * @summary Update User Info
-     * @param {string} userId 
+     * @param {string} userId Must be a valid user ID.
      * @param {UpdateUserRequest} [updateUserRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -10975,7 +15264,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The WorldID is permanently reserved.
          * @summary Delete World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11014,21 +15303,21 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * Search and list currently Active worlds by query filters.
          * @summary List Active Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getActiveWorlds: async (featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getActiveWorlds: async (featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/worlds/active`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11108,14 +15397,14 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * Search and list favorited worlds by query filters.
          * @summary List Favorited Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
@@ -11123,7 +15412,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFavoritedWorlds: async (featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getFavoritedWorlds: async (featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/worlds/favorites`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11207,14 +15496,14 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * Search and list recently visited worlds by query filters.
          * @summary List Recent Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
@@ -11222,7 +15511,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRecentWorlds: async (featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRecentWorlds: async (featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/worlds/recent`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11305,7 +15594,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Get information about a specific World. Works unauthenticated but when so will always return `0` for certain fields.
          * @summary Get World by ID
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11341,8 +15630,8 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Returns a worlds instance.
          * @summary Get World Instance
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11383,7 +15672,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
          * @summary Get World Metadata
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -11422,7 +15711,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Returns a worlds publish status.
          * @summary Get World Publish Status
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11460,7 +15749,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Publish a world. You can only publish one world per week.
          * @summary Publish World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11499,23 +15788,23 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
          * Search and list any worlds by query filters.
          * @summary Search All Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {'me'} [user] Set to &#x60;me&#x60; for searching own worlds.
          * @param {string} [userId] Filter by UserID.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchWorlds: async (featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchWorlds: async (featured?: boolean, sort?: SortOption, user?: 'me', userId?: string, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/worlds`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11602,7 +15891,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Unpublish a world.
          * @summary Unpublish World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11640,7 +15929,7 @@ export const WorldsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Update information about a specific World.
          * @summary Update World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {UpdateWorldRequest} [updateWorldRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11703,7 +15992,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
         /**
          * Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The WorldID is permanently reserved.
          * @summary Delete World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11715,21 +16004,21 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * Search and list currently Active worlds by query filters.
          * @summary List Active Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getActiveWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+        async getActiveWorlds(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getActiveWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -11737,14 +16026,14 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * Search and list favorited worlds by query filters.
          * @summary List Favorited Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
@@ -11752,7 +16041,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFavoritedWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+        async getFavoritedWorlds(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFavoritedWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -11760,14 +16049,14 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * Search and list recently visited worlds by query filters.
          * @summary List Recent Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
@@ -11775,14 +16064,14 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRecentWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+        async getRecentWorlds(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRecentWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get information about a specific World. Works unauthenticated but when so will always return `0` for certain fields.
          * @summary Get World by ID
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11793,8 +16082,8 @@ export const WorldsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a worlds instance.
          * @summary Get World Instance
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11805,7 +16094,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
         /**
          * Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
          * @summary Get World Metadata
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -11817,7 +16106,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
         /**
          * Returns a worlds publish status.
          * @summary Get World Publish Status
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11828,7 +16117,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
         /**
          * Publish a world. You can only publish one world per week.
          * @summary Publish World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11840,30 +16129,30 @@ export const WorldsApiFp = function(configuration?: Configuration) {
          * Search and list any worlds by query filters.
          * @summary Search All Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {'me'} [user] Set to &#x60;me&#x60; for searching own worlds.
          * @param {string} [userId] Filter by UserID.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
+        async searchWorlds(featured?: boolean, sort?: SortOption, user?: 'me', userId?: string, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedWorld>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Unpublish a world.
          * @summary Unpublish World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11874,7 +16163,7 @@ export const WorldsApiFp = function(configuration?: Configuration) {
         /**
          * Update information about a specific World.
          * @summary Update World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {UpdateWorldRequest} [updateWorldRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11906,7 +16195,7 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
         /**
          * Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The WorldID is permanently reserved.
          * @summary Delete World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11917,35 +16206,35 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
          * Search and list currently Active worlds by query filters.
          * @summary List Active Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getActiveWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
+        getActiveWorlds(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
             return localVarFp.getActiveWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(axios, basePath));
         },
         /**
          * Search and list favorited worlds by query filters.
          * @summary List Favorited Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
@@ -11953,21 +16242,21 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFavoritedWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
+        getFavoritedWorlds(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
             return localVarFp.getFavoritedWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(axios, basePath));
         },
         /**
          * Search and list recently visited worlds by query filters.
          * @summary List Recent Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
@@ -11975,13 +16264,13 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRecentWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
+        getRecentWorlds(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
             return localVarFp.getRecentWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(axios, basePath));
         },
         /**
          * Get information about a specific World. Works unauthenticated but when so will always return `0` for certain fields.
          * @summary Get World by ID
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11991,8 +16280,8 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
         /**
          * Returns a worlds instance.
          * @summary Get World Instance
-         * @param {string} worldId 
-         * @param {string} instanceId 
+         * @param {string} worldId Must be a valid world ID.
+         * @param {string} instanceId Must be a valid instance ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -12002,7 +16291,7 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
         /**
          * Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
          * @summary Get World Metadata
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @deprecated
          * @throws {RequiredError}
@@ -12013,7 +16302,7 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
         /**
          * Returns a worlds publish status.
          * @summary Get World Publish Status
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -12023,7 +16312,7 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
         /**
          * Publish a world. You can only publish one world per week.
          * @summary Publish World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -12034,29 +16323,29 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
          * Search and list any worlds by query filters.
          * @summary Search All Worlds
          * @param {boolean} [featured] Filters on featured results.
-         * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+         * @param {SortOption} [sort] The sort order of the results.
          * @param {'me'} [user] Set to &#x60;me&#x60; for searching own worlds.
          * @param {string} [userId] Filter by UserID.
          * @param {number} [n] The number of objects to return.
-         * @param {'ascending' | 'descending'} [order] 
+         * @param {OrderOption} [order] Result ordering
          * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
          * @param {string} [search] Filters by world name.
          * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
          * @param {string} [notag] Tags to exclude (comma-separated).
-         * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+         * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
          * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
          * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
          * @param {string} [platform] The platform the asset supports.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
+        searchWorlds(featured?: boolean, sort?: SortOption, user?: 'me', userId?: string, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: any): AxiosPromise<Array<LimitedWorld>> {
             return localVarFp.searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(axios, basePath));
         },
         /**
          * Unpublish a world.
          * @summary Unpublish World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -12066,7 +16355,7 @@ export const WorldsApiFactory = function (configuration?: Configuration, basePat
         /**
          * Update information about a specific World.
          * @summary Update World
-         * @param {string} worldId 
+         * @param {string} worldId Must be a valid world ID.
          * @param {UpdateWorldRequest} [updateWorldRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -12099,7 +16388,7 @@ export class WorldsApi extends BaseAPI {
     /**
      * Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The WorldID is permanently reserved.
      * @summary Delete World
-     * @param {string} worldId 
+     * @param {string} worldId Must be a valid world ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorldsApi
@@ -12112,14 +16401,14 @@ export class WorldsApi extends BaseAPI {
      * Search and list currently Active worlds by query filters.
      * @summary List Active Worlds
      * @param {boolean} [featured] Filters on featured results.
-     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {SortOption} [sort] The sort order of the results.
      * @param {number} [n] The number of objects to return.
-     * @param {'ascending' | 'descending'} [order] 
+     * @param {OrderOption} [order] Result ordering
      * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
      * @param {string} [search] Filters by world name.
      * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
      * @param {string} [notag] Tags to exclude (comma-separated).
-     * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
      * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
      * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
      * @param {string} [platform] The platform the asset supports.
@@ -12127,7 +16416,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public getActiveWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig) {
+    public getActiveWorlds(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).getActiveWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -12135,14 +16424,14 @@ export class WorldsApi extends BaseAPI {
      * Search and list favorited worlds by query filters.
      * @summary List Favorited Worlds
      * @param {boolean} [featured] Filters on featured results.
-     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {SortOption} [sort] The sort order of the results.
      * @param {number} [n] The number of objects to return.
-     * @param {'ascending' | 'descending'} [order] 
+     * @param {OrderOption} [order] Result ordering
      * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
      * @param {string} [search] Filters by world name.
      * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
      * @param {string} [notag] Tags to exclude (comma-separated).
-     * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
      * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
      * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
      * @param {string} [platform] The platform the asset supports.
@@ -12151,7 +16440,7 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public getFavoritedWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig) {
+    public getFavoritedWorlds(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).getFavoritedWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -12159,14 +16448,14 @@ export class WorldsApi extends BaseAPI {
      * Search and list recently visited worlds by query filters.
      * @summary List Recent Worlds
      * @param {boolean} [featured] Filters on featured results.
-     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {SortOption} [sort] The sort order of the results.
      * @param {number} [n] The number of objects to return.
-     * @param {'ascending' | 'descending'} [order] 
+     * @param {OrderOption} [order] Result ordering
      * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
      * @param {string} [search] Filters by world name.
      * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
      * @param {string} [notag] Tags to exclude (comma-separated).
-     * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
      * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
      * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
      * @param {string} [platform] The platform the asset supports.
@@ -12175,14 +16464,14 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public getRecentWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig) {
+    public getRecentWorlds(featured?: boolean, sort?: SortOption, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, userId?: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).getRecentWorlds(featured, sort, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Get information about a specific World. Works unauthenticated but when so will always return `0` for certain fields.
      * @summary Get World by ID
-     * @param {string} worldId 
+     * @param {string} worldId Must be a valid world ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorldsApi
@@ -12194,8 +16483,8 @@ export class WorldsApi extends BaseAPI {
     /**
      * Returns a worlds instance.
      * @summary Get World Instance
-     * @param {string} worldId 
-     * @param {string} instanceId 
+     * @param {string} worldId Must be a valid world ID.
+     * @param {string} instanceId Must be a valid instance ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorldsApi
@@ -12207,7 +16496,7 @@ export class WorldsApi extends BaseAPI {
     /**
      * Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
      * @summary Get World Metadata
-     * @param {string} worldId 
+     * @param {string} worldId Must be a valid world ID.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -12220,7 +16509,7 @@ export class WorldsApi extends BaseAPI {
     /**
      * Returns a worlds publish status.
      * @summary Get World Publish Status
-     * @param {string} worldId 
+     * @param {string} worldId Must be a valid world ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorldsApi
@@ -12232,7 +16521,7 @@ export class WorldsApi extends BaseAPI {
     /**
      * Publish a world. You can only publish one world per week.
      * @summary Publish World
-     * @param {string} worldId 
+     * @param {string} worldId Must be a valid world ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorldsApi
@@ -12245,16 +16534,16 @@ export class WorldsApi extends BaseAPI {
      * Search and list any worlds by query filters.
      * @summary Search All Worlds
      * @param {boolean} [featured] Filters on featured results.
-     * @param {'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name'} [sort] 
+     * @param {SortOption} [sort] The sort order of the results.
      * @param {'me'} [user] Set to &#x60;me&#x60; for searching own worlds.
      * @param {string} [userId] Filter by UserID.
      * @param {number} [n] The number of objects to return.
-     * @param {'ascending' | 'descending'} [order] 
+     * @param {OrderOption} [order] Result ordering
      * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
      * @param {string} [search] Filters by world name.
      * @param {string} [tag] Tags to include (comma-separated). Any of the tags needs to be present.
      * @param {string} [notag] Tags to exclude (comma-separated).
-     * @param {'public' | 'private' | 'hidden' | 'all'} [releaseStatus] Filter by ReleaseStatus.
+     * @param {ReleaseStatus} [releaseStatus] Filter by ReleaseStatus.
      * @param {string} [maxUnityVersion] The maximum Unity version supported by the asset.
      * @param {string} [minUnityVersion] The minimum Unity version supported by the asset.
      * @param {string} [platform] The platform the asset supports.
@@ -12262,14 +16551,14 @@ export class WorldsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WorldsApi
      */
-    public searchWorlds(featured?: boolean, sort?: 'popularity' | 'heat' | 'trust' | 'shuffle' | 'random' | 'favorites' | 'reportScore' | 'reportCount' | 'publicationDate' | 'labsPublicationDate' | 'created' | '_created_at' | 'updated' | '_updated_at' | 'order' | 'relevance' | 'magic' | 'name', user?: 'me', userId?: string, n?: number, order?: 'ascending' | 'descending', offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: 'public' | 'private' | 'hidden' | 'all', maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig) {
+    public searchWorlds(featured?: boolean, sort?: SortOption, user?: 'me', userId?: string, n?: number, order?: OrderOption, offset?: number, search?: string, tag?: string, notag?: string, releaseStatus?: ReleaseStatus, maxUnityVersion?: string, minUnityVersion?: string, platform?: string, options?: AxiosRequestConfig) {
         return WorldsApiFp(this.configuration).searchWorlds(featured, sort, user, userId, n, order, offset, search, tag, notag, releaseStatus, maxUnityVersion, minUnityVersion, platform, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Unpublish a world.
      * @summary Unpublish World
-     * @param {string} worldId 
+     * @param {string} worldId Must be a valid world ID.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorldsApi
@@ -12281,7 +16570,7 @@ export class WorldsApi extends BaseAPI {
     /**
      * Update information about a specific World.
      * @summary Update World
-     * @param {string} worldId 
+     * @param {string} worldId Must be a valid world ID.
      * @param {UpdateWorldRequest} [updateWorldRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
