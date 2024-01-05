@@ -3582,6 +3582,115 @@ export type LicenseType = typeof LicenseType[keyof typeof LicenseType];
 /**
  * 
  * @export
+ * @interface LimitedGroup
+ */
+export interface LimitedGroup {
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'shortCode'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'discriminator'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'iconUrl'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'bannerUrl'?: string | null;
+    /**
+     * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'ownerId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'rules'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'iconId'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'bannerId'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof LimitedGroup
+     */
+    'memberCount'?: number;
+    /**
+     *  
+     * @type {Array<string>}
+     * @memberof LimitedGroup
+     */
+    'tags'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof LimitedGroup
+     */
+    'createdAt'?: string;
+    /**
+     * 
+     * @type {GroupMemberStatus}
+     * @memberof LimitedGroup
+     */
+    'membershipStatus'?: GroupMemberStatus;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LimitedGroup
+     */
+    'isSearchable'?: boolean;
+    /**
+     *  
+     * @type {Array<GroupGallery>}
+     * @memberof LimitedGroup
+     */
+    'galleries'?: Array<GroupGallery>;
+}
+/**
+ * 
+ * @export
  * @interface LimitedUnityPackage
  */
 export interface LimitedUnityPackage {
@@ -10800,6 +10909,51 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Searches Groups by name or shortCode
+         * @summary Search Group
+         * @param {string} [query] Query to search for, can be either Group Name or Group shortCode
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {number} [n] The number of objects to return.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchGroups: async (query?: string, offset?: number, n?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/groups`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (query !== undefined) {
+                localVarQueryParameter['query'] = query;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (n !== undefined) {
+                localVarQueryParameter['n'] = n;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Unbans a user from a Group.
          * @summary Unban Group Member
          * @param {string} groupId Must be a valid group ID.
@@ -11396,6 +11550,19 @@ export const GroupsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Searches Groups by name or shortCode
+         * @summary Search Group
+         * @param {string} [query] Query to search for, can be either Group Name or Group shortCode
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {number} [n] The number of objects to return.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async searchGroups(query?: string, offset?: number, n?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LimitedGroup>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchGroups(query, offset, n, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Unbans a user from a Group.
          * @summary Unban Group Member
          * @param {string} groupId Must be a valid group ID.
@@ -11810,6 +11977,18 @@ export const GroupsApiFactory = function (configuration?: Configuration, basePat
          */
         respondGroupJoinRequest(groupId: string, userId: string, respondGroupJoinRequest?: RespondGroupJoinRequest, options?: any): AxiosPromise<void> {
             return localVarFp.respondGroupJoinRequest(groupId, userId, respondGroupJoinRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Searches Groups by name or shortCode
+         * @summary Search Group
+         * @param {string} [query] Query to search for, can be either Group Name or Group shortCode
+         * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+         * @param {number} [n] The number of objects to return.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchGroups(query?: string, offset?: number, n?: number, options?: any): AxiosPromise<Array<LimitedGroup>> {
+            return localVarFp.searchGroups(query, offset, n, options).then((request) => request(axios, basePath));
         },
         /**
          * Unbans a user from a Group.
@@ -12282,6 +12461,20 @@ export class GroupsApi extends BaseAPI {
      */
     public respondGroupJoinRequest(groupId: string, userId: string, respondGroupJoinRequest?: RespondGroupJoinRequest, options?: AxiosRequestConfig) {
         return GroupsApiFp(this.configuration).respondGroupJoinRequest(groupId, userId, respondGroupJoinRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Searches Groups by name or shortCode
+     * @summary Search Group
+     * @param {string} [query] Query to search for, can be either Group Name or Group shortCode
+     * @param {number} [offset] A zero-based offset from the default object sorting from where search results start.
+     * @param {number} [n] The number of objects to return.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupsApi
+     */
+    public searchGroups(query?: string, offset?: number, n?: number, options?: AxiosRequestConfig) {
+        return GroupsApiFp(this.configuration).searchGroups(query, offset, n, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
