@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 npm install @openapitools/openapi-generator-cli
 
@@ -12,6 +12,7 @@ rm *.ts -rf
 -o . \
 -i https://raw.githubusercontent.com/vrchatapi/specification/gh-pages/openapi.yaml \
 --http-user-agent="vrchatapi-javascript"
+
 
 # Modify package.json
 sed -i 's/OpenAPI client for vrchat/🟡🔵 VRChat API Library for JavaScript and TypeScript/g' ./package.json

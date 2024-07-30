@@ -18,17 +18,17 @@
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc ",
+    "build": "tsc",
     "prepare": "npm run build"
   },
   "dependencies": {
 "tough-cookie": "^4.0.0",
 "axios-cookiejar-support": "^1.0.1",
 "@types/tough-cookie": "^4.0.1",
-    "axios": "^0.26.1"
+    "axios": "^1.6.1"
   },
   "devDependencies": {
-    "@types/node": "^12.11.5",
-    "typescript": "^4.0"
+    "@types/node": "12.11.5 - 12.20.42",
+    "typescript": "^4.0 || ^5.0"
   }
 }
