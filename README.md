@@ -53,7 +53,7 @@ below is an example on how to logon to the API and fetch your own user informati
 
 ```typescript
 import axios, { AxiosInstance } from 'axios'; // Header Instance for VRChat
-import * as VRChat from 'vrchat';
+import * as VRChat from 'vrchat';             
 
 const configuation = new VRChat.Configuration({
     username: "username",
@@ -68,8 +68,8 @@ const axiosInstance: AxiosInstance = axios.create({
 
 const AuthenticationApi = new VRChat.AuthenticationApi(configuation, undefined, axiosInstance).verify2FA({code: "otp"}); //Use TOTP to get the code from the Base32
 
-const CurrentUser = await AuthenticationApi.getCurrentUser();
-const currentUser = CurrentUser.data;
+const CurrentUserObject = await AuthenticationApi.getCurrentUser();
+const currentUser = CurrentUserObject.data;
 console.log(`Logged in as: ${currentUser.displayName}`);
 
 ```

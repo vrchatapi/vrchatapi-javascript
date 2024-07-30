@@ -1,3 +1,6 @@
+/*
+ * Outdated!
+*/
 const vrchat = require("vrchat");
 const configuration = new vrchat.Configuration({
     username: "username",
