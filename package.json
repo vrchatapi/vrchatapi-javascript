@@ -22,10 +22,10 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-"tough-cookie": "^4.0.0",
-"axios-cookiejar-support": "^1.0.1",
-"@types/tough-cookie": "^4.0.1",
-    "axios": "^0.26.1"
+    "tough-cookie": "^4.0.0",
+    "axios-cookiejar-support": "^1.0.1",
+    "@types/tough-cookie": "^4.0.1",
+    "axios": "^1.7.2"
   },
   "devDependencies": {
     "@types/node": "^12.11.5",

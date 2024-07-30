@@ -46,6 +46,34 @@ AuthenticationApi.getCurrentUser().then(resp => {
 
 See [example.js](https://github.com/vrchatapi/vrchatapi-javascript/blob/master/example.js) for more example usage on getting started.
 
+
+## Getting Started with TypeScript
+
+below is an example on how to logon to the API and fetch your own user information.
+
+```typescript
+import axios, { AxiosInstance } from 'axios'; // Header Instance for VRChat
+import * as VRChat from 'vrchat';
+
+const configuation = new VRChat.Configuration({
+    username: "username",
+    password: "password"
+});
+
+const axiosInstance: AxiosInstance = axios.create({
+  headers: {
+    'User-Agent': 'Softwarename/1.0.0.0 email@adress'
+  }
+}); 
+
+const AuthenticationApi = new VRChat.AuthenticationApi(configuation, undefined, axiosInstance).verify2FA({code: "otp"}); //Use TOTP to get the code from the Base32
+
+const CurrentUser = await AuthenticationApi.getCurrentUser();
+const currentUser = CurrentUser.data;
+console.log(`Logged in as: ${currentUser.displayName}`);
+
+```
+
 ## Contributing
 
 Contributions are welcome, but do not add features that should be handled by the OpenAPI specification.
