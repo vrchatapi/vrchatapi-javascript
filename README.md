@@ -31,7 +31,7 @@ const vrchat = require("vrchat");
 
 const configuration = new vrchat.Configuration({
     username: "username",
-    password: "password",
+    password: "password"
 });
 
 const options = { headers: { "User-Agent": "ExampleProgram/0.0.1 my@email.com"}};
