@@ -2505,7 +2505,7 @@ export interface Group {
      */
     'joinState'?: GroupJoinState;
     /**
-     *  
+     * 
      * @type {Array<string>}
      * @memberof Group
      */
@@ -2517,7 +2517,7 @@ export interface Group {
      */
     'transferTargetId'?: string;
     /**
-     *  
+     * 
      * @type {Array<GroupGallery>}
      * @memberof Group
      */
@@ -2539,7 +2539,7 @@ export interface Group {
      * @type {string}
      * @memberof Group
      */
-    'lastPostCreatedAt'?: string;
+    'lastPostCreatedAt'?: string | null;
     /**
      * 
      * @type {number}
@@ -3199,7 +3199,7 @@ export interface GroupMyMember {
      * @type {string}
      * @memberof GroupMyMember
      */
-    'acceptedByDisplayName'?: string;
+    'acceptedByDisplayName'?: string | null;
     /**
      * A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
      * @type {string}
@@ -3271,7 +3271,7 @@ export interface GroupMyMember {
      * @type {string}
      * @memberof GroupMyMember
      */
-    'lastPostReadAt'?: string;
+    'lastPostReadAt'?: string | null;
     /**
      * 
      * @type {Array<string>}
@@ -4001,7 +4001,8 @@ export const InstanceRegion = {
     Us: 'us',
     Use: 'use',
     Eu: 'eu',
-    Jp: 'jp'
+    Jp: 'jp',
+    Unknown: 'unknown'
 } as const;
 
 export type InstanceRegion = typeof InstanceRegion[keyof typeof InstanceRegion];
@@ -6618,6 +6619,12 @@ export interface UserExists {
      * @memberof UserExists
      */
     'userExists': boolean;
+    /**
+     * Is the username valid?
+     * @type {boolean}
+     * @memberof UserExists
+     */
+    'nameOk': boolean;
 }
 /**
  * * \"online\" User is online in VRChat * \"active\" User is online, but not in VRChat * \"offline\" User is offline  Always offline when returned through `getCurrentUser` (/auth/user).
