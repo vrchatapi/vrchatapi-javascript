@@ -2059,41 +2059,11 @@ export interface CreateGroupRoleRequest {
     'isSelfAssignable'?: boolean;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<GroupPermissions>}
      * @memberof CreateGroupRoleRequest
      */
-    'permissions'?: Array<CreateGroupRoleRequestPermissionsEnum>;
+    'permissions'?: Array<GroupPermissions>;
 }
-
-export const CreateGroupRoleRequestPermissionsEnum = {
-    group_all: '\\*',
-    group_announcement_manage: 'group-announcement-manage',
-    group_audit_view: 'group-audit-view',
-    group_bans_manage: 'group-bans-manage',
-    group_data_manage: 'group-data-manage',
-    group_default_role_manage: 'group-default-role-manage',
-    group_galleries_manage: 'group-galleries-manage',
-    group_instance_age_gated_create: 'group-instance-age-gated-create',
-    group_instance_join: 'group-instance-join',
-    group_instance_manage: 'group-instance-manage',
-    group_instance_moderate: 'group-instance-moderate',
-    group_instance_open_create: 'group-instance-open-create',
-    group_instance_plus_create: 'group-instance-plus-create',
-    group_instance_plus_portal: 'group-instance-plus-portal',
-    group_instance_plus_portal_unlocked: 'group-instance-plus-portal-unlocked',
-    group_instance_public_create: 'group-instance-public-create',
-    group_instance_queue_priority: 'group-instance-queue-priority',
-    group_instance_restricted_create: 'group-instance-restricted-create',
-    group_invites_manage: 'group-invites-manage',
-    group_members_manage: 'group-members-manage',
-    group_members_remove: 'group-members-remove',
-    group_members_viewall: 'group-members-viewall',
-    group_roles_assign: 'group-roles-assign',
-    group_roles_manage: 'group-roles-manage'
-} as const;
-
-export type CreateGroupRoleRequestPermissionsEnum = typeof CreateGroupRoleRequestPermissionsEnum[keyof typeof CreateGroupRoleRequestPermissionsEnum];
-
 /**
  * 
  * @export
@@ -4787,41 +4757,11 @@ export interface GroupMyMember {
     'mRoleIds'?: Array<string>;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<GroupPermissions>}
      * @memberof GroupMyMember
      */
-    'permissions'?: Array<GroupMyMemberPermissionsEnum>;
+    'permissions'?: Array<GroupPermissions>;
 }
-
-export const GroupMyMemberPermissionsEnum = {
-    group_all: '\\*',
-    group_announcement_manage: 'group-announcement-manage',
-    group_audit_view: 'group-audit-view',
-    group_bans_manage: 'group-bans-manage',
-    group_data_manage: 'group-data-manage',
-    group_default_role_manage: 'group-default-role-manage',
-    group_galleries_manage: 'group-galleries-manage',
-    group_instance_age_gated_create: 'group-instance-age-gated-create',
-    group_instance_join: 'group-instance-join',
-    group_instance_manage: 'group-instance-manage',
-    group_instance_moderate: 'group-instance-moderate',
-    group_instance_open_create: 'group-instance-open-create',
-    group_instance_plus_create: 'group-instance-plus-create',
-    group_instance_plus_portal: 'group-instance-plus-portal',
-    group_instance_plus_portal_unlocked: 'group-instance-plus-portal-unlocked',
-    group_instance_public_create: 'group-instance-public-create',
-    group_instance_queue_priority: 'group-instance-queue-priority',
-    group_instance_restricted_create: 'group-instance-restricted-create',
-    group_invites_manage: 'group-invites-manage',
-    group_members_manage: 'group-members-manage',
-    group_members_remove: 'group-members-remove',
-    group_members_viewall: 'group-members-viewall',
-    group_roles_assign: 'group-roles-assign',
-    group_roles_manage: 'group-roles-manage'
-} as const;
-
-export type GroupMyMemberPermissionsEnum = typeof GroupMyMemberPermissionsEnum[keyof typeof GroupMyMemberPermissionsEnum];
-
 /**
  * A permission that can be granted to a role in a group.
  * @export
@@ -4859,6 +4799,42 @@ export interface GroupPermission {
      */
     'allowedToAdd'?: boolean;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const GroupPermissions = {
+    group_all: '*',
+    group_announcement_manage: 'group-announcement-manage',
+    group_audit_view: 'group-audit-view',
+    group_bans_manage: 'group-bans-manage',
+    group_data_manage: 'group-data-manage',
+    group_default_role_manage: 'group-default-role-manage',
+    group_galleries_manage: 'group-galleries-manage',
+    group_instance_age_gated_create: 'group-instance-age-gated-create',
+    group_instance_join: 'group-instance-join',
+    group_instance_manage: 'group-instance-manage',
+    group_instance_moderate: 'group-instance-moderate',
+    group_instance_open_create: 'group-instance-open-create',
+    group_instance_plus_create: 'group-instance-plus-create',
+    group_instance_plus_portal: 'group-instance-plus-portal',
+    group_instance_plus_portal_unlocked: 'group-instance-plus-portal-unlocked',
+    group_instance_public_create: 'group-instance-public-create',
+    group_instance_queue_priority: 'group-instance-queue-priority',
+    group_instance_restricted_create: 'group-instance-restricted-create',
+    group_invites_manage: 'group-invites-manage',
+    group_members_manage: 'group-members-manage',
+    group_members_remove: 'group-members-remove',
+    group_members_viewall: 'group-members-viewall',
+    group_roles_assign: 'group-roles-assign',
+    group_roles_manage: 'group-roles-manage'
+} as const;
+
+export type GroupPermissions = typeof GroupPermissions[keyof typeof GroupPermissions];
+
+
 /**
  * 
  * @export
@@ -5004,10 +4980,10 @@ export interface GroupRole {
     'isSelfAssignable'?: boolean;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<GroupPermissions>}
      * @memberof GroupRole
      */
-    'permissions'?: Array<GroupRolePermissionsEnum>;
+    'permissions'?: Array<GroupPermissions>;
     /**
      * 
      * @type {boolean}
@@ -5045,36 +5021,6 @@ export interface GroupRole {
      */
     'updatedAt'?: string;
 }
-
-export const GroupRolePermissionsEnum = {
-    group_all: '\\*',
-    group_announcement_manage: 'group-announcement-manage',
-    group_audit_view: 'group-audit-view',
-    group_bans_manage: 'group-bans-manage',
-    group_data_manage: 'group-data-manage',
-    group_default_role_manage: 'group-default-role-manage',
-    group_galleries_manage: 'group-galleries-manage',
-    group_instance_age_gated_create: 'group-instance-age-gated-create',
-    group_instance_join: 'group-instance-join',
-    group_instance_manage: 'group-instance-manage',
-    group_instance_moderate: 'group-instance-moderate',
-    group_instance_open_create: 'group-instance-open-create',
-    group_instance_plus_create: 'group-instance-plus-create',
-    group_instance_plus_portal: 'group-instance-plus-portal',
-    group_instance_plus_portal_unlocked: 'group-instance-plus-portal-unlocked',
-    group_instance_public_create: 'group-instance-public-create',
-    group_instance_queue_priority: 'group-instance-queue-priority',
-    group_instance_restricted_create: 'group-instance-restricted-create',
-    group_invites_manage: 'group-invites-manage',
-    group_members_manage: 'group-members-manage',
-    group_members_remove: 'group-members-remove',
-    group_members_viewall: 'group-members-viewall',
-    group_roles_assign: 'group-roles-assign',
-    group_roles_manage: 'group-roles-manage'
-} as const;
-
-export type GroupRolePermissionsEnum = typeof GroupRolePermissionsEnum[keyof typeof GroupRolePermissionsEnum];
-
 /**
  * 
  * @export
@@ -8548,10 +8494,10 @@ export interface UpdateGroupRoleRequest {
     'isSelfAssignable'?: boolean;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<GroupPermissions>}
      * @memberof UpdateGroupRoleRequest
      */
-    'permissions'?: Array<UpdateGroupRoleRequestPermissionsEnum>;
+    'permissions'?: Array<GroupPermissions>;
     /**
      * 
      * @type {number}
@@ -8559,36 +8505,6 @@ export interface UpdateGroupRoleRequest {
      */
     'order'?: number;
 }
-
-export const UpdateGroupRoleRequestPermissionsEnum = {
-    group_all: '\\*',
-    group_announcement_manage: 'group-announcement-manage',
-    group_audit_view: 'group-audit-view',
-    group_bans_manage: 'group-bans-manage',
-    group_data_manage: 'group-data-manage',
-    group_default_role_manage: 'group-default-role-manage',
-    group_galleries_manage: 'group-galleries-manage',
-    group_instance_age_gated_create: 'group-instance-age-gated-create',
-    group_instance_join: 'group-instance-join',
-    group_instance_manage: 'group-instance-manage',
-    group_instance_moderate: 'group-instance-moderate',
-    group_instance_open_create: 'group-instance-open-create',
-    group_instance_plus_create: 'group-instance-plus-create',
-    group_instance_plus_portal: 'group-instance-plus-portal',
-    group_instance_plus_portal_unlocked: 'group-instance-plus-portal-unlocked',
-    group_instance_public_create: 'group-instance-public-create',
-    group_instance_queue_priority: 'group-instance-queue-priority',
-    group_instance_restricted_create: 'group-instance-restricted-create',
-    group_invites_manage: 'group-invites-manage',
-    group_members_manage: 'group-members-manage',
-    group_members_remove: 'group-members-remove',
-    group_members_viewall: 'group-members-viewall',
-    group_roles_assign: 'group-roles-assign',
-    group_roles_manage: 'group-roles-manage'
-} as const;
-
-export type UpdateGroupRoleRequestPermissionsEnum = typeof UpdateGroupRoleRequestPermissionsEnum[keyof typeof UpdateGroupRoleRequestPermissionsEnum];
-
 /**
  * 
  * @export
