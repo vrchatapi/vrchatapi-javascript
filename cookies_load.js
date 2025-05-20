@@ -20,7 +20,7 @@ const configuration = new vrchat.Configuration({
         headers: {
             "User-Agent": "ExampleProgram/0.0.1 my@email.com",
             // Use this instead of jar if you want to hard code cookies
-            // "Cookie": auth=[AUTH_COOKIE_HERE]; twoFactorAuth=[TWO_FACTOR_AUTH_COOKIE_HERE]"
+            // "Cookie": "auth=[AUTH_COOKIE_HERE]; twoFactorAuth=[TWO_FACTOR_AUTH_COOKIE_HERE]"
         },
         jar: cookieJar,
     }
