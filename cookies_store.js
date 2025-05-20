@@ -12,11 +12,6 @@ const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
 const COOKIE_FILE = "cookies.json";
 let cookieJar = new tough.CookieJar();
 
-if (fs.existsSync(COOKIE_FILE)) {
-    const serializedCookies = fs.readFileSync(COOKIE_FILE, "utf-8");
-    cookieJar = tough.CookieJar.deserializeSync(JSON.parse(serializedCookies));
-}
-
 const configuration = new vrchat.Configuration({
     username: "username",
     password: "password",
@@ -45,11 +40,6 @@ async function main() {
 
     const serializedJar = JSON.stringify(cookieJar.serializeSync());
     fs.writeFileSync(COOKIE_FILE, serializedJar);
-
-    const deserializedJar = tough.CookieJar.deserializeSync(serializedJar);
-    const store = deserializedJar.store.idx["api.vrchat.cloud"]["/"];
-    console.log(`auth=${store["auth"]["value"]}`);
-    console.log(`twoFactorAuth=${store["twoFactorAuth"]["value"]}`);
 }
 
 main();
