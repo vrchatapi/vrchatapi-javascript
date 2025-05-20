@@ -1,17 +1,28 @@
 const vrchat = require("vrchat");
 
 const readline = require("readline")
-import globalAxios from "axios"
 
-const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+const tough = require("tough-cookie");
+const fs = require("fs");
+
+const rl = readline.createInterface({input: process.stdin, output: process.stdout});
 const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
 
+
+const COOKIE_FILE = "cookies.json";
+let cookieJar = new tough.CookieJar();
+
+if (fs.existsSync(COOKIE_FILE)) {
+    const serializedCookies = fs.readFileSync(COOKIE_FILE, "utf-8");
+    cookieJar = tough.CookieJar.deserializeSync(JSON.parse(serializedCookies));
+}
 
 const configuration = new vrchat.Configuration({
     username: "username",
     password: "password",
     baseOptions: {
-        headers: { "User-Agent": "ExampleProgram/0.0.1 my@email.com"}
+        headers: { "User-Agent": "ExampleProgram/0.0.1 my@email.com"},
+        jar: cookieJar,
     }
 });
 
@@ -32,9 +43,13 @@ async function main() {
 
     console.log(`Logged in as: ${currentUser.displayName}`);
 
-    const store = globalAxios.defaults.jar.store.idx["api.vrchat.cloud"]["/"];
-    console.log(`auth=${store["auth"]["value"]}`)
-    console.log(`twoFactorAuth=${store["twoFactorAuth"]["value"]}`)
+    const serializedJar = JSON.stringify(cookieJar.serializeSync());
+    fs.writeFileSync(COOKIE_FILE, serializedJar);
+
+    const deserializedJar = tough.CookieJar.deserializeSync(serializedJar);
+    const store = deserializedJar.store.idx["api.vrchat.cloud"]["/"];
+    console.log(`auth=${store["auth"]["value"]}`);
+    console.log(`twoFactorAuth=${store["twoFactorAuth"]["value"]}`);
 }
 
 main();
