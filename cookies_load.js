@@ -5,10 +5,6 @@ const readline = require("readline")
 const tough = require("tough-cookie");
 const fs = require("fs");
 
-const rl = readline.createInterface({input: process.stdin, output: process.stdout});
-const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
-
-
 const COOKIE_FILE = "cookies.json";
 let cookieJar = new tough.CookieJar();
 
@@ -21,7 +17,11 @@ const configuration = new vrchat.Configuration({
     username: "username",
     password: "password",
     baseOptions: {
-        headers: { "User-Agent": "ExampleProgram/0.0.1 my@email.com"},
+        headers: {
+            "User-Agent": "ExampleProgram/0.0.1 my@email.com",
+            // Use this instead of jar if you want to hard code cookies
+            // "Cookie": auth=[AUTH_COOKIE_HERE]; twoFactorAuth=[TWO_FACTOR_AUTH_COOKIE_HERE]"
+        },
         jar: cookieJar,
     }
 });
