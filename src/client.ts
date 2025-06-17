@@ -14,6 +14,10 @@ import type { GetCurrentUserData, GetCurrentUserErrors, GetCurrentUserResponses 
 import { log, logCache } from "./log";
 
 export interface VRChatOptions extends Omit<NonNullable<Parameters<typeof createConfig>[0]>, "body" | "bodySerializer" | "credentials" | "global" | "method" | "mode" | "parseAs" | "querySerializer"> {
+	/**
+	 * When using the VRChat API, you must provide an application name, version, and contact information.
+	 * This is used to identify your application to VRChat, and to provide support if needed.
+	 */
 	application: {
 		/**
 		 * The name of your application.
@@ -40,7 +44,13 @@ export const TwoFactorMethods = ["totp", "otp"] as const;
 export type TwoFactorMethods = (typeof TwoFactorMethods)[number];
 
 export interface LoginCredentials {
+	/**
+	 * The username or email of the VRChat account.
+	 */
 	username: string;
+	/**
+	 * The password of the VRChat account.
+	 */
 	password: string;
 	/**
 	 * The secret key for two-factor authentication.
@@ -59,7 +69,6 @@ type LoginOptions<ThrowOnError extends boolean> = LoginCredentials & Omit<Option
 export const baseUrl = "https://api.vrchat.cloud/api/1/";
 
 export class VRChat extends _VRChat {
-	// private keyv: Keyv<unknown>;
 	private cache: Cacheable;
 
 	public constructor(options: VRChatOptions) {
@@ -181,6 +190,13 @@ export class VRChat extends _VRChat {
 		await this.cache.set("cookies", cookies);
 	}
 
+	/**
+	 * Logs in to the VRChat API using the provided credentials, and returns the current user.
+	 * This method handles two-factor authentication if required using the provided `twoFactorCode` function or `totpSecret`.
+	 *
+	 * @param options - The login options, including username, password, and optional two-factor authentication details.
+	 * @returns A promise that resolves to the current user data, or an error if the login fails.
+	 */
 	public async login<ThrowOnError extends boolean = false>(options: LoginOptions<ThrowOnError>): Promise<RequestResult<GetCurrentUserResponses, GetCurrentUserErrors, ThrowOnError>> {
 		const { username, password, totpSecret, throwOnError } = options;
 		let { twoFactorCode } = options;
