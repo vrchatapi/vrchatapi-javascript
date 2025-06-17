@@ -22,7 +22,7 @@ jobs:
           run_install: false
 
       - name: Install yq via apt
-        run: sudo apt update && sudo apt install -y yq
+        run: sudo apt install -y yq
 
       - name: Install Node.js
         uses: actions/setup-node@v4
