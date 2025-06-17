@@ -36,15 +36,15 @@ jobs:
       - name: Download specification
         run: curl -L -o openapi.yaml https://vrchat.community/openapi.yaml
 
-      - name: Build
-        run: pnpm build
-      
       - name: Update version
         run: |
           VERSION=$(yq '.info.version' openapi.yaml | tr -d '"')
           
           pnpm version ${VERSION} --no-git-tag-version
           pnpm version prerelease --no-git-tag-version --preid next
+
+      - name: Build
+        run: pnpm build
 
       - name: Release
         run: |
