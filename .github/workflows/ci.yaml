@@ -39,10 +39,12 @@ jobs:
       - name: Build
         run: pnpm build
       
-      - name: Write version
+      - name: Update version
         run: |
           VERSION=$(yq '.info.version' openapi.yaml | tr -d '"')
-          jq --arg version "${VERSION}-alpha.0" '.version = $version' package.json > tmp.$$.json && mv tmp.$$.json package.json
+          
+          pnpm version ${VERSION} --no-git-tag-version
+          pnpm version prerelease --no-git-tag-version --preid next
 
       - name: Release
         run: |
