@@ -29,9 +29,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          apt update
           apt install -y yq
-
           pnpm install
 
       - name: Download specification
