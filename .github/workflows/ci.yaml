@@ -39,9 +39,7 @@ jobs:
       - name: Update version
         run: |
           VERSION=$(yq '.info.version' openapi.yaml | tr -d '"')
-          
-          pnpm version ${VERSION} --no-git-tag-version
-          pnpm version prerelease --no-git-tag-version --preid next
+          pnpm version "${VERSION}-next.$(date +%s)" --no-git-tag-version
 
       - name: Build
         run: pnpm build
