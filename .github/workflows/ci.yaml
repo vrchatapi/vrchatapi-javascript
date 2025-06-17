@@ -21,6 +21,9 @@ jobs:
           version: 10
           run_install: false
 
+      - name: Install yq via apt
+        run: sudo apt update && sudo apt install -y yq
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -28,9 +31,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: |
-          apt install -y yq
-          pnpm install
+        run: pnpm install
 
       - name: Download specification
         run: curl -L -o openapi.yaml https://vrchat.community/openapi.yaml
