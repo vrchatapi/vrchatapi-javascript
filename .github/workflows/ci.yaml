@@ -42,7 +42,7 @@ jobs:
       - name: Write version
         run: |
           VERSION=$(yq '.info.version' openapi.yaml | tr -d '"')
-          jq --arg version "${VERSION}.alpha.0" '.version = $version' package.json > tmp.$$.json && mv tmp.$$.json package.json
+          jq --arg version "${VERSION}-alpha.0" '.version = $version' package.json > tmp.$$.json && mv tmp.$$.json package.json
 
       - name: Release
         run: |
