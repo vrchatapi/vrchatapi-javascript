@@ -28,9 +28,24 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: |
+          apt update
+          apt install -y yq
+
+          pnpm install
+
+      - name: Download specification
+        run: curl -L -o openapi.yaml https://vrchat.community/openapi.yaml
+
+      - name: Build
+        run: pnpm build
+      
+      - name: Write version
+        run: |
+          VERSION=$(yq '.info.version' openapi.yaml | tr -d '"')
+          jq --arg version "$VERSION" '.version = $version' package.json > tmp.$$.json && mv tmp.$$.json package.json
 
       - run: |
-          pnpm publish --provenance
+          pnpm publish --provenance --tag next --publish-branch v2 --no-git-checks
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

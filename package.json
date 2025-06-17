@@ -1,6 +1,6 @@
 {
   "name": "vrchat",
-  "version": "1.19.4-alpha.0",
+  "version": "2.0.0",
   "type": "module",
   "description": "",
   "main": "dist/index.js",
