@@ -44,7 +44,10 @@ jobs:
           VERSION=$(yq '.info.version' openapi.yaml | tr -d '"')
           jq --arg version "$VERSION" '.version = $version' package.json > tmp.$$.json && mv tmp.$$.json package.json
 
-      - run: |
-          pnpm publish --provenance --tag next --publish-branch v2 --no-git-checks
+      - name: Set up .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Release
+        run: pnpm publish --provenance --tag next --publish-branch v2 --no-git-checks
