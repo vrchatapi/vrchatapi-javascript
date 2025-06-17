@@ -1,7 +1,7 @@
 /* eslint-disable no-console, antfu/no-top-level-await */
 import KeyvFile from "keyv-file";
 import prompts from "prompts";
-import { VRChat } from "vrchat";
+import { VRChat, VRChatError } from "vrchat";
 
 const vrchat = new VRChat({
 	/**
@@ -32,7 +32,11 @@ const { data: user } = await vrchat
 	.getCurrentUser({ throwOnError: true })
 	// Since we've passed `throwOnError: true`, this will throw an error if the user is not logged in.
 	// We can catch that error and prompt the user for their credentials.
-	.catch(async () => {
+	.catch(async (reason) => {
+		// Rethrow the error if it's not a 401 Unauthorized error.
+		if (!(reason instanceof VRChatError) || reason.statusCode !== 401)
+			throw reason;
+
 		/**
 		 * Ask the user for their VRChat username and password.
 		 * You can also use environment variables, or any other method to get the credentials.
