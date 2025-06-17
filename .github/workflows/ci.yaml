@@ -1,7 +1,9 @@
 on:
   repository_dispatch:
     types: [spec_release]
-on: push
+  push:
+    branches:
+      - v2
 
 name: Build & release
 
