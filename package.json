@@ -1,0 +1,53 @@
+{
+  "name": "vrchat",
+  "version": "1.19.4",
+  "type": "module",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "homepage": "https://vrchat.community/javascript",
+  "repository": "vrchatapi/vrchatapi-javascript",
+  "bugs": {
+    "url": "https://github.com/vrchatapi/vrchatapi-javascript/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "rm src/generated -rf && openapi-ts",
+    "build": "tsup"
+  },
+  "keywords": [
+    "typescript",
+    "openapi-client",
+    "openapi-generator",
+    "vrchat-api",
+    "vrchat-api-client",
+    "vrchat"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/catbox": "^12.1.1",
+    "@hapi/catbox-memory": "^6.0.2",
+    "@hey-api/client-fetch": "^0.13.0",
+    "cacheable": "^1.10.0",
+    "debug": "^4.4.1",
+    "keyv": "^5.3.4",
+    "keyv-file": "^5.1.2",
+    "openapi-fetch": "^0.14.0",
+    "totp-generator": "^1.0.0"
+  },
+  "devDependencies": {
+    "@ariesclark/eslint-config": "^3.1.1",
+    "@hey-api/openapi-ts": "^0.72.1",
+    "@types/debug": "^4.1.12",
+    "eslint": "^9.29.0",
+    "node-jq": "^6.0.1",
+    "openapi-typescript": "^7.8.0",
+    "tsup": "^8.5.0",
+    "typedoc": "^0.28.5",
+    "typedoc-plugin-markdown": "^4.6.4",
+    "typescript": "^5.8.3"
+  }
+}

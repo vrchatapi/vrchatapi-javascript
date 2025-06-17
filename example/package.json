@@ -1,0 +1,23 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "enquirer": "^2.4.1",
+    "keyv": "^5.3.4",
+    "keyv-file": "^5.1.2",
+    "prompts": "^2.4.2",
+    "vrchat": "^1.19.4"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.9"
+  }
+}
