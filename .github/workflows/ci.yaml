@@ -50,4 +50,4 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release
-        run: pnpm publish --provenance --tag next --publish-branch v2 --no-git-checks
+        run: pnpm publish --tag next --publish-branch v2 --no-git-checks
