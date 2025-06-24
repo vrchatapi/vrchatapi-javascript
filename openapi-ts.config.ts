@@ -59,7 +59,7 @@ export default defineConfig({
 			asClass: true,
 			instance: true,
 			transformer: true,
-			classNameBuilder: () => "_VRChat",
+			classNameBuilder: () => "VRChatInternal",
 		},
 		customPlugin as any
 	],

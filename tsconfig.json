@@ -11,7 +11,7 @@
 		/* Language and Environment */
 		"target": "es2022", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
 		"lib": [
-			"es2022",
+			"esnext",
 			"dom"
 		],
 		// "jsx": "preserve",                                /* Specify what JSX code is generated. */
