@@ -44,3 +44,11 @@ export function serializeCookie({ name, value }: Pick<Cookie, "name" | "value">)
 export function serializeCookies(cookies: Array<Cookie>): string {
 	return cookies.map(serializeCookie).join("; ");
 }
+
+export function toCookiesObject(cookies: Array<Cookie>): Record<string, Cookie> {
+	return Object.fromEntries(cookies.map((cookie) => [cookie.name, cookie] as const));
+}
+
+export function isCookieValid(cookie: Cookie): boolean {
+	return cookie.expires === null || cookie.expires > Date.now();
+}

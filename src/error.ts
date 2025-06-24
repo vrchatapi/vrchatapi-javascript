@@ -18,6 +18,10 @@ export class VRChatError extends Error {
 		return this.response.status ?? 0;
 	}
 
+	public get unauthorized(): boolean {
+		return this.statusCode === 401;
+	}
+
 	/**
 	 * Creates a new `VRChatError` instance from a value.
 	 *
@@ -64,6 +68,15 @@ export class VRChatError extends Error {
 
 		this.name = "VRChatError";
 		Error.captureStackTrace(this, VRChat);
+	}
+
+	public toResponseError(): { error: { message: string; status_code: number } } {
+		return {
+			error: {
+				message: this.message,
+				status_code: this.statusCode,
+			}
+		};
 	}
 }
 
