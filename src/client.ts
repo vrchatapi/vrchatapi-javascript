@@ -55,7 +55,7 @@ export interface VRChatOptions extends Omit<NonNullable<Parameters<typeof create
 		credentials?: Lazy<LoginCredentials>;
 		/**
 		 * If set to `true`, the client will attempt to authenticate immediately after being created.
-		 * If set to `false` or not provided, the client will only re-authenticate on request failure (e.g. 401 Unauthorized).
+		 * If set to `false`, the client will only re-authenticate on request failure (e.g. 401 Unauthorized).
 		 * @default true
 		 */
 		optimistic?: boolean;
@@ -79,7 +79,9 @@ export interface LoginCredentials {
 	 */
 	password: string;
 	/**
-	 * The secret key for two-factor authentication.
+	 * The secret key for two-factor authentication, useful for service accounts & automated workflows.
+	 * If this is a user-initiated login, don't use this.
+	 *
 	 * Equivalent to ``twoFactorCode: TOTP.generate(totpSecret).otp``.
 	 */
 	totpSecret?: string;
@@ -370,8 +372,8 @@ export class VRChat extends VRChatInternal {
 
 		const factors = await Promise.all([
 			twoFactorMethods.includes("totp") ? this.verify2Fa.bind(this) : undefined,
-			// this.verify2FaEmailCode.bind(this),
-			// this.verifyRecoveryCode.bind(this)
+			twoFactorMethods.includes("otp") ? this.verify2FaEmailCode.bind(this) : undefined,
+			twoFactorMethods.includes("otp") ? this.verifyRecoveryCode.bind(this) : undefined
 		].filter(Boolean).map((function_) => function_?.({
 			...options,
 			throwOnError: false,
