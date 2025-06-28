@@ -66,7 +66,7 @@ export interface VRChatOptions extends Omit<NonNullable<Parameters<typeof create
 	keyv?: Keyv<unknown> | KeyvStoreAdapter | Map<unknown, unknown>;
 }
 
-export const TwoFactorMethods = ["totp", "otp"] as const;
+export const TwoFactorMethods = ["totp", "otp", "emailOtp"] as const;
 export type TwoFactorMethods = (typeof TwoFactorMethods)[number];
 
 export interface LoginCredentials {
@@ -372,7 +372,7 @@ export class VRChat extends VRChatInternal {
 
 		const factors = await Promise.all([
 			twoFactorMethods.includes("totp") ? this.verify2Fa.bind(this) : undefined,
-			twoFactorMethods.includes("otp") ? this.verify2FaEmailCode.bind(this) : undefined,
+			twoFactorMethods.includes("emailOtp") ? this.verify2FaEmailCode.bind(this) : undefined,
 			twoFactorMethods.includes("otp") ? this.verifyRecoveryCode.bind(this) : undefined
 		].filter(Boolean).map((function_) => function_?.({
 			...options,
