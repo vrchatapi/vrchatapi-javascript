@@ -12,7 +12,8 @@
 		"target": "es2022", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
 		"lib": [
 			"esnext",
-			"dom"
+			"dom",
+			"dom.iterable"
 		],
 		// "jsx": "preserve",                                /* Specify what JSX code is generated. */
 		// "libReplacement": true,                           /* Enable lib replacement. */

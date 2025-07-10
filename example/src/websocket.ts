@@ -31,10 +31,3 @@ const vrchat = new VRChat({
 	keyv: new KeyvFile({ filename: "./data.json" }),
 });
 
-(async () => {
-	await vrchat.getCurrentSubscriptions({ throwOnError: true });
-	const { data: { displayName } } = await vrchat.getCurrentUser({ throwOnError: true });
-	// eslint-disable-next-line no-console
-	console.log(`Logged in as ${displayName}`);
-	// await Promise.all(Array.from({ length: 10 }).map(() => vrchat.getCurrentOnlineUsers({ throwOnError: true })));
-})();

@@ -1,6 +1,8 @@
 import { defineConfig } from "tsup";
 
-import { version } from "./package.json";
+import { version as VERSION } from "./package.json";
+
+const NODE_ENV = VERSION === "0.0.0-next.0" ? "development" : "production";
 
 export default defineConfig({
 	entry: ["src/index.ts"],
@@ -10,10 +12,16 @@ export default defineConfig({
 	],
 	dts: true,
 	sourcemap: true,
-	// treeshake: true,
 	minify: true,
 	clean: true,
+	treeshake: true,
+	splitting: true,
+	bundle: true,
+	noExternal: ["@hey-api/client-fetch"],
+	skipNodeModulesBundle: true,
+	outDir: "dist",
 	env: {
-		VERSION: version
+		VERSION,
+		NODE_ENV
 	}
 });

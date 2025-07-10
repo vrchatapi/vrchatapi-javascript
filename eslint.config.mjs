@@ -6,5 +6,8 @@ export default configure({
 		"dist",
 		"src/generated",
 		"package.json",
-	]
+	],
+	rules: {
+		"node/prefer-global/process": "off"
+	}
 });
