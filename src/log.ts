@@ -1,4 +1,4 @@
-import { debug } from "debug";
+import debug from "debug";
 
 import type { VRChat } from "./client";
 import { requestIdSymbol } from "./client";
