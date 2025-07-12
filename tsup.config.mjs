@@ -1,10 +1,13 @@
+import { readFile } from "node:fs/promises";
+
 import { defineConfig } from "tsup";
 
 import { version as VERSION } from "./package.json";
 
-const NODE_ENV = VERSION === "0.0.0-next.0" ? "development" : "production";
-
 export default defineConfig({
+	banner: {
+		js: `\n\n/**\n${(await readFile("./LICENSE", "utf-8")).split("\n").map((line) => ` * ${line}`).join("\n")}\n*/\n`,
+	},
 	entry: ["src/index.ts"],
 	format: [
 		"esm",
@@ -13,15 +16,14 @@ export default defineConfig({
 	dts: true,
 	sourcemap: true,
 	minify: true,
+	replaceNodeEnv: true,
 	clean: true,
 	treeshake: true,
-	splitting: true,
-	bundle: true,
-	noExternal: ["@hey-api/client-fetch"],
-	skipNodeModulesBundle: true,
+	// bundle: true,
+	// noExternal: ["@hey-api/client-fetch"],
+	// skipNodeModulesBundle: true,
 	outDir: "dist",
 	env: {
-		VERSION,
-		NODE_ENV
+		VERSION
 	}
 });

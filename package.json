@@ -38,12 +38,12 @@
     "debug": "^4.4.1",
     "isomorphic-ws": "^5.0.0",
     "keyv": "^5.3.4",
+    "@hey-api/client-fetch": "^0.13.0",
     "totp-generator": "^1.0.0",
     "ws": "^8.18.3"
   },
   "devDependencies": {
     "@ariesclark/eslint-config": "^3.1.1",
-    "@hey-api/client-fetch": "^0.13.0",
     "@hey-api/openapi-ts": "^0.72.1",
     "@types/debug": "^4.1.12",
     "@types/node": "^24.0.3",
