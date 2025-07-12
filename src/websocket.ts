@@ -1,5 +1,6 @@
 import EventEmitter from "node:events";
 
+import type { CloseEvent, ErrorEvent, Event, MessageEvent } from "isomorphic-ws";
 import WebSocket from "isomorphic-ws";
 import type TypedEventEmitter from "typed-emitter";
 
@@ -56,19 +57,19 @@ export class VRChatWebsocket extends (EventEmitter as new () => TypedEventEmitte
 			headers: Object.fromEntries(this.options.headers?.entries() ?? [])
 		});
 
-		this.websocket.addEventListener("open", (event) => {
+		this.websocket.addEventListener("open", (event: Event) => {
 			logWebsocket("%s", event.type);
 		});
 
-		this.websocket.addEventListener("close", (event) => {
+		this.websocket.addEventListener("close", (event: CloseEvent) => {
 			logWebsocket("%s: %s", event.type, event.reason);
 		});
 
-		this.websocket.addEventListener("error", (event) => {
+		this.websocket.addEventListener("error", (event: ErrorEvent) => {
 			logWebsocket("%s: %O", event.type, event.error);
 		});
 
-		this.websocket.addEventListener("message", (event) => {
+		this.websocket.addEventListener("message", (event: MessageEvent) => {
 			try {
 				const { type, content: _content } = JSON.parse(event.data.toString());
 				const content = JSON.parse(_content);
