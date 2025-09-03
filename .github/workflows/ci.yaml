@@ -3,7 +3,7 @@ on:
     types: [spec_release]
   push:
     branches:
-      - v2
+      - main
 
 name: Build & release
 
@@ -38,8 +38,16 @@ jobs:
 
       - name: Update version
         run: |
-          VERSION=$(yq '.info.version' openapi.yaml | tr -d '"')
-          pnpm version "${VERSION}-next.$(date +%s)" --no-git-tag-version
+          version=$(yq '.info.version' openapi.yaml | tr -d '"')
+          # pnpm version "${VERSION}-next.$(date +%s)" --no-git-tag-version
+
+          major=$(echo $version | cut -d. -f1)
+          minor=$(echo $version | cut -d. -f2)
+          patch=$(echo $version | cut -d. -f3)
+
+          version="$((major+1)).$minor.$patch"
+
+          pnpm version $version --no-git-tag-version
 
       - name: Build
         run: pnpm build
