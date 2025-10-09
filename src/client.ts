@@ -2,7 +2,7 @@ import type { Client, RequestResult } from "@hey-api/client-fetch";
 import { createClient, createConfig } from "@hey-api/client-fetch";
 import { Cacheable, CacheableHooks } from "cacheable";
 import type { KeyvStoreAdapter } from "keyv";
-import Keyv from "keyv";
+import type Keyv from "keyv";
 import { TOTP } from "totp-generator";
 
 import type { Cookie } from "./cookie";
@@ -65,9 +65,39 @@ export interface VRChatOptions extends Omit<NonNullable<Parameters<typeof create
 	};
 	pipeline?: VRChatWebsocketOptions;
 	/**
-	 * A [Keyv-compatible adapter](https://npm.im/keyv#official-storage-adapters) for caching & persistent sessions.
+	 * Configures persistent caching using [Keyv](https://npm.im/keyv).
+	 *
+	 * To use this, you must install `keyv` alongside this library.
+	 * This option allows you to either pass a pre-configured `Keyv` instance,
+	 * or the `Keyv` class and a store adapter to be instantiated by the client.
+	 *
+	 * @example
+	 * // Pass the Keyv class and a store adapter
+	 * import Keyv from "keyv";
+	 * const vrchat = new VRChat({
+	 *   keyv: {
+	 *     keyvClass: Keyv,
+	 *     store: new Map(), // or any other Keyv store adapter
+	 *   }
+	 * });
+	 *
+	 * @example
+	 * // Pass a pre-configured Keyv instance
+	 * import Keyv from "keyv";
+	 * const keyv = new Keyv({ store: new Map() });
+	 * const vrchat = new VRChat({
+	 *   keyv: {
+	 *     keyvClass: Keyv,
+	 *     store: keyv,
+	 *   }
+	 * });
 	 */
-	keyv?: Keyv<unknown> | KeyvStoreAdapter | Map<unknown, unknown>;
+	keyv?: {
+		/** The `Keyv` class constructor. */
+		keyvClass: new (...args: any[]) => Keyv<unknown>;
+		/** A `Keyv` instance, or a Keyv-compatible store adapter. */
+		store: Keyv<unknown> | KeyvStoreAdapter | Map<unknown, unknown>;
+	};
 	/**
 	 * If set to `true`, this client will log debug information to the console.
 	 * This is useful for debugging, but **will expose sensitive information**.
@@ -174,17 +204,15 @@ export class VRChat extends VRChatInternal {
 
 		this.cache = new Cacheable({
 			nonBlocking: true,
-			secondary:
-				keyv
-					? keyv instanceof Keyv
-						? keyv
-						: new Keyv({
-							store: keyv
-						})
-					: undefined
+			secondary: (() => {
+				if (!keyv) return undefined;
+				const { keyvClass, store } = keyv;
+				if (store instanceof keyvClass) {
+					return store;
+				}
+				return new keyvClass({ store });
+			})()
 		});
-
-		process.on("beforeExit", () => this.cache.disconnect());
 
 		const { interceptors } = client;
 

@@ -21,6 +21,7 @@ export default defineConfig({
 	treeshake: true,
 	// bundle: true,
 	// noExternal: ["@hey-api/client-fetch"],
+	external: ["keyv"],
 	// skipNodeModulesBundle: true,
 	outDir: "dist",
 	env: {
