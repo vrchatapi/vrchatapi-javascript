@@ -51,6 +51,15 @@ jobs:
 
       - run: |
           version=$(jq -r '.info.version' ./openapi.json)
+          version=$(node -p "
+            const semver = require('semver');
+
+            const version = semver.parse('$version');
+            version.major += 1;
+            
+            version.format()
+          ")
+
           version_tag=$(node -p "require('semver').parse('$version')?.prerelease[0] || 'latest'")
 
           echo "version=$version" >> $GITHUB_ENV
@@ -61,4 +70,4 @@ jobs:
       - run: pnpm build
 
       - if: github.ref == 'refs/heads/main'
-        run: npm publish --no-git-checks --tag ${{ env.version_tag }}
+        run: pnpm publish --no-git-checks --tag ${{ env.version_tag }}
