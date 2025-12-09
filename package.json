@@ -1,6 +1,7 @@
 {
   "name": "vrchat",
-  "version": "0.0.0-next.0",
+  "displayName": "VRChat.js",
+  "version": "0.0.0",
   "description": "",
   "type": "commonjs",
   "types": "dist/index.d.ts",
@@ -34,22 +35,22 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "cacheable": "^1.10.0",
-    "debug": "^4.4.1",
+    "cacheable": "^1.10.4",
+    "debug": "^4.4.3",
     "isomorphic-ws": "^5.0.0",
-    "keyv": "^5.3.4",
-    "@hey-api/client-fetch": "^0.13.0",
-    "totp-generator": "^1.0.0",
+    "keyv": "^5.5.5",
+    "totp-generator": "^2.0.0",
     "ws": "^8.18.3"
   },
   "devDependencies": {
     "@ariesclark/eslint-config": "^3.1.1",
-    "@hey-api/openapi-ts": "^0.72.1",
+    "@hey-api/openapi-ts": "^0.88.0",
     "@types/debug": "^4.1.12",
-    "@types/node": "^24.0.3",
-    "eslint": "^9.29.0",
-    "tsup": "^8.5.0",
+    "@types/node": "^24.10.1",
+    "bun-plugin-dts": "^0.3.0",
+    "eslint": "^9.39.1",
+    "tsup": "^8.5.1",
     "typed-emitter": "^2.1.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   }
 }

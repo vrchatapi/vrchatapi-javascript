@@ -8,6 +8,7 @@ const vrchat = new VRChat({
 	 * When using the VRChat API, you must provide an application name, version, and contact information.
 	 * This is used to identify your application to VRChat, and to provide support if needed.
 	 */
+	verbose: true,
 	application: {
 		name: "Example",
 		version: "1.5.1",
@@ -82,6 +83,7 @@ const vrchat = new VRChat({
 			});
 		});
 
+	console.log(user);
 	console.log(`Logged in as ${user.displayName} (id: ${user.id}).`);
 
 	/**

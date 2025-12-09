@@ -1,7 +1,7 @@
 import type {
 	GroupLimitedMember,
 	GroupRole
-} from "./generated/types.gen";
+} from "./types";
 
 export interface EventData {
 	"group-member-updated": { member: GroupLimitedMember };

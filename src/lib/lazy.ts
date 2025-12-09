@@ -19,12 +19,3 @@ function isLazyFunction<T>(value: Lazy<T>): value is LazyFunction<T> {
 export async function collapse<T>(value: Lazy<T>): Promise<T> {
 	return isLazyFunction(value) ? value() : value;
 }
-
-export function tryJsonParse(value: string): unknown {
-	try {
-		return JSON.parse(value);
-	}
-	catch {
-		return value;
-	}
-}

@@ -1,135 +1,36 @@
-import type { Client, RequestResult } from "@hey-api/client-fetch";
-import { createClient, createConfig } from "@hey-api/client-fetch";
 import { Cacheable, CacheableHooks } from "cacheable";
-import type { KeyvStoreAdapter } from "keyv";
 import Keyv from "keyv";
 import { TOTP } from "totp-generator";
 
-import type { Cookie } from "./cookie";
+import { getUserAgent, isApplication } from "./application";
+import { fail, VRChatError } from "./error";
+import { createClient, createConfig } from "./generated/client";
+import type { Client } from "./generated/client";
+import type { Options } from "./generated/sdk.gen";
+import { VRChatInternal } from "./generated/sdk.gen";
+import type { Cookie } from "./lib/cookie";
 import {
 	isCookieValid,
 	parseSetCookie,
 	serializeCookies,
 	toCookiesObject
-} from "./cookie";
-import { fail, VRChatError } from "./error";
-import type { Options } from "./generated/sdk.gen";
-import { VRChatInternal } from "./generated/sdk.gen";
-import type {
-	CurrentUser,
-	GetCurrentUserData,
-	GetCurrentUserErrors,
-	GetCurrentUserResponses
-} from "./generated/types.gen";
-import { initLogging, log, logCache } from "./log";
-import type { Lazy } from "./utilities";
-import { collapse } from "./utilities";
-import type { VRChatWebsocketOptions } from "./websocket";
+} from "./lib/cookie";
+import { isUser, requiresTwoFactorAuth } from "./lib/guards";
+import type { Lazy } from "./lib/lazy";
+import { collapse } from "./lib/lazy";
+import { log } from "./lib/log";
+import { authenticateSymbol } from "./lib/symbols";
+import type { LoginCredentials, LoginOptions, LoginResult, VRChatOptions } from "./types";
 import { VRChatWebsocket } from "./websocket";
 
-export interface VRChatOptions extends Omit<NonNullable<Parameters<typeof createConfig>[0]>, "body" | "bodySerializer" | "credentials" | "global" | "method" | "mode" | "parseAs" | "querySerializer"> {
-	/**
-	 * When using the VRChat API, you must provide an application name, version, and contact information.
-	 * This is used to identify your application to VRChat, and to provide support if needed.
-	 */
-	application: {
-		/**
-		 * The name of your application.
-		 */
-		name: string;
-		/**
-		 * The version of your application.
-		 *
-		 * [Semantic versioning](https://semver.org/) is recommended, e.g. `1.0.0`, but commit hashes or other identifiers are also acceptable.
-		 */
-		version: string;
-		/**
-		 * An email, or a URL to a support page.
-		 */
-		contact: string;
-	};
-	authentication?: {
-		/**
-		 * The credentials to use for the VRChat API.
-		 *
-		 * If not provided, the user must be logged in using the `login` method.
-		 * If provided, this will be used to authenticate the user automatically.
-		 */
-		credentials?: Lazy<LoginCredentials>;
-		/**
-		 * If set to `true`, the client will attempt to authenticate immediately after being created.
-		 * If set to `false`, the client will only re-authenticate on request failure (e.g. 401 Unauthorized).
-		 * @default true
-		 */
-		optimistic?: boolean;
-	};
-	pipeline?: VRChatWebsocketOptions;
-	/**
-	 * A [Keyv-compatible adapter](https://npm.im/keyv#official-storage-adapters) for caching & persistent sessions.
-	 */
-	keyv?: Keyv<unknown> | KeyvStoreAdapter | Map<unknown, unknown>;
-	/**
-	 * If set to `true`, this client will log debug information to the console.
-	 * This is useful for debugging, but **will expose sensitive information**.
-	 * @default false
-	 */
-	verbose?: boolean;
-}
-
-export const TwoFactorMethods = ["totp", "otp", "emailOtp"] as const;
-export type TwoFactorMethods = (typeof TwoFactorMethods)[number];
-
-export interface LoginCredentials {
-	/**
-	 * The username or email of the VRChat account.
-	 */
-	username: string;
-	/**
-	 * The password of the VRChat account.
-	 */
-	password: string;
-	/**
-	 * The secret key for two-factor authentication, useful for service accounts & automated workflows.
-	 * If this is a user-initiated login, don't use this.
-	 *
-	 * Equivalent to ``twoFactorCode: TOTP.generate(totpSecret).otp``.
-	 */
-	totpSecret?: string;
-	/**
-	 * If provided, this function will be called to generate the two-factor authentication code.
-	 * It overrides ``totpSecret`` if both are provided, ``totpSecret`` will be ignored.
-	 *
-	 * @returns The two-factor authentication code.
-	 */
-	twoFactorCode?: Lazy<string>;
-}
-
-type LoginOptions<ThrowOnError extends boolean> = LoginCredentials & Omit<Options<GetCurrentUserData, ThrowOnError>, "credentials" | "responseTransformer">;
-type CurrentUserResult<ThrowOnError extends boolean> = Awaited<RequestResult<GetCurrentUserResponses, GetCurrentUserErrors, ThrowOnError>>;
-
-export const baseUrl = "https://api.vrchat.cloud/api/1/";
-
-const authenticateSymbol = Symbol("authenticate");
-/**
- * @internal
- */
-export const requestIdSymbol = Symbol("requestId");
-
-function requiresTwoFactorAuth(data?: unknown): data is { requiresTwoFactorAuth: Array<TwoFactorMethods> } {
-	return !!data && typeof data === "object" && "requiresTwoFactorAuth" in data && Array.isArray(data.requiresTwoFactorAuth);
-}
-
-function isUser(data?: unknown): data is { id: string } {
-	return !!data && typeof data === "object" && "id" in data && typeof data.id === "string";
-}
+export const logCache = log.extend("cache");
+export const logHttp = log.extend("http");
 
 export class VRChat extends VRChatInternal {
 	private cache: Cacheable;
 
 	private credentials?: Lazy<LoginCredentials>;
-	private authenticatePromise?: Promise<CurrentUserResult<false>>;
-	private lastCurrentUser?: CurrentUser;
-	private userAgent: string;
+	private authenticatePromise?: Promise<LoginResult>;
 
 	public readonly client: Client;
 	public readonly pipeline: VRChatWebsocket;
@@ -140,32 +41,23 @@ export class VRChat extends VRChatInternal {
 			authentication,
 			keyv,
 			verbose,
-			...rest
+			pipeline: websocketOptions,
+			...clientOptions
 		} = options;
 
-		if (!application
-			|| !application.name
-			|| !application.version
-			|| !application.contact
-			// Catch common mistakes, like forgetting to change the example.
-			|| application.contact.includes("@example.com")
-			|| application.contact.includes("\n")
-		) throw VRChatError.from("You must provide an application name, version, and contact information.");
+		if (!isApplication(application))
+			throw VRChatError.from("You must provide an application name, version, and contact information.");
 
-		const headers = new Headers(rest.headers as HeadersInit);
-
-		const userAgent = `${application.name}/${application.version} (${application.contact}), VRChat.js/${process.env.VERSION} (https://vrchat.community/discord)`;
-		headers.set("user-agent", userAgent);
+		const headers = new Headers(clientOptions.headers as HeadersInit);
+		headers.set("user-agent", getUserAgent(application));
 
 		const client = createClient(createConfig({
-			baseUrl,
-			...rest,
+			...clientOptions,
 			headers
 		}));
 
 		super({ client });
 		this.client = client;
-		this.userAgent = userAgent;
 
 		if (verbose) {
 			log.enabled = true;
@@ -188,18 +80,35 @@ export class VRChat extends VRChatInternal {
 
 		const { interceptors } = client;
 
-		let requestId = 0;
-		interceptors.request.use(async (request, _options) => {
-			const options = _options as Options;
-			const { meta = {} } = options as { meta: Record<PropertyKey, unknown> };
+		if (log.enabled) {
+			interceptors.request.use(async (request, options) => {
+				const clone = request.clone();
 
-			meta[requestIdSymbol] = requestId++;
-			options.meta = meta;
+				logHttp(
+					"%s %s %O",
+					request.method,
+					request.url.slice((options.baseUrl as string).length),
+					await clone.json().catch(() => clone.text())
+				);
 
-			return request;
-		});
+				return request;
+			});
 
-		if (log.enabled) initLogging(this);
+			interceptors.response.use(async (response, request, options) => {
+				const clone = response.clone();
+
+				logHttp(
+					"%s %s %o %s %O",
+					request.method,
+					request.url.slice((options.baseUrl as string).length),
+					clone.status,
+					clone.statusText,
+					await clone.json().catch(() => clone.text())
+				);
+
+				return response;
+			});
+		}
 
 		if (logCache.enabled) {
 			this.cache.onHooks(
@@ -214,11 +123,10 @@ export class VRChat extends VRChatInternal {
 
 		interceptors.request.use(async (request, options) => {
 			const { meta = {} } = options as Options as { meta: Record<PropertyKey, unknown> };
-			const requestId = meta[requestIdSymbol];
 
 			// If the session is being refreshed, wait for the authentication to complete.
 			if (this.authenticatePromise && !meta[authenticateSymbol]) {
-				log("%o Waiting for authentication to complete...", requestId);
+				log("%Waiting for authentication to complete...");
 				await this.authenticatePromise.catch(() => { });
 			}
 
@@ -243,14 +151,14 @@ export class VRChat extends VRChatInternal {
 
 				const authenticationResult = await this.authenticate({ partial });
 				if (!authenticationResult.data)
-					return new Response(
-						JSON.stringify(authenticationResult.error.toResponseError()),
+					return Response.json(
+						authenticationResult.error.toResponseContent(),
 						authenticationResult.response
 					);
 
-				const { data, error: b, response: newResponse } = (await this._client.request(options as any));
-				return new Response(
-					JSON.stringify(data || (b as VRChatError)?.toResponseError()),
+				const { data, error: newError, response: newResponse } = (await this.client.request(options as any));
+				return Response.json(
+					data || (newError as VRChatError)?.toResponseContent(),
 					newResponse
 				);
 			}
@@ -258,7 +166,7 @@ export class VRChat extends VRChatInternal {
 			return response;
 		});
 
-		interceptors.error.use((reason, response, request) => VRChatError.from(reason, request, response));
+		interceptors.error.use((reason, response, request) => VRChatError.from(reason, { request, response }));
 
 		if (authentication) {
 			const { credentials, optimistic = true } = authentication;
@@ -268,24 +176,24 @@ export class VRChat extends VRChatInternal {
 			if (optimistic) void this.authenticate({ partial: true });
 		}
 
-		this.pipeline = new VRChatWebsocket({ headers });
+		this.pipeline = new VRChatWebsocket({ ...websocketOptions, headers });
 	}
 
 	public setCredentials(credentials?: Lazy<LoginCredentials>): void {
 		this.credentials = credentials;
 	}
 
-	private async authenticate({ partial = false }: { partial?: boolean } = {}): Promise<CurrentUserResult<false>> {
+	private async authenticate({ partial = false }: { partial?: boolean } = {}): Promise<LoginResult> {
 		const { authenticatePromise, credentials: _credentials } = this;
 		if (authenticatePromise) return authenticatePromise;
 
 		log("%s(%O)", this.authenticate.name, { partial });
 
-		const { promise, resolve: _resolve } = Promise.withResolvers<CurrentUserResult<false>>();
+		const { promise, resolve: _resolve } = Promise.withResolvers<LoginResult>();
 
 		this.authenticatePromise = promise;
 
-		const resolve = (value: CurrentUserResult<false>): CurrentUserResult<false> => {
+		const resolve = (value: LoginResult): LoginResult => {
 			_resolve(value);
 			this.authenticatePromise = undefined;
 
@@ -295,9 +203,9 @@ export class VRChat extends VRChatInternal {
 		const cookies = toCookiesObject(await this.getCookies());
 		if (!cookies.auth) partial = false;
 
-		if (cookies.auth) this.pipeline.authenticate(cookies.auth.value);
+		if (cookies.auth) this.pipeline?.authenticate(cookies.auth.value);
 
-		let value: CurrentUserResult<false> | undefined;
+		let value: LoginResult | undefined;
 
 		if (partial) {
 			value = await this.getCurrentUser({ meta: { [authenticateSymbol]: true }, responseTransformer: undefined });
@@ -315,12 +223,12 @@ export class VRChat extends VRChatInternal {
 		if (value && requiresTwoFactorAuth(value.data)) {
 			value = await this.loginWith2FA(value, credentials, { meta: { [authenticateSymbol]: true } });
 
-			if (value.error) return resolve(value);
+			if (value?.error) return resolve(value);
 			if (isUser(value?.data)) return resolve(value);
 		}
 
 		value = await this.login({ ...credentials, meta: { [authenticateSymbol]: true } });
-		if (isUser(value.data)) return resolve(value);
+		if (isUser(value?.data)) return resolve(value);
 
 		return resolve(value);
 	}
@@ -334,7 +242,7 @@ export class VRChat extends VRChatInternal {
 	 */
 	public async login<ThrowOnError extends boolean = false>(
 		options: LoginOptions<ThrowOnError>
-	): Promise<CurrentUserResult<ThrowOnError>> {
+	): Promise<LoginResult<ThrowOnError>> {
 		const { username, password, totpSecret, twoFactorCode, ...rest } = options;
 		log("%s(%O)", this.login.name, { username, password, totpSecret, twoFactorCode, ...rest });
 
@@ -356,13 +264,13 @@ export class VRChat extends VRChatInternal {
 	}
 
 	private async loginWith2FA<ThrowOnError extends boolean = false>(
-		value: CurrentUserResult<ThrowOnError>,
+		value: LoginResult<ThrowOnError>,
 		{
 			totpSecret,
 			twoFactorCode
 		}: Pick<LoginCredentials, "totpSecret" | "twoFactorCode">,
 		options: Omit<LoginOptions<ThrowOnError>, keyof LoginCredentials>
-	): Promise<CurrentUserResult<ThrowOnError>> {
+	): Promise<LoginResult<ThrowOnError>> {
 		log("%s(%O)", this.loginWith2FA.name, { value, totpSecret, twoFactorCode });
 
 		if (!requiresTwoFactorAuth(value.data))
@@ -372,7 +280,7 @@ export class VRChat extends VRChatInternal {
 		const { data: { requiresTwoFactorAuth: twoFactorMethods }, request, response } = value;
 
 		if (twoFactorMethods.includes("totp") && totpSecret && !twoFactorCode)
-			twoFactorCode = TOTP.generate(totpSecret).otp;
+			twoFactorCode = (await TOTP.generate(totpSecret)).otp;
 
 		const code = await collapse(twoFactorCode) || "";
 

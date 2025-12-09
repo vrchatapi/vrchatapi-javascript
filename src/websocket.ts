@@ -5,8 +5,9 @@ import type TypedEventEmitter from "typed-emitter";
 
 import type { VRChat } from "./client";
 import type { Events } from "./events";
-import { logWebsocket } from "./log";
+import { log } from "./lib/log";
 
+const logWebsocket = log.extend("websocket");
 const baseUrl = "wss://pipeline.vrchat.cloud";
 
 export interface VRChatWebsocketOptions {

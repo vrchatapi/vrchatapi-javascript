@@ -1,4 +1,5 @@
-export * from "./client";
-export * from "./error";
+export { VRChat } from "./client";
+export { VRChatError } from "./error";
 
-export * from "./generated/types.gen";
+export { version } from "./lib/metadata";
+export * from "./types";

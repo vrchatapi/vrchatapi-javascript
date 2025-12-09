@@ -1,5 +1,6 @@
-import { baseUrl, VRChat } from "./client";
-import { tryJsonParse } from "./utilities";
+import { VRChat } from "./client";
+import { client } from "./generated/client.gen";
+import { tryJsonParse } from "./lib/json";
 
 /**
  * @internal
@@ -31,11 +32,11 @@ export class VRChatError extends Error {
 	 *
 	 * @internal
 	 */
-	public static from(value: unknown, request?: Request, response?: Response): VRChatError {
+	public static from(value: unknown, { request, response }: Partial<Pick<VRChatErrorOptions, "request" | "response">> = {}): VRChatError {
 		if (value instanceof VRChatError)
 			return value;
 
-		request ??= new Request(baseUrl);
+		request ??= new Request(client.getConfig().baseUrl!);
 		response ??= new Response();
 
 		if (value instanceof Error)
@@ -70,7 +71,7 @@ export class VRChatError extends Error {
 		Error.captureStackTrace(this, VRChat);
 	}
 
-	public toResponseError(): { error: { message: string; status_code: number } } {
+	public toResponseContent(): { error: { message: string; status_code: number } } {
 		return {
 			error: {
 				message: this.message,
@@ -80,11 +81,8 @@ export class VRChatError extends Error {
 	}
 }
 
-/**
- * @internal
- */
 export function fail({ message, request, response, throwOnError }: { throwOnError?: boolean } & VRChatErrorOptions): { data: undefined; error: VRChatError; request: Request; response: Response } {
-	const error = VRChatError.from(message, request, response);
+	const error = VRChatError.from(message, { request, response });
 	if (throwOnError) throw error;
 
 	return {
