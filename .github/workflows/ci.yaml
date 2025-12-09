@@ -1,6 +1,11 @@
 on:
   repository_dispatch:
     types: [release]
+  workflow_dispatch:
+    inputs:
+      url:
+        type: string
+        description: URL (openapi.json)
   push:
     branches:
       - main
@@ -8,50 +13,52 @@ on:
 name: Build & release
 
 jobs:
-  build-and-release:
+  build_and_release:
     runs-on: ubuntu-latest
-    name: Release
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          key: pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: pnpm-
+          path: |
+            ~/.pnpm-store
+            ~/.cache/pnpm
+            **/node_modules
 
       - uses: pnpm/action-setup@v4
-        name: Install pnpm
         with:
           version: 10
           run_install: false
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'
+      - run: pnpm install
 
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Download specification
-        run: curl -L -o openapi.yaml https://vrchat.community/openapi.yaml
-
-      - name: Update version
+      - if: github.event_name == 'repository_dispatch'
         run: |
-          version=$(yq '.info.version' openapi.yaml | tr -d '"')
-          # pnpm version "${VERSION}-next.$(date +%s)" --no-git-tag-version
+          curl -fo openapi.json ${{ github.event.client_payload.artifacts['openapi.json'] }}
+          echo "from=repository_dispatch" >> $GITHUB_ENV
 
-          major=$(echo $version | cut -d. -f1)
-          minor=$(echo $version | cut -d. -f2)
-          patch=$(echo $version | cut -d. -f3)
+      - if: github.event_name == 'workflow_dispatch' && github.event.inputs.url != ''
+        run: |
+          curl -fo openapi.json ${{ github.event.inputs.url }}
+          echo "from=workflow_dispatch" >> $GITHUB_ENV
+      
+      - if: env.from == ''
+        run: curl -fo openapi.json https://github.com/vrchatapi/specification/releases/latest/download/openapi.json
 
-          version="$((major+1)).$minor.$patch"
+      - run: |
+          version=$(jq -r '.info.version' ./openapi.json)
+          version_tag=$(node -p "require('semver').parse('$version')?.prerelease[0] || 'latest'")
+
+          echo "version=$version" >> $GITHUB_ENV
+          echo "version_tag=$version_tag" >> $GITHUB_ENV
 
           pnpm version $version --no-git-tag-version
 
-      - name: Build
-        run: pnpm build
+      - run: pnpm build
 
-      - name: Release
+      - if: github.ref == 'refs/heads/main'
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-          pnpm publish --no-git-checks
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          pnpm publish --no-git-checks --tag ${{ env.version_tag }}

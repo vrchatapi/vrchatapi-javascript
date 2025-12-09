@@ -4,6 +4,7 @@ export const errorPlugin = definePluginConfig({
 	name: "vrchat/error",
 	config: {},
 	dependencies: ["@hey-api/typescript"],
+	// @ts-expect-error: we're using an experimental version of the generator.
 	handler: ({ plugin }) => {
 		const symbol = plugin.querySymbol({ resourceId: "#/components/schemas/Error" });
 

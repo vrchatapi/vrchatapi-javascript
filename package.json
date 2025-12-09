@@ -49,6 +49,7 @@
     "@types/node": "^24.10.1",
     "bun-plugin-dts": "^0.3.0",
     "eslint": "^9.39.1",
+    "semver": "^7.7.3",
     "tsup": "^8.5.1",
     "typed-emitter": "^2.1.0",
     "typescript": "^5.9.3"
