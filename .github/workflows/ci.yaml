@@ -36,16 +36,16 @@ jobs:
 
       - if: github.event_name == 'repository_dispatch'
         run: |
-          curl -fo openapi.json ${{ github.event.client_payload.artifacts['openapi.json'] }}
+          curl -Lfo openapi.json ${{ github.event.client_payload.artifacts['openapi.json'] }}
           echo "from=repository_dispatch" >> $GITHUB_ENV
 
       - if: github.event_name == 'workflow_dispatch' && github.event.inputs.url != ''
         run: |
-          curl -fo openapi.json ${{ github.event.inputs.url }}
+          curl -Lfo openapi.json ${{ github.event.inputs.url }}
           echo "from=workflow_dispatch" >> $GITHUB_ENV
       
       - if: env.from == ''
-        run: curl -fo openapi.json https://github.com/vrchatapi/specification/releases/latest/download/openapi.json
+        run: curl -Lfo openapi.json https://github.com/vrchatapi/specification/releases/latest/download/openapi.json
 
       - run: |
           version=$(jq -r '.info.version' ./openapi.json)
