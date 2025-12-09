@@ -27,13 +27,14 @@ jobs:
           version: 10
           run_install: false
       
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
           cache: 'pnpm'
 
+      # Trusted publishing requires npm CLI version 11.5.1 or later.
+      # https://docs.npmjs.com/trusted-publishers
       - run: npm install -g npm@latest
 
       - run: pnpm install
@@ -59,7 +60,7 @@ jobs:
             const version = semver.parse('$version');
             version.major += 1;
             
-            version.format()
+            version.format();
           ")
 
           version_tag=$(node -p "require('semver').parse('$version')?.prerelease[0] || 'latest'")
@@ -71,5 +72,5 @@ jobs:
 
       - run: pnpm build
 
-      - if: github.ref == 'refs/heads/main'
+      - if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'no_release')
         run: pnpm publish --no-git-checks --tag ${{ env.version_tag }}
