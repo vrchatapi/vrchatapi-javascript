@@ -6,7 +6,10 @@
   "type": "commonjs",
   "types": "dist/index.d.ts",
   "homepage": "https://vrchat.community/javascript",
-  "repository": "vrchatapi/vrchatapi-javascript",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vrchatapi/vrchatapi-javascript.git"
+  },
   "bugs": {
     "url": "https://github.com/vrchatapi/vrchatapi-javascript/issues"
   },
