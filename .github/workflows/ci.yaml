@@ -61,4 +61,4 @@ jobs:
       - run: pnpm build
 
       - if: github.ref == 'refs/heads/main'
-        run: pnpm publish --no-git-checks --tag ${{ env.version_tag }}
+        run: npm publish --no-git-checks --tag ${{ env.version_tag }}
