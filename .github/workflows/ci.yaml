@@ -59,6 +59,7 @@ jobs:
 
             const version = semver.parse('$version');
             version.major += 1;
+            version.minor += 1;
             
             version.format();
           ")

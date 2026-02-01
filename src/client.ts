@@ -52,6 +52,7 @@ export class VRChat extends VRChatInternal {
 		headers.set("user-agent", getUserAgent(application));
 
 		const client = createClient(createConfig({
+			baseUrl: "https://api.vrchat.cloud/api/1",
 			...clientOptions,
 			headers
 		}));
@@ -122,7 +123,7 @@ export class VRChat extends VRChatInternal {
 		}
 
 		interceptors.request.use(async (request, options) => {
-			const { meta = {} } = options as Options as { meta: Record<PropertyKey, unknown> };
+			const { meta = {} } = options as Options as { meta?: Record<PropertyKey, unknown> };
 
 			// If the session is being refreshed, wait for the authentication to complete.
 			if (this.authenticatePromise && !meta[authenticateSymbol]) {
@@ -141,7 +142,7 @@ export class VRChat extends VRChatInternal {
 		});
 
 		interceptors.response.use(async (response, request, options) => {
-			const { meta } = options as Options as { meta: Record<PropertyKey, unknown> };
+			const { meta = {} } = options as Options as { meta?: Record<PropertyKey, unknown> };
 
 			await this.saveCookies(response.headers);
 
