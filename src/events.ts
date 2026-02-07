@@ -4,7 +4,7 @@ import type {
 } from "./types";
 
 export interface EventData {
-	"group-member-updated": { member: GroupLimitedMember };
+	"group-member-updated": { member: GroupMember };
 	"group-role-updated": { role: GroupRole };
 }
 
