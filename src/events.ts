@@ -1,5 +1,5 @@
 import type {
-	GroupLimitedMember,
+	GroupMember,
 	GroupRole
 } from "./types";
 
