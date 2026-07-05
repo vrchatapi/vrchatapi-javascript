@@ -21,6 +21,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
+    },
+    "./websocket": {
+      "types": "./dist/websocket.d.ts",
+      "import": "./dist/websocket.mjs",
+      "require": "./dist/websocket.js"
     }
   },
   "scripts": {
