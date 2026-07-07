@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@ariesclark/eslint-config": "^3.1.1",
-    "@hey-api/openapi-ts": "^0.88.0",
+    "@hey-api/openapi-ts": "^0.97.3",
     "@types/debug": "^4.1.12",
     "@types/node": "^24.10.1",
     "bun-plugin-dts": "^0.3.0",
