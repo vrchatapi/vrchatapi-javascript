@@ -56,3 +56,5 @@ jobs:
           cache: true
 
       - run: pnpm build
+
+      - run: pnpm exec pkg-pr-new publish --packageManager=pnpm
