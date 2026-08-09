@@ -16,6 +16,8 @@ name: CI
 jobs:
   generate:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -30,6 +32,21 @@ jobs:
           cache: true
 
       - run: pnpm generate
+
+      - id: version
+        run: |
+          version=$(jq -r '.info.version' ./openapi.json)
+          version=$(node -p "
+            const semver = require('semver');
+
+            const version = semver.parse('$version');
+            version.major += 1;
+            version.minor += 2;
+
+            version.format();
+          ")
+
+          echo "version=$version" >> $GITHUB_OUTPUT
 
       - uses: actions/upload-artifact@v7
         with:
@@ -54,6 +71,8 @@ jobs:
         with:
           runtime: node@24
           cache: true
+
+      - run: pnpm version ${{ needs.generate.outputs.version }} --no-git-tag-version
 
       - run: pnpm build
 
