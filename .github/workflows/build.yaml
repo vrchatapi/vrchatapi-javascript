@@ -27,7 +27,6 @@ name: Build
 
 jobs:
   build:
-    name: javascript
     runs-on: ubuntu-latest
     steps:
       # Named explicitly: when this workflow is called, the context belongs to
