@@ -3,6 +3,13 @@ on:
     branches:
       - '**'
   pull_request:
+  repository_dispatch:
+    types: [release]
+  workflow_dispatch:
+    inputs:
+      url:
+        type: string
+        description: URL (openapi.json)
   workflow_call:
     inputs:
       ref:
@@ -11,6 +18,10 @@ on:
         type: string
         default: main
 
+permissions:
+  id-token: write
+  contents: read
+
 name: CI
 
 jobs:
@@ -18,13 +29,19 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
     steps:
       - uses: actions/checkout@v7
         with:
           repository: vrchatapi/vrchatapi-javascript
           ref: ${{ inputs.ref || github.ref }}
 
-      - uses: vrchatapi/specification/.github/actions/download@ci/modernise-actions
+      - id: released
+        if: github.event_name == 'repository_dispatch' || inputs.url != ''
+        run: curl -Lfo openapi.json "${{ github.event.client_payload.artifacts['openapi.json'] || inputs.url }}"
+
+      - if: steps.released.outcome == 'skipped'
+        uses: vrchatapi/specification/.github/actions/download@ci/modernise-actions
 
       - uses: pnpm/setup@v2
         with:
@@ -47,6 +64,7 @@ jobs:
           ")
 
           echo "version=$version" >> $GITHUB_OUTPUT
+          echo "tag=$(node -p "require('semver').parse('$version')?.prerelease[0] || 'latest'")" >> $GITHUB_OUTPUT
 
       - uses: actions/upload-artifact@v7
         with:
@@ -82,3 +100,40 @@ jobs:
             --no-template \
             --no-compact \
             --commentWithSha
+
+  publish:
+    needs:
+      - generate
+      - build
+    if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'no_release')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: vrchatapi/vrchatapi-javascript
+          ref: ${{ inputs.ref || github.ref }}
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: generated-javascript
+          path: src/generated
+
+      - uses: pnpm/setup@v2
+        with:
+          runtime: node@24
+          cache: true
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      # Trusted publishing requires npm CLI version 11.5.1 or later.
+      # https://docs.npmjs.com/trusted-publishers
+      - run: npm install -g npm@latest
+
+      - run: pnpm version ${{ needs.generate.outputs.version }} --no-git-tag-version
+
+      - run: pnpm build
+
+      - run: pnpm publish --no-git-checks --tag ${{ needs.generate.outputs.tag }}
