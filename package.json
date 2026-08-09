@@ -30,7 +30,7 @@
     }
   },
   "scripts": {
-    "prebuild": "rm src/generated -rf && openapi-ts",
+    "generate": "rm src/generated -rf && openapi-ts",
     "build": "tsup"
   },
   "keywords": [

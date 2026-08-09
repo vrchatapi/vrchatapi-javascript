@@ -14,7 +14,7 @@ on:
 name: CI
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -23,6 +23,32 @@ jobs:
           ref: ${{ inputs.ref || github.ref }}
 
       - uses: vrchatapi/specification/.github/actions/download@ci/modernise-actions
+
+      - uses: pnpm/setup@v2
+        with:
+          runtime: node@24
+          cache: true
+
+      - run: pnpm generate
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: generated-javascript
+          path: src/generated
+
+  build:
+    needs: generate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: vrchatapi/vrchatapi-javascript
+          ref: ${{ inputs.ref || github.ref }}
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: generated-javascript
+          path: src/generated
 
       - uses: pnpm/setup@v2
         with:
