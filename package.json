@@ -1,66 +1,67 @@
 {
-  "name": "vrchat",
-  "displayName": "VRChat.js",
-  "version": "0.0.0",
-  "description": "",
-  "type": "commonjs",
-  "types": "dist/index.d.ts",
-  "homepage": "https://vrchat.community/javascript",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vrchatapi/vrchatapi-javascript.git"
-  },
-  "bugs": {
-    "url": "https://github.com/vrchatapi/vrchatapi-javascript/issues"
-  },
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./websocket": {
-      "types": "./dist/websocket.d.ts",
-      "import": "./dist/websocket.mjs",
-      "require": "./dist/websocket.js"
-    }
-  },
-  "scripts": {
-    "prebuild": "rm src/generated -rf && openapi-ts",
-    "build": "tsup"
-  },
-  "keywords": [
-    "typescript",
-    "openapi-client",
-    "openapi-generator",
-    "vrchat-api",
-    "vrchat-api-client",
-    "vrchat"
-  ],
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "cacheable": "^1.10.4",
-    "debug": "^4.4.3",
-    "isomorphic-ws": "^5.0.0",
-    "keyv": "^5.5.5",
-    "totp-generator": "^2.0.0",
-    "ws": "^8.18.3"
-  },
-  "devDependencies": {
-    "@ariesclark/eslint-config": "^3.1.1",
-    "@hey-api/openapi-ts": "^0.88.0",
-    "@types/debug": "^4.1.12",
-    "@types/node": "^24.10.1",
-    "bun-plugin-dts": "^0.3.0",
-    "eslint": "^9.39.1",
-    "pkg-pr-new": "^0.0.87",
-    "semver": "^7.7.3",
-    "tsup": "^8.5.1",
-    "typed-emitter": "^2.1.0",
-    "typescript": "^5.9.3"
-  }
+	"name": "vrchat",
+	"displayName": "VRChat.js",
+	"version": "0.0.0",
+	"packageManager": "pnpm@11.20.0",
+	"description": "",
+	"type": "commonjs",
+	"types": "dist/index.d.ts",
+	"homepage": "https://vrchat.community/javascript",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/vrchatapi/vrchatapi-javascript.git"
+	},
+	"bugs": {
+		"url": "https://github.com/vrchatapi/vrchatapi-javascript/issues"
+	},
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js"
+		},
+		"./websocket": {
+			"types": "./dist/websocket.d.ts",
+			"import": "./dist/websocket.mjs",
+			"require": "./dist/websocket.js"
+		}
+	},
+	"scripts": {
+		"prebuild": "rm src/generated -rf && openapi-ts",
+		"build": "tsup"
+	},
+	"keywords": [
+		"typescript",
+		"openapi-client",
+		"openapi-generator",
+		"vrchat-api",
+		"vrchat-api-client",
+		"vrchat"
+	],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"cacheable": "^1.10.4",
+		"debug": "^4.4.3",
+		"isomorphic-ws": "^5.0.0",
+		"keyv": "^5.5.5",
+		"totp-generator": "^2.0.0",
+		"ws": "^8.18.3"
+	},
+	"devDependencies": {
+		"@ariesclark/eslint-config": "^3.1.1",
+		"@hey-api/openapi-ts": "^0.88.0",
+		"@types/debug": "^4.1.12",
+		"@types/node": "^24.10.1",
+		"bun-plugin-dts": "^0.3.0",
+		"eslint": "^9.39.1",
+		"pkg-pr-new": "^0.0.87",
+		"semver": "^7.7.3",
+		"tsup": "^8.5.1",
+		"typed-emitter": "^2.1.0",
+		"typescript": "^5.9.3"
+	}
 }
