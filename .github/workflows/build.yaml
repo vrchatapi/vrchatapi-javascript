@@ -28,7 +28,6 @@ jobs:
         with:
           repository: vrchatapi/vrchatapi-javascript
           ref: ${{ inputs.ref || github.ref }}
-          bundle: openapi.json
           artifact: ${{ inputs.artifact }}
 
       - uses: pnpm/action-setup@v6
