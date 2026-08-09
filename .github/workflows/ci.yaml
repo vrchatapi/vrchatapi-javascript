@@ -1,81 +1,32 @@
 on:
-  repository_dispatch:
-    types: [release]
-  workflow_dispatch:
-    inputs:
-      url:
-        type: string
-        description: URL (openapi.json)
   push:
     branches:
       - '**'
+  pull_request:
+  workflow_call:
+    inputs:
+      ref:
+        description: Ref of this repository to build.
+        required: false
+        type: string
+        default: main
 
-permissions:
-  id-token: write  # Required for OIDC
-  contents: read
-
-name: Build & release
+name: CI
 
 jobs:
-  build_and_release:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-
-      - uses: pnpm/action-setup@v6
         with:
-          run_install: false
+          repository: vrchatapi/vrchatapi-javascript
+          ref: ${{ inputs.ref || github.ref }}
 
-      - uses: actions/setup-node@v7
+      - uses: vrchatapi/specification/.github/actions/download@ci/modernise-actions
+
+      - uses: pnpm/setup@v2
         with:
-          node-version: 24
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'pnpm'
-
-      # Trusted publishing requires npm CLI version 11.5.1 or later.
-      # https://docs.npmjs.com/trusted-publishers
-      - run: npm install -g npm@latest
-
-      - run: pnpm install
-
-      - if: github.event_name == 'repository_dispatch'
-        run: |
-          curl -Lfo openapi.json ${{ github.event.client_payload.artifacts['openapi.json'] }}
-          echo "from=repository_dispatch" >> $GITHUB_ENV
-
-      - if: github.event_name == 'workflow_dispatch' && github.event.inputs.url != ''
-        run: |
-          curl -Lfo openapi.json ${{ github.event.inputs.url }}
-          echo "from=workflow_dispatch" >> $GITHUB_ENV
-      
-      - if: env.from == ''
-        run: curl -Lfo openapi.json https://github.com/vrchatapi/specification/releases/latest/download/openapi.json
-
-      - run: |
-          version=$(jq -r '.info.version' ./openapi.json)
-          version=$(node -p "
-            const semver = require('semver');
-
-            const version = semver.parse('$version');
-            version.major += 1;
-            version.minor += 2;
-            
-            version.format();
-          ")
-
-          version_tag=$(node -p "require('semver').parse('$version')?.prerelease[0] || 'latest'")
-
-          echo "version=$version" >> $GITHUB_ENV
-          echo "version_tag=$version_tag" >> $GITHUB_ENV
-
-          pnpm version $version --no-git-tag-version
+          runtime: node@24
+          cache: true
 
       - run: pnpm build
-
-      # Branches and pull requests get a preview release from pkg.pr.new
-      # instead of npm. https://pkg.pr.new
-      - if: github.ref != 'refs/heads/main'
-        run: pnpm exec pkg-pr-new publish
-
-      - if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'no_release')
-        run: pnpm publish --no-git-checks --tag ${{ env.version_tag }}
