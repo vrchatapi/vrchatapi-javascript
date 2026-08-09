@@ -98,6 +98,13 @@ jobs:
             --no-compact \
             --commentWithSha
 
+      - run: pnpm pack --out package.tgz
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: package-javascript
+          path: package.tgz
+
   publish:
     needs:
       - generate
@@ -105,32 +112,13 @@ jobs:
     if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'no_release')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-        with:
-          repository: vrchatapi/vrchatapi-javascript
-          ref: ${{ inputs.ref || github.ref }}
-
       - uses: actions/download-artifact@v8
         with:
-          name: generated-javascript
-          path: src/generated
-
-      - uses: pnpm/setup@v2
-        with:
-          runtime: node@24
-          cache: true
+          name: package-javascript
 
       - uses: actions/setup-node@v7
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
 
-      # Trusted publishing requires npm CLI version 11.5.1 or later.
-      # https://docs.npmjs.com/trusted-publishers
-      - run: npm install -g npm@latest
-
-      - run: pnpm version ${{ needs.generate.outputs.version }} --no-git-tag-version
-
-      - run: pnpm build
-
-      - run: pnpm publish --no-git-checks --tag ${{ needs.generate.outputs.tag }}
+      - run: npm publish package.tgz --tag ${{ needs.generate.outputs.tag }}
