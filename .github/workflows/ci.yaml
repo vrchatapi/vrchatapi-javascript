@@ -65,7 +65,7 @@ jobs:
 
       - uses: actions/upload-artifact@v7
         with:
-          name: generated-javascript
+          name: javascript-generated
           path: src/generated
 
   build:
@@ -79,7 +79,7 @@ jobs:
 
       - uses: actions/download-artifact@v8
         with:
-          name: generated-javascript
+          name: javascript-generated
           path: src/generated
 
       - uses: pnpm/setup@v2
@@ -103,19 +103,21 @@ jobs:
 
       - uses: actions/upload-artifact@v7
         with:
-          name: package-javascript
+          name: javascript-package
           path: package.tgz
 
   publish:
     needs:
       - generate
       - build
-    if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'no_release')
+    if: github.repository == 'vrchatapi/vrchatapi-javascript'
+      && github.ref == 'refs/heads/main'
+      && !contains(github.event.head_commit.message, 'no_release')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v8
         with:
-          name: package-javascript
+          name: javascript-package
 
       - uses: actions/setup-node@v7
         with:
