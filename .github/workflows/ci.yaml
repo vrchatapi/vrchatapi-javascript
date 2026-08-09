@@ -10,6 +10,13 @@ on:
         required: false
         type: string
         default: main
+    outputs:
+      version:
+        description: Version the preview was published under.
+        value: ${{ jobs.generate.outputs.version }}
+      install:
+        description: Command that installs the preview package.
+        value: ${{ jobs.build.outputs.install }}
 
 name: CI
 
@@ -56,6 +63,8 @@ jobs:
   build:
     needs: generate
     runs-on: ubuntu-latest
+    outputs:
+      install: ${{ steps.preview.outputs.install }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -76,4 +85,12 @@ jobs:
 
       - run: pnpm build
 
-      - run: pnpm exec pkg-pr-new publish --packageManager=pnpm --no-template
+      - id: preview
+        run: |
+          pnpm exec pkg-pr-new publish \
+            --packageManager=pnpm \
+            --no-template \
+            --json preview.json \
+            --comment=${{ github.repository == 'vrchatapi/vrchatapi-javascript' && 'update' || 'off' }}
+
+          echo "install=pnpm add $(jq -r '.packages[0].url' preview.json)" >> $GITHUB_OUTPUT
