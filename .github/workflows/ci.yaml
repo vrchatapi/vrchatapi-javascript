@@ -91,7 +91,8 @@ jobs:
 
       - run: pnpm build
 
-      - run: |
+      - if: github.event_name != 'workflow_dispatch'
+        run: |
           pnpm exec pkg-pr-new publish \
             --packageManager=pnpm \
             --no-template \
