@@ -8,15 +8,10 @@ on:
       spec-artifact:
         description: >-
           Artifact holding the bundled specification. Only reachable when the
-          caller shares this run, so it takes precedence over spec-url.
+          caller shares this run; when empty the latest published one is used.
         required: false
         type: string
         default: ''
-      spec-url:
-        description: Where to download the specification from.
-        required: false
-        type: string
-        default: https://github.com/vrchatapi/specification/releases/latest/download/openapi.json
       ref:
         description: Ref of this repository to build.
         required: false
@@ -29,42 +24,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Named explicitly: when this workflow is called, the context belongs to
-      # the caller, so a bare checkout would fetch the caller's repository.
-      - uses: actions/checkout@v7
+      # This SDK generates through @hey-api/openapi-ts rather than the OpenAPI
+      # generator, so it only needs the checkout and the specification.
+      - uses: vrchatapi/specification/.github/actions/sdk-spec@ci/modernise-actions
         with:
           repository: vrchatapi/vrchatapi-javascript
           ref: ${{ inputs.ref || github.ref }}
+          spec-artifact: ${{ inputs.spec-artifact }}
 
       - uses: pnpm/action-setup@v6
         with:
           version: 10
           run_install: false
 
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: pnpm
-
-      - if: inputs.spec-artifact != ''
-        uses: actions/download-artifact@v8
-        with:
-          name: ${{ inputs.spec-artifact }}
-          path: .
-
-      - if: inputs.spec-artifact == ''
-        run: curl -Lfo openapi.json "${{ inputs.spec-url || 'https://github.com/vrchatapi/specification/releases/latest/download/openapi.json' }}"
-
       - run: pnpm install
 
       # `prebuild` regenerates src/generated from ./openapi.json, so this both
       # generates against the specification and type-checks the result.
       - run: pnpm build
-
-      - uses: actions/upload-artifact@v7
-        with:
-          name: javascript-${{ github.run_id }}
-          path: |
-            dist
-            src/generated
-          if-no-files-found: ignore
