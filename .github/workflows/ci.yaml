@@ -76,19 +76,9 @@ jobs:
 
       - run: pnpm build
 
-      - id: preview
-        run: |
+      - run: |
           pnpm exec pkg-pr-new publish \
             --packageManager=pnpm \
             --no-template \
             --no-compact \
-            --commentWithSha \
-            --json preview.json \
-            --comment=${{ github.repository == 'vrchatapi/vrchatapi-javascript' && 'update' || 'off' }}
-
-          echo "install=pnpm add $(jq -r '.packages[0].url' preview.json)" >> $GITHUB_OUTPUT
-
-      - uses: vrchatapi/specification/.github/actions/report@ci/modernise-actions
-        with:
-          sdk: javascript
-          install: ${{ steps.preview.outputs.install }}
+            --commentWithSha
