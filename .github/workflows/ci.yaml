@@ -36,12 +36,9 @@ jobs:
           repository: vrchatapi/vrchatapi-javascript
           ref: ${{ inputs.ref || github.ref }}
 
-      - id: released
-        if: github.event_name == 'repository_dispatch' || inputs.url != ''
-        run: curl -Lfo openapi.json "${{ github.event.client_payload.artifacts['openapi.json'] || inputs.url }}"
-
-      - if: steps.released.outcome == 'skipped'
-        uses: vrchatapi/specification/.github/actions/download@ci/modernise-actions
+      - uses: vrchatapi/specification/.github/actions/download@ci/modernise-actions
+        with:
+          url: ${{ inputs.url }}
 
       - uses: pnpm/setup@v2
         with:
