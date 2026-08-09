@@ -90,6 +90,7 @@ jobs:
           pnpm exec pkg-pr-new publish \
             --packageManager=pnpm \
             --no-template \
+            --commentWithSha \
             --json preview.json \
             --comment=${{ github.repository == 'vrchatapi/vrchatapi-javascript' && 'update' || 'off' }}
 
