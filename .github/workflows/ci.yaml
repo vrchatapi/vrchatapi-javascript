@@ -8,7 +8,7 @@ on:
         description: URL (openapi.json)
   push:
     branches:
-      - main
+      - '**'
 
 permissions:
   id-token: write  # Required for OIDC
