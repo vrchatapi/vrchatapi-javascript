@@ -5,13 +5,13 @@ on:
   pull_request:
   workflow_call:
     inputs:
-      spec-artifact:
+      artifact:
         description: >-
-          Artifact holding the bundled specification. Only reachable when the
-          caller shares this run; when empty the latest published one is used.
+          Take the bundle from this run's artifacts rather than the latest
+          release. Only set it when the caller shares the run.
         required: false
-        type: string
-        default: ''
+        type: boolean
+        default: false
       ref:
         description: Ref of this repository to build.
         required: false
@@ -24,13 +24,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # This SDK generates through @hey-api/openapi-ts rather than the OpenAPI
-      # generator, so it only needs the checkout and the specification.
-      - uses: vrchatapi/specification/.github/actions/sdk-spec@ci/modernise-actions
+      - uses: vrchatapi/specification/.github/actions/setup@ci/modernise-actions
         with:
           repository: vrchatapi/vrchatapi-javascript
           ref: ${{ inputs.ref || github.ref }}
-          spec-artifact: ${{ inputs.spec-artifact }}
+          bundle: openapi.json
+          artifact: ${{ inputs.artifact }}
 
       - uses: pnpm/action-setup@v6
         with:
@@ -39,6 +38,4 @@ jobs:
 
       - run: pnpm install
 
-      # `prebuild` regenerates src/generated from ./openapi.json, so this both
-      # generates against the specification and type-checks the result.
       - run: pnpm build
