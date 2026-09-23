@@ -1,0 +1,15 @@
+{
+  "problemMatcher": [
+    {
+      "owner": "openapi-ts",
+      "severity": "warning",
+      "pattern": [
+        {
+          "regexp": "^❗\\S*\\s(\\w+) warning: (.+)$",
+          "code": 1,
+          "message": 2
+        }
+      ]
+    }
+  ]
+}

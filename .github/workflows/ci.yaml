@@ -45,7 +45,10 @@ jobs:
           runtime: node@24
           cache: true
 
-      - run: pnpm generate
+      - run: |
+          echo "::add-matcher::$GITHUB_WORKSPACE/.github/matchers/openapi-ts.json"
+          pnpm generate
+          echo "::remove-matcher owner=openapi-ts::"
 
       - id: version
         run: |
