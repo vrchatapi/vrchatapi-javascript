@@ -7,9 +7,11 @@ on:
     types: [release]
   workflow_dispatch:
     inputs:
-      url:
+      tag:
+        description: Release to build, such as v1.22.1 or nightly. Defaults to the latest release.
+        required: false
         type: string
-        description: URL (openapi.json)
+        default: ''
   workflow_call:
     inputs:
       ref:
@@ -38,7 +40,7 @@ jobs:
 
       - uses: vrchatapi/specification/.github/actions/download@main
         with:
-          url: ${{ inputs.url }}
+          tag: ${{ inputs.tag }}
 
       - uses: pnpm/setup@v2
         with:
